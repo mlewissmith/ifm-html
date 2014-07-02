@@ -555,7 +555,9 @@ if ($opt{format} eq "html") {
                 if (defined $rooms->{$r}{note}) {
                     my @htmlary;
                     for my $n (@{$rooms->{$r}{note}}) {
-                        push @htmlary, ucfirst(encode_entities($n));
+                        my $n_html = ucfirst(encode_entities($n));
+                        $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                        push @htmlary, $n_html;
                     }
                     print HTML heredoc(<<"##__HTML__##");
 # <!-- BEGIN NOTES $m:$r -->
@@ -697,7 +699,9 @@ if ($opt{format} eq "html") {
             if (defined $tasks->{$t}{note}) {
                 my @htmlary;
                 for my $n (@{$tasks->{$t}{note}}) {
-                    push @htmlary, ucfirst(encode_entities($n));
+                    my $n_html = ucfirst(encode_entities($n));
+                    $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                    push @htmlary, $n_html;
                 }
                 print HTML heredoc(<<"##__HTML__##");
 # <!-- BEGIN NOTES $t -->
@@ -865,7 +869,9 @@ if ($opt{format} eq "html") {
             if (defined $items->{$i}{note}) {
                 my @htmlary;
                 for my $n (@{$items->{$i}{note}}) {
-                    push @htmlary, ucfirst(encode_entities($n));
+                    my $n_html = ucfirst(encode_entities($n));
+                    $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                    push @htmlary, $n_html;
                 }
                 print HTML heredoc(<<"##__HTML__##");
 # <!-- BEGIN NOTES $i -->
