@@ -1,0 +1,110 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 3
+height: 2
+
+room: 3
+name: Freedom
+rpos: 0 1
+
+room: 2
+name: Closet
+rpos: 1 0
+
+room: 1
+name: Cell
+rpos: 2 1
+
+room: 0
+name: Start
+rpos: 1 1
+
+link: 0 1
+lpos: 1 1
+lpos: 2 1
+
+link: 0 2
+lpos: 1 1
+lpos: 1 0
+
+link: 0 3
+lpos: 1 1
+lpos: 0 1
+
+item: 0
+name: stick
+tag: stick
+room: 0
+score: 1
+after: 7
+needed: 8
+note: Props cell door open
+
+item: 2
+name: torch
+tag: light
+room: 2
+enter: 2
+
+item: 1
+name: treasure
+tag: treasure
+room: 1
+score: 1
+needed: 8
+
+task: 9
+name: Move to Closet
+room: 2
+cmd: S
+
+task: 6
+name: Get torch
+room: 2
+
+task: 10
+name: Move to Start
+room: 0
+cmd: N
+
+task: 11
+name: Move to Cell
+room: 1
+cmd: E
+
+task: 5
+name: Get treasure
+room: 1
+score: 1
+
+task: 12
+name: Move to Start
+room: 0
+cmd: W
+
+task: 7
+name: Pull the stick
+tag: pull_stick
+room: 0
+
+task: 4
+name: Get stick
+room: 0
+score: 1
+note: Props cell door open
+
+task: 13
+name: Move to Freedom
+room: 3
+cmd: W
+
+task: 8
+name: Win the game
+room: 3
+
+task: 14
+name: Drop stick
+
+task: 15
+name: Drop treasure

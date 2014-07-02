@@ -1,0 +1,828 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Language &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Output variables" href="vars.html" />
+    <link rel="prev" title="Using IFM" href="usage.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vars.html" title="Output variables"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Using IFM"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Language</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="language">
+<h1>Language<a class="headerlink" href="#language" title="Permalink to this headline">¶</a></h1>
+<p>This section gives a complete detailed description of the IFM language.</p>
+<div class="section" id="symbols">
+<h2>Symbols<a class="headerlink" href="#symbols" title="Permalink to this headline">¶</a></h2>
+<p>In the following sections, these symbols are used:</p>
+<dl class="docutils">
+<dt><tt class="xref docutils literal"><span class="pre">ID</span></tt></dt>
+<dd>A name starting with a letter, followed by any combination of
+upper- and lowercase letters or numbers or an underscore. For
+example, <tt class="docutils literal"><span class="pre">Dense_Forest</span></tt>. IDs are not allowed to clash with
+reserved words (e.g., <tt class="docutils literal"><span class="pre">room</span></tt>, or <tt class="docutils literal"><span class="pre">tag</span></tt>). One way to avoid this
+is to capitalize all tags (reserved words are all in lowercase).</dd>
+<dt><tt class="xref docutils literal"><span class="pre">STRING</span></tt></dt>
+<dd><p class="first">Any sequence of characters, in double-quotes.  For example, <tt class="docutils literal"><span class="pre">&quot;Black</span>
+<span class="pre">Rod&quot;</span></tt>. To get a double-quote inside a string, quote it using a
+backslash, like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;Ground Floor, </span><span class="se">\&quot;</span><span class="s">A</span><span class="se">\&quot;</span><span class="s"> Block&quot;</span>
+</pre></div>
+</div>
+<p class="last">You can continue strings on several lines&#8212;a
+newline-and-whitespace sequence is translated into a single space,
+just like in TADS and Inform.</p>
+</dd>
+<dt><tt class="xref docutils literal"><span class="pre">NUMBER</span></tt></dt>
+<dd>A number. If the context requires an integer, the number is
+silently rounded to the larges integer not greater than this
+value.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">COMPASS</span></tt></dt>
+<dd>A compass direction, which can be abbreviated or in full (e.g.,
+<tt class="docutils literal"><span class="pre">n</span></tt>, <tt class="docutils literal"><span class="pre">se</span></tt>, <tt class="docutils literal"><span class="pre">northwest</span></tt>, etc).</dd>
+<dt><tt class="xref docutils literal"><span class="pre">OTHERDIR</span></tt></dt>
+<dd>One of <tt class="docutils literal"><span class="pre">up</span></tt>, <tt class="docutils literal"><span class="pre">down</span></tt>, <tt class="docutils literal"><span class="pre">in</span></tt> or <tt class="docutils literal"><span class="pre">out</span></tt>.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">[...]</span></tt></dt>
+<dd>An optional part.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">A</span> <span class="pre">|</span> <span class="pre">B</span></tt></dt>
+<dd>Either A or B.</dd>
+</dl>
+</div>
+<div class="section" id="format">
+<h2>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
+<p>IFM generally has a free-format layout&#8212;i.e., whitespace may be placed
+anywhere to increase readability. The only exception is inside quoted
+strings, where spaces are significant. Comments may be added, starting with
+a hash (<tt class="docutils literal"><span class="pre">#</span></tt>) and continuing to the end of the line. All commands are
+terminated with a semicolon.</p>
+</div>
+<div class="section" id="control">
+<h2>Control<a class="headerlink" href="#control" title="Permalink to this headline">¶</a></h2>
+<p>The overall title of the map may be set using the command:</p>
+<div class="highlight-python"><pre>title STRING;</pre>
+</div>
+<p>If a map has several sections, you can set the title of each section using
+the command:</p>
+<div class="highlight-python"><pre>map STRING;</pre>
+</div>
+<p>This sets the title of the next map section. If you use this command at
+all, then the number of uses should be the same as the actual number of map
+sections. It&#8217;s conventional (but not required) to put the <tt class="xref docutils literal"><span class="pre">map</span></tt>
+command just before the room that starts a new map section.</p>
+<p>If your map uses features that are only present in later versions of IFM,
+you can indicate that up front by using the command:</p>
+<div class="highlight-python"><pre>require NUMBER;</pre>
+</div>
+<p>Then, if the IFM version number is less than this number, parsing will
+abort immediately, avoiding lots of potentially confusing syntax errors.</p>
+<p>
+<span class="versionmodified">New in version 5.0: </span>The <tt class="xref docutils literal"><span class="pre">require</span></tt> keyword.</p>
+</div>
+<div class="section" id="tags">
+<h2>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h2>
+<p>All IFM objects may be given tag names, so that you can refer to them in
+other commands. Tags for different types of object are independent&#8212;for
+example, you could have a room and an item with the same tag.  However,
+tags for similar objects must be unique.</p>
+<p>In many cases, you are allowed to refer to a tag name anywhere, even
+earlier in the file that you defined it (as long as the tag is defined
+<em>somewhere</em>!). Exceptions are the <a class="reference internal" href="#room">room</a> <tt class="xref docutils literal"><span class="pre">from</span> <span class="pre">ID</span></tt> clause and tags
+in commands that modify existing objects&#8212;these tags must be defined
+before being used.</p>
+</div>
+<div class="section" id="special-names">
+<h2>Special names<a class="headerlink" href="#special-names" title="Permalink to this headline">¶</a></h2>
+<p>There are three special names that can refer to IFM objects in certain
+contexts:</p>
+<dl class="docutils">
+<dt><tt class="xref docutils literal"><span class="pre">last</span></tt></dt>
+<dd>May be used to refer to the last object of a certain type that was
+defined in a previous statement.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">it</span></tt></dt>
+<dd>May be used to refer to the most recent object in the current
+statement.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">them</span></tt></dt>
+<dd><p class="first">May be used to refer to all the items mentioned so far in the current
+statement.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<p>There are five different types of object in IFM: rooms, items, links, joins
+and tasks. Each is created using its own command, the general format of
+which is:</p>
+<div class="highlight-python"><pre>&lt;type&gt; &lt;body&gt; [attribute-list];</pre>
+</div>
+<p>For rooms, items and tasks, <tt class="docutils literal"><span class="pre">&lt;body&gt;</span></tt> is just a string description. For
+links and joins, it specifies two room tags to link or join together.</p>
+<p>Many of the attributes or objects accept a list of tags as arguments. All
+of these, if specified more than once in the same object, concatenate the
+lists together.</p>
+<p>Once an object has been declared with a tag name, its attributes can be
+modified by later commands referring to that tag, like this:</p>
+<div class="highlight-python"><pre>&lt;type&gt; ID [attribute-list];</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">ID</span></tt> is the tag name of the object. Note that the tag must be
+defined earlier in the file than it is used.</p>
+<div class="section" id="rooms">
+<span id="room"></span><h3>Rooms<a class="headerlink" href="#rooms" title="Permalink to this headline">¶</a></h3>
+<p>A new room is added using the command:</p>
+<div class="highlight-python"><pre>room STRING [attribute-list];</pre>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">STRING</span></tt> is a description of the room. Room attributes can be:</p>
+<dl class="docutils" id="index-0">
+<dt><tt class="xref docutils literal"><span class="pre">tag</span> <span class="pre">ID</span></tt></dt>
+<dd>Give the room a tag name, so that you can refer to it elsewhere.</dd>
+</dl>
+<dl class="docutils" id="index-1">
+<dt><tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">COMPASS</span> <span class="pre">[NUMBER]</span> <span class="pre">[COMPASS</span> <span class="pre">[NUMBER]...]</span> <span class="pre">[from</span> <span class="pre">ID]</span></tt></dt>
+<dd><p class="first">Specify the position of the room relative to the room with the given
+tag ID (which must be defined before it is used).  If no
+<tt class="xref docutils literal"><span class="pre">from</span></tt> clause is specified, the last defined room is used
+instead. There can be more than one direction given&#8212;the new room
+is placed relative to the previous one using them. Following a
+direction with a number means to repeat it that many times.</p>
+<p>The <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause creates an implicit link between this room
+and the previous one. Some of the room attributes below behave
+differently depending on whether they appear before or after the
+<tt class="xref docutils literal"><span class="pre">dir</span></tt> clause in the attribute list.</p>
+<p class="last">If the room is given a tag name, then the implicit link will be
+given the same tag.</p>
+</dd>
+</dl>
+<dl class="docutils" id="index-2">
+<dt><tt class="xref docutils literal"><span class="pre">link</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Specify other rooms that this room links to.  Note that this creates
+a link with no special attributes&#8212;use the standalone
+<tt class="xref docutils literal"><span class="pre">link</span></tt> command for that.</dd>
+</dl>
+<dl class="docutils" id="index-3">
+<dt><tt class="xref docutils literal"><span class="pre">join</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Specify rooms on other map sections that this room joins to. Note
+that this creates a join with no special attributes&#8212;use the
+standalone <tt class="xref docutils literal"><span class="pre">join</span></tt> command for that.</dd>
+</dl>
+<dl class="docutils" id="index-4">
+<dt><tt class="xref docutils literal"><span class="pre">exit</span> <span class="pre">COMPASS</span> <span class="pre">[COMPASS...]</span></tt></dt>
+<dd>Indicate which other directions the room has exits in. Room exits in
+a particular direction are marked on the map only if there is no
+link going to or from the room in that direction.</dd>
+</dl>
+<dl class="docutils" id="index-5">
+<dt><tt class="xref docutils literal"><span class="pre">note</span> <span class="pre">STRING</span></tt></dt>
+<dd>Append a note to the room&#8217;s note list.</dd>
+</dl>
+<dl class="docutils" id="index-6">
+<dt><tt class="xref docutils literal"><span class="pre">score</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that you score the specified number of points when visiting
+this room for the first time.</dd>
+</dl>
+<dl class="docutils" id="index-7">
+<dt><tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>If this appears before a <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause, indicate that you
+can only enter this room after getting the specified items. If it
+appears afterwards, it applies to the implicit link instead.</dd>
+</dl>
+<dl class="docutils" id="index-8">
+<dt><tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>If this appears before a <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause, indicate that you
+can only enter this room after doing the specified tasks. If it
+appears afterwards, it applies to the implicit link instead.</dd>
+</dl>
+<dl class="docutils" id="index-9">
+<dt><tt class="xref docutils literal"><span class="pre">before</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>If this appears before a <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause, indicate that you
+can only enter this room before doing the specified tasks. If it
+appears afterwards, it applies to the implicit link instead. Those
+tasks are marked unsafe.</dd>
+</dl>
+<dl class="docutils" id="index-10">
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>If this appears before a <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause, indicate that the
+specified items, if carried, must be left behind when entering the
+room. If it appears afterwards, it applies to the implicit link
+instead.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">all</span> <span class="pre">[except</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span></tt></dt>
+<dd>As above, except indicate that all items must be left behind. The
+<tt class="xref docutils literal"><span class="pre">except</span></tt> clause can be used to omit specific items.</dd>
+</dl>
+<dl class="docutils" id="index-11">
+<dt><tt class="xref docutils literal"><span class="pre">go</span> <span class="pre">OTHERDIR</span></tt></dt>
+<dd>Indicate that the link to this room is in the specified direction.</dd>
+</dl>
+<dl class="docutils" id="index-12">
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">STRING</span></tt></dt>
+<dd>Specify the command you type to move to this room from the previous
+one. If no <tt class="xref docutils literal"><span class="pre">cmd</span></tt> clause is given, the command is deduced
+from the <tt class="xref docutils literal"><span class="pre">go</span></tt> clause. If that isn&#8217;t specified, the command
+will be deduced from the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">from</span> <span class="pre">STRING</span></tt></dt>
+<dd>As above, but this specifies the command to go in the other
+direction. This defaults to the <tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span></tt> command, if
+specified.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span> <span class="pre">STRING</span></tt></dt>
+<dd>This is identical to <tt class="xref docutils literal"><span class="pre">cmd</span></tt> on its own, and only exists for
+symmetry.</dd>
+</dl>
+<dl class="docutils" id="index-13">
+<dt><tt class="xref docutils literal"><span class="pre">oneway</span></tt></dt>
+<dd>Indicate that the return journey from this room to the previous one
+is not possible.</dd>
+</dl>
+<dl class="docutils" id="index-14">
+<dt><tt class="xref docutils literal"><span class="pre">length</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that the direction link to this room has the specified
+length (default 1). This only affects the calculation of the nearest
+<a class="reference internal" href="#task">task</a> when <a class="reference external" href="solving.html#finding-solution"><em>solving the game</em></a>.</dd>
+</dl>
+<dl class="docutils" id="index-15">
+<dt><tt class="xref docutils literal"><span class="pre">start</span></tt></dt>
+<dd>Indicate that this is the room the player starts in. Default is for
+the first room mentioned to be the start room. If more than one room
+has this attribute, the last one declared takes precedence.</dd>
+</dl>
+<dl class="docutils" id="index-16">
+<dt><tt class="xref docutils literal"><span class="pre">finish</span></tt></dt>
+<dd>Indicate that entering this room finishes the game.</dd>
+</dl>
+<dl class="docutils" id="index-17">
+<dt><tt class="xref docutils literal"><span class="pre">nodrop</span></tt></dt>
+<dd><p class="first">Indicate that no items should be voluntarily dropped in this room.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+</dl>
+<dl class="docutils" id="index-18">
+<dt><tt class="xref docutils literal"><span class="pre">nolink</span></tt></dt>
+<dd>Indicate that this room does not have an implicit link with the
+previous one via the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause.</dd>
+</dl>
+<dl class="docutils" id="index-19">
+<dt><tt class="xref docutils literal"><span class="pre">nopath</span></tt></dt>
+<dd>Indicate that the implicit link from this room should not be used by
+the game solver.</dd>
+</dl>
+<dl class="docutils" id="index-20">
+<dt><tt class="xref docutils literal"><span class="pre">style</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Add a list of display <a class="reference internal" href="#styles">styles</a> to the room (and also the implicit
+link, if any).</dd>
+</dl>
+</div>
+<div class="section" id="items">
+<h3>Items<a class="headerlink" href="#items" title="Permalink to this headline">¶</a></h3>
+<p>An item is introduced using the command:</p>
+<div class="highlight-python"><pre>item STRING [attribute-list];</pre>
+</div>
+<p>where <tt class="xref docutils literal"><span class="pre">STRING</span></tt> is the item description. Item attributes can be:</p>
+<dl class="docutils" id="index-21">
+<dt><tt class="xref docutils literal"><span class="pre">tag</span> <span class="pre">ID</span></tt></dt>
+<dd>Give the item a tag name, so you can refer to it elsewhere.</dd>
+</dl>
+<dl class="docutils" id="index-22">
+<dt><tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">ID</span></tt></dt>
+<dd>Set the initial location of this item. Default is the last defined
+room. If there is no last room (i.e., an item was declared before
+any room was declared), then this item is initially carried by the
+player.</dd>
+</dl>
+<dl class="docutils" id="index-23">
+<dt><tt class="xref docutils literal"><span class="pre">note</span> <span class="pre">STRING</span></tt></dt>
+<dd>Append a note to the item&#8217;s note list.</dd>
+</dl>
+<dl class="docutils" id="index-24">
+<dt><tt class="xref docutils literal"><span class="pre">score</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that you get points the first time you pick this item up.</dd>
+</dl>
+<dl class="docutils" id="index-25">
+<dt><tt class="xref docutils literal"><span class="pre">hidden</span></tt></dt>
+<dd>Indicate that this item is not immediately obvious when entering the
+room.</dd>
+</dl>
+<dl class="docutils" id="index-26">
+<dt><tt class="xref docutils literal"><span class="pre">keep</span></tt></dt>
+<dd>Indicate that this item shouldn&#8217;t ever be dropped (no &#8220;drop&#8221; task
+should be generated).</dd>
+<dt><tt class="xref docutils literal"><span class="pre">keep</span> <span class="pre">with</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd><p class="first">Indicate that the item shouldn&#8217;t be dropped until all the other
+specified items have left the inventory.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+<dt><tt class="xref docutils literal"><span class="pre">keep</span> <span class="pre">until</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd><p class="first">Indicate that the item shouldn&#8217;t be dropped until all the other
+specified tasks have been done.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+</dl>
+<dl class="docutils" id="index-27">
+<dt><tt class="xref docutils literal"><span class="pre">ignore</span></tt></dt>
+<dd><p class="first">Indicate that this item should be ignored when trying to find a
+solution (i.e., never go out of your way to pick it up).</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+</dl>
+<dl class="docutils" id="index-28">
+<dt><tt class="xref docutils literal"><span class="pre">given</span></tt></dt>
+<dd><p class="first">Indicate that this item didn&#8217;t have to be picked up when it entered
+the inventory (no &#8220;get&#8221; task should be generated).</p>
+<div class="last admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This attribute is obsolete&#8212;you should use the <a class="reference internal" href="#task">task</a>
+<tt class="xref docutils literal"><span class="pre">give</span></tt> clause instead.</p>
+</div>
+</dd>
+</dl>
+<dl class="docutils" id="index-29">
+<dt><tt class="xref docutils literal"><span class="pre">lost</span></tt></dt>
+<dd>Indicate that this item wasn&#8217;t dropped when it left the inventory
+(no &#8220;drop&#8221; task should be generated).  Normally you should use the
+<a class="reference internal" href="#task">task</a> <tt class="xref docutils literal"><span class="pre">drop</span></tt> or <tt class="xref docutils literal"><span class="pre">lose</span></tt> clauses instead. The only
+use for this attribute is for items that are left behind due to a
+<tt class="xref docutils literal"><span class="pre">leave</span></tt> clause.</dd>
+</dl>
+<dl class="docutils" id="index-30">
+<dt><tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only pick this item up after getting the
+specified items.</dd>
+</dl>
+<dl class="docutils" id="index-31">
+<dt><tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate you can only pick this item up after the specified tasks
+are done.</dd>
+</dl>
+<dl class="docutils" id="index-32">
+<dt><tt class="xref docutils literal"><span class="pre">before</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate you can only pick this item up before the specified tasks
+are done.</dd>
+</dl>
+<dl class="docutils" id="index-33">
+<dt><tt class="xref docutils literal"><span class="pre">finish</span></tt></dt>
+<dd>Indicate that getting this item finishes the game.</dd>
+</dl>
+<dl class="docutils" id="index-34">
+<dt><tt class="xref docutils literal"><span class="pre">style</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Add a list of display <a class="reference internal" href="#styles">styles</a> to the item.</dd>
+</dl>
+</div>
+<div class="section" id="links">
+<h3>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>You can create extra room links using the command:</p>
+<div class="highlight-python"><pre>link ID to ID [attribute-list];</pre>
+</div>
+<p>and the following attributes may be specified:</p>
+<dl class="docutils" id="index-35">
+<dt><tt class="xref docutils literal"><span class="pre">tag</span> <span class="pre">ID</span></tt></dt>
+<dd>Give the link a tag name, so you can refer to it elsewhere.</dd>
+</dl>
+<dl class="docutils" id="index-36">
+<dt><tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">COMPASS</span> <span class="pre">[COMPASS...]</span></tt></dt>
+<dd>Set the intermediate directions that this link travels in, in the
+same manner as for rooms. Note that if you omit the final direction
+to the linked room, it is added automatically.</dd>
+</dl>
+<dl class="docutils" id="index-37">
+<dt><tt class="xref docutils literal"><span class="pre">go</span> <span class="pre">OTHERDIR</span></tt></dt>
+<dd>Indicate that the link is in the specified direction.</dd>
+</dl>
+<dl class="docutils" id="index-38">
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">STRING</span></tt></dt>
+<dd>Specify the command you type to go in this direction. If no
+<tt class="xref docutils literal"><span class="pre">cmd</span></tt> clause is given, the command is deduced from the
+<tt class="xref docutils literal"><span class="pre">go</span></tt> clause. If that isn&#8217;t specified, the command will be
+deduced from the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">from</span> <span class="pre">STRING</span></tt></dt>
+<dd>As above, but this specifies the command to go in the other
+direction. This defaults to the <tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span></tt> command, if
+specified.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span> <span class="pre">STRING</span></tt></dt>
+<dd>This is identical to <tt class="xref docutils literal"><span class="pre">cmd</span></tt> on its own, and only exists for
+symmetry.</dd>
+</dl>
+<dl class="docutils" id="index-39">
+<dt><tt class="xref docutils literal"><span class="pre">oneway</span></tt></dt>
+<dd>Indicate that this is a one-way link, in a similar manner to the
+room attribute of the same name.</dd>
+</dl>
+<dl class="docutils" id="index-40">
+<dt><tt class="xref docutils literal"><span class="pre">hidden</span></tt></dt>
+<dd>Indicate that this link should not be drawn on the map. Hidden links
+are still used when solving the game.</dd>
+</dl>
+<dl class="docutils" id="index-41">
+<dt><tt class="xref docutils literal"><span class="pre">nopath</span></tt></dt>
+<dd>Indicate that this link should not be used by the game solver.</dd>
+</dl>
+<dl class="docutils" id="index-42">
+<dt><tt class="xref docutils literal"><span class="pre">length</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that this link has the specified length (default 1). This
+only affects the calculation of the nearest <a class="reference internal" href="#task">task</a> when <a class="reference external" href="solving.html#finding-solution"><em>solving
+the game</em></a>.</dd>
+</dl>
+<dl class="docutils" id="index-43">
+<dt><tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction after getting the
+specified items.</dd>
+</dl>
+<dl class="docutils" id="index-44">
+<dt><tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction after doing the
+specified tasks.</dd>
+</dl>
+<dl class="docutils" id="index-45">
+<dt><tt class="xref docutils literal"><span class="pre">before</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction before doing the
+specified tasks. These tasks are marked unsafe.</dd>
+</dl>
+<dl class="docutils" id="index-46">
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that the specified items, if carried, must be left behind
+when using this connection.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">all</span> <span class="pre">[except</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span></tt></dt>
+<dd>As above, except indicate that all items must be left behind. The
+<tt class="xref docutils literal"><span class="pre">except</span></tt> clause can be used to omit specific items.</dd>
+</dl>
+<dl class="docutils" id="index-47">
+<dt><tt class="xref docutils literal"><span class="pre">style</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Add a list of display <a class="reference internal" href="#styles">styles</a> to the link.</dd>
+</dl>
+</div>
+<div class="section" id="joins">
+<h3>Joins<a class="headerlink" href="#joins" title="Permalink to this headline">¶</a></h3>
+<p>There is a standalone join command which joins two rooms on different map
+sections:</p>
+<div class="highlight-python"><pre>join ID to ID [attribute-list];</pre>
+</div>
+<p>The following attributes may be specified:</p>
+<dl class="docutils" id="index-48">
+<dt><tt class="xref docutils literal"><span class="pre">tag</span> <span class="pre">ID</span></tt></dt>
+<dd>Give the join a tag name, so you can refer to it elsewhere.</dd>
+</dl>
+<dl class="docutils" id="index-49">
+<dt><tt class="xref docutils literal"><span class="pre">go</span> <span class="pre">COMPASS</span> <span class="pre">|</span> <span class="pre">OTHERDIR</span></tt></dt>
+<dd>Indicate that the join to this room is in the specified direction.</dd>
+</dl>
+<dl class="docutils" id="index-50">
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">STRING</span></tt></dt>
+<dd>Specify the command you type to go in this direction. If no
+<tt class="xref docutils literal"><span class="pre">cmd</span></tt> clause is given, the command is deduced from the
+<tt class="xref docutils literal"><span class="pre">go</span></tt> clause. If that isn&#8217;t specified, the command will be
+undefined.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">from</span> <span class="pre">STRING</span></tt></dt>
+<dd>As above, but this specifies the command to go in the other
+direction. This defaults to the <tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span></tt> command, if
+specified.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">to</span> <span class="pre">STRING</span></tt></dt>
+<dd>This is identical to <tt class="xref docutils literal"><span class="pre">cmd</span></tt> on its own, and only exists for
+symmetry.</dd>
+</dl>
+<dl class="docutils" id="index-51">
+<dt><tt class="xref docutils literal"><span class="pre">oneway</span></tt></dt>
+<dd>Indicate that this is a one-way join, in a similar manner to the
+room attribute of the same name.</dd>
+</dl>
+<dl class="docutils" id="index-52">
+<dt><tt class="xref docutils literal"><span class="pre">hidden</span></tt></dt>
+<dd>Indicate that this join should not be drawn on the map. Hidden joins
+are still used when solving the game.</dd>
+</dl>
+<dl class="docutils" id="index-53">
+<dt><tt class="xref docutils literal"><span class="pre">nopath</span></tt></dt>
+<dd>Indicate that this join should not be used by the game solver.</dd>
+</dl>
+<dl class="docutils" id="index-54">
+<dt><tt class="xref docutils literal"><span class="pre">length</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that this join has the specified length (default 1). This
+only affects the calculation of the nearest <a class="reference internal" href="#task">task</a> when <a class="reference external" href="solving.html#finding-solution"><em>solving
+the game</em></a>.</dd>
+</dl>
+<dl class="docutils" id="index-55">
+<dt><tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction after getting the
+specified items.</dd>
+</dl>
+<dl class="docutils" id="index-56">
+<dt><tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction after doing the
+specified tasks.</dd>
+</dl>
+<dl class="docutils" id="index-57">
+<dt><tt class="xref docutils literal"><span class="pre">before</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that you can only go in this direction before doing the
+specified tasks. These tasks are marked unsafe.</dd>
+</dl>
+<dl class="docutils" id="index-58">
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that the specified items, if carried, must be left behind
+when using this connection.</dd>
+</dl>
+<dl class="docutils" id="index-59">
+<dt><tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">all</span> <span class="pre">[except</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span></tt></dt>
+<dd>As above, except indicate that all items must be left behind. The
+<tt class="xref docutils literal"><span class="pre">except</span></tt> clause can be used to omit specific items.</dd>
+</dl>
+<dl class="docutils" id="index-60">
+<dt><tt class="xref docutils literal"><span class="pre">style</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Add a list of display <a class="reference internal" href="#styles">styles</a> to the join.</dd>
+</dl>
+</div>
+<div class="section" id="tasks">
+<span id="task"></span><h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<p>You can indicate tasks which need to be done in order to solve the game
+using the command:</p>
+<div class="highlight-python"><pre>task STRING [attribute-list];</pre>
+</div>
+<p>and these are the available attributes:</p>
+<dl class="docutils" id="index-61">
+<dt><tt class="xref docutils literal"><span class="pre">tag</span> <span class="pre">ID</span></tt></dt>
+<dd>Give the task a tag name, so you can refer to it elsewhere.</dd>
+</dl>
+<dl class="docutils" id="index-62">
+<dt><tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">ID</span></tt></dt>
+<dd>Specify the room the task must be done in. If this clause is
+omitted, it defaults to the last defined room. You can use the
+special word <tt class="xref docutils literal"><span class="pre">any</span></tt> to indicate that the task may be
+performed anywhere. A task declared before any room is equivalent to
+saying <tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">any</span></tt>.</dd>
+</dl>
+<dl class="docutils" id="index-63">
+<dt><tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that the specified items are required before you can do
+this task.</dd>
+</dl>
+<dl class="docutils" id="index-64">
+<dt><tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that this task can only be done after all the specified
+tasks have been done.</dd>
+</dl>
+<dl class="docutils" id="index-65">
+<dt><tt class="xref docutils literal"><span class="pre">follow</span> <span class="pre">ID</span></tt></dt>
+<dd>Indicate that this task must be done immediately after the specified
+one. Not even a &#8220;drop item&#8221; task is allowed in between.</dd>
+</dl>
+<dl class="docutils" id="index-66">
+<dt><tt class="xref docutils literal"><span class="pre">do</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd><p class="first">Indicate that doing this task also causes the specified other tasks
+to be done (if they aren&#8217;t done already). These other tasks are done
+immediately, without regard for any prerequisite items or tasks they
+might need, and their effects are carried out&#8212;including any
+<tt class="xref docutils literal"><span class="pre">do</span></tt> clauses they might have, recursively.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+</dl>
+<dl class="docutils" id="index-67">
+<dt><tt class="xref docutils literal"><span class="pre">get</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that doing this task enables you to get the specified
+items, and must be done before you can get them.</dd>
+</dl>
+<dl class="docutils" id="index-68">
+<dt><tt class="xref docutils literal"><span class="pre">give</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that doing this task puts the specified items straight into
+your inventory, wherever they happen to be.</dd>
+</dl>
+<dl class="docutils" id="index-69">
+<dt><tt class="xref docutils literal"><span class="pre">lose</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Indicate that doing this task causes the specified items to be
+lost. This implies that all tasks which need these items must be
+done before this one.</dd>
+</dl>
+<dl class="docutils" id="index-70">
+<dt><tt class="xref docutils literal"><span class="pre">drop</span> <span class="pre">ID</span> <span class="pre">[ID...]</span> <span class="pre">[in</span> <span class="pre">ID]</span> <span class="pre">[until</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span></tt></dt>
+<dd>Indicate that doing this task drops the specified items in the
+current room (or the room indicated by the in clause) if you&#8217;re
+carrying them. No &#8220;drop&#8221; message is generated. If there&#8217;s an
+<tt class="xref docutils literal"><span class="pre">until</span></tt> clause, you can&#8217;t retrieve the items until the
+specified tasks have been done.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">drop</span> <span class="pre">all</span> <span class="pre">[except</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span> <span class="pre">[in</span> <span class="pre">ID]</span> <span class="pre">[until</span> <span class="pre">ID</span> <span class="pre">[ID...]]</span></tt></dt>
+<dd>As above, but drop everything you&#8217;re carrying. The <tt class="xref docutils literal"><span class="pre">except</span></tt>
+clause can be used to omit specific items.</dd>
+</dl>
+<dl class="docutils" id="index-71">
+<dt><tt class="xref docutils literal"><span class="pre">goto</span> <span class="pre">ID</span></tt></dt>
+<dd>Indicate that you get &#8220;teleported&#8221; to the specified room when this
+task is done. This happens after <tt class="xref docutils literal"><span class="pre">give</span></tt> and <tt class="xref docutils literal"><span class="pre">drop</span></tt>
+actions.</dd>
+</dl>
+<dl class="docutils" id="index-72">
+<dt><tt class="xref docutils literal"><span class="pre">safe</span></tt></dt>
+<dd>Mark this task as safe&#8212;i.e., one that can&#8217;t cause the game solver
+to get stuck.</dd>
+</dl>
+<dl class="docutils" id="index-73">
+<dt><tt class="xref docutils literal"><span class="pre">ignore</span></tt></dt>
+<dd><p class="first">Don&#8217;t ever do this task explicitly when solving the game. The task
+may still be done via a <tt class="xref docutils literal"><span class="pre">do</span></tt> action.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+</dl>
+<dl class="docutils" id="index-74">
+<dt><tt class="xref docutils literal"><span class="pre">finish</span></tt></dt>
+<dd>Indicate that doing this task finishes the game.</dd>
+</dl>
+<dl class="docutils" id="index-75">
+<dt><tt class="xref docutils literal"><span class="pre">score</span> <span class="pre">NUMBER</span></tt></dt>
+<dd>Indicate that you get the specified score for doing this task.</dd>
+</dl>
+<dl class="docutils" id="index-76">
+<dt><tt class="xref docutils literal"><span class="pre">note</span> <span class="pre">STRING</span></tt></dt>
+<dd>Append a note to the task&#8217;s note list.</dd>
+</dl>
+<dl class="docutils" id="index-77">
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">STRING</span> <span class="pre">[NUMBER]</span></tt></dt>
+<dd>Specify the exact command you type to do the task. If a number
+follows the command, do the command that many times. Multiple
+<tt class="xref docutils literal"><span class="pre">cmd</span></tt> clauses concatenate into a list of commands.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">none</span></tt></dt>
+<dd>Indicate that no command is required to do this task.</dd>
+</dl>
+<dl class="docutils" id="index-78">
+<dt><tt class="xref docutils literal"><span class="pre">style</span> <span class="pre">ID</span> <span class="pre">[ID...]</span></tt></dt>
+<dd>Add a list of display <a class="reference internal" href="#styles">styles</a> to the task.</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="variables">
+<span id="index-79"></span><h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<p>Various aspects of output are controlled by <a class="reference external" href="vars.html"><em>Output variables</em></a>.  These are set
+using the following syntax:</p>
+<div class="highlight-python"><pre>[FORMAT.]ID = NUMBER | STRING | true | false | undef [in style ID];</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">FORMAT</span></tt>, if specified, is the name of a specific output format&#8212;the
+variable then applies only to that output format.</p>
+<p><tt class="docutils literal"><span class="pre">ID</span></tt> is the name of the variable, and it can take a numeric or string
+value. Note that setting a variable to the value <tt class="xref docutils literal"><span class="pre">undef</span></tt>
+effectively removes it.</p>
+<p>The values <tt class="xref docutils literal"><span class="pre">true</span></tt> and <tt class="xref docutils literal"><span class="pre">false</span></tt> correspond to the integer
+values 1 and 0 respectively.</p>
+<p>If the <tt class="xref docutils literal"><span class="pre">style</span></tt> clause is present, this means to only set the
+variable to this value in the specified style.</p>
+<p>
+<span class="versionmodified">New in version 5.3: </span>The <tt class="xref docutils literal"><span class="pre">true</span></tt> and <tt class="xref docutils literal"><span class="pre">false</span></tt> keywords.</p>
+<span class="target" id="style"></span></div>
+<div class="section" id="styles">
+<span id="index-80"></span><h2>Styles<a class="headerlink" href="#styles" title="Permalink to this headline">¶</a></h2>
+<p>A <em>style</em> defines a set of variables with particular values, so that those
+values can be referred to together. IFM keeps track of the currently active
+list of styles, and there are two commands which change this list. The
+command:</p>
+<div class="highlight-python"><pre>style ID;</pre>
+</div>
+<p>pushes the specified style onto the style list. This style becomes the
+current style. Any IFM objects declared while a style list is in force will
+by default be output in those styles. Any variable setting is by default in
+the current style (though you can specify a particular style using the
+<tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">style</span></tt> clause).</p>
+<p>The command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">endstyle</span> <span class="p">[</span><span class="n">ID</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>pops the current style from the style list. The previous style on the list
+(if any) becomes the current style. The <tt class="docutils literal"><span class="pre">ID</span></tt>, if specified, should match
+the <tt class="docutils literal"><span class="pre">ID</span></tt> in the corresponding style command, or a warning is given.</p>
+<p>Each display style has its own set of values for customization
+variables. On output, when the value of a variable is needed for displaying
+an object, the style list for that object is searched in reverse order of
+declaration. The value used is from the first style to define this
+variable. If no style defines it, then the default value is used.</p>
+<p>If a style is referenced by an object but not defined anywhere in the
+input, then its definition is assumed to be in a separate file, which is
+searched for using the standard search path. The name of this file is
+formed by adding a <tt class="docutils literal"><span class="pre">.ifm</span></tt> suffix to the style name. If the file is
+not found, or it does not define the required style, a warning is given.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Language</a><ul>
+<li><a class="reference external" href="#symbols">Symbols</a></li>
+<li><a class="reference external" href="#format">Format</a></li>
+<li><a class="reference external" href="#control">Control</a></li>
+<li><a class="reference external" href="#tags">Tags</a></li>
+<li><a class="reference external" href="#special-names">Special names</a></li>
+<li><a class="reference external" href="#commands">Commands</a><ul>
+<li><a class="reference external" href="#rooms">Rooms</a></li>
+<li><a class="reference external" href="#items">Items</a></li>
+<li><a class="reference external" href="#links">Links</a></li>
+<li><a class="reference external" href="#joins">Joins</a></li>
+<li><a class="reference external" href="#tasks">Tasks</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#variables">Variables</a></li>
+<li><a class="reference external" href="#styles">Styles</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="usage.html"
+                                  title="previous chapter">Using IFM</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="vars.html"
+                                  title="next chapter">Output variables</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/language.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="vars.html" title="Output variables"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Using IFM"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Language</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

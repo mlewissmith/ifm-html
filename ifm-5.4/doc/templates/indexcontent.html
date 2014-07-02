@@ -1,0 +1,46 @@
+{% extends "defindex.html" %}
+{% block tables %}
+  <p><strong>Parts of the documentation:</strong></p>
+  <table class="contentstable" align="center"><tr>
+    <td width="50%">
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("intro") }}">Introduction</a><br/>
+        <span class="linkdescr">about IFM</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("maps") }}">Mapping</a><br/>
+        <span class="linkdescr">creating a map using IFM</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("solving") }}">Solving</a><br/>
+        <span class="linkdescr">recording a game solution using IFM</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("example") }}">Example</a><br/>
+        <span class="linkdescr">a detailed mapping example</span></p>
+    </td><td width="50%">
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("usage") }}">Usage</a><br/>
+        <span class="linkdescr">how to run IFM</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("language") }}">Language</a><br/>
+        <span class="linkdescr">complete IFM language reference</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("vars") }}">Variables</a><br/>
+        <span class="linkdescr">parameters controlling output</span></p>
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("tools") }}">Tools</a><br/>
+        <span class="linkdescr">other tools bundled with IFM</span></p>
+    </td></tr>
+  </table>
+
+  <p><strong>Indices and tables:</strong></p>
+  <table class="contentstable" align="center"><tr>
+    <td width="50%">
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("genindex") }}">Index</a><br/>
+        <span class="linkdescr">keywords, command-line options, etc</span></p>
+    </td><td width="50%">
+      <p class="biglink">
+	<a class="biglink" href="{{ pathto("search") }}">Search page</a><br/>
+        <span class="linkdescr">search this documentation</span></p>
+    </td></tr>
+  </table>
+{% endblock %}

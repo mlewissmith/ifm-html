@@ -1,0 +1,808 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Solving the game &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Mapping and solving example" href="example.html" />
+    <link rel="prev" title="Making maps" href="maps.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Mapping and solving example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="maps.html" title="Making maps"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Solving the game</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="solving-the-game">
+<h1>Solving the game<a class="headerlink" href="#solving-the-game" title="Permalink to this headline">¶</a></h1>
+<p>As well as making a map of your game, you can record the steps you took to
+solve it.  IFM can then calculate a (fairly) optimal solution.  This
+section is a guide to how to do it.  Again, it&#8217;s not a complete
+specification&#8212;see <a class="reference external" href="language.html"><em>Language</em></a> for that.</p>
+<div class="section" id="introduction-to-tasks">
+<span id="index-92"></span><h2>Introduction to tasks<a class="headerlink" href="#introduction-to-tasks" title="Permalink to this headline">¶</a></h2>
+<p>The basic game-solving action is called a <em>task</em> in IFM-speak.  To
+introduce a task, you use the task command, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put the fluffy bunny in the incinerator&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Most tasks need to be done in a certain room.  The default is that a task
+must be done in the last room mentioned.  You can change that by using the
+<tt class="xref docutils literal"><span class="pre">in</span></tt> clause, just as for items.  Some tasks can be done
+anywhere&#8212;you can say <tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">any</span></tt> to indicate that.  As usual, you
+can add tags to tasks in order to refer to them later.</p>
+<p>The game solver in IFM divides tasks into two fundamental types: <em>safe</em> and
+<em>unsafe</em>.  An unsafe task is one that, if done, might get you into a
+position where solving the game is impossible.  The game solver avoids
+doing unsafe tasks until it really has to.</p>
+</div>
+<div class="section" id="task-dependencies">
+<h2>Task dependencies<a class="headerlink" href="#task-dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requiring-tasks">
+<span id="index-93"></span><h3>Requiring tasks<a class="headerlink" href="#requiring-tasks" title="Permalink to this headline">¶</a></h3>
+<p>A lot of tasks require a previous task to be done first.  To say this, you
+use the <tt class="xref docutils literal"><span class="pre">after</span></tt> clause:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Press incinerator start switch&quot;</span> <span class="kr">tag</span> <span class="n">press_switch</span><span class="p">;</span>
+
+<span class="c"># other stuff</span>
+
+<span class="kr">task</span> <span class="s">&quot;Put the fluffy bunny in the incinerator&quot;</span> <span class="kr">after</span> <span class="n">press_switch</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As a shortcut, to avoid having to tag many tasks, you can say
+<tt class="xref docutils literal"><span class="pre">after</span> <span class="pre">last</span></tt> to indicate the last task mentioned.  For example, if
+the two tasks above could be done in the same room, you could say:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Press incinerator start switch&quot;</span> <span class="kr">tag</span> <span class="n">press_switch</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Put the fluffy bunny in the incinerator&quot;</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Alternatively, you could merge the two into a single task&#8212;the simplicity
+or complexity of tasks is up to you.</p>
+<p>The <tt class="xref docutils literal"><span class="pre">after</span></tt> clause only says that a task will come after
+another&#8212;it doesn&#8217;t specify how soon after.  But in some situations it is
+essential that a task immediately follows a specific previous task, without
+deviation.  You can use the task <tt class="xref docutils literal"><span class="pre">follow</span></tt> clause to specify this.
+For example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Mission Control&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Activate launch sequence&quot;</span> <span class="kr">tag</span> <span class="n">activate</span><span class="p">;</span>
+
+<span class="c"># other stuff</span>
+
+<span class="nc">room</span> <span class="s">&quot;Rocket Cabin&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Fasten seat belt&quot;</span> <span class="kr">follow</span> <span class="n">activate</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="xref docutils literal"><span class="pre">follow</span></tt> clause creates a chain of tasks that must be done one
+after the other, with only movement commands allowed in between.  The game
+solver will not attempt the first task in the chain until it knows that all
+the tasks are possible (i.e., all the prerequisites for each task in the
+chain are satisfied).  Also, if one of the tasks in the chain is unsafe,
+then <em>all</em> previous tasks in the chain are also marked unsafe.</p>
+<p>Of course, you can only have a single task in a <tt class="xref docutils literal"><span class="pre">follow</span></tt>
+clause&#8212;the immediately preceding task.  It is an error for two or more
+tasks to try to immediately follow the same task.</p>
+</div>
+<div class="section" id="requiring-items">
+<span id="index-94"></span><h3>Requiring items<a class="headerlink" href="#requiring-items" title="Permalink to this headline">¶</a></h3>
+<p>For a lot of tasks, you need to have one or more items in your possession.
+You can indicate this by using the <tt class="xref docutils literal"><span class="pre">need</span></tt> clause, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put the fluffy bunny in the incinerator&quot;</span> <span class="kr">need</span> <span class="n">bunny</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here, <tt class="docutils literal"><span class="pre">bunny</span></tt> is the tag name of the corresponding item.  You can list
+more than one item tag&#8212;e.g., <tt class="xref docutils literal"><span class="pre">need</span> <span class="pre">bunny</span> <span class="pre">asbestos_gloves</span></tt>.</p>
+<p>Note that you don&#8217;t need to add tasks to get required items yourself&#8212;the
+game solver does that automatically.  It knows it has to get all the items
+which appear in <tt class="xref docutils literal"><span class="pre">need</span></tt> clauses.</p>
+</div>
+<div class="section" id="obtaining-items">
+<span id="index-95"></span><h3>Obtaining items<a class="headerlink" href="#obtaining-items" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes a task needs to be done before you can get an item.  One way to
+indicate this is with the task <tt class="xref docutils literal"><span class="pre">get</span></tt> clause:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put money in drinks machine&quot;</span> <span class="kr">need</span> <span class="n">coin</span> <span class="kr">get</span> <span class="n">lemonade</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This naturally implies that all tasks which supply an item (via the
+<tt class="xref docutils literal"><span class="pre">get</span></tt> clause) must be done before any task which needs that item.</p>
+<p>An alternate way to phrase this is with the item <tt class="xref docutils literal"><span class="pre">after</span></tt> clause,
+which says that the item can&#8217;t be picked up until a specified task is
+done.  This is a common combination in IFM:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put money in drinks machine&quot;</span> <span class="kr">need</span> <span class="n">coin</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;lemonade&quot;</span> <span class="kr">hidden</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Some items are only available before doing a certain task.  You can use the
+<tt class="xref docutils literal"><span class="pre">before</span></tt> clause to say that:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;precious diamond&quot;</span> <span class="kr">before</span> <span class="n">trigger_alarm</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Some items can only be picked up if you&#8217;re already carrying another&#8212;use
+the <tt class="xref docutils literal"><span class="pre">need</span></tt> clause for that:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;hot coal&quot;</span> <span class="kr">need</span> <span class="n">tongs</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Sometimes doing a task not only allows you to get an item, but also puts it
+in your inventory.  You can say that using the <tt class="xref docutils literal"><span class="pre">give</span></tt> clause:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Buy beer&quot;</span> <span class="kr">need</span> <span class="n">money</span> <span class="kr">give</span> <span class="n">beer_mug</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="xref docutils literal"><span class="pre">give</span></tt> clause overrides all other restrictions placed on
+getting items; the item is just teleported into your possession.</p>
+</div>
+<div class="section" id="ignoring-tasks">
+<span id="index-96"></span><h3>Ignoring tasks<a class="headerlink" href="#ignoring-tasks" title="Permalink to this headline">¶</a></h3>
+<p>In some circumstances, all the effects of doing a task occur before the
+task is done.  If this happens, the task will be ignored.  For example, if
+a task <em>A</em> gives an item, but that item is first given by task <em>B</em>, then
+task <em>A</em> will be ignored (provided it doesn&#8217;t do anything else of
+importance).</p>
+<p>If a task has no effect, it is not ignored&#8212;it&#8217;s assumed that you&#8217;ve
+recorded that you did something but don&#8217;t know why yet.  Also, tasks which
+finish the game or score points are never ignored.</p>
+<p>You can explicitly ignore a task using the <tt class="xref docutils literal"><span class="pre">ignore</span></tt>
+attribute.  This is useful while you&#8217;re solving the game (see <a class="reference internal" href="#tweaking-the-solution">Tweaking the
+Solution</a>) and when the task can be done by other tasks (see the next
+section).</p>
+</div>
+<div class="section" id="doing-other-tasks">
+<span id="index-97"></span><h3>Doing other tasks<a class="headerlink" href="#doing-other-tasks" title="Permalink to this headline">¶</a></h3>
+<p>You can arrange for a task to automatically do other tasks after it is
+done, using the <tt class="xref docutils literal"><span class="pre">do</span></tt> clause.  For example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Control Room&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Press airlock button&quot;</span> <span class="kr">do</span> <span class="n">open_airlock</span><span class="p">;</span>
+
+<span class="c"># other stuff</span>
+
+<span class="nc">room</span> <span class="s">&quot;Outer Airlock&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Open airlock&quot;</span> <span class="kr">tag</span> <span class="n">open_airlock</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Inner Airlock&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this example, the airlock can be opened in one of two ways: manually,
+when in the Outer Airlock, or via the button in the Control Room.  Pressing
+the button will cause the &#8220;open airlock&#8221; task to be done immediately
+afterwards.  Note that if the manual method is used first, the press-button
+task will be ignored.</p>
+<p>The <tt class="xref docutils literal"><span class="pre">do</span></tt> clause causes any task to be done&#8212;even tasks that have
+prerequisites, and explicitly ignored ones.  This is useful in that you can
+create special ignored tasks that can be done by any of a set of other
+tasks, whichever gets there first.  The <tt class="xref docutils literal"><span class="pre">do</span></tt> clause is also
+recursive: a task can do another task which in turn does another, and so
+on. <a class="footnote-reference" href="#id5" id="id1">[1]</a></p>
+<p>Note that any task which does an unsafe task in this way is itself marked
+unsafe.</p>
+</div>
+</div>
+<div class="section" id="handling-items">
+<h2>Handling items<a class="headerlink" href="#handling-items" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="index-98"></span><div class="section" id="inventory-items">
+<span id="index-99"></span><h3>Inventory items<a class="headerlink" href="#inventory-items" title="Permalink to this headline">¶</a></h3>
+<p>Items can be split into two types: <em>useful</em> and <em>useless</em>.  A useful item
+one that is needed by at least one task, or is required in order to be able
+to move somewhere; all other items are useless.  The game solver will try
+to go and get all useful items, and will ignore the useless ones.  It keeps
+track of the items it&#8217;s carrying, and knows when a useful item is no longer
+needed. <a class="footnote-reference" href="#id6" id="id2">[2]</a> At that point, it will be dropped.</p>
+<p>If the solver obtains a useless item (via a task <tt class="xref docutils literal"><span class="pre">get</span></tt> or
+<tt class="xref docutils literal"><span class="pre">give</span></tt> clause, or an item <tt class="xref docutils literal"><span class="pre">need</span></tt> clause) it will never
+drop it.  This is just a default; you can change it by setting the variable
+<tt class="xref docutils literal"><span class="pre">keep_unused_items</span></tt> to <tt class="docutils literal"><span class="pre">false</span></tt>.  In that case, useless items
+will be dropped as soon as possible.</p>
+<p>The reason for the default is that useless items obtained in this way
+probably do have a purpose&#8212;you just don&#8217;t know what it is yet.  This is
+relevant when you&#8217;re creating a recording from a partially-played game; see
+<a class="reference external" href="usage.html#recording"><em>Recording commands (rec)</em></a> for details.</p>
+<p>If you want to make sure that an item is never dropped in any circumstance,
+you can mark it with the <tt class="xref docutils literal"><span class="pre">keep</span></tt> attribute.  This is handy for
+items that act as general containers for other items.</p>
+<p>Sometimes a useful item needs to be kept for longer than usual.  In the hot
+coal example above, the tongs would be dropped as soon as the coal was
+picked up, leaving you with a burnt hand.  What&#8217;s needed here is to carry
+the tongs for as long as you have the coal.  You can use the <tt class="xref docutils literal"><span class="pre">keep</span>
+<span class="pre">with</span></tt> clause to say that:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;hot coal&quot;</span> <span class="kr">tag</span> <span class="n">coal</span> <span class="kr">need</span> <span class="n">tongs</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;tongs&quot;</span> <span class="kr">tag</span> <span class="n">tongs</span> <span class="kr">keep</span> <span class="kr">with</span> <span class="n">coal</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now the tongs won&#8217;t be dropped until after the coal is, even if they have
+no other use.  Similarly, there&#8217;s also a <tt class="xref docutils literal"><span class="pre">keep</span> <span class="pre">until</span></tt> clause,
+which keeps an item until a specific task is done.</p>
+<p>Finally, if a room has the attribute <tt class="xref docutils literal"><span class="pre">nodrop</span></tt> set, no items will
+be voluntarily dropped in that room.  Any items which need to be dropped
+will then be dropped after the next task that happens in a room where
+dropping is allowed.</p>
+</div>
+<div class="section" id="losing-items">
+<span id="index-100"></span><h3>Losing items<a class="headerlink" href="#losing-items" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, doing a task causes items to be destroyed.  You can say that
+with the <tt class="xref docutils literal"><span class="pre">lose</span></tt> clause:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Light bonfire&quot;</span> <span class="kr">need</span> <span class="n">match</span> <span class="kr">lose</span> <span class="n">match</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This naturally implies that all other tasks which need the item must be
+done before the task that destroys it.  A &#8220;drop&#8221; task is never generated
+for items that are lost in this way.</p>
+<p>Incidentally, you can use the special tag <tt class="xref docutils literal"><span class="pre">it</span></tt> to refer to the
+last room, item or task tag name within a command.  So the previous example
+could also have been written:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Light bonfire&quot;</span> <span class="kr">need</span> <span class="n">match</span> <span class="kr">lose</span> <span class="nb">it</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dropping-items">
+<span id="index-101"></span><h3>Dropping items<a class="headerlink" href="#dropping-items" title="Permalink to this headline">¶</a></h3>
+<p>As mentioned in <a class="reference internal" href="#inventory-items">Inventory items</a>, IFM knows when a useful item is no
+longer needed, and drops it automatically.  But sometimes items need to be
+dropped temporarily, even though they&#8217;re needed later.  You can do that
+using the <tt class="xref docutils literal"><span class="pre">drop</span></tt> clause:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Throw spear at tree stump&quot;</span> <span class="kr">need</span> <span class="n">spear</span> <span class="kr">drop</span> <span class="nb">it</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this example, the spear is dropped in the same room that the task was
+done in.  If you ever need the spear for anything else, it will be picked
+up again by the game solver.  Note that an item will only be dropped if it
+is being carried&#8212;mentioning an item in a <tt class="xref docutils literal"><span class="pre">drop</span></tt> clause does not
+imply that it&#8217;s needed to do the task.</p>
+<p>Sometimes items must be dropped in a different room to the one you&#8217;re
+in.  You can use the <tt class="xref docutils literal"><span class="pre">in</span></tt> clause to modify things:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Top of Chute&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Put laundry in chute&quot;</span> <span class="kr">need</span> <span class="n">laundry</span> <span class="kr">drop</span> <span class="nb">it</span> <span class="kr">in</span> <span class="n">Bottom_of_Chute</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In other cases, you need to drop all the items you&#8217;re carrying, or all
+except certain items.  You can use <tt class="xref docutils literal"><span class="pre">drop</span> <span class="pre">all</span></tt> and <tt class="xref docutils literal"><span class="pre">drop</span>
+<span class="pre">all</span> <span class="pre">except</span></tt> to say that.</p>
+<p>Normally, if an item is dropped but is needed again for some other task,
+there is nothing to stop the game solver picking it up again (provided
+there&#8217;s a path to the room the item was dropped in).  But sometimes you
+need to drop an item and not pick it up again until you&#8217;ve done something
+else.  You can use the <tt class="xref docutils literal"><span class="pre">until</span></tt> clause to say that:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put coin in slot&quot;</span> <span class="kr">give</span> <span class="n">chocolate</span> <span class="kr">drop</span> <span class="n">coin</span> <span class="kr">until</span> <span class="n">open_machine</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A task which drops items will be marked unsafe if there is no path back to
+the dropped items.</p>
+</div>
+<div class="section" id="leaving-items">
+<span id="index-102"></span><h3>Leaving items<a class="headerlink" href="#leaving-items" title="Permalink to this headline">¶</a></h3>
+<p>There are some situations where your movement is blocked if you are
+carrying particular items.  You can use the <tt class="xref docutils literal"><span class="pre">leave</span></tt> attribute of
+rooms, links and joins to specify a list of items that must be left behind
+before using them.  For example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Bottom of Canyon&quot;</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;heavy boulder&quot;</span> <span class="kr">tag</span> <span class="n">boulder</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Top of Canyon&quot;</span> <span class="kr">dir</span> <span class="nv">n</span> <span class="kr">go</span> <span class="kr">up</span> <span class="kr">leave</span> <span class="n">boulder</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If the <tt class="xref docutils literal"><span class="pre">leave</span></tt> clause appears before the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause,
+that means the items must be dropped before entering the room (from any
+direction).  It is generally the case that, if an attribute could apply to
+a room or its implicit link with the previous one, its position relative to
+the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause is what decides it.</p>
+<p>You can also say <tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">all</span></tt>, which means that you must leave all
+the items you&#8217;re currently carrying, and <tt class="xref docutils literal"><span class="pre">leave</span> <span class="pre">all</span> <span class="pre">except</span></tt>, which
+omits certain items from being left behind.</p>
+<p>When finding a solution, the game solver will carry items until it is
+forced to drop them.  If the dropped items are needed later, the game
+solver will try to come back and get them.  If it is trying to do a task
+which requires items, it will choose a route to get to the task room which
+doesn&#8217;t involve dropping any of the needed items.</p>
+<p>Note that the <tt class="xref docutils literal"><span class="pre">leave</span></tt> clause overrides the room <tt class="xref docutils literal"><span class="pre">nodrop</span></tt>
+attribute; items will be dropped even in those rooms.</p>
+</div>
+</div>
+<div class="section" id="moving-around">
+<h2>Moving around<a class="headerlink" href="#moving-around" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="limiting-movement">
+<span id="index-103"></span><h3>Limiting movement<a class="headerlink" href="#limiting-movement" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes an item is required, or a task needs to be done, before movement
+in a certain direction is possible.  To represent this, you can give
+<tt class="xref docutils literal"><span class="pre">need</span></tt> and <tt class="xref docutils literal"><span class="pre">after</span></tt> clauses to rooms, links and joins.
+For example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Cemetery&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">from</span> <span class="n">winding_path</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Unlock the iron door&quot;</span> <span class="kr">need</span> <span class="n">rusty_key</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Crypt&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here&#8217;s another example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Dimly-lit Passage&quot;</span> <span class="kr">dir</span> <span class="nv">e</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Dark Passage&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">need</span> <span class="n">candle</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this case it is the link between the two rooms that is blocked off until
+the candle is obtained.  If the <tt class="xref docutils literal"><span class="pre">need</span></tt> clause had appeared before
+the <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause, the restriction would apply to the room itself
+(i.e., no entering the room from any direction without the candle).</p>
+<p>In some cases, doing a task closes off a room, link or join so that it
+can&#8217;t be used any more.  You can use the <tt class="xref docutils literal"><span class="pre">before</span></tt> clause to
+indicate this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Bank Vault&quot;</span> <span class="kr">tag</span> <span class="n">Vault</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Bank Entrance&quot;</span> <span class="kr">tag</span> <span class="n">Entrance</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">before</span> <span class="n">trigger_alarm</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>All tasks which close things off like this are marked unsafe, since they
+could block off a crucial path through the game.</p>
+<p>Sometimes in a game there is the situation where a path is closed off and,
+later on in the game, reopened again.  A single link or join can&#8217;t
+represent this.  However, there&#8217;s nothing to stop you from using two or
+more joins between the same rooms.  If you mark them with the
+<tt class="xref docutils literal"><span class="pre">hidden</span></tt> attribute, they won&#8217;t appear on the map either.  For
+example, this line could be added to the previous example to provide an
+escape route:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">join</span> <span class="n">Vault</span> <span class="kr">to</span> <span class="n">Entrance</span> <span class="kr">go</span> <span class="nv">e</span> <span class="kr">after</span> <span class="n">disable_alarm</span> <span class="kr">hidden</span><span class="p">;</span>
+</pre></div>
+</div>
+<span class="target" id="index-104"></span></div>
+<div class="section" id="movement-tasks">
+<span id="index-105"></span><h3>Movement tasks<a class="headerlink" href="#movement-tasks" title="Permalink to this headline">¶</a></h3>
+<p>There are several different ways of moving around in a game.  The usual way
+is to say the direction you want to go in.  Another way is to do something
+else which results in movement.  A good example is the magic word <tt class="docutils literal"><span class="pre">XYZZY</span></tt>
+from <em>Colossal Cave</em>.  It acts exactly like a movement command, in that you
+can use it again and again and it moves you somewhere predictable.  The
+best way to represent this in IFM is to use a join to connect the two
+rooms, and specify the command used to do the movement via the
+<tt class="xref docutils literal"><span class="pre">cmd</span></tt> clause, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">join</span> <span class="n">Debris_Room</span> <span class="kr">to</span> <span class="n">Building</span> <span class="kr">after</span> <span class="n">examine_wall</span> <span class="kr">cmd</span> <span class="s">&quot;XYZZY&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Yet another way of moving around is a one-off event that &#8220;teleports&#8221; you to
+a different room.  You can indicate that this happens using the task
+<tt class="xref docutils literal"><span class="pre">goto</span></tt> clause <a class="footnote-reference" href="#id7" id="id3">[3]</a> and supplying the tag name of the destination
+room.</p>
+<p>For example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Get captured by goblins&quot;</span> <span class="kr">goto</span> <span class="n">Dungeon</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As soon as the task is done, you teleport to the new location&#8212;no
+intervening rooms are visited.  Note that because each task is only done
+once, this method of travel can only be used once.  Note also that the
+<tt class="xref docutils literal"><span class="pre">drop</span></tt> and <tt class="xref docutils literal"><span class="pre">leave</span></tt> actions are done before teleporting
+you to the new location (so if you drop items in the &#8220;current room&#8221;, you
+will be teleported away from the dropped items).</p>
+</div>
+</div>
+<div class="section" id="other-game-features">
+<h2>Other game features<a class="headerlink" href="#other-game-features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scoring-points">
+<span id="index-106"></span><h3>Scoring points<a class="headerlink" href="#scoring-points" title="Permalink to this headline">¶</a></h3>
+<p>Many games have some sort of scoring system, whereby you get points for
+doing various things.  In IFM you can record this using the
+<tt class="xref docutils literal"><span class="pre">score</span></tt> clause, which can apply to rooms, items or tasks.  It
+takes one integer argument&#8212;a score value:</p>
+<ul class="simple">
+<li>For rooms, it&#8217;s the score you get when visiting it for the first time.</li>
+<li>For items, it&#8217;s the score for first picking it up.</li>
+<li>For tasks, it&#8217;s the score for doing that task.</li>
+</ul>
+<p>If an item has a score, but is given to the player via a task
+<tt class="xref docutils literal"><span class="pre">give</span></tt> clause, then its score is added to the score for that task
+instead.</p>
+</div>
+<div class="section" id="finishing-the-game">
+<span id="index-107"></span><h3>Finishing the game<a class="headerlink" href="#finishing-the-game" title="Permalink to this headline">¶</a></h3>
+<p>Usually a game finishes when you complete some final task.  You can
+indicate which task this is using the <tt class="xref docutils literal"><span class="pre">finish</span></tt> attribute.  This
+attribute can attach to rooms, items or tasks, giving three different types
+of finish condition: entering a room, picking up an object or doing a task.
+If the game solver ever manages to do something which is flagged with the
+<tt class="xref docutils literal"><span class="pre">finish</span></tt> attribute, it considers the game solved and stops.  Any
+extra things left to do will not be done, even if they score points.</p>
+</div>
+</div>
+<div class="section" id="finding-a-solution">
+<span id="finding-solution"></span><span id="index-108"></span><h2>Finding a solution<a class="headerlink" href="#finding-a-solution" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s what the game solver does in order to come up with a solution to the
+game.  First, extra internal tasks are generated.  These are tasks to:</p>
+<ul class="simple">
+<li>get items which are required for explicitly-mentioned tasks to be done,</li>
+<li>get items which are required to get other items,</li>
+<li>get items which are needed to go in certain directions,</li>
+<li>get items which are scored,</li>
+<li>go to rooms which are scored.</li>
+</ul>
+<p>Next, all the rooms are connected using their links and joins.  This means
+that for each room, a list is made of all other rooms reachable in one
+move.  Note that it is possible for some rooms to be unreachable&#8212;for
+example, all rooms in a section where there is no &#8220;join&#8221; to rooms on other
+sections.</p>
+<p>Then the task <em>dependencies</em> are calculated.  A dependency is where one
+task must be done before another.  The task dependencies are examined to
+see if there are any <em>cycles</em>: chains of tasks where each one must be done
+before the next, and the last must be done before the first.  If there are
+any, then the game is unsolvable, since none of the tasks in a cycle can be
+done.</p>
+<p>If there are no cyclic dependencies, the task list is <em>traversed</em> to find a
+sequence which solves the game while satisfying the task dependencies.  The
+start room is the room which was first mentioned in the input (but this can
+be changed&#8212;see <a class="reference external" href="language.html"><em>Language</em></a>).  While there are tasks left in the task
+list, the following steps are performed:</p>
+<ol class="arabic">
+<li><p class="first">The inventory is examined to see if there are any unwanted items; if so,
+and dropping items in the current room is allowed, they are dropped.  An
+item is wanted if at least one of the following is true:</p>
+<ul class="simple">
+<li>it&#8217;s needed for movement,</li>
+<li>it&#8217;s needed for a task that hasn&#8217;t been done yet,</li>
+<li>it&#8217;s being kept unconditionally,</li>
+<li>it&#8217;s being kept with another item that&#8217;s carried,</li>
+<li>it&#8217;s being kept until a certain task is done.</li>
+</ul>
+</li>
+<li><p class="first">The map is traversed to find the distances of all rooms from the current
+room.  Then the task list is sorted in order of ascending distance of the
+rooms they must be done in.  Tasks which can be done in any room count as
+having distance zero.</p>
+</li>
+<li><p class="first">The sorted task list is scanned to find the nearest
+possible task.  For a task to be possible, the player must:</p>
+<ul class="simple">
+<li>have all required items,</li>
+<li>have done all required previous tasks,</li>
+<li>be able to get from the current room to the task room via a path which
+doesn&#8217;t require items not yet collected, or tasks not yet done, or
+which involves dropping needed items on the way.</li>
+</ul>
+<p>Priority is given to <em>safe</em> tasks.  For a task to be safe,</p>
+<ul class="simple">
+<li>it must not have previously been marked unsafe (e.g., because it
+closes off map connections),</li>
+<li>there must be a return path from the task room back to the current
+one.  This is to avoid taking a one-way trip before preparing properly.</li>
+</ul>
+<p>If there are any safe tasks, the nearest one will be done next
+regardless of how close an unsafe task is.  If there are no safe task,
+the nearest unsafe task will be chosen.</p>
+</li>
+<li><p class="first">If there was a possible task, do it and remove it from the list.  Move
+to the room the task was done in (if any).  If not, then the game is
+unsolvable.  Give up.</p>
+</li>
+<li><p class="first">Finally, examine the list of remaining tasks to see if any are now
+redundant and can be removed.  A redundant task is one that only does
+something that&#8217;s already been done (e.g., go and get an item that you&#8217;ve
+already been given).</p>
+</li>
+</ol>
+</div>
+<div class="section" id="tweaking-the-solution">
+<h2>Tweaking the solution<a class="headerlink" href="#tweaking-the-solution" title="Permalink to this headline">¶</a></h2>
+<p>There will be some situations (quite a few, actually) where the game solver
+doesn&#8217;t do things the way you want it to.  This section gives a few tips,
+and some new keywords, for modifying things.</p>
+<div class="section" id="making-things-safe">
+<span id="index-109"></span><h3>Making things safe<a class="headerlink" href="#making-things-safe" title="Permalink to this headline">¶</a></h3>
+<p>Firstly, the game solver is completely paranoid.  It has to be, because it
+doesn&#8217;t do any lookahead past the current task.  It won&#8217;t do anything unsafe
+(e.g., go to a room to do a task when there&#8217;s no immediate return journey)
+unless there&#8217;s nothing safe left to do.  It will quite happily plod halfway
+across the map to pick something up rather than do something a bit scary in
+the next room.</p>
+<p>However, you can reassure it with the task <tt class="xref docutils literal"><span class="pre">safe</span></tt>
+attribute.  Adding this to a task tells the solver that this task is safe,
+regardless of what it thinks.  So if you know that a one-way trip can
+eventually be returned from, by doing other tasks, you can stop the solver
+from avoiding it.  But bear in mind that by doing this you are taking full
+responsibility if the solver gets stuck.</p>
+<p>If you want to be seriously reckless, you can set the variable
+<tt class="xref docutils literal"><span class="pre">all_tasks_safe</span></tt> to a nonzero value.  Then, all tasks will be
+considered safe.</p>
+</div>
+<div class="section" id="changing-path-lengths">
+<span id="changing-lengths"></span><span id="index-110"></span><h3>Changing path lengths<a class="headerlink" href="#changing-path-lengths" title="Permalink to this headline">¶</a></h3>
+<p>Another thing the solver doesn&#8217;t know about is how easy or difficult it is
+to get from place to place on the map.  Suppose you&#8217;re in a game which is on
+two levels separated by a tiresome set of access doors with ID cards.  The
+connection between the levels may only be two rooms on the map, but it&#8217;s a
+lot more in terms of typing.  You can avoid unnecessary trips through these
+doors by artificially changing the <em>length</em> of the connection between
+levels, by using the <tt class="xref docutils literal"><span class="pre">length</span></tt> attribute of links and joins:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Level A&quot;</span> <span class="kr">tag</span> <span class="n">LA</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Level B&quot;</span> <span class="kr">tag</span> <span class="n">LB</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">length</span> <span class="mf">50</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this way, by choosing an appropriate number for the length, you make it
+appear to the solver that all the rooms in level <em>A</em> are closer to each
+other than any of the rooms in level <em>B</em>.  This means that priority will be
+given to tasks in rooms in the same level as you are now, (hopefully)
+minimizing the number of level changes.  Note that the <tt class="xref docutils literal"><span class="pre">length</span></tt>
+attribute doesn&#8217;t affect map drawing at all.</p>
+</div>
+<div class="section" id="closing-off-paths">
+<span id="index-111"></span><h3>Closing off paths<a class="headerlink" href="#closing-off-paths" title="Permalink to this headline">¶</a></h3>
+<p>There may be times when you want a map connection to appear on the map, but
+not be used in solving the game&#8212;for example, it may be certain death to
+go that way.  You can use the <tt class="xref docutils literal"><span class="pre">nopath</span></tt> attribute of rooms, links
+and joins to indicate this.  It doesn&#8217;t affect map output in any way.</p>
+<p>Another use for this attribute is to force the game solver to do things in
+a different order.  This might be preferable to adding fake task
+dependencies.</p>
+</div>
+<div class="section" id="ignoring-parts-of-the-solution">
+<span id="index-112"></span><h3>Ignoring parts of the solution<a class="headerlink" href="#ignoring-parts-of-the-solution" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes it&#8217;s useful to be able to ignore certain parts of the
+solution&#8212;for example, if you want to generate a sequence of game commands
+that get you to a particular position as quickly as possible.  To that end,
+you can mark tasks and items with the <tt class="xref docutils literal"><span class="pre">ignore</span></tt> attribute.  An
+ignored task will never be attempted, and an ignored item will never be
+picked up.  This means that anything dependent on those tasks or items will
+not be done either.  The game will very probably be unsolvable as a result,
+unless you&#8217;ve ignored an unused item, or ignored a task that&#8217;s done
+elsewhere via a <tt class="xref docutils literal"><span class="pre">do</span></tt> clause.</p>
+</div>
+<div class="section" id="keeping-fixes-together">
+<h3>Keeping fixes together<a class="headerlink" href="#keeping-fixes-together" title="Permalink to this headline">¶</a></h3>
+<p>It&#8217;s probably best to keep all your &#8220;game tweaks&#8221; together, separate from
+the &#8220;pure&#8221; game, and commented appropriately.  You can do this by using
+commands which just modify existing objects, instead of creating new ones,
+by referring to their tags.  As an example, suppose you have the following
+situation:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Top of Chute&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Bottom of Chute&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span> <span class="kr">oneway</span><span class="p">;</span>
+
+<span class="kr">task</span> <span class="s">&quot;Do something weird&quot;</span> <span class="kr">tag</span> <span class="n">weird_task</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Suppose you&#8217;re at the top of the chute, and that there&#8217;s some stuff to be
+done at the bottom, but no immediate way back up.  As usual, the game solver
+balks at taking a one-way trip and will do anything to avoid it.  But
+suppose you know that, as long as you have your giant inflatable
+cheeseburger, you can get back out again.  You can say:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="c"># Bottom of chute isn&#39;t that scary.</span>
+
+<span class="kr">task</span> <span class="n">weird_task</span> <span class="kr">need</span> <span class="n">burger</span> <span class="ni">safe</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>which modifies the task at the bottom of the chute to (a) require the
+burger (so that you won&#8217;t go down there without it), and (b) be considered
+safe by the game solver.  So it will happily slide down the chute without
+getting stuck at the bottom.</p>
+<p>This way of modifying previous objects applies all types of object, even
+links and joins&#8212;these can be tagged too, in the normal way.  The single
+exception is the implicit link created by the room <tt class="xref docutils literal"><span class="pre">dir</span></tt>
+clause.  These links automatically get tagged when the room does, and with
+the same name.  So the two-level example above could be split into:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Level A&quot;</span> <span class="kr">tag</span> <span class="n">LA</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Level B&quot;</span> <span class="kr">tag</span> <span class="n">LB</span> <span class="kr">dir</span> <span class="nv">e</span><span class="p">;</span>
+
+<span class="c"># other stuff</span>
+
+<span class="c"># Stop gratuitous travel between levels.</span>
+<span class="kr">link</span> <span class="n">LB</span> <span class="kr">length</span> <span class="mf">50</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="displaying-solver-messages">
+<span id="index-113"></span><h3>Displaying solver messages<a class="headerlink" href="#displaying-solver-messages" title="Permalink to this headline">¶</a></h3>
+<p>Finally, you can gain an insight into what the game solver&#8217;s up to by
+setting the <tt class="xref docutils literal"><span class="pre">solver_messages</span></tt> variable (either in one of the input
+files, or via the <em class="xref">-set</em> command-line option).  This produces reams
+of output giving details of the game solver&#8217;s thoughts before it does
+anything. <a class="footnote-reference" href="#id8" id="id4">[4]</a></p>
+</div>
+</div>
+<div class="section" id="limitations">
+<span id="index-114"></span><h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>Given the wild imaginations of today&#8217;s IF authors, there are bound to be
+some game solving situations that can&#8217;t easily be dealt with using
+IFM.  Some of the things that IFM ignores are:</p>
+<ul class="simple">
+<li>Random events.  For example, the Carousel room in Zork, and all the NPCs
+in <em>Colossal Cave</em>.  There&#8217;s no way to address this problem, but then
+again, hand-written walkthroughs have the same difficulty.  However, if
+you&#8217;re trying to tailor recording output so that it will play back
+properly in an interpreter, there is a workaround&#8212;see <a class="reference external" href="usage.html#recording"><em>Recording commands (rec)</em></a>.</li>
+<li>Carrying capacity.  A solution may require you to carry more than you&#8217;re
+allowed.  This might be addressed in a future version, but
+inventory-juggling puzzles are out of fashion these days (if they were
+ever in) so this is not too much of a problem.  Some games provide you
+with an item that can carry stuff for you&#8212;if so, a workaround is to add
+some special tasks that periodically put everything you&#8217;re carrying into
+it.</li>
+</ul>
+<p>There are some other limitations that are the result of certain keyword
+combinations in the current implementation of IFM.  These are fixable, and
+hopefully will be in a later version.  They are:</p>
+<ul class="simple">
+<li>If you have more than one link or join which connects the same two rooms,
+then if any of them set the <tt class="xref docutils literal"><span class="pre">length</span></tt> attribute, they must all
+set it&#8212;and to the same value.  Otherwise IFM will give an error.</li>
+<li>Unsafe tasks in a <tt class="xref docutils literal"><span class="pre">follow</span></tt> task chain normally cause all the
+previous tasks in the chain to be marked unsafe too (so the solver will
+avoid trying the first, knowing it&#8217;ll be forced to do something
+distasteful later).  However, some tasks are not known to be unsafe until
+just before they might be done&#8212;specifically, those for which there is
+no return path.  This is because whether there&#8217;s a return path depends on
+where you are now.  So a <tt class="xref docutils literal"><span class="pre">follow</span></tt> chain could possibly lead to a
+game-solving dead end.</li>
+<li>There&#8217;s a problem with the <tt class="xref docutils literal"><span class="pre">leave/need</span></tt> attribute
+combination.  The game solver could select a path from one room to another
+in which an item must be left behind at one point, but is needed for
+movement later on in the path.  This sort of path should be invalid, but
+isn&#8217;t.</li>
+</ul>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>However, you can&#8217;t create an infinite loop since each task can only
+be done once.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id6" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>It has a magic crystal ball that can see into the future.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id7" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>All the best languages have a <tt class="xref docutils literal"><span class="pre">goto</span></tt> statement, you know.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id8" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>It&#8217;s supposed to be self-explanatory, but my view is slightly
+biased.  Detailed documentation may follow (a) if enough people ask
+for it, and (b) if I ever get around to it.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Solving the game</a><ul>
+<li><a class="reference external" href="#introduction-to-tasks">Introduction to tasks</a></li>
+<li><a class="reference external" href="#task-dependencies">Task dependencies</a><ul>
+<li><a class="reference external" href="#requiring-tasks">Requiring tasks</a></li>
+<li><a class="reference external" href="#requiring-items">Requiring items</a></li>
+<li><a class="reference external" href="#obtaining-items">Obtaining items</a></li>
+<li><a class="reference external" href="#ignoring-tasks">Ignoring tasks</a></li>
+<li><a class="reference external" href="#doing-other-tasks">Doing other tasks</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#handling-items">Handling items</a><ul>
+<li><a class="reference external" href="#inventory-items">Inventory items</a></li>
+<li><a class="reference external" href="#losing-items">Losing items</a></li>
+<li><a class="reference external" href="#dropping-items">Dropping items</a></li>
+<li><a class="reference external" href="#leaving-items">Leaving items</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#moving-around">Moving around</a><ul>
+<li><a class="reference external" href="#limiting-movement">Limiting movement</a></li>
+<li><a class="reference external" href="#movement-tasks">Movement tasks</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#other-game-features">Other game features</a><ul>
+<li><a class="reference external" href="#scoring-points">Scoring points</a></li>
+<li><a class="reference external" href="#finishing-the-game">Finishing the game</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#finding-a-solution">Finding a solution</a></li>
+<li><a class="reference external" href="#tweaking-the-solution">Tweaking the solution</a><ul>
+<li><a class="reference external" href="#making-things-safe">Making things safe</a></li>
+<li><a class="reference external" href="#changing-path-lengths">Changing path lengths</a></li>
+<li><a class="reference external" href="#closing-off-paths">Closing off paths</a></li>
+<li><a class="reference external" href="#ignoring-parts-of-the-solution">Ignoring parts of the solution</a></li>
+<li><a class="reference external" href="#keeping-fixes-together">Keeping fixes together</a></li>
+<li><a class="reference external" href="#displaying-solver-messages">Displaying solver messages</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="maps.html"
+                                  title="previous chapter">Making maps</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="example.html"
+                                  title="next chapter">Mapping and solving example</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/solving.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="example.html" title="Mapping and solving example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="maps.html" title="Making maps"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Solving the game</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

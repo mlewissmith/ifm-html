@@ -1,0 +1,9 @@
+# Test of 'keep with'.
+
+room "Room 1";
+item "hot coal" tag coal need tongs;
+item "tongs"    tag tongs keep with coal;
+
+room "Room 2" dir e;
+task "Put coal in diamond machine" need coal lose it tag lose_coal;
+task "Make diamond" after last;

@@ -1,0 +1,12 @@
+# Test of drop-all combination.
+
+room "Room 1" tag R1;
+item "thing1" tag thing1;
+item "thing2" tag thing2;
+item "thing3" tag thing3;
+
+room "Room 2" tag R2 dir e need thing1 thing2 thing3;
+task "Drop some stuff" drop all except thing1;
+
+room "Room 3" tag R3 dir e;
+task "Win" need thing3 after last;

@@ -1,0 +1,10 @@
+# Test of 'nolink' attr for tasks.
+
+room "Room 1" tag R1;
+
+room "Room 2" tag R2 dir e nolink;
+task "Win";
+
+room "Room 3" tag R3 dir s from R1;
+
+room "Room 4" tag R4 dir e link R2;

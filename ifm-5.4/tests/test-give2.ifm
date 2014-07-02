@@ -1,0 +1,8 @@
+# Test of task 'give' attribute.
+
+room "Room 1" tag R1;
+task "Say shazam" give wand;
+item "magic wand" tag wand;
+
+room "Room 2" tag R2 dir s;
+task "Win";

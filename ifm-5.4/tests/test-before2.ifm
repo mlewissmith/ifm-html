@@ -1,0 +1,7 @@
+# Test of item 'before'.
+
+room "Room 1" oneway;
+task "Pull rope" tag pull;
+item "rope" after last;
+item "gold bar" score 1 before pull;
+item "steel cage" hidden note "Falls on gold bar when rope is pulled";

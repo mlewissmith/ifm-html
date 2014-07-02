@@ -1,0 +1,19 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-leave2.out <<END
+# Test of leaving all items behind.
+
+room "Room 1" tag R1;
+item "large object" tag large;
+
+room "Room 2" tag R2 dir e;
+
+room "Room 3" tag R3 dir s;
+
+room "Room 4" tag R4 dir w;
+task "Win the game" need large;
+
+link R1 to R4 leave all except large;
+END
+
+cmp -s $SRCDIR/tests/test-leave2.exp $BUILDDIR/tests/test-leave2.out

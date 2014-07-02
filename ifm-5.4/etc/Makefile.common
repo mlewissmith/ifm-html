@@ -1,0 +1,13 @@
+# Common Makefile targets.
+
+docdir = $(prefix)/doc
+ifmdocdir = $(docdir)/ifm
+
+# Show recent source changes.
+
+DAYS = 7
+
+log:;	@ echo
+	@ echo Finding source changes in the last $(DAYS) days...
+	@ echo
+	@ hg log -d -$(DAYS) --style changelog

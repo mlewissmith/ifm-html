@@ -1,0 +1,11 @@
+# Test of drop-until combination.
+
+room "Room 1" tag R1;
+item "thing" tag thing;
+task "Do first thing" tag first need thing drop it until second;
+
+room "Room 2" tag R2 dir e;
+task "Do second thing" tag second;
+
+room "Room 3" tag R3 dir e;
+task "Win" need thing;

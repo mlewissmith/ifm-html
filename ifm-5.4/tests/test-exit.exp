@@ -1,0 +1,38 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 3
+height: 3
+
+room: 3
+name: Light
+rpos: 0 2
+
+room: 2
+name: Nowhere
+rpos: 1 1
+
+room: 1
+name: Darker Place
+rpos: 2 1
+
+room: 0
+name: Dark Place
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 1 0
+lpos: 2 1
+
+link: 2 0
+lpos: 1 1
+lpos: 0 1
+
+link: 1 2
+lpos: 2 1
+lpos: 1 1
+
+link: 0 3
+lpos: 0 1
+lpos: 0 2

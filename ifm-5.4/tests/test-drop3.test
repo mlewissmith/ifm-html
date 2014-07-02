@@ -1,0 +1,18 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-drop3.out <<END
+# Test of drop-in combination.
+
+room "Room 1" tag R1;
+item "thing" tag thing;
+task "Shazam!" need thing drop it in R3 goto R4;
+
+room "Room 2" tag R2 dir e;
+task "Win" need thing;
+
+room "Room 3" tag R3 dir e;
+
+room "Room 4" tag R4 dir e;
+END
+
+cmp -s $SRCDIR/tests/test-drop3.exp $BUILDDIR/tests/test-drop3.out

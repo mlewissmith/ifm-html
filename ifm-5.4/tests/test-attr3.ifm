@@ -1,0 +1,14 @@
+# Test of extra joins.
+
+room "Bank Vault" tag Vault;
+task "Open the glass case" tag trigger_alarm;
+item "diamond" tag diamond score 1 after last;
+item "glass case";
+
+room "Control Room" dir s;
+task "Disable the alarm" after trigger_alarm tag disable_alarm;
+
+room "Bank Entrance" tag Entrance dir e from Vault before trigger_alarm;
+task "Escape with the diamond" need diamond;
+
+join Vault to Entrance after disable_alarm hidden go w;

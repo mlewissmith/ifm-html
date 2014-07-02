@@ -1,0 +1,27 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 3
+height: 1
+
+room: 2
+name: Room 3
+rpos: 2 0
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 1 2
+lpos: 1 0
+lpos: 2 0
+oneway: 1
+
+link: 1 0
+lpos: 1 0
+lpos: 0 0
+oneway: 1

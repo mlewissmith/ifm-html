@@ -1,0 +1,38 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 2
+
+room: 1
+name: Room 2
+rpos: 0 0
+
+room: 0
+name: Room 1
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 0 0
+
+item: 0
+name: magic wand
+tag: wand
+room: 0
+after: 3
+
+task: 3
+name: Say shazam
+room: 0
+note: Gives magic wand
+note: Not used for anything yet
+
+task: 5
+name: Move to Room 2
+room: 1
+cmd: S
+
+task: 4
+name: Win
+room: 1

@@ -1,0 +1,8 @@
+# Test 'follow' unsafe inheritance.
+
+room "Room 1";
+task "Task 1";
+task "Task 2" tag task2 follow last;
+
+room "Room 2" dir n before task2;
+task "Safe task";

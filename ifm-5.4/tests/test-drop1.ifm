@@ -1,0 +1,10 @@
+# Test of dropping items.
+
+room "Room 1";
+item "ball" tag ball;
+item "ceiling plaster" tag plaster;
+task "Throw ball at ceiling" need ball drop it get last goto R2;
+task "Twiddle thumbs";
+
+room "Room 2" dir s tag R2;
+task "Win" need ball;

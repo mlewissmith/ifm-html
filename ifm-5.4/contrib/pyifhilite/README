@@ -1,0 +1,14 @@
+This package implements a number of Interactive Fiction syntax highlighting
+lexers for Pygments.  To build it:
+
+    python setup.py build
+
+To install it:
+
+    python setup.py install
+
+Type
+
+    python setup.py --help
+
+for other things you can do.

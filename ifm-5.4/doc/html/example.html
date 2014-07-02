@@ -1,0 +1,868 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Mapping and solving example &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Using IFM" href="usage.html" />
+    <link rel="prev" title="Solving the game" href="solving.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Using IFM"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="solving.html" title="Solving the game"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Mapping and solving example</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mapping-and-solving-example">
+<h1>Mapping and solving example<a class="headerlink" href="#mapping-and-solving-example" title="Permalink to this headline">¶</a></h1>
+<p>Here&#8217;s a more detailed example of how to use IFM, using the example game
+<em>Ruins</em> to produce a full IFM map containing items and game-solving tasks.</p>
+<p><em>Ruins</em> originally existed only in snippets throughout Graham Nelson&#8217;s
+<em>Inform Designer&#8217;s Manual</em> until Roger Firth produced a playable version of
+it.  It serves as a good demo of IFM capabilities, since it doesn&#8217;t give
+away any secrets from a &#8220;real&#8221; game.  The source code for <em>Ruins</em> can be
+found bundled with the <a class="reference external" href="http://www.ifarchive.org/if-archive/infocom/compilers/inform6/source">Inform 6 sources</a>.</p>
+<div class="section" id="mapping-the-game">
+<h2>Mapping the game<a class="headerlink" href="#mapping-the-game" title="Permalink to this headline">¶</a></h2>
+<p>OK, let&#8217;s go.  First, let&#8217;s set the title for the map, which gets printed
+out (for example) at the top of each PostScript output page:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="ni">title</span> <span class="s">&quot;Ruins&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>On starting the game, we see this:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>Days of searching, days of thirsty hacking through the briars of the
+forest, but at last your patience was rewarded. A discovery!
+
+RUINS
+An Interactive Worked Example
+Copyright (c) 1995 by Graham Nelson.
+Revisited 1998 by Roger Firth.
+Release 2 / Serial number 981117 / Inform v6.31 Library 6/11 S
+
+Dark Forest
+In this tiny clearing, the pine-needle carpet is broken by stone-cut steps
+leading down into the darkness. Dark olive trees crowd in on all sides, the
+air steams with warm recent rain, midges hang in the air.
+
+A speckled mushroom grows out of the sodden earth, on a long stalk.
+</pre></div>
+</div>
+<p>Ooh, that mushroom looks interesting.  Let&#8217;s map out what we have so far:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Dark Forest&quot;</span> <span class="kr">tag</span> <span class="n">Dark_Forest</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;speckled mushroom&quot;</span> <span class="kr">tag</span> <span class="n">mushroom</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Let&#8217;s have a closer look at that mushroom:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">GET SPECKLED MUSHROOM</span>
+You stoop to pick the mushroom, neatly cleaving its thin stalk. As you
+straighten up, you notice what looks like a snake in the grass.
+
+You hear the distant drone of an aeroplane.
+
+&gt;<span class="gs">EXAMINE SNAKE</span>
+A menacing, almost cartoon-like statuette of a pygmy spirit with an
+enormous snake around its neck.
+
+The plane is much louder, and seems to be flying very low. Terrified birds
+rise in screeching flocks.
+
+&gt;<span class="gs">GET STATUETTE</span>
+Taken.
+
+You involuntarily crouch as the plane flies directly overhead, seemingly
+only inches above the treetops. With a loud thump, something drops heavily
+to the ground.
+
+&gt;<span class="gs">LOOK</span>
+
+Dark Forest
+In this tiny clearing, the pine-needle carpet is broken by stone-cut steps
+leading down into the darkness. Dark olive trees crowd in on all sides, the
+air steams with warm recent rain, midges hang in the air.
+
+Your packing case rests here, ready for you to hold any important cultural
+finds you might make, for shipping back to civilisation.
+
+The roar dies away; calm returns to the forest.
+</pre></div>
+</div>
+<p>We&#8217;ve found a statuette that was hidden until we picked the mushroom:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;statuette&quot;</span> <span class="kr">tag</span> <span class="n">statue</span> <span class="kr">hidden</span> <span class="kr">need</span> <span class="n">mushroom</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And a packing crate just fell out of the sky!  Looks like that was going to
+happen regardless, so nothing to do, map-wise.  Let&#8217;s continue exploring:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">D</span>
+
+Square Chamber
+A sunken, gloomy stone chamber, ten yards across, whose floor is covered
+with fine sandy dust. A shaft of sunlight cuts in from the steps above,
+giving the chamber a diffuse light, but in the shadows low lintelled
+doorways to east and south lead into the deeper darkness of the Temple.
+
+Carved inscriptions crowd the walls and ceiling.
+</pre></div>
+</div>
+<p>We went down to get here, and have to decide on a compass direction to
+represent this on the map; let&#8217;s choose south.  This might clash with other
+rooms later, but we can always come back and change it if needed.</p>
+<p>We can also see some exits to other rooms, and can indicate those too, for
+later reference:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Square Chamber&quot;</span> <span class="kr">tag</span> <span class="n">Chamber</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span> <span class="kr">exit</span> <span class="nv">s</span> <span class="nv">e</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;carvings&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>OK, let&#8217;s have a bit of a look around.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">EXAMINE INSCRIPTIONS</span>
+The carvings cut deep into the rocks from which the chamber is built,
+forming swirling sinuous patterns.
+
+&gt;<span class="gs">EXAMINE MUSHROOM</span>
+The mushroom is capped with blotches, and you aren&#39;t at all sure it&#39;s not a
+toadstool.
+
+&gt;<span class="gs">EXAMINE SUNLIGHT</span>
+The shaft of sunlight glimmers motes of dust in the air, making it seem
+almost solid.
+</pre></div>
+</div>
+<p>Hmm... mushroom, sunlight.  Sunlight, mushroom.  Hey, let&#8217;s do it!</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">PUT MUSHROOM IN SUNLIGHT</span>
+You drop the mushroom on the floor, in the glare of the shaft of sunlight.
+It bubbles obscenely, distends and then bursts into a hundred tiny insects
+which run for the darkness in every direction, leaving strange trails in
+the sandy floor. No trace of fungus remain.
+</pre></div>
+</div>
+<p>Well, that was unexpected.  Now what?</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">EXAMINE TRAILS</span>
+The insect trails seem to resemble one particular group of carvings on the
+wall.
+
+&gt;<span class="gs">EXAMINE CARVINGS</span>
+You stare at a group of carvings in the middle of one wall, uncannily
+resembling the insects&#39; trail left in the sand, and feel your hand reaching
+out in that direction.
+
+&gt;<span class="gs">PRESS CARVINGS</span>
+The carvings slide inwards, revealing a small cavity.
+
+&gt;<span class="gs">SEARCH CAVITY</span>
+In the cavity among the carvings is a huge iron key.
+
+&gt;<span class="gs">GET IRON KEY</span>
+Taken.
+</pre></div>
+</div>
+<p>Aha!  A key.  I predict there&#8217;ll be at least one door in this game.  But I
+hope we didn&#8217;t need that mushroom any more...</p>
+<p>Recording what we just did:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put mushroom in sunlight&quot;</span> <span class="kr">need</span> <span class="n">mushroom</span> <span class="kr">lose</span> <span class="nb">it</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Press carvings&quot;</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;iron key&quot;</span> <span class="kr">tag</span> <span class="n">key</span> <span class="kr">hidden</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Let&#8217;s explore a bit more:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">S</span>
+
+Stooped Corridor
+A low, square-cut corridor, running north to south, stooping over you.
+Patches of moss emit a faint green fluorescent glow, just enough that you
+can see your surroundings.
+The passage is barred by a massive door of yellow stone.
+
+&gt;<span class="gs">EXAMINE MOSS</span>
+The moss grows in rough clumps, surprisingly thick in places. Is that a
+hint of red hidden among all the greenery?
+
+&gt;<span class="gs">SEARCH MOSS</span>
+Something rolls from the moss onto the ground.
+
+&gt;<span class="gs">LOOK</span>
+
+Stooped Corridor
+A low, square-cut corridor, running north to south, stooping over you.
+Patches of moss emit a faint green fluorescent glow, just enough that you
+can see your surroundings.
+
+The passage is barred by a massive door of yellow stone.
+
+You can also see a blood-red ruby here.
+
+&gt;<span class="gs">GET BLOOD-RED RUBY</span>
+Taken.
+</pre></div>
+</div>
+<p>Haha, more not-very-well-hidden goodies.  And look&#8212;a door!  What a
+surprise.  Let&#8217;s do some mapping:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Stooped Corridor&quot;</span> <span class="kr">dir</span> <span class="nv">s</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;moss&quot;</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Search moss&quot;</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;blood-red ruby&quot;</span> <span class="kr">tag</span> <span class="n">ruby</span> <span class="kr">hidden</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>OK, let&#8217;s use that key!</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">UNLOCK DOOR WITH KEY</span>
+You unlock the stone door.
+
+&gt;<span class="gs">OPEN DOOR</span>
+You open the stone door.
+
+&gt;<span class="gs">S</span>
+
+Lofty Shrine
+For an underground chamber, the Shrine is remarkably high, though its upper
+half is hazy and difficult to see clearly. The craggy walls are polished
+natural rock, in which tiny flecks of quartz catch the light of the
+flickering candle.
+
+The massive yellow stone door is open.
+
+A great stone slab of a table dominates the Shrine.
+
+On the slab altar is a flickering candle.
+
+Behind the slab, a mummified priest stands waiting, barely alive at best,
+impossibly venerable.
+</pre></div>
+</div>
+<p>How atmospheric.  Continuing with mapping:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Unlock door with key&quot;</span> <span class="kr">need</span> <span class="n">key</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Open door&quot;</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Lofty Shrine&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;stone slab&quot;</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;mummified priest&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Let&#8217;s see what we have here:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">EXAMINE SLAB</span>
+It&#39;s big enough to lie on, though in the circumstances that might prove to
+be a A Really Bad Idea.
+
+&gt;<span class="gs">EXAMINE PRIEST</span>
+He is dessicated and hangs together only by will-power. Though his first
+language is presumably local Mayan, you have the curious instinct that he
+will understand your speech.
+</pre></div>
+</div>
+<p>Hmm... let&#8217;s press him for information, then:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">ASK PRIEST ABOUT RUBY</span>
+&quot;That is one of my people&#39;s sacred relics.&quot;
+
+&gt;<span class="gs">ASK PRIEST ABOUT SLAB</span>
+&quot;The King (life! propserity! happiness!) is buried deep under this Shrine,
+where you will never go.&quot;
+
+&gt;<span class="gs">ASK PRIEST ABOUT KEY</span>
+&quot;That has been lost for generations. My gratitude to anyone who returns it
+will be overwhelming.&quot;
+</pre></div>
+</div>
+<p>OK, er, let&#8217;s give it back:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">PUT KEY ON SLAB</span>
+His eyes dimly agleam with gratitude, the priest takes the key and conceals
+it among his rags. Then, lifting the candle, he carefully detaches a large
+lump of the mottled wax, and gives it to you.
+
+&gt;<span class="gs">EXAMINE WAX</span>
+On closer examination, the lump appears to be an old honeycomb.
+</pre></div>
+</div>
+<p>Looks like it might be worth something.  Time for a bit of mapping:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put key on slab&quot;</span> <span class="kr">need</span> <span class="n">key</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">give</span> <span class="n">wax</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;wax&quot;</span> <span class="kr">tag</span> <span class="n">wax</span> <span class="kr">hidden</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Right, let&#8217;s go back and try another direction we haven&#8217;t been yet:</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">N</span>
+
+Stooped Corridor
+
+The massive yellow stone door is open.
+
+&gt;<span class="gs">N</span>
+
+Square Chamber
+
+Carved inscriptions crowd the walls and ceiling.
+
+Strange trails swirl on the sandy floor.
+
+&gt;<span class="gs">E</span>
+As you move into the eastern shadows, you seem to glimpse the word SENE
+scratched on the lintel, but before you can stop to inspect it more
+closely, you find yourself in...
+
+Darkness
+The darkness of ages presses in on you, and you feel claustrophobic.
+
+Somewhere, tiny claws are scuttling.
+</pre></div>
+</div>
+<p>Crikey.  Don&#8217;t like the sound of that.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">E</span>
+
+Darkness
+
+Somewhere, tiny claws are scuttling.
+
+The scuttling draws a little nearer, and your breathing grows load and
+hoarse.
+
+&gt;<span class="gs">S</span>
+
+Darkness
+Somewhere, tiny claws are scuttling.
+
+The perspiration of terror runs off your brow. The creatures are almost
+here!
+</pre></div>
+</div>
+<p>OK, this is bad.  Think before acting.  What did the word <em>SENE</em> mean?
+Hmm, maybe it&#8217;s <em>two</em> words...</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">SE</span>
+
+Darkness
+
+Somewhere, tiny claws are scuttling.
+
+&gt;<span class="gs">NE</span>
+Sensing a slight draught you move in that direction, stumbling over
+something lying on the ground in the dark. Almost inadvertently you grab it
+before gratefully emerging into the gloomy chamber.
+
+Square Chamber
+
+Carved inscriptions crowd the walls and ceiling.
+
+Strange trails swirl on the sandy floor.
+</pre></div>
+</div>
+<p>Now that was close.  But what have we grabbed?</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">I</span>
+You are carrying:
+  a silver bangle
+  a lump of wax
+  a blood-red ruby
+  a pygmy statuette
+</pre></div>
+</div>
+<p>Ooh, a silver bangle.  Plus, we didn&#8217;t die!</p>
+<p>Let&#8217;s map what we just did.  We moved east from the Square Chamber into the
+Web of Darkness.  There are essentially two of those rooms, corresponding
+to the two right directions to move in.  Let&#8217;s give the Web rooms a
+<tt class="docutils literal"><span class="pre">Dark</span></tt> style to show they&#8217;re dark (we can define what <tt class="docutils literal"><span class="pre">Dark</span></tt> means,
+style-wise, later):</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Web of Darkness&quot;</span> <span class="ni">style</span> <span class="n">Dark</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">from</span> <span class="n">Chamber</span> <span class="kr">oneway</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;scuttling claws&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Web of Darkness&quot;</span> <span class="ni">style</span> <span class="n">Dark</span> <span class="kr">dir</span> <span class="nv">se</span> <span class="kr">oneway</span><span class="p">;</span>
+<span class="kr">item</span> <span class="s">&quot;scuttling claws&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The act of going northeast gave us a bangle (we tripped over it and picked
+it up).  There are two ways of doing this: with an explicit movement task
+that puts you back in the Square Chamber, or a &#8220;dummy&#8221; task that hands you
+the bangle in this room without you doing anything (using <tt class="docutils literal"><span class="pre">cmd</span> <span class="pre">none</span></tt>).
+Let&#8217;s use the first method:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;silver bangle&quot;</span> <span class="kr">hidden</span> <span class="kr">tag</span> <span class="n">bangle</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Stumble over bangle&quot;</span> <span class="kr">give</span> <span class="n">bangle</span> <span class="kr">cmd</span> <span class="s">&quot;NE&quot;</span> <span class="kr">goto</span> <span class="n">Chamber</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This second room is a one-way trip back to the Square Chamber.  As it
+stands, that won&#8217;t be apparent on the map.  Let&#8217;s add the connection in the
+most direct way:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">link</span> <span class="nb">last</span> <span class="kr">to</span> <span class="n">Chamber</span> <span class="kr">dir</span> <span class="nv">ne</span> <span class="nv">n</span> <span class="nv">w</span> <span class="mf">2</span> <span class="kr">oneway</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Well, there doesn&#8217;t seem to be anywhere else to go.  Let&#8217;s get all this
+stuff stashed!</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">U</span>
+
+Dark Forest
+
+Your packing case rests here, ready for you to hold any important cultural
+finds you might make, for shipping back to civilisation.
+
+&gt;<span class="gs">PUT STATUETTE IN CASE</span>
+Safely packed away.
+
+[Your score has just gone up by ten points.]
+
+&gt;<span class="gs">PUT BANGLE IN CASE</span>
+Safely packed away.
+[Your score has just gone up by twenty points.]
+
+&gt;<span class="gs">PUT RUBY IN CASE</span>
+Safely packed away.
+
+[Your score has just gone up by thirty points.]
+
+&gt;<span class="gs">PUT WAX IN CASE</span>
+Safely packed away.
+
+The case is full, and you&#39;re feeling really homesick. Now, how to get out
+of here?
+
+A deep throbbing noise can be heard.
+
+[Your score has just gone up by forty points.]
+</pre></div>
+</div>
+<p>OK, we&#8217;ve stashed all the loot we found.  But what&#8217;s that noise?</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">WAIT</span>
+Time passes.
+
+A helicopter appears, hovering overhead.
+
+&gt;<span class="gs">WAIT</span>
+Time passes.
+
+The helicopter lowers a rope; you tie it around the packing case, which is
+hauled up into the air, then a rope ladder comes dangling down. With one
+last look around the clearing, you climb the ladder into the waiting craft.
+Back to civilisation, and a decent pint of Brakspear&#39;s!
+
+    *** You have won ***
+
+In that game you scored 100 out of a possible 100, in 44 turns, earning you
+the rank of Master Archaeologist.
+</pre></div>
+</div>
+<p>Huzzah!  We found all the &#8220;cultural finds&#8221; and just need to get them to the
+museum. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<p>Let&#8217;s add some tasks that record storing all the treasure.  This happens in
+the starting room, so we&#8217;ll just go back and put them just after the
+declaration for that room.  We could just have a single task that requires
+all the treasure together and gets the full 100 points, but let&#8217;s spell out
+the points for each one:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Put statuette in case&quot;</span> <span class="kr">tag</span> <span class="n">pack_statue</span> <span class="kr">need</span> <span class="n">statue</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">10</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Put bangle in case&quot;</span> <span class="kr">tag</span> <span class="n">pack_bangle</span> <span class="kr">need</span> <span class="n">bangle</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">20</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Put ruby in case&quot;</span> <span class="kr">tag</span> <span class="n">pack_ruby</span> <span class="kr">need</span> <span class="n">ruby</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">30</span><span class="p">;</span>
+<span class="kr">task</span> <span class="s">&quot;Put wax in case&quot;</span> <span class="kr">tag</span> <span class="n">pack_wax</span> <span class="kr">need</span> <span class="n">wax</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">40</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>After the treasure is stashed, we just waited for the helicopter and won
+the game:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">task</span> <span class="s">&quot;Wait for helicopter&quot;</span> <span class="kr">after</span> <span class="n">pack_statue</span> <span class="n">pack_bangle</span> <span class="n">pack_ruby</span> <span class="n">pack_wax</span> <span class="kr">cmd</span> <span class="s">&quot;WAIT&quot;</span> <span class="mf">2</span> <span class="ni">finish</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The only thing remaining to do, map-wise, is to define the display style
+we&#8217;ve used for the dark rooms.  Let&#8217;s just set the room background colour
+to be darker.  Note that we could also define the <tt class="docutils literal"><span class="pre">Dark</span></tt> style by putting
+it in a file called <tt class="docutils literal"><span class="pre">Dark.ifm</span></tt>, and then putting that file in a
+directory which is searched by IFM.  That way, many maps could use the same
+style definition.  Here&#8217;s the definition:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="n">room_colour</span> <span class="o">=</span> <span class="s">&quot;gray70&quot;</span> <span class="kr">in</span> <span class="ni">style</span> <span class="n">Dark</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Putting all these IFM snippets together (and indenting in my preferred
+style) the completed map looks like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="c"># IFM map of &#39;Ruins&#39;</span>
+
+<span class="ni">title</span> <span class="s">&quot;Ruins&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Dark Forest&quot;</span>                      <span class="kr">tag</span> <span class="n">Dark_Forest</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;speckled mushroom&quot;</span>              <span class="kr">tag</span> <span class="n">mushroom</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;statuette&quot;</span>                      <span class="kr">tag</span> <span class="n">statue</span> <span class="kr">hidden</span> <span class="kr">need</span> <span class="n">mushroom</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Put statuette in case&quot;</span>          <span class="kr">tag</span> <span class="n">pack_statue</span> <span class="kr">need</span> <span class="n">statue</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">10</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Put bangle in case&quot;</span>             <span class="kr">tag</span> <span class="n">pack_bangle</span> <span class="kr">need</span> <span class="n">bangle</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">20</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Put ruby in case&quot;</span>               <span class="kr">tag</span> <span class="n">pack_ruby</span> <span class="kr">need</span> <span class="n">ruby</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">30</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Put wax in case&quot;</span>                <span class="kr">tag</span> <span class="n">pack_wax</span> <span class="kr">need</span> <span class="n">wax</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">score</span> <span class="mf">40</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Wait for helicopter&quot;</span>            <span class="kr">after</span> <span class="n">pack_statue</span> <span class="n">pack_bangle</span> <span class="n">pack_ruby</span> <span class="n">pack_wax</span> 
+                                        <span class="kr">cmd</span> <span class="s">&quot;WAIT&quot;</span> <span class="mf">2</span> <span class="ni">finish</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Square Chamber&quot;</span>                   <span class="kr">tag</span> <span class="n">Chamber</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span> <span class="kr">exit</span> <span class="nv">s</span> <span class="nv">e</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;carvings&quot;</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Put mushroom in sunlight&quot;</span>       <span class="kr">need</span> <span class="n">mushroom</span> <span class="kr">lose</span> <span class="nb">it</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Press carvings&quot;</span>                 <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+
+  <span class="kr">item</span> <span class="s">&quot;iron key&quot;</span>                       <span class="kr">tag</span> <span class="n">key</span> <span class="kr">hidden</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Stooped Corridor&quot;</span>                 <span class="kr">dir</span> <span class="nv">s</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;moss&quot;</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Search moss&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;blood-red ruby&quot;</span>                 <span class="kr">tag</span> <span class="n">ruby</span> <span class="kr">hidden</span> <span class="kr">after</span> <span class="nb">last</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Unlock door with key&quot;</span>           <span class="kr">need</span> <span class="n">key</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Open door&quot;</span>                      <span class="kr">after</span> <span class="nb">last</span> <span class="kr">tag</span> <span class="n">open_door</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Lofty Shrine&quot;</span>                     <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">after</span> <span class="n">open_door</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;stone slab&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;mummified priest&quot;</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Put key on slab&quot;</span>                <span class="kr">need</span> <span class="n">key</span> <span class="kr">lose</span> <span class="nb">it</span> <span class="kr">give</span> <span class="n">wax</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;wax&quot;</span>                            <span class="kr">tag</span> <span class="n">wax</span> <span class="kr">hidden</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Web of Darkness&quot;</span>                  <span class="ni">style</span> <span class="n">Dark</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">from</span> <span class="n">Chamber</span> <span class="kr">oneway</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;scuttling claws&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Web of Darkness&quot;</span>                  <span class="ni">style</span> <span class="n">Dark</span> <span class="kr">dir</span> <span class="nv">se</span> <span class="kr">oneway</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;scuttling claws&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;silver bangle&quot;</span>                  <span class="kr">hidden</span> <span class="kr">tag</span> <span class="n">bangle</span><span class="p">;</span>
+
+  <span class="kr">task</span> <span class="s">&quot;Stumble over bangle&quot;</span>            <span class="kr">give</span> <span class="n">bangle</span> <span class="kr">cmd</span> <span class="s">&quot;NE&quot;</span> <span class="kr">goto</span> <span class="n">Chamber</span><span class="p">;</span>
+  <span class="kr">link</span> <span class="nb">last</span> <span class="kr">to</span> <span class="n">Chamber</span>                  <span class="kr">dir</span> <span class="nv">ne</span> <span class="nv">n</span> <span class="nv">w</span> <span class="mf">2</span> <span class="kr">oneway</span><span class="p">;</span>
+
+<span class="n">room_colour</span> <span class="o">=</span> <span class="s">&quot;gray70&quot;</span> <span class="kr">in</span> <span class="ni">style</span> <span class="n">Dark</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="drawing-the-map">
+<h2>Drawing the map<a class="headerlink" href="#drawing-the-map" title="Permalink to this headline">¶</a></h2>
+<p>At any point during the mapping of the game, we could run IFM and get a map
+of where we&#8217;ve been (and where to explore next, since we marked room exits
+with <tt class="xref docutils literal"><span class="pre">exit</span></tt>).  We can do that, for example, like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -m -o ruins.ps ruins.ifm
+</pre></div>
+</div>
+<p>and using our favourite PostScript viewer to view the map.  Here&#8217;s what
+the completed <em>Ruins</em> map looks like:</p>
+<div align="center" class="align-center"><img alt="_images/ruins.png" class="align-center" src="_images/ruins.png" /></div>
+</div>
+<div class="section" id="listing-items">
+<h2>Listing items<a class="headerlink" href="#listing-items" title="Permalink to this headline">¶</a></h2>
+<p>We can see a complete item list using:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -i ruins.ifm
+</pre></div>
+</div>
+<p>Here&#8217;s what gets output with the completed <em>Ruins</em> map:</p>
+<div class="highlight-text"><div class="highlight"><pre>Item list for Ruins
+
+blood-red ruby:
+   hidden in Stooped Corridor
+   obtained after:
+      Search moss (Stooped Corridor)
+   needed for:
+      Put ruby in case (Dark Forest)
+
+carvings:
+   seen in Square Chamber
+
+iron key:
+   hidden in Square Chamber
+   obtained after:
+      Press carvings (Square Chamber)
+   needed for:
+      Unlock door with key (Stooped Corridor)
+      Put key on slab (Lofty Shrine)
+
+moss:
+   seen in Stooped Corridor
+
+mummified priest:
+   seen in Lofty Shrine
+
+scuttling claws:
+   seen in Web of Darkness
+
+scuttling claws:
+   seen in Web of Darkness
+
+silver bangle:
+   hidden in Web of Darkness
+   obtained after:
+      Stumble over bangle (Web of Darkness)
+   needed for:
+      Put bangle in case (Dark Forest)
+
+speckled mushroom:
+   seen in Dark Forest
+   needed for:
+      Get statuette (Dark Forest)
+      Put mushroom in sunlight (Square Chamber)
+
+statuette:
+   hidden in Dark Forest
+   obtained after:
+      Get speckled mushroom (Dark Forest)
+   needed for:
+      Put statuette in case (Dark Forest)
+
+stone slab:
+   seen in Lofty Shrine
+
+wax:
+   hidden in Lofty Shrine
+   obtained after:
+      Put key on slab (Lofty Shrine)
+   needed for:
+      Put wax in case (Dark Forest)
+</pre></div>
+</div>
+</div>
+<div class="section" id="generating-a-solution">
+<h2>Generating a solution<a class="headerlink" href="#generating-a-solution" title="Permalink to this headline">¶</a></h2>
+<p>We can get a basic walkthrough of the game using:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -t ruins.ifm
+</pre></div>
+</div>
+<p>and it looks like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>Task list for Ruins
+
+Dark Forest:
+   Get speckled mushroom
+   Get statuette
+   Put statuette in case
+      score: 10
+
+Move to Square Chamber (D)
+
+Square Chamber:
+   Put mushroom in sunlight
+   Press carvings
+   Get iron key
+
+Move to Stooped Corridor (S)
+
+Stooped Corridor:
+   Search moss
+   Unlock door with key
+   Open door
+   Get blood-red ruby
+
+Move to Lofty Shrine (S)
+
+Lofty Shrine:
+   Put key on slab
+      note: Gives wax
+
+Move to Stooped Corridor (N)
+Move to Square Chamber (N)
+Move to Dark Forest (U)
+
+Dark Forest:
+   Put ruby in case
+      score: 30
+   Put wax in case
+      score: 40
+
+Move to Square Chamber (D)
+Move to Web of Darkness (E)
+Move to Web of Darkness (SE)
+
+Web of Darkness:
+   Stumble over bangle
+      cmd: NE
+      note: Gives silver bangle
+      note: Moves you to Square Chamber
+
+Move to Dark Forest (U)
+
+Dark Forest:
+   Put bangle in case
+      score: 20
+   Wait for helicopter
+      cmd: WAIT
+      cmd: WAIT
+      note: Finishes the game
+
+Total distance travelled: 10
+
+Total score: 100
+</pre></div>
+</div>
+<p>As you can see, IFM&#8217;s solution is slightly different from the way we played
+it: it stashes the statue straight away.  In the actual game, doing that
+this early wouldn&#8217;t work&#8212;the packing case hasn&#8217;t been dropped yet.
+Unless we&#8217;re trying to make a recording that will play back in <a class="reference external" href="http://frotz.sourceforge.net">Frotz</a> or
+similar, this doesn&#8217;t really matter.  If we <em>did</em> want to, we&#8217;d have to fix
+this and create a recording file using:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -t -f rec ruins.ifm
+</pre></div>
+</div>
+<p>This produces:</p>
+<div class="highlight-text"><div class="highlight"><pre>GET SPECKLED MUSHROOM
+GET STATUETTE
+PUT STATUETTE IN CASE
+D
+PUT MUSHROOM IN SUNLIGHT
+PRESS CARVINGS
+GET IRON KEY
+S
+SEARCH MOSS
+UNLOCK DOOR WITH KEY
+OPEN DOOR
+GET BLOOD-RED RUBY
+S
+PUT KEY ON SLAB
+N
+N
+U
+PUT RUBY IN CASE
+PUT WAX IN CASE
+D
+E
+SE
+NE
+U
+PUT BANGLE IN CASE
+WAIT
+WAIT
+</pre></div>
+</div>
+<p>Another way to view the solution is using a <em>task dependency graph</em>.  This
+uses IFM&#8217;s <a class="reference external" href="usage.html#dot"><em>dot</em></a> output format, like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -t -o ruins.dot -f dot ruins.ifm
+dot -Tps -o ruins-graph.ps ruins.dot
+</pre></div>
+</div>
+<p>Here&#8217;s what <em>Ruins</em> looks like:</p>
+<div align="center" class="align-center"><img alt="_images/ruins-graph.png" class="align-center" src="_images/ruins-graph.png" /></div>
+<p>Yet another way to show this is by grouping tasks together according to the
+rooms they occur in, by setting the <tt class="docutils literal"><span class="pre">task_graph_rooms</span></tt> variable:</p>
+<div class="highlight-text"><div class="highlight"><pre>ifm -t -o ruins.dot -f dot -s task_graph_rooms=true ruins.ifm
+dot -Tps -o ruins-graph.ps ruins.dot
+</pre></div>
+</div>
+<p>This is what you get:</p>
+<div align="center" class="align-center"><img alt="_images/ruins-graph-byroom.png" class="align-center" src="_images/ruins-graph-byroom.png" /></div>
+</div>
+<div class="section" id="tweaking-the-solution">
+<h2>Tweaking the solution<a class="headerlink" href="#tweaking-the-solution" title="Permalink to this headline">¶</a></h2>
+<p>If we want to wait for the packing case to appear before trying to put the
+statue in it, we could do it like this:</p>
+<div class="highlight-text"><div class="highlight"><pre>task &quot;Wait for packing case&quot; in Dark_Forest need statue cmd &quot;WAIT&quot; 2;
+</pre></div>
+</div>
+<p>Also, The solution as it stands is not as short as it could be: the game
+solver takes a trip back up to the packing case to dump two treasures and
+only then goes to get the bangle.  This is because the stashing-treasure
+tasks are marginally closer at that point.</p>
+<p>What we&#8217;d like is for the solver to grab all the underground treasure
+<em>before</em> returning to the surface.  This can be done by extending the
+<a class="reference external" href="solving.html#changing-lengths"><em>length</em></a> (i.e., movement cost) of the implicit link
+between above-ground and below-ground:</p>
+<div class="highlight-text"><div class="highlight"><pre>link Chamber length 10;
+</pre></div>
+</div>
+<p>After adding this line, the solver behaves the way we want.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Yeah, right.  You can if you want.  I&#8217;m off to Ebay.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Mapping and solving example</a><ul>
+<li><a class="reference external" href="#mapping-the-game">Mapping the game</a></li>
+<li><a class="reference external" href="#drawing-the-map">Drawing the map</a></li>
+<li><a class="reference external" href="#listing-items">Listing items</a></li>
+<li><a class="reference external" href="#generating-a-solution">Generating a solution</a></li>
+<li><a class="reference external" href="#tweaking-the-solution">Tweaking the solution</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="solving.html"
+                                  title="previous chapter">Solving the game</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="usage.html"
+                                  title="next chapter">Using IFM</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/example.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Using IFM"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="solving.html" title="Solving the game"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Mapping and solving example</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

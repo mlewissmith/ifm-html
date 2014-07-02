@@ -1,0 +1,9 @@
+# Test of map nolink attr.
+
+room "Room 1" tag R1;
+
+room "Room 2" tag R2 dir e nolink;
+
+room "Room 3" dir e oneway;
+
+link R2 to R1 oneway;

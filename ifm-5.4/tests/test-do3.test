@@ -1,0 +1,17 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-do3.out <<END
+# Test of unsafe 'do'.
+
+room "Room 1" tag R1;
+task "Do unsafe thing" do unsafe;
+task "Seal off room" tag unsafe;
+
+room "Room 2" dir e;
+task "Win" after unsafe;
+
+room "Room 3" dir e before unsafe;
+task "Safe task";
+END
+
+cmp -s $SRCDIR/tests/test-do3.exp $BUILDDIR/tests/test-do3.out

@@ -1,0 +1,8 @@
+# Test of paths.
+
+room "R1" tag R1;
+room "R2" tag R2 dir e;
+room "R3" dir s from R1 link R2;
+room "R4" tag R4 dir e link R1 R2;
+
+task "Win";

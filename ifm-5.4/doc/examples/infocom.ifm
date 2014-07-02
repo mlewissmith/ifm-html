@@ -1,0 +1,10 @@
+# Infocom-style map.
+
+room_shadow_xoff = 0;
+room_shadow_yoff = 0;
+
+room "Kitchen" tag Kitchen;
+room "Garage" dir s;
+room "Lounge" dir e from Kitchen;
+room "Dining Room" dir s link Kitchen;
+room "Study" dir e n;

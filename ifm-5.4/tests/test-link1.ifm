@@ -1,0 +1,7 @@
+# Test of implicit link tags.
+
+room "Room 1" tag R1;
+room "Room 2" tag R2 dir e;
+
+room R2 exit n;
+link R2 go in;

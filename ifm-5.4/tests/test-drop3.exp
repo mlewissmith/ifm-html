@@ -1,0 +1,70 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 4
+height: 1
+
+room: 3
+name: Room 4
+rpos: 3 0
+
+room: 2
+name: Room 3
+rpos: 2 0
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 1 0
+
+link: 1 2
+lpos: 1 0
+lpos: 2 0
+
+link: 2 3
+lpos: 2 0
+lpos: 3 0
+
+item: 0
+name: thing
+tag: thing
+room: 2
+needed: 5
+needed: 6
+
+task: 4
+name: Get thing
+room: 0
+
+task: 5
+name: Shazam!
+room: 0
+note: Moves you to Room 4
+
+task: 9
+name: Move to Room 3
+room: 2
+cmd: W
+
+task: 8
+name: Get thing
+room: 2
+
+task: 10
+name: Move to Room 2
+room: 1
+cmd: W
+
+task: 6
+name: Win
+room: 1
+
+task: 11
+name: Drop thing

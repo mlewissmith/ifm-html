@@ -1,0 +1,24 @@
+>e
+
+Inside Building
+You are inside a building, a well house for a large spring.
+
+There are some keys on the ground here.
+
+There is tasty food here.
+
+There is a shiny brass lamp nearby.
+
+There is an empty bottle here.
+
+>item "keys"
+That's not a verb I recognise.
+
+>item "food"
+That's not a verb I recognise.
+
+>item "lamp"
+That's not a verb I recognise.
+
+>item "bottle"
+That's not a verb I recognise.

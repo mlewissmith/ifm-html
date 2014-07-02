@@ -1,0 +1,385 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Making maps &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Solving the game" href="solving.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="solving.html" title="Solving the game"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Making maps</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="making-maps">
+<h1>Making maps<a class="headerlink" href="#making-maps" title="Permalink to this headline">¶</a></h1>
+<p>This section gives you a tour of the main commands for making maps.  It&#8217;s
+not complete; see <a class="reference external" href="language.html"><em>Language</em></a> for a full list of commands.</p>
+<div class="section" id="introduction-to-maps">
+<h2>Introduction to maps<a class="headerlink" href="#introduction-to-maps" title="Permalink to this headline">¶</a></h2>
+<p>The traditional Infocom-style way of drawing Interactive Fiction maps is
+the &#8220;boxes-and-lines&#8221; method, like this:</p>
+<div align="center" class="align-center"><img alt="_images/infocom.png" class="align-center" src="_images/infocom.png" /></div>
+<p>This is the style of map that IFM produces.  Rooms are represented as boxes
+on a square grid, and links between the rooms are drawn as lines connecting
+them.  Links emanate from rooms in any of the eight standard compass
+directions, and also follow the grid.  In the following sections, we&#8217;ll
+introduce the IFM commands that can be used to draw this example map.</p>
+</div>
+<div class="section" id="adding-rooms">
+<span id="index-82"></span><h2>Adding rooms<a class="headerlink" href="#adding-rooms" title="Permalink to this headline">¶</a></h2>
+<p>To draw the example map from the previous section, you first choose an
+arbitrary start location: the kitchen (when mapping a real game, you&#8217;d
+choose your actual start location).  To add the kitchen, just type this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Kitchen&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now you&#8217;re in the kitchen.  Suppose, if this were a real game, that you
+first went south to explore the garage.  That can be added to the map like
+this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Garage&quot;</span> <span class="kr">dir</span> <span class="nv">south</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now you&#8217;ve said which way you went to get to the garage, and since you were
+in the kitchen, IFM knows that the garage is south of the kitchen.  By the
+way, <tt class="xref docutils literal"><span class="pre">south</span></tt> can be abbreviated <tt class="xref docutils literal"><span class="pre">s</span></tt> (and similarly for
+all other directions), just like in the games.</p>
+<p>Ok, you&#8217;re in the garage.  Unfortunately, that&#8217;s a dead end and you have to
+retrace your steps to the kitchen.  You&#8217;ve already mapped that, so there&#8217;s
+no need to do anything.  Now you head off east to the lounge.  Now, you&#8217;re
+moving from the kitchen again but IFM thinks you&#8217;re in the garage (IFM&#8217;s
+idea of &#8220;where you are&#8221; is always the last room mentioned).  You need a way
+of referring to the kitchen again&#8212;to do that, you add a <em>tag</em> to it by
+changing the &#8220;kitchen&#8221; line like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Kitchen&quot;</span> <span class="kr">tag</span> <span class="n">Kitchen</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The tag name can be any name you like.  You might think that you could
+refer to the kitchen by using the name in quotes, but that would mean you
+could never have two distinct rooms with the same name.  Another advantage
+of tags is that they can be much shorter than the real room names.  The tag
+<tt class="docutils literal"><span class="pre">K</span></tt> would be just as valid in the example above (though not as readable).</p>
+<p>Now you can refer to the kitchen by its tag, so you can move east from it
+into the lounge like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Lounge&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">from</span> <span class="n">Kitchen</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The from clause tells IFM where you&#8217;re moving from.  If it&#8217;s omitted, it
+assumes you&#8217;re moving from the last room mentioned.</p>
+<p>Continuing your exploration, you move south into the dining room:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Dining Room&quot;</span> <span class="kr">dir</span> <span class="nv">s</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You exit the dining room to the east, and turn a corner north before
+entering the study.  How can you represent the corner faithfully on the
+map?  Like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Study&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="nv">n</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This says that you move east, then north, to get to the study.  Now, what
+if someone locked the study door behind you and the only way out was
+through the window?  That&#8217;s a one-way trip into the study, which you can
+indicate using the <tt class="xref docutils literal"><span class="pre">oneway</span></tt> attribute like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Study&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="nv">n</span> <span class="kr">oneway</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This is indicated on the map by an arrow.</p>
+</div>
+<div class="section" id="adding-links">
+<span id="index-83"></span><h2>Adding links<a class="headerlink" href="#adding-links" title="Permalink to this headline">¶</a></h2>
+<p>The map as it stands is not complete&#8212;the diagonal link between the
+kitchen and the dining room is missing (because you didn&#8217;t go that way in
+visiting the kitchen or the dining room).  To add it, you need to modify
+the dining room command like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Dining Room&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">link</span> <span class="n">Kitchen</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="xref docutils literal"><span class="pre">link</span></tt> clause creates a straight-line link between the current
+room and the room with the specified tag name (in this case, the kitchen).</p>
+<p>Note that if this link needed to turn corners, as in the study example
+above, then that method of linking the rooms wouldn&#8217;t have worked.  In that
+case, you&#8217;d have to use the stand-alone <tt class="xref docutils literal"><span class="pre">link</span></tt> command.  For
+example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">link</span> <span class="n">Diner</span> <span class="kr">to</span> <span class="n">Kitchen</span> <span class="kr">dir</span> <span class="nv">n</span> <span class="nv">nw</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This assumes you&#8217;ve given the dining room the tag name <tt class="docutils literal"><span class="pre">Diner</span></tt>.  The link
+starts off going north, then turns northwest, and finally goes toward the
+kitchen.  Note that in a <tt class="xref docutils literal"><span class="pre">link</span></tt> command, if you omit the final
+direction which leads to the linked room, it is added automatically.</p>
+</div>
+<div class="section" id="other-directions">
+<span id="index-84"></span><h2>Other directions<a class="headerlink" href="#other-directions" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that there were steps down from the kitchen into the garage, and
+that you wanted to indicate that you could up or down as well.  You could
+do that using the go clause, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Garage&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This indicates that the actual direction travelled is downwards, but it is
+still represented as south on the map.  The <tt class="xref docutils literal"><span class="pre">go</span></tt> clause accepts
+<tt class="xref docutils literal"><span class="pre">up</span></tt>, <tt class="xref docutils literal"><span class="pre">down</span></tt>, <tt class="xref docutils literal"><span class="pre">in</span></tt> and <tt class="xref docutils literal"><span class="pre">out</span></tt>.  As with
+compass directions, <tt class="xref docutils literal"><span class="pre">up</span></tt> and <tt class="xref docutils literal"><span class="pre">down</span></tt> may be abbreviated as
+<tt class="xref docutils literal"><span class="pre">u</span></tt> and <tt class="xref docutils literal"><span class="pre">d</span></tt>.</p>
+</div>
+<div class="section" id="room-exits">
+<span id="index-85"></span><h2>Room exits<a class="headerlink" href="#room-exits" title="Permalink to this headline">¶</a></h2>
+<p>At various points in a game, you arrive in a room with many directions to
+explore.  It is useful to be able to mark some of these directions as
+unexplored, so that you can come back and explore them later.  You could
+mark these by creating dummy rooms in those directions, but this is
+tedious.  Alternatively, you can use the <tt class="xref docutils literal"><span class="pre">exit</span></tt> clause, like
+this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Dining Room&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">exit</span> <span class="nv">nw</span> <span class="nv">e</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This says that there are two unexplored exits from this room, in the
+northwest and east directions.  When a map is drawn, this fact will be
+displayed by a small line poking out of the room in those directions.</p>
+<p>When you come to actually explore those directions, and add links to new
+rooms, the corresponding room exit markers will no longer be drawn.  So you
+can leave the <tt class="xref docutils literal"><span class="pre">exit</span></tt> clauses in if you want.</p>
+</div>
+<div class="section" id="map-sections">
+<span id="index-86"></span><h2>Map sections<a class="headerlink" href="#map-sections" title="Permalink to this headline">¶</a></h2>
+<p>In IFM, rooms are divided into groups called <em>map sections</em>.  Each room in
+a map section has an explicit spatial relationship to all the other rooms
+in that section.  A room which is obtained by moving via a <tt class="xref docutils literal"><span class="pre">dir</span></tt>
+clause from a previous room is on the same map section as the previous
+room, since its co-ordinates can be calculated relative to it.</p>
+<p>There are several reasons why it might be a good idea to split a game map
+into different sections:</p>
+<ul class="simple">
+<li>Some maps can be very large, and may not look good on a single piece of
+paper.</li>
+<li>It might be awkward to put rooms in relation to each other because of,
+say, a lot of up/down connections which have to be &#8220;flattened out&#8221;.</li>
+<li>The game might naturally divide into sections&#8212;a prologue, middle-game
+and end-game, for example.</li>
+</ul>
+<p>IFM manages independent map sections automatically, by deciding which rooms
+are on which section.  No special command is needed to start a new map
+section&#8212;simply define a room which has no connection to any previous
+room, by leaving out the dir clause (note that that&#8217;s how the kitchen
+starts out, in the example).</p>
+<p>Rooms on different map sections are completely separate, and you may not
+link them via the link command.  However, you can indicate where a room on
+one section is connected to a room on another, using the join command:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">join</span> <span class="n">Room1</span> <span class="kr">to</span> <span class="n">Room2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As usual, <tt class="docutils literal"><span class="pre">Room1</span></tt> and <tt class="docutils literal"><span class="pre">Room2</span></tt> are tag names.  You can also use
+<tt class="xref docutils literal"><span class="pre">join</span></tt> as a clause in a <a class="reference external" href="language.html#room"><tt class="xref docutils literal"><span class="pre">room</span></tt></a> command (usually done with
+the room starting in a new section):</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;Basement&quot;</span> <span class="kr">join</span> <span class="n">Ground_Floor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The &#8220;joined&#8221; status of the two rooms is indicated after their description
+text; the default is to use an increasing number.</p>
+<p>Each map section can be given a title using the <tt class="xref docutils literal"><span class="pre">map</span></tt> command,
+like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="ni">map</span> <span class="s">&quot;Kensington Gardens&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This names the next map section that hasn&#8217;t been named.  Note that you
+should have as many <tt class="xref docutils literal"><span class="pre">map</span></tt> commands as you have map sections,
+although this isn&#8217;t enforced&#8212;any names that are missing will be assigned
+default names, and extra names will be ignored.  It&#8217;s conventional to give
+a <tt class="xref docutils literal"><span class="pre">map</span></tt> command just before starting a new map section.</p>
+<p>In rare circumstances (e.g., a three-dimensional maze) you may need to have
+rooms on the same map section which are not connected to each other.  The
+room <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause creates an implicit link from the previous room
+by default, but you can stop this from happening by using the
+<tt class="xref docutils literal"><span class="pre">nolink</span></tt> attribute.  As a trivial example:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;One Side of Wall&quot;</span> <span class="kr">tag</span> <span class="n">this_side</span><span class="p">;</span>
+<span class="nc">room</span> <span class="s">&quot;Other Side of Wall&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">nolink</span> <span class="kr">tag</span> <span class="n">other_side</span><span class="p">;</span>
+<span class="nc">room</span> <span class="s">&quot;Underground Passage&quot;</span> <span class="kr">tag</span> <span class="n">passage_1</span><span class="p">;</span>
+<span class="nc">room</span> <span class="s">&quot;Underground Passage&quot;</span> <span class="kr">tag</span> <span class="n">passage_2</span> <span class="kr">dir</span> <span class="nv">e</span><span class="p">;</span>
+<span class="kr">join</span> <span class="n">this_side</span> <span class="kr">to</span> <span class="n">passage_1</span> <span class="kr">go</span> <span class="kr">down</span><span class="p">;</span>
+<span class="kr">join</span> <span class="n">passage_2</span> <span class="kr">to</span> <span class="n">other_side</span> <span class="kr">go</span> <span class="kr">up</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In this example, there are two map sections: above ground, and below
+ground.  But the two above-ground rooms are not connected directly.</p>
+</div>
+<div class="section" id="adding-items">
+<span id="index-87"></span><h2>Adding items<a class="headerlink" href="#adding-items" title="Permalink to this headline">¶</a></h2>
+<p>As well as rooms, IFM can indicate the initial rooms of various items found
+in the game.  To add an item, use the <tt class="xref docutils literal"><span class="pre">item</span></tt> command like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;Spoon&quot;</span> <span class="kr">in</span> <span class="n">Kitchen</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="xref docutils literal"><span class="pre">in</span></tt> clause can be omitted, and then the room defaults to the
+last room mentioned.  You can also add an arbitrary note to each item (e.g.,
+to remind you what it&#8217;s for) using the <tt class="xref docutils literal"><span class="pre">note</span></tt> attribute:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="kr">item</span> <span class="s">&quot;Spoon&quot;</span> <span class="kr">in</span> <span class="n">Kitchen</span> <span class="kr">note</span> <span class="s">&quot;Stirs tea&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here&#8217;s the completed map description for the above example, with a few
+other items thrown in:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="ni">title</span> <span class="s">&quot;Example Map&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Kitchen&quot;</span> <span class="kr">tag</span> <span class="n">Kitchen</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;spoon&quot;</span> <span class="kr">note</span> <span class="s">&quot;Stirs tea&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;sink&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;monkey&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Garage&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">go</span> <span class="kr">down</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;monkey wrench&quot;</span> <span class="kr">note</span> <span class="s">&quot;For wrenching monkey out of sink&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Lounge&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">from</span> <span class="n">Kitchen</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;TV set&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Dining Room&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">link</span> <span class="n">Kitchen</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;table&quot;</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;chair&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Study&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="nv">n</span> <span class="kr">oneway</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>And this is what it looks like as rendered by IFM:</p>
+<div align="center" class="align-center"><img alt="_images/example.png" class="align-center" src="_images/example.png" /></div>
+<span class="target" id="index-88"></span></div>
+<div class="section" id="mapping-problems">
+<span id="index-89"></span><h2>Mapping problems<a class="headerlink" href="#mapping-problems" title="Permalink to this headline">¶</a></h2>
+<p>After creating a map from a real game and sending the results through IFM,
+you may get warnings which talk about things overlapping.  This is due to
+two rooms, or a room and a link, wanting to occupy the same space on the
+map.  There are several ways that this could occur:</p>
+<ul class="simple">
+<li>The game designer made some room links longer than others, and you
+haven&#8217;t taken that into account.  To extend the length of a link, just add
+a length indicator after the direction in the dir clause (e.g.,
+<tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">e</span> <span class="pre">2</span></tt> instead of <tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">e</span></tt>).</li>
+<li>One of the links turned a corner, so that the direction you use to go
+back isn&#8217;t the opposite of the one you used to get here.  In that case,
+you need to add the corner-turn in the link (e.g., <tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">e</span> <span class="pre">s</span></tt>
+instead of <tt class="xref docutils literal"><span class="pre">dir</span> <span class="pre">e</span></tt>).</li>
+<li>The map is multi-level, in which case it&#8217;s probably best to split it into
+different map sections.</li>
+<li>The map is just weird. <em>Colossal Cave</em> is a good example, particularly
+the above-ground section and the mazes.  There seems to be no logic tying
+the rooms together.  You&#8217;re on your own.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Making maps</a><ul>
+<li><a class="reference external" href="#introduction-to-maps">Introduction to maps</a></li>
+<li><a class="reference external" href="#adding-rooms">Adding rooms</a></li>
+<li><a class="reference external" href="#adding-links">Adding links</a></li>
+<li><a class="reference external" href="#other-directions">Other directions</a></li>
+<li><a class="reference external" href="#room-exits">Room exits</a></li>
+<li><a class="reference external" href="#map-sections">Map sections</a></li>
+<li><a class="reference external" href="#adding-items">Adding items</a></li>
+<li><a class="reference external" href="#mapping-problems">Mapping problems</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="intro.html"
+                                  title="previous chapter">Introduction</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="solving.html"
+                                  title="next chapter">Solving the game</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/maps.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="solving.html" title="Solving the game"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Making maps</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

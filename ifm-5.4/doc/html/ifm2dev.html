@@ -1,0 +1,143 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ifm2dev: convert IFM maps to various other formats &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="up" title="Tools and utilities" href="tools.html" />
+    <link rel="next" title="ifm2tex: convert IFM maps to LaTeX" href="ifm2tex.html" />
+    <link rel="prev" title="tkifm: create maps interactively" href="tkifm.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ifm2tex.html" title="ifm2tex: convert IFM maps to LaTeX"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tkifm.html" title="tkifm: create maps interactively"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>ifm2dev</strong>: convert IFM maps to various other formats</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ifm2dev-convert-ifm-maps-to-various-other-formats">
+<h1><strong>ifm2dev</strong>: convert IFM maps to various other formats<a class="headerlink" href="#ifm2dev-convert-ifm-maps-to-various-other-formats" title="Permalink to this headline">¶</a></h1>
+<p>
+<span class="versionmodified">New in version 5.0.</span></p>
+<p><strong>ifm2dev</strong> is a front end to <strong>fig2dev</strong>, which converts
+diagrams in <a class="reference external" href="http://www.xfig.org">Xfig</a> format to various other formats.  <strong>ifm2dev</strong>
+converts each map section and writes them to separate files. The command
+format is:</p>
+<div class="highlight-python"><pre>ifm2dev [-o template] [fig2dev-options] [-- ifm-options] file</pre>
+</div>
+<p>The <tt class="xref docutils literal"><span class="pre">-o</span></tt> option sets the file template for the output files. It
+must contain an integer format indicator (e.g., <tt class="docutils literal"><span class="pre">%d</span></tt>); this is replaced
+with the map section number in filenames. If not set, it defaults to
+<tt class="docutils literal"><span class="pre">prefix-%02d.suffix</span></tt>, where <tt class="docutils literal"><span class="pre">prefix</span></tt> is the file prefix of the
+input file (with <tt class="docutils literal"><span class="pre">.ifm</span></tt> removed), and suffix is the suffix
+appropriate for the type of output.</p>
+<p>All <strong>fig2dev</strong> output options are passed through without
+change. You can use the <tt class="xref docutils literal"><span class="pre">-L</span></tt> option of <strong>fig2dev</strong> to set
+the output format. See the <strong>fig2dev</strong> manpage for details.</p>
+<p>You can supply options to IFM by first giving the end-of-options indicator
+(<tt class="docutils literal"><span class="pre">--</span></tt>) and then the options.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="tkifm.html"
+                                  title="previous chapter"><strong>tkifm</strong>: create maps interactively</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ifm2tex.html"
+                                  title="next chapter"><strong>ifm2tex</strong>: convert IFM maps to LaTeX</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ifm2dev.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ifm2tex.html" title="ifm2tex: convert IFM maps to LaTeX"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tkifm.html" title="tkifm: create maps interactively"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>ifm2dev</strong>: convert IFM maps to various other formats</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

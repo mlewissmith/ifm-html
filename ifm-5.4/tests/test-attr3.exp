@@ -1,0 +1,74 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 2
+
+room: 2
+name: Bank Entrance
+rpos: 1 1
+
+room: 1
+name: Control Room
+rpos: 0 0
+
+room: 0
+name: Bank Vault
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 0 0
+
+link: 0 2
+lpos: 0 1
+lpos: 1 1
+
+item: 0
+name: diamond
+tag: diamond
+room: 0
+score: 1
+after: 5
+needed: 7
+
+item: 1
+name: glass case
+room: 0
+
+task: 5
+name: Open the glass case
+tag: trigger_alarm
+room: 0
+
+task: 3
+name: Get diamond
+room: 0
+score: 1
+
+task: 8
+name: Move to Control Room
+room: 1
+cmd: S
+
+task: 6
+name: Disable the alarm
+tag: disable_alarm
+room: 1
+
+task: 9
+name: Move to Bank Vault
+room: 0
+cmd: N
+
+task: 10
+name: Move to Bank Entrance
+room: 2
+cmd: W
+
+task: 7
+name: Escape with the diamond
+room: 2
+
+task: 11
+name: Drop diamond

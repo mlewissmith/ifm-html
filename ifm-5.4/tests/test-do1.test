@@ -1,0 +1,15 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-do1.out <<END
+# Test of task 'do' keyword.
+
+room "Room 1";
+task "Cut hole in door" do open_door;
+task "Kick door down" do open_door;
+
+room "Room 2" dir e after open_door;
+task "Open door" tag open_door ignore score 1;
+task "Win" finish;
+END
+
+cmp -s $SRCDIR/tests/test-do1.exp $BUILDDIR/tests/test-do1.out

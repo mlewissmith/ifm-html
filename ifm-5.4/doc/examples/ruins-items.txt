@@ -1,0 +1,61 @@
+Item list for Ruins
+
+blood-red ruby:
+   hidden in Stooped Corridor
+   obtained after:
+      Search moss (Stooped Corridor)
+   needed for:
+      Put ruby in case (Dark Forest)
+
+carvings:
+   seen in Square Chamber
+
+iron key:
+   hidden in Square Chamber
+   obtained after:
+      Press carvings (Square Chamber)
+   needed for:
+      Unlock door with key (Stooped Corridor)
+      Put key on slab (Lofty Shrine)
+
+moss:
+   seen in Stooped Corridor
+
+mummified priest:
+   seen in Lofty Shrine
+
+scuttling claws:
+   seen in Web of Darkness
+
+scuttling claws:
+   seen in Web of Darkness
+
+silver bangle:
+   hidden in Web of Darkness
+   obtained after:
+      Stumble over bangle (Web of Darkness)
+   needed for:
+      Put bangle in case (Dark Forest)
+
+speckled mushroom:
+   seen in Dark Forest
+   needed for:
+      Get statuette (Dark Forest)
+      Put mushroom in sunlight (Square Chamber)
+
+statuette:
+   hidden in Dark Forest
+   obtained after:
+      Get speckled mushroom (Dark Forest)
+   needed for:
+      Put statuette in case (Dark Forest)
+
+stone slab:
+   seen in Lofty Shrine
+
+wax:
+   hidden in Lofty Shrine
+   obtained after:
+      Put key on slab (Lofty Shrine)
+   needed for:
+      Put wax in case (Dark Forest)

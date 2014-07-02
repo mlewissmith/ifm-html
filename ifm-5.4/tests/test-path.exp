@@ -1,0 +1,54 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 2
+
+room: 3
+name: R4
+rpos: 1 0
+
+room: 2
+name: R3
+rpos: 0 0
+
+room: 1
+name: R2
+rpos: 1 1
+
+room: 0
+name: R1
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 1 1
+
+link: 2 1
+lpos: 0 0
+lpos: 1 1
+
+link: 0 2
+lpos: 0 1
+lpos: 0 0
+
+link: 3 0
+lpos: 1 0
+lpos: 0 1
+
+link: 3 1
+lpos: 1 0
+lpos: 1 1
+
+link: 2 3
+lpos: 0 0
+lpos: 1 0
+
+task: 5
+name: Move to R4
+room: 3
+cmd: SE
+
+task: 4
+name: Win
+room: 3

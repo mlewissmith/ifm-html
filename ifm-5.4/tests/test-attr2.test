@@ -1,0 +1,15 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-attr2.out <<END
+# Test of attribute modification.
+
+room "Room 1" tag R1;
+item "thing" tag thing;
+
+room "Room 2" tag R2 dir s;
+task "Win";
+
+room R2 need thing;
+END
+
+cmp -s $SRCDIR/tests/test-attr2.exp $BUILDDIR/tests/test-attr2.out

@@ -1,0 +1,18 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-nopath.out <<END
+# Test of 'nopath' attribute.
+
+room "R1" tag R1;
+
+room "R2" dir e;
+
+room "R3" dir s;
+
+room "R4" dir w tag R4;
+task "Win";
+
+link R4 to R1 nopath;
+END
+
+cmp -s $SRCDIR/tests/test-nopath.exp $BUILDDIR/tests/test-nopath.out

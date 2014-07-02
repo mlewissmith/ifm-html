@@ -1,0 +1,50 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 1
+
+room: 0
+name: Room
+rpos: 0 0
+
+item: 0
+name: thing1
+tag: thing1
+room: 0
+needed: 4
+
+item: 1
+name: thing2
+tag: thing2
+room: 0
+needed: 5
+
+item: 2
+name: thing3
+tag: thing3
+room: 0
+needed: 5
+
+task: 1
+name: Get thing1
+room: 0
+
+task: 4
+name: Do something
+room: 0
+
+task: 2
+name: Get thing2
+room: 0
+
+task: 3
+name: Get thing3
+room: 0
+
+task: 5
+name: Do another thing
+room: 0
+
+task: 8
+name: Drop thing2

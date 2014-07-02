@@ -1,0 +1,6 @@
+# Test of map cmd command.
+
+room "Room 1";
+task "Second thing" tag t2 after t1;
+room "Room 2" dir e cmd "go to other room";
+task "First thing" tag t1;

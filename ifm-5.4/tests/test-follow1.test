@@ -1,0 +1,17 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-follow1.out <<END
+# Test of 'follow' keyword. 
+
+room "Room 1";
+item "hammer" tag hammer;
+task "Room1" tag room1 need hammer;
+
+room "Room 2" dir n;
+task "Room2" tag room2;
+
+room "Room 3" dir n;
+task "Room3" tag room3 follow room1;
+END
+
+cmp -s $SRCDIR/tests/test-follow1.exp $BUILDDIR/tests/test-follow1.out

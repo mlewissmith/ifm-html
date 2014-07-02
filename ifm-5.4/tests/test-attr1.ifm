@@ -1,0 +1,8 @@
+# Test of concatenating attribute lists.
+
+room "Room 1";
+item "thing 1" tag thing1;
+item "thing 2" tag thing2;
+
+room "Room 2" dir s need thing1 need thing2;
+task "Win";

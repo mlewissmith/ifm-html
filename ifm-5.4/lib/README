@@ -1,0 +1,3 @@
+This directory contains files that get installed in the IFM library
+directory.  The files in IFM format can be included via the 'include'
+directive.

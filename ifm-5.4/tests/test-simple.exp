@@ -1,0 +1,68 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 2
+
+room: 3
+name: Bedroom
+rpos: 1 1
+
+room: 2
+name: Landing
+rpos: 0 1
+
+room: 1
+name: Kitchen
+rpos: 1 0
+
+room: 0
+name: Lounge
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 1 0
+
+link: 0 2
+lpos: 0 0
+lpos: 0 1
+go: U
+
+link: 2 3
+lpos: 0 1
+lpos: 1 1
+
+task: 6
+name: Move to Landing
+room: 2
+cmd: U
+
+task: 7
+name: Move to Bedroom
+room: 3
+cmd: E
+
+task: 5
+name: Tidy the room
+tag: tidy
+room: 3
+
+task: 8
+name: Move to Landing
+room: 2
+cmd: W
+
+task: 9
+name: Move to Lounge
+room: 0
+cmd: D
+
+task: 10
+name: Move to Kitchen
+room: 1
+cmd: E
+
+task: 4
+name: Make the tea
+room: 1

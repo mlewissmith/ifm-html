@@ -1,0 +1,33 @@
+===================
+ Contributed stuff
+===================
+
+This directory contains miscellaneous contributed stuff for IFM:
+
+``ifm.vim``
+     Support for IFM syntax colouring in ``vim`` (a ``vi`` clone),
+     contributed by `Dave Chapeskie`_.  This has been partially updated for
+     version 5.x of IFM, but isn't yet complete.
+
+``ifm-mode.el``
+     GNU Emacs IFM mode.  Has syntax colouring and checking, commands to
+     display maps, items and tasks, and a mode menu.
+
+``pyifhilite``
+     A Pygments extension to syntax-highlight IFM code and IF transcripts.
+
+``rec2scr``
+     Perl script which invokes the ``dumb-frotz`` interpreter (available
+     from the IF archive) to non-interactively convert a recording of game
+     commands into a transcript.  Very useful for testing the recording
+     output from IFM.
+
+``chess.pl``
+     Perl script to write a chess board in IFM format.  One of the
+     precursors to ``asciimapper``.
+
+.. _Dave Chapeskie: dchapes@ddm.on.ca
+
+.. Local Variables:
+.. mode: rst
+.. End:

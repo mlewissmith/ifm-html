@@ -1,0 +1,10 @@
+# Test of 'it'.
+
+room "Room";
+
+item "thing1" tag thing1;
+item "thing2" tag thing2;
+item "thing3" tag thing3;
+
+task "Do something" need thing1 lose it;
+task "Do another thing" need thing2 need thing3 drop it;

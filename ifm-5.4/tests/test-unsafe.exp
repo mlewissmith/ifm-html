@@ -1,0 +1,112 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 5
+height: 2
+
+room: 5
+name: Treasure Room
+rpos: 0 0
+
+room: 4
+name: Corridor
+rpos: 1 0
+
+room: 3
+name: Corridor
+rpos: 2 1
+
+room: 2
+name: Corridor
+rpos: 3 1
+
+room: 1
+name: Bottom of Chute
+rpos: 4 0
+
+room: 0
+name: Start
+rpos: 4 1
+
+link: 0 1
+lpos: 4 1
+lpos: 4 0
+oneway: 1
+
+link: 0 2
+lpos: 4 1
+lpos: 3 1
+
+link: 2 3
+lpos: 3 1
+lpos: 2 1
+
+link: 3 4
+lpos: 2 1
+lpos: 1 1
+lpos: 1 0
+
+link: 4 5
+lpos: 1 0
+lpos: 0 0
+
+item: 0
+name: diamond
+room: 5
+score: 1
+
+task: 8
+name: Move to Corridor
+room: 2
+cmd: W
+
+task: 9
+name: Move to Corridor
+room: 3
+cmd: W
+
+task: 10
+name: Move to Corridor
+room: 4
+cmd: W
+
+task: 11
+name: Move to Treasure Room
+room: 5
+cmd: W
+
+task: 6
+name: Get diamond
+room: 5
+score: 1
+note: Not used for anything yet
+
+task: 12
+name: Move to Corridor
+room: 4
+cmd: E
+
+task: 13
+name: Move to Corridor
+room: 3
+cmd: N
+
+task: 14
+name: Move to Corridor
+room: 2
+cmd: E
+
+task: 15
+name: Move to Start
+room: 0
+cmd: E
+
+task: 16
+name: Move to Bottom of Chute
+room: 1
+cmd: S
+
+task: 7
+name: Win the game
+room: 1
+score: 10

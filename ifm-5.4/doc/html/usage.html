@@ -1,0 +1,673 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using IFM &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Language" href="language.html" />
+    <link rel="prev" title="Mapping and solving example" href="example.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="language.html" title="Language"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Mapping and solving example"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Using IFM</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-ifm">
+<span id="usage"></span><h1>Using IFM<a class="headerlink" href="#using-ifm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-the-program">
+<h2>Running the program<a class="headerlink" href="#running-the-program" title="Permalink to this headline">¶</a></h2>
+<p>IFM is run from the command line.  The general form of the command is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ifm</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="p">[</span><span class="nb">file</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>On startup, IFM does the following.  Firstly, the system initialization
+file is read.  This sets defaults used by everyone.  This file is called
+<tt class="docutils literal"><span class="pre">ifm-init.ifm</span></tt>, and is found by searching a standard set of
+directories.  You can adjust the search path by setting the environment
+variable <span class="target" id="index-116"></span><a class="reference internal" href="#envvar-IFMPATH"><strong class="xref">IFMPATH</strong></a>.</p>
+<p>Then, if you have a personal initialization file, that is read.  This file
+is found in the directory specified by your <span class="target" id="index-117"></span><a class="reference internal" href="#envvar-HOME"><strong class="xref">HOME</strong></a> environment
+variable.  It can be called <tt class="docutils literal"><span class="pre">.ifmrc</span></tt> or <tt class="docutils literal"><span class="pre">ifm.ini</span></tt>; if both
+exist, they are both read.  You can use this file to customize the default
+variable settings for different types of output.</p>
+<p>Then input from the file(s) on the command-line is read.  If no files were
+specified, <tt class="xref docutils literal"><span class="pre">stdin</span></tt> is read.  A filename equal to <tt class="docutils literal"><span class="pre">-</span></tt> also
+indicates that <tt class="xref docutils literal"><span class="pre">stdin</span></tt> should be read at that point.</p>
+<p>If any of the <em class="xref">-map</em>, <em class="xref">-items</em>, <em class="xref">-tasks</em> or
+<em class="xref">-show</em> options was specified, the appropriate output is produced.
+If not, only a syntax check of the input is done.</p>
+<p>When producing output, the output format specified by the <em class="xref">-format</em>
+option is used.  If this was not specified, the first format in the list
+which supports this type of output is chosen.</p>
+<p>Some of the output formats use additional library files to do their work.
+For example, the PostScript output format prepends a standard &#8220;prologue&#8221;
+file to all output.  These files are found using the same search path as
+the system initialization file (see above).</p>
+<p>Here&#8217;s a summary of the command-line options (which can be abbreviated),
+starting with the output options:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-m">
+<tt class="descname">-m</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--map</tt><tt class="descclassname"> [sections]</tt><a class="headerlink" href="#cmdoption-ifm-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw a map of the game.  You can optionally specify a list of the map
+sections to print.  The list is a comma-separated set of map section
+numbers (starting from 1) and can include ranges.  For example, the
+argument <tt class="docutils literal"><span class="pre">1,3-5</span></tt> would print map sections 1, 3, 4 and 5.  If the list
+isn&#8217;t specified, all sections are printed.</p>
+<p>
+<span class="versionmodified">New in version 5.0: </span>Optional list of map sections.</p>
+</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-i">
+<tt class="descname">-i</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--items</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm-i" title="Permalink to this definition">¶</a></dt>
+<dd>Print a list of items which appear in the game.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-t">
+<tt class="descname">-t</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--tasks</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm-t" title="Permalink to this definition">¶</a></dt>
+<dd>Print a list of tasks required to solve the game.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-f">
+<tt class="descname">-f</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--format</tt><tt class="descclassname">=FORMAT</tt><a class="headerlink" href="#cmdoption-ifm-f" title="Permalink to this definition">¶</a></dt>
+<dd>Specify the output format.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-o">
+<tt class="descname">-o</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--output</tt><tt class="descclassname">=FILE</tt><a class="headerlink" href="#cmdoption-ifm-o" title="Permalink to this definition">¶</a></dt>
+<dd>Write to the specified file, instead of stdout.</dd></dl>
+
+<p>Next comes the auxiliary options:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-I">
+<tt class="descname">-I</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--include</tt><tt class="descclassname">=DIR</tt><a class="headerlink" href="#cmdoption-ifm-I" title="Permalink to this definition">¶</a></dt>
+<dd>Prepend the specified directory to the library and include file search
+path.  This option may be repeated.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-S">
+<tt class="descname">-S</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--style</tt><tt class="descclassname">=STYLE</tt><a class="headerlink" href="#cmdoption-ifm-S" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a global style.  See <a class="reference internal" href="#customization">Customization</a> for more details.  This option
+may be repeated.</p>
+<p>
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-s">
+<tt class="descname">-s</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--set</tt><tt class="descclassname"> VAR=VALUE</tt><a class="headerlink" href="#cmdoption-ifm-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a customization variable.  This overrides any settings in the input
+files.  This option may be repeated.</p>
+<p>
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm--noinit">
+<tt class="descname">--noinit</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm--noinit" title="Permalink to this definition">¶</a></dt>
+<dd>Don&#8217;t read your personal init file.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-w">
+<tt class="descname">-w</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--nowarn</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm-w" title="Permalink to this definition">¶</a></dt>
+<dd>Don&#8217;t print warnings.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-e">
+<tt class="descname">-e</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--errors</tt><tt class="descclassname">=NUM</tt><a class="headerlink" href="#cmdoption-ifm-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print this many errors before aborting (default: 10).  If set to zero,
+print all errors.</p>
+<p>
+<span class="versionmodified">New in version 5.2.</span></p>
+</dd></dl>
+
+<p>Finally, here are the information options:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm--show">
+<tt class="descname">--show</tt><tt class="descclassname">=TYPE</tt><a class="headerlink" href="#cmdoption-ifm--show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show one of several types of information, and exit.  The <tt class="docutils literal"><span class="pre">TYPE</span></tt>
+argument can be one of:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">maps</span></tt></dt>
+<dd><p class="first">Show a list of all the map sections defined in the input.  This
+is useful for finding the numbers of the map sections you want
+to print.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.0.</span></p>
+</dd>
+<dt><tt class="docutils literal"><span class="pre">path</span></tt></dt>
+<dd>Show the directories that are searched for library and include
+files.</dd>
+<dt><tt class="docutils literal"><span class="pre">vars</span></tt></dt>
+<dd>Show a complete list of defined variables, in a format suitable
+for feeding back into IFM.  See <a class="reference external" href="vars.html"><em>Output variables</em></a>.</dd>
+</dl>
+</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-v">
+<tt class="descname">-v</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm-v" title="Permalink to this definition">¶</a></dt>
+<dd>Print the program version.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><tt class="descclassname">, </tt><tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm-h" title="Permalink to this definition">¶</a></dt>
+<dd>Just print some usage information.</dd></dl>
+
+</div>
+<div class="section" id="types-of-output">
+<h2>Types of output<a class="headerlink" href="#types-of-output" title="Permalink to this headline">¶</a></h2>
+<p>IFM has three different types of output (a map, a list of items, and a list
+of tasks) and several different output formats, which are described in the
+following sections.  Not all types of output are produced by each output
+format.  The table below shows what&#8217;s available for each format.</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="29%" />
+<col width="9%" />
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Output</th>
+<th class="head">PostScript</th>
+<th class="head">Fig</th>
+<th class="head">Tk</th>
+<th class="head">Text</th>
+<th class="head">Rec</th>
+<th class="head">Dot</th>
+<th class="head">Raw</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Map</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>Items</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Y</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Y</td>
+</tr>
+<tr><td>Tasks</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>All the map output formats display map sections in the same way, so that
+what you get with one format looks much the same as another. <a class="footnote-reference" href="#id3" id="id1">[1]</a></p>
+<div class="section" id="postscript-maps-ps">
+<span id="ps"></span><span id="index-118"></span><h3>PostScript maps (<tt class="docutils literal"><span class="pre">ps</span></tt>)<a class="headerlink" href="#postscript-maps-ps" title="Permalink to this headline">¶</a></h3>
+<p>This produces a PostScript map suitable for printing.  Several map sections
+may be printed per page, and the maps are printed over as many pages as it
+takes.  Automatic packing is done to try to get a good fit on the
+page.  Also, portrait or landscape is chosen depending on whichever gives
+the best fit.  Fonts of room and item text are scaled to fit them in the
+room boxes, if required.</p>
+</div>
+<div class="section" id="fig-maps-fig">
+<span id="fig"></span><span id="index-119"></span><h3>Fig maps (<tt class="docutils literal"><span class="pre">fig</span></tt>)<a class="headerlink" href="#fig-maps-fig" title="Permalink to this headline">¶</a></h3>
+<p>
+<span class="versionmodified">New in version 5.0.</span></p>
+<p>This produces a map which can be read (and edited) by <a class="reference external" href="http://www.xfig.org">Xfig</a>, and any other
+programs which understand Fig format.  The map sections are packed to get a
+best fit automatically, in a similar manner to PostScript, but since Fig
+has no concept of pages, it is most useful when you&#8217;re printing each map
+section individually.  There&#8217;s a utility program called <a class="reference external" href="ifm2dev.html"><em>ifm2dev</em></a> which automatically does this.</p>
+<p>Fig format is also useful if you want to print poster-sized maps over
+several pages.  The <em class="xref">-M</em> option of <strong>fig2dev</strong> (part of the
+transfig package) will automatically do this.</p>
+</div>
+<div class="section" id="tk-drawing-commands-tk">
+<span id="tk"></span><span id="index-120"></span><h3>Tk drawing commands (<tt class="docutils literal"><span class="pre">tk</span></tt>)<a class="headerlink" href="#tk-drawing-commands-tk" title="Permalink to this headline">¶</a></h3>
+<p>This produces map commands for input to <a class="reference external" href="tkifm.html"><em>tkifm</em></a>, a simple
+graphical interface to IFM.  It isn&#8217;t very useful to produce this output
+yourself&#8212;<strong>tkifm</strong> does that internally to build its map pictures.
+But you can control its display by setting variables in the usual way.</p>
+</div>
+<div class="section" id="ascii-text-text">
+<span id="text"></span><span id="index-121"></span><h3>ASCII text (<tt class="docutils literal"><span class="pre">text</span></tt>)<a class="headerlink" href="#ascii-text-text" title="Permalink to this headline">¶</a></h3>
+<p>This produces human-readable output for items and tasks.  The output should
+be fairly self-explanatory.</p>
+</div>
+<div class="section" id="recording-commands-rec">
+<span id="rec"></span><span id="recording"></span><span id="index-122"></span><h3>Recording commands (<tt class="docutils literal"><span class="pre">rec</span></tt>)<a class="headerlink" href="#recording-commands-rec" title="Permalink to this headline">¶</a></h3>
+<p>This output produces a list of commands suitable for feeding to IF
+interpreters in playback mode.  All the commands in the output are
+converted to uppercase.</p>
+<p>In order for this to work properly, you have to give commands that the game
+will understand.  The cmd attribute of rooms, links, joins and tasks can
+help with this.  Currently there&#8217;s no item <tt class="xref docutils literal"><span class="pre">cmd</span></tt> attribute, so you
+have to make sure that the item description is recognized by the game (for
+<tt class="xref docutils literal"><span class="pre">get</span></tt> and <tt class="xref docutils literal"><span class="pre">drop</span></tt> commands).  Also, if a task is
+implicitly done in the game without you having to type any commands (e.g.,
+visiting a room), you can indicate this by using <tt class="xref docutils literal"><span class="pre">cmd</span> <span class="pre">none</span></tt>.</p>
+<p>Of course, a recording will only play back properly in an interpreter if it
+provides correct game commands.  Random events can&#8217;t be dealt with by IFM,
+and will probably cause playback to fail.  But you can work around this
+with an interpreter that is able to fix the random seed at startup (e.g.,
+<a class="reference external" href="http://frotz.sourceforge.net">Frotz</a>.  This should eliminate most (but not all) of the problems of
+randomness.</p>
+</div>
+<div class="section" id="task-dependencies-dot">
+<span id="dot"></span><span id="index-123"></span><h3>Task dependencies (<tt class="docutils literal"><span class="pre">dot</span></tt>)<a class="headerlink" href="#task-dependencies-dot" title="Permalink to this headline">¶</a></h3>
+<p>
+<span class="versionmodified">New in version 5.0.</span></p>
+<p>This produces a graph of the dependencies of tasks on each other, in
+Graphviz (dot) format.  You&#8217;ll need to have <a class="reference external" href="http://www.graphviz.org">Graphviz</a> installed in order to
+display the graph.</p>
+<span class="target" id="raw"></span></div>
+<div class="section" id="raw-data-raw">
+<span id="index-124"></span><h3>Raw data (<tt class="docutils literal"><span class="pre">raw</span></tt>)<a class="headerlink" href="#raw-data-raw" title="Permalink to this headline">¶</a></h3>
+<p>This produces raw data for all output formats, intended for use by other
+programs (and the IFM regression test suite).  Each entry consists of a
+number of data lines, and is separated from other entries by a blank line.
+Each data line consists of an attribute, a colon, and its value.  The
+attributes should be self-explanatory. <a class="footnote-reference" href="#id4" id="id2">[2]</a></p>
+<span class="target" id="index-125"></span></div>
+</div>
+<div class="section" id="customization">
+<span id="index-126"></span><h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>You can change the appearance of many output features according to your
+taste.  You do this by setting the values of the variables that control
+those features.  This section tells you how to use variables&#8212;for a
+complete list of the customization variables available, see <a class="reference external" href="vars.html"><em>Output variables</em></a>.</p>
+<p>As a first example, the background colour of rooms is determined by the
+variable <tt class="xref docutils literal"><span class="pre">room_colour</span></tt>.  Its default value is <tt class="docutils literal"><span class="pre">white</span></tt>.  It can
+be changed like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="n">room_colour</span> <span class="o">=</span> <span class="s">&quot;beige&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Setting a variable like this will affect all output formats.  But in some
+cases you don&#8217;t want to do that.  A good example is the one above&#8212;if you
+don&#8217;t have a colour printer, you may not want to have beige rooms printed
+(they&#8217;ll come out greyish).  To get around that, you can set variables that
+are specific to a particular output format:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="n">tk.room_colour</span> <span class="o">=</span> <span class="s">&quot;beige&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This says to set the variable to <tt class="docutils literal"><span class="pre">beige</span></tt> only if producing Tk output.
+The default for all other formats is still <tt class="docutils literal"><span class="pre">white</span></tt>.</p>
+<p>You can also customize the appearance of individual rooms and links on the
+map, by using different display styles.  A display style is just a group of
+variable settings with a given name.  For example, suppose you&#8217;re making a
+map of <em>Colossal Cave</em> and want to mark rooms where you can refill your
+water bottle.  You can define a style called, say, <tt class="docutils literal"><span class="pre">Water</span></tt>, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="ni">style</span> <span class="n">Water</span><span class="p">;</span>
+  <span class="n">room_colour</span> <span class="o">=</span> <span class="s">&quot;light blue&quot;</span><span class="p">;</span>
+<span class="ni">endstyle</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The values of variables that are set between the <tt class="xref docutils literal"><span class="pre">style</span></tt> and
+<tt class="xref docutils literal"><span class="pre">endstyle</span></tt> clauses only apply to things drawn in that style.  Now,
+if you declare rooms like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="nc">room</span> <span class="s">&quot;At End Of Road&quot;</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Inside Building&quot;</span> <span class="ni">style</span> <span class="n">Water</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">go</span> <span class="kr">in</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>then the room &#8220;Inside Building&#8221; will be drawn with a light blue background.
+You can customize individual links in a similar manner.</p>
+<p>An alternative way to define a variable in a particular style is to use the
+<tt class="xref docutils literal"><span class="pre">in</span> <span class="pre">style</span></tt> clause, like this:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="n">room_colour</span> <span class="o">=</span> <span class="s">&quot;light blue&quot;</span> <span class="kr">in</span> <span class="ni">style</span> <span class="n">Water</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If a style only changes a single variable, this may be more convenient.</p>
+<p>If you assign a style (say, called <tt class="docutils literal"><span class="pre">newstyle</span></tt>) to an object, but don&#8217;t
+define it anywhere in your input, then IFM will look for a file called
+<tt class="docutils literal"><span class="pre">newstyle.ifm</span></tt> using the standard search path.  If the file exists,
+it is expected to define style <tt class="docutils literal"><span class="pre">newstyle</span></tt>.  For example, you could put
+the <tt class="docutils literal"><span class="pre">Water</span></tt> style definition above into a file called <tt class="docutils literal"><span class="pre">Water.ifm</span></tt>
+somewhere on the IFM search path, and it would be read automatically.  This
+is useful if, for example, you want to use the same style in several
+different maps.</p>
+<p>You can define global styles using the <em class="xref">--style</em> command-line
+option; these apply to all IFM objects.  Global styles are most useful when
+setting variables that affect the overall appearance of the output, in
+conjunction with the file search method described above (e.g., a file
+containing general colour and font definitions).</p>
+</div>
+<div class="section" id="predefined-styles">
+<span id="index-127"></span><h2>Predefined styles<a class="headerlink" href="#predefined-styles" title="Permalink to this headline">¶</a></h2>
+<p>IFM comes with a few predefined style files, as shown in the table below:</p>
+<blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="10%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Style</th>
+<th class="head">Scope</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>helvetica</td>
+<td>global</td>
+<td>Use Helvetica fonts everywhere in maps</td>
+</tr>
+<tr><td>reckless</td>
+<td>global</td>
+<td>Treat all tasks as safe when solving the game</td>
+</tr>
+<tr><td>verbose</td>
+<td>global</td>
+<td>Print verbose solver messages</td>
+</tr>
+<tr><td>puzzle</td>
+<td>room</td>
+<td>Mark room as containing a puzzle</td>
+</tr>
+<tr><td>special</td>
+<td>link</td>
+<td>Mark link as being special in some way</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>If you create any generally useful or nice-looking styles, you might want
+to send me a copy so I can include them with the next version of IFM.  The
+<strong>Scope</strong> field indicates which type of IFM object it applies to.  Styles
+that have global scope can meaningfully be used by the <em class="xref">--style</em>
+command-line option.</p>
+</div>
+<div class="section" id="environment-variables">
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<p>IFM uses the following environment variables:</p>
+<dl class="envvar">
+<dt id="envvar-IFMPATH">
+<tt class="descname">IFMPATH</tt><a class="headerlink" href="#envvar-IFMPATH" title="Permalink to this definition">¶</a></dt>
+<dd>A colon-separated list of directories to search for IFM files.  These
+directories are searched before the standard directories.</dd></dl>
+
+<dl class="envvar">
+<dt id="envvar-HOME">
+<tt class="descname">HOME</tt><a class="headerlink" href="#envvar-HOME" title="Permalink to this definition">¶</a></dt>
+<dd>Considered to be your home directory when looking for initialization
+files.</dd></dl>
+
+</div>
+<div class="section" id="diagnostics">
+<h2>Diagnostics<a class="headerlink" href="#diagnostics" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the possible error and warning messages which might
+be produced by IFM, and what they mean.  Note that individual output
+formats may print their own errors and/or warnings.  These lists only cover
+the standard ones.</p>
+<div class="section" id="error-messages">
+<h3>Error messages<a class="headerlink" href="#error-messages" title="Permalink to this headline">¶</a></h3>
+<p>Here&#8217;s the list of error messages.  If any errors occur, no output is
+produced.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">invalid</span> <span class="pre">repeat</span> <span class="pre">count</span></tt></dt>
+<dd>You&#8217;ve given a repeat count of zero or less for a string or
+direction, which doesn&#8217;t make much sense.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">no</span> <span class="pre">last</span> <span class="pre">room</span></tt></dt>
+<dd>You&#8217;ve given the very first room a dir clause.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">no</span> <span class="pre">[type]</span> <span class="pre">referred</span> <span class="pre">to</span> <span class="pre">by</span> <span class="pre">'last'</span></tt></dt>
+<dd>You&#8217;ve said last to refer to the last room, item or task that was
+defined, but none of that type of object have been defined yet.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">no</span> <span class="pre">[type]</span> <span class="pre">referred</span> <span class="pre">to</span> <span class="pre">by</span> <span class="pre">'it'</span></tt></dt>
+<dd>You&#8217;ve said <tt class="xref docutils literal"><span class="pre">it</span></tt> to refer to the last room, item or task
+tag that was mentioned in the current command, but no tags of that
+type of object have been mentioned.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">no</span> <span class="pre">items</span> <span class="pre">referred</span> <span class="pre">to</span> <span class="pre">by</span> <span class="pre">'them'</span></tt></dt>
+<dd>You&#8217;ve said <tt class="xref docutils literal"><span class="pre">them</span></tt> to refer to all the items mentioned in
+the current command, but no items have been mentioned.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">[type]</span> <span class="pre">tag</span> <span class="pre">[name]</span> <span class="pre">already</span> <span class="pre">defined</span></tt></dt>
+<dd>You&#8217;ve given two similar objects the same tag name.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">[type]</span> <span class="pre">tag</span> <span class="pre">[name]</span> <span class="pre">not</span> <span class="pre">defined</span></tt></dt>
+<dd>You&#8217;ve referred to a tag name that hasn&#8217;t been defined anywhere in
+the input.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">[type]</span> <span class="pre">tag</span> <span class="pre">[name]</span> <span class="pre">not</span> <span class="pre">yet</span> <span class="pre">defined</span></tt></dt>
+<dd>You&#8217;re referring to a tag at a point where it hasn&#8217;t yet been
+defined, in a situation where it must be (e.g., the room
+<tt class="xref docutils literal"><span class="pre">from</span></tt> clause, or a command that modifies attributes of a
+previously-defined object).</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">can't</span> <span class="pre">modify</span> <span class="pre">[name]</span> <span class="pre">attribute</span></tt></dt>
+<dd>You&#8217;re attempting to modify an attribute of an object which can&#8217;t be
+changed once it&#8217;s set (e.g., a tag name).  This is because it would
+create inconsistencies between objects.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">can't</span> <span class="pre">link</span> <span class="pre">[name1]</span> <span class="pre">and</span> <span class="pre">[name2]</span> <span class="pre">--</span> <span class="pre">different</span> <span class="pre">map</span> <span class="pre">sections</span></tt></dt>
+<dd>The rooms you&#8217;re trying to link are on different sections of the
+map, and have no spatial relation to one another.  You might have
+forgotten to link a previous room in the list.  Or you meant to use
+a join.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">can't</span> <span class="pre">link</span> <span class="pre">[name]</span> <span class="pre">to</span> <span class="pre">itself</span> <span class="pre">without</span> <span class="pre">at</span> <span class="pre">least</span> <span class="pre">one</span> <span class="pre">direction</span></tt></dt>
+<dd>To link a room to itself, you need to specify at least one
+direction.  Otherwise, the link goes nowhere.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">links</span> <span class="pre">between</span> <span class="pre">[name1]</span> <span class="pre">and</span> <span class="pre">[name2]</span> <span class="pre">have</span> <span class="pre">differing</span> <span class="pre">lengths</span></tt></dt>
+<dd>You&#8217;ve defined more than one link or join between the given rooms,
+but given them different values for the <tt class="xref docutils literal"><span class="pre">length</span></tt>
+attribute.  This isn&#8217;t allowed.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">more</span> <span class="pre">than</span> <span class="pre">one</span> <span class="pre">task</span> <span class="pre">needs</span> <span class="pre">to</span> <span class="pre">follow</span> <span class="pre">[task]</span> <span class="pre">immediately</span></tt></dt>
+<dd>You&#8217;ve given two or more tasks an identical <tt class="xref docutils literal"><span class="pre">follow</span></tt> tag.
+Only one task can &#8220;follow&#8221; a given task.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">[num]</span> <span class="pre">cyclic</span> <span class="pre">task</span> <span class="pre">dependencies</span></tt></dt>
+<dd>The game isn&#8217;t solvable because there&#8217;s one or more chains of tasks
+where each must be done before the next, but the last must be done
+before the first.</dd>
+<dt><tt class="docutils literal"><span class="pre">error:</span> <span class="pre">variable</span> <span class="pre">[name]</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">defined</span></tt></dt>
+<dd>A customization variable needed by an output format is not
+defined.  You should only see these errors if you have modified or
+overridden the system initialization file.  The remedy is to define
+the variable somewhere.</dd>
+</dl>
+</div>
+<div class="section" id="warning-messages">
+<h3>Warning messages<a class="headerlink" href="#warning-messages" title="Permalink to this headline">¶</a></h3>
+<p>Here&#8217;s the list of warning messages.  If only warnings occur, then output
+is still produced.</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">attribute</span> <span class="pre">[attr]</span> <span class="pre">ignored</span> <span class="pre">--</span> <span class="pre">no</span> <span class="pre">implicit</span> <span class="pre">link</span></tt></dt>
+<dd>You&#8217;ve given a room with no <tt class="xref docutils literal"><span class="pre">dir</span></tt> clause an attribute that
+is associated with that link (e.g., <tt class="xref docutils literal"><span class="pre">oneway</span></tt>).  Most likely
+you&#8217;re putting the attribute in the wrong place&#8212;if you want, say,
+a join to have one of these attributes, you must define it using the
+standalone <tt class="xref docutils literal"><span class="pre">join</span></tt> command instead.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">link</span> <span class="pre">from</span> <span class="pre">[name1]</span> <span class="pre">to</span> <span class="pre">[name2]</span> <span class="pre">outside</span> <span class="pre">grid</span></tt></dt>
+<dd>The destination room for a link is not in a compass direction from
+the last specified position.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">rooms</span> <span class="pre">[name1]</span> <span class="pre">and</span> <span class="pre">[name2]</span> <span class="pre">overlap</span></tt></dt>
+<dd>The coordinates of the specified rooms are the same.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">room</span> <span class="pre">[name]</span> <span class="pre">crossed</span> <span class="pre">by</span> <span class="pre">link</span> <span class="pre">line</span> <span class="pre">between</span> <span class="pre">[name]</span> <span class="pre">and</span> <span class="pre">[name]</span></tt></dt>
+<dd>A link line passes through the coordinates of a room.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">room</span> <span class="pre">[name]</span> <span class="pre">has</span> <span class="pre">multiple</span> <span class="pre">[dir]</span> <span class="pre">links</span></tt></dt>
+<dd>More than one link connects to the specified room in a particular
+direction.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">can't</span> <span class="pre">solve</span> <span class="pre">game</span> <span class="pre">([num]</span> <span class="pre">tasks</span> <span class="pre">not</span> <span class="pre">done)</span></tt></dt>
+<dd>The game is unsolvable according to the current set of tasks.  This
+can be due to part of the map being inaccessible, or IFM stupidly
+choosing the wrong order of doing things.  Hopefully the latter
+shouldn&#8217;t happen very often.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">can't</span> <span class="pre">solve</span> <span class="pre">game</span> <span class="pre">([num]</span> <span class="pre">tasks</span> <span class="pre">ignored)</span></tt></dt>
+<dd>The game is unsolvable because you&#8217;re explicitly ignoring tasks
+and/or items, using the <tt class="xref docutils literal"><span class="pre">ignore</span></tt> attribute.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">no</span> <span class="pre">matching</span> <span class="pre">style</span> <span class="pre">command</span></tt></dt>
+<dd>You&#8217;ve used <tt class="xref docutils literal"><span class="pre">endstyle</span></tt> without a matching
+<tt class="xref docutils literal"><span class="pre">style</span></tt>.  You probably have too many <tt class="xref docutils literal"><span class="pre">endstyle</span></tt>
+commands.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">unexpected</span> <span class="pre">style:</span> <span class="pre">[name]</span> <span class="pre">(expected</span> <span class="pre">[name])</span></tt></dt>
+<dd>You&#8217;ve used <tt class="xref docutils literal"><span class="pre">endstyle</span></tt> with an argument that doesn&#8217;t match
+the argument of the corresponding <tt class="xref docutils literal"><span class="pre">style</span></tt>.  You might have
+missed out another <tt class="xref docutils literal"><span class="pre">endstyle</span></tt> somewhere, or have too many.</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">style</span> <span class="pre">[name]</span> <span class="pre">referenced</span> <span class="pre">but</span> <span class="pre">not</span> <span class="pre">defined</span></tt></dt>
+<dd>An object in your input uses the specified style, but it isn&#8217;t
+defined anywhere and the style definition file <tt class="docutils literal"><span class="pre">name.ifm</span></tt>
+doesn&#8217;t exist in the search path (or if it does, it doesn&#8217;t define
+the required style).</dd>
+<dt><tt class="docutils literal"><span class="pre">warning:</span> <span class="pre">[syntax]</span> <span class="pre">is</span> <span class="pre">obsolete</span> <span class="pre">--</span> <span class="pre">use</span> <span class="pre">[phrase]</span> <span class="pre">instead</span></tt></dt>
+<dd>You&#8217;ve used an obsolete syntax.  Consult the documentation and then
+try the suggested alternative instead.  Note that multiple uses of
+the same obsolete syntax only result in a single warning.</dd>
+</dl>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Well, that&#8217;s the goal anyway.  But there are still some very minor
+differences.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Programmer-speak for &#8220;I couldn&#8217;t be bothered to document it.&#8221;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Using IFM</a><ul>
+<li><a class="reference external" href="#running-the-program">Running the program</a></li>
+<li><a class="reference external" href="#types-of-output">Types of output</a><ul>
+<li><a class="reference external" href="#postscript-maps-ps">PostScript maps (<tt class="docutils literal"><span class="pre">ps</span></tt>)</a></li>
+<li><a class="reference external" href="#fig-maps-fig">Fig maps (<tt class="docutils literal"><span class="pre">fig</span></tt>)</a></li>
+<li><a class="reference external" href="#tk-drawing-commands-tk">Tk drawing commands (<tt class="docutils literal"><span class="pre">tk</span></tt>)</a></li>
+<li><a class="reference external" href="#ascii-text-text">ASCII text (<tt class="docutils literal"><span class="pre">text</span></tt>)</a></li>
+<li><a class="reference external" href="#recording-commands-rec">Recording commands (<tt class="docutils literal"><span class="pre">rec</span></tt>)</a></li>
+<li><a class="reference external" href="#task-dependencies-dot">Task dependencies (<tt class="docutils literal"><span class="pre">dot</span></tt>)</a></li>
+<li><a class="reference external" href="#raw-data-raw">Raw data (<tt class="docutils literal"><span class="pre">raw</span></tt>)</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#customization">Customization</a></li>
+<li><a class="reference external" href="#predefined-styles">Predefined styles</a></li>
+<li><a class="reference external" href="#environment-variables">Environment variables</a></li>
+<li><a class="reference external" href="#diagnostics">Diagnostics</a><ul>
+<li><a class="reference external" href="#error-messages">Error messages</a></li>
+<li><a class="reference external" href="#warning-messages">Warning messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="example.html"
+                                  title="previous chapter">Mapping and solving example</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="language.html"
+                                  title="next chapter">Language</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/usage.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="language.html" title="Language"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="example.html" title="Mapping and solving example"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Using IFM</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

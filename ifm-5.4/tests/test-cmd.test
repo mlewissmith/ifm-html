@@ -1,0 +1,12 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-cmd.out <<END
+# Test of map cmd command.
+
+room "Room 1";
+task "Second thing" tag t2 after t1;
+room "Room 2" dir e cmd "go to other room";
+task "First thing" tag t1;
+END
+
+cmp -s $SRCDIR/tests/test-cmd.exp $BUILDDIR/tests/test-cmd.out

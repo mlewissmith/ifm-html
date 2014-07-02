@@ -1,0 +1,19 @@
+Start of a transcript of
+ADVENTURE
+The Interactive Original
+By Willie Crowther and Don Woods (1977)
+David M. Baggett's 1993 reconstruction, ported by Graham Nelson
+Release 3 / Serial number 951220 / Inform v1502 Library 5/12
+Interpreter 1 Version B / Library serial number 951024
+
+>verbose
+ADVENTURE is now in its "verbose" mode, which always gives
+long descriptions of locations (even if you've been there
+before).
+
+>l
+
+At End Of Road
+You are standing at the end of a road before a small brick
+building. Around you is a forest. A small stream flows out
+of the building and down a gully.

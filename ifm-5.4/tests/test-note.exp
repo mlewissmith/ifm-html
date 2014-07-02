@@ -1,0 +1,63 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 3
+
+room: 2
+name: Garage
+rpos: 0 0
+
+room: 1
+name: Kitchen
+rpos: 0 1
+
+room: 0
+name: Start
+rpos: 0 2
+
+link: 0 1
+lpos: 0 2
+lpos: 0 1
+
+link: 1 2
+lpos: 0 1
+lpos: 0 0
+
+item: 0
+name: spoon
+room: 1
+note: it's a spoon
+note: or is it?
+
+task: 6
+name: Move to Kitchen
+room: 1
+cmd: S
+note: Funny smell here
+
+task: 7
+name: Move to Garage
+room: 2
+cmd: S
+
+task: 5
+name: Do first
+tag: first
+room: 2
+note: First task
+note: Another note
+
+task: 8
+name: Move to Kitchen
+room: 1
+cmd: N
+
+task: 9
+name: Move to Start
+room: 0
+cmd: N
+
+task: 4
+name: Win
+room: 0

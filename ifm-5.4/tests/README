@@ -1,0 +1,2 @@
+This directory contains various tests for IFM.  They'll probably seem to
+fail on Win32 systems because an extra ^M gets added to each line.

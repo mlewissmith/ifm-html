@@ -1,0 +1,701 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>scr2ifm: convert transcripts to IFM map &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="up" title="Tools and utilities" href="tools.html" />
+    <link rel="next" title="tkifm: create maps interactively" href="tkifm.html" />
+    <link rel="prev" title="Tools and utilities" href="tools.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tkifm.html" title="tkifm: create maps interactively"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tools.html" title="Tools and utilities"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>scr2ifm</strong>: convert transcripts to IFM map</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="scr2ifm-convert-transcripts-to-ifm-map">
+<h1><strong>scr2ifm</strong>: convert transcripts to IFM map<a class="headerlink" href="#scr2ifm-convert-transcripts-to-ifm-map" title="Permalink to this headline">¶</a></h1>
+<p><strong>scr2ifm</strong> reads one or more transcripts of an Interactive Fiction
+game and produces a map of it in IFM format. It works on Infocom-style
+transcripts&#8212;those produced by Inform- and TADS-generated games (and of
+course Infocom games themselves). The idea is that you play your game in a
+carefree manner, without worrying about mapping anything, and after the
+session use <strong>scr2ifm</strong> to get a map. Well, that&#8217;s the theory
+anyway.</p>
+<p><strong>scr2ifm</strong> was inspired by <a class="reference external" href="http://www.ifarchive.org/if-archive/mapping-tools/frobot12.zip">Frobot</a>, another transcript-reading
+mapper.  But <strong>scr2ifm</strong> in combination with IFM does a much better
+job.</p>
+<p><strong>scr2ifm</strong> offers two basic ways of mapping: you can create an
+initial (incomplete) map from your first transcript and then add the rest
+&#8220;by hand&#8221;, or you can create a set of transcripts, each exploring different
+parts of the game, and then merge them all into a final map. Which you
+choose is up to you.</p>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<p>These are the command-line options for <strong>scr2ifm</strong>:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-c">
+<tt class="descname">-c</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-scr2ifm-c" title="Permalink to this definition">¶</a></dt>
+<dd>Append the given file of IFM and parameter commands to the end of the
+map. This allows you to fix various problems in the resulting map.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-o">
+<tt class="descname">-o</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-scr2ifm-o" title="Permalink to this definition">¶</a></dt>
+<dd>Write output to the given file instead of <tt class="docutils literal"><span class="pre">stdout</span></tt>.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-i">
+<tt class="descname">-i</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-scr2ifm-i" title="Permalink to this definition">¶</a></dt>
+<dd>Indent the output nicely (according to <em>my</em> definition, anyway). This
+makes things look better if you&#8217;ve added item and task commands.
+Default is no indentation at all.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-l">
+<tt class="descname">-l</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-scr2ifm-l" title="Permalink to this definition">¶</a></dt>
+<dd>Add a comment to each IFM command indicating the file and line number of
+the transcript command that generated it.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-w">
+<tt class="descname">-w</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-scr2ifm-w" title="Permalink to this definition">¶</a></dt>
+<dd>Don&#8217;t print warnings.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-scr2ifm-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-scr2ifm-h" title="Permalink to this definition">¶</a></dt>
+<dd>Print a short usage message and exit.</dd></dl>
+
+</div>
+<div class="section" id="operation">
+<h2>Operation<a class="headerlink" href="#operation" title="Permalink to this headline">¶</a></h2>
+<p><strong>scr2ifm</strong> works by recognizing several key things in the
+transcript:</p>
+<ul class="simple">
+<li>The commands you type. These are easy to spot, because they are preceded
+by a prompt (usually <tt class="docutils literal"><span class="pre">&gt;</span></tt>).</li>
+<li>When the current room changes. This is not quite so easy, but still
+fairly simple. When you enter a new room, a short room title is printed
+(for example, <tt class="docutils literal"><span class="pre">West</span> <span class="pre">of</span> <span class="pre">House</span></tt>). The program looks for these short
+titles in the text that follows a command. First, a line is checked for
+an invalid format&#8212;things that never appear in a title (e.g., <tt class="docutils literal"><span class="pre">?</span></tt> or
+<tt class="docutils literal"><span class="pre">!</span></tt>). Then the word count is checked&#8212;titles are hardly ever more than
+7 or 8 words long. Finally the maximum length of an uncapitalized word is
+examined&#8212;this is almost always 3 or less in titles (the length of
+&#8220;the&#8221;).</li>
+<li>When a previously-visited room is visited again. This is the most
+difficult thing to determine, since anything might have changed in the
+room since the last visit. If there is a description, an exact
+description match is tried. If that fails, a substring match is
+attempted. If that fails, the first few words are examined to see if they
+match. If there&#8217;s no description, an exact room name match is tried. This
+isn&#8217;t as reliable, which is why you should always create a transcript in
+<em>verbose</em> mode.</li>
+<li>Special IFM commands that are (hopefully) ignored completely by the game.</li>
+</ul>
+<p>Some of these checks can be tailored to a particular transcript.</p>
+</div>
+<div class="section" id="making-transcripts">
+<span id="index-90"></span><h2>Making transcripts<a class="headerlink" href="#making-transcripts" title="Permalink to this headline">¶</a></h2>
+<p>For best results with <strong>scr2ifm</strong>, you should follow these
+guidelines when making a transcript:</p>
+<ul class="simple">
+<li>Always use <em>verbose</em> mode. If you don&#8217;t, then when you revisit a room
+you&#8217;ve been in before, no description will be printed. In that case,
+<strong>scr2ifm</strong> will have to rely on the room name to tell where it
+is. If there&#8217;s more than one room with that name, it&#8217;ll get confused (and
+so will you when you look at the map!).</li>
+<li>After starting the script, look around. Otherwise your starting room may
+not be included on the map, since the room description may not get
+printed.</li>
+<li>If there&#8217;s a bend in a link (e.g., if you leave a room by going east, and
+enter the next room from the south) make sure you do the return journey.
+Otherwise, <strong>scr2ifm</strong> won&#8217;t know about the bend.</li>
+<li>Avoid places where different rooms have the same room description (i.e.,
+mazes). <strong>scr2ifm</strong> can&#8217;t resolve cases like this, and will assume
+there&#8217;s just a single room. Note that this doesn&#8217;t exclude all
+mazes&#8212;the &#8220;twisty passages, all different&#8221; maze from <em>Colossal Cave</em>
+would still work, since the descriptions are different.</li>
+<li>If you play the game over several sessions, and create several separate
+transcripts, pay attention to the starting rooms. If a transcript starts
+in a room already visited in the previous transcript, then its rooms will
+be added to the same map section. If not, a new map section will be
+created (and you should use the map command to give it a name).</li>
+</ul>
+<p>Some games will be more amenable to <strong>scr2ifm</strong> than others&#8212;in
+general the ones with reasonable map connections, where each connection
+makes sense in relation to the others. For these games, the order in which
+rooms are visited will probably make no difference to the resulting
+map. But for perverse games (e.g., <em>Colossal Cave</em>, above ground) the order
+of visiting makes a big difference. In these cases, it&#8217;s probably best to
+avoid trying to get all the connections on the map&#8212;you&#8217;ll spew forth lots
+of IFM warnings otherwise, and the map will look awful. Sometimes it&#8217;s
+worth having a second attempt at a transcript, choosing different
+directions to go in, to see if it improves things.</p>
+<p>Another problem with mapping is that some games have these inconvenient
+things called puzzles, which sometimes block you from exploring everywhere
+so you can map it properly. Come on, IF authors, let&#8217;s get our priorities
+right!</p>
+</div>
+<div class="section" id="ifm-commands">
+<h2>IFM commands<a class="headerlink" href="#ifm-commands" title="Permalink to this headline">¶</a></h2>
+<p>While you&#8217;re making your transcript, you can use a subset of IFM commands
+to add extra things that <strong>scr2ifm</strong> will recognize. (Of course, the
+game almost certainly won&#8217;t understand these commands, and will print a
+suitable indignant reply. But that shouldn&#8217;t affect the state of things.)
+The commands recognized are:</p>
+<dl class="docutils">
+<dt><tt class="xref docutils literal"><span class="pre">title</span></tt></dt>
+<dd>Give the map a title. The name must be in double-quotes. This
+command can appear anywhere, and has the same effect each time.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">map</span></tt></dt>
+<dd><p class="first">Indicate that the current room starts a new map section with the
+given name. The name must be in double-quotes. This is useful if it
+seems like the map divides into different sections (e.g., the floors
+of a house).</p>
+<p class="last">If you use the <tt class="xref docutils literal"><span class="pre">map</span></tt> command, you&#8217;ll end up with two or
+more map sections. The first map section is the one that contains
+the very first room, and will have a default name unless you give it
+one using another <tt class="xref docutils literal"><span class="pre">map</span></tt> command.</p>
+</dd>
+<dt><tt class="xref docutils literal"><span class="pre">item</span> </tt></dt>
+<dd>Declare an item in the current room.  The name must be in
+double-quotes. If you don&#8217;t give it a tag attribute, one is
+generated automatically by changing all invalid tag characters in
+the name to underscores.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">item</span> <span class="pre">[attrs]</span></tt></dt>
+<dd>Add the given attributes to the last declared item, if any.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">item</span> <span class="pre">delete</span></tt></dt>
+<dd>Delete the last declared item, if any.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">task</span> </tt></dt>
+<dd>Declare a task in the current room in a similar manner to items. The
+name must be in double-quotes.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">task</span> <span class="pre">[attrs]</span></tt></dt>
+<dd>Add the given attributes to the last declared task, if any.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">task</span> <span class="pre">delete</span></tt></dt>
+<dd>Delete the last declared task, if any.</dd>
+</dl>
+<p>Note that <strong>scr2ifm</strong> knows almost nothing about IFM command
+syntax. If there&#8217;s a syntax error in a command, you&#8217;ll have to manually
+edit the resulting transcript (or delete the item/task and do it again).</p>
+</div>
+<div class="section" id="fixing-problems">
+<h2>Fixing problems<a class="headerlink" href="#fixing-problems" title="Permalink to this headline">¶</a></h2>
+<p>The map produced by <strong>scr2ifm</strong> will not be perfect in a lot of
+cases. When running it through IFM you might get warnings about overlapping
+rooms, or crossed link lines. These problems are usually fixed by
+stretching the link lines of some of the rooms. Some overlapping-room
+problems are caused by the program making a bad choice of direction to put
+an up/down/in/out connection in. Another problem might be not recognizing
+when a room is the same as a previously-visited room, because the room
+description changed too much between visits.</p>
+<p>You can fix most of these problems by creating a command file and
+specifying it with the <tt class="xref docutils literal"><span class="pre">-c</span></tt> option.  There are two types of entry:
+<strong>scr2ifm</strong> commands and IFM commands. In a command file, blank
+lines and comment lines (those starting with a <tt class="docutils literal"><span class="pre">#</span></tt>) are ignored. If a
+command isn&#8217;t recognized as a <strong>scr2ifm</strong> command, it&#8217;s assumed to
+be an IFM command, and is passed straight into the output verbatim. You can
+use these to resolve conflicts in the generated map, by stretching certain
+links or hiding them altogether.</p>
+<p>Here&#8217;s a list of the commands available:</p>
+<dl class="docutils">
+<dt><tt class="xref docutils literal"><span class="pre">is_room</span> <span class="pre">TEXT</span></tt></dt>
+<dd>Declare a line of text that is actually the name of a room. Normally
+room names get recognized properly, but there may be some special
+cases that aren&#8217;t.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">not_room</span> <span class="pre">TEXT</span></tt></dt>
+<dd>Declare a line of text that definitely isn&#8217;t the name of a
+room. This is for opposite cases to the above.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">use_name</span> <span class="pre">TEXT</span></tt></dt>
+<dd>Use only the room name to decide whether a room has been previously
+visited. This is for cases where a room description changes too much
+between visits to be called the same room. Note that this implies
+that there can only ever be one room with this name.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">set_option</span> <span class="pre">LETTER</span></tt></dt>
+<dd>This is a convenience that lets you specify <strong>scr2ifm</strong>
+command-line options in the command file instead. E.g.,
+<tt class="xref docutils literal"><span class="pre">set_option</span> <span class="pre">i</span></tt> will indent output nicely.</dd>
+<dt><tt class="xref docutils literal"><span class="pre">set_param</span> <span class="pre">VAR</span> <span class="pre">=</span> <span class="pre">VALUE</span></tt></dt>
+<dd>This evaluates the given Perl expression. You can use this to set
+various parameters that control how the transcript is parsed (see
+below).  Setting a value of <tt class="xref docutils literal"><span class="pre">undef</span></tt> will remove that
+parameter (so that it won&#8217;t be used).</dd>
+</dl>
+<p>Here&#8217;s a list of the parameters that control how the transcript is parsed,
+and their defaults. You can use the <strong>scr2ifm</strong> <tt class="xref docutils literal"><span class="pre">set_param</span></tt>
+command to set them in the command file.</p>
+<dl class="docutils">
+<dt><tt class="xref docutils literal"><span class="pre">$name_remove</span></tt></dt>
+<dd>Matched text to remove before seeing if a line of text is a room
+name. This is for getting rid of stuff like &#8221; (in the dodgem
+car)&#8221;. Default: <tt class="docutils literal"><span class="pre">\s+\(.+\)</span></tt></dd>
+<dt><tt class="xref docutils literal"><span class="pre">$name_maxwords</span></tt></dt>
+<dd>Maximum no. of words in a room name. Default: 8</dd>
+<dt><tt class="xref docutils literal"><span class="pre">$name_maxuncap</span></tt></dt>
+<dd>Maximum length of an uncapitalized word in a room name. Default: 3</dd>
+<dt><tt class="xref docutils literal"><span class="pre">$name_invalid</span></tt></dt>
+<dd>Regexp which, if matched, signals an invalid room name. Default:
+<tt class="docutils literal"><span class="pre">[.!?&quot;]</span></tt></dd>
+<dt><tt class="xref docutils literal"><span class="pre">$desc_minwords</span></tt></dt>
+<dd>Minimum no. of matching words required to match a room
+description. Default: 20</dd>
+<dt><tt class="xref docutils literal"><span class="pre">$cmd_prompt</span></tt></dt>
+<dd>Regexp matching a command prompt. Default: <tt class="docutils literal"><span class="pre">^&gt;\s*</span></tt></dd>
+<dt><tt class="xref docutils literal"><span class="pre">$cmd_look</span></tt></dt>
+<dd>Regexp matching a &#8216;look&#8217; command (case-insensitive). Default:
+<tt class="docutils literal"><span class="pre">^l(ook)?$</span></tt></dd>
+<dt><tt class="xref docutils literal"><span class="pre">$cmd_undo</span></tt></dt>
+<dd>Regexp matching an UNDO command (case-insensitive). It&#8217;s assumed
+that only a single level of UNDO is available. Default: <tt class="docutils literal"><span class="pre">^undo$</span></tt></dd>
+<dt><tt class="xref docutils literal"><span class="pre">$cmd_teleport</span></tt></dt>
+<dd>Regexp matching commands that are known to cause a teleport to an
+arbitrary room (case-insensitive). Default: <tt class="docutils literal"><span class="pre">^(restart|restore)$</span></tt></dd>
+</dl>
+</div>
+<div class="section" id="writing-the-map">
+<h2>Writing the map<a class="headerlink" href="#writing-the-map" title="Permalink to this headline">¶</a></h2>
+<p>Output from <strong>scr2ifm</strong> is as follows. First, if the title of the
+map was specified with the <tt class="xref docutils literal"><span class="pre">title</span></tt> command, it is printed. Then,
+if there&#8217;s more than one map section, a list of map section titles is
+printed.</p>
+<p>Next, there&#8217;s a list of IFM commands derived from the transcript. Each time
+a new room is seen, a room command is output for it. Each room is given a
+tag name formed by the initials of each capitalized word in its name. To
+make tags unique, the second and subsequent occurrences of a tag name have
+that number appended.  For example, room &#8220;West of House&#8221; would get tag
+<tt class="docutils literal"><span class="pre">WH</span></tt>.</p>
+<p>If a movement command was up, down, in or out, then a compass direction is
+chosen for it that doesn&#8217;t clash with other rooms (if possible) and the
+<tt class="xref docutils literal"><span class="pre">go</span></tt> attribute is used to mark its real direction. If a movement
+command isn&#8217;t recognized, the same is done except this time the
+<tt class="xref docutils literal"><span class="pre">cmd</span></tt> attribute is used to record the command instead.</p>
+<p>If movement is seen between two already-visited rooms, a <tt class="xref docutils literal"><span class="pre">link</span></tt>
+command is output (or a <tt class="xref docutils literal"><span class="pre">join</span></tt>, if the rooms appear to be on
+different map sections). Link tags are built by concatenating the room tags
+of the linked rooms with an underscore in between. Link movement is dealt
+with in the same manner as for rooms.</p>
+<p>If the special <tt class="xref docutils literal"><span class="pre">item</span></tt> or <a class="reference external" href="language.html#task"><tt class="xref docutils literal"><span class="pre">task</span></tt></a> commands are seen, then
+an item or task command is output following the room that it appears in. If
+an item or task hasn&#8217;t been given a tag, it is assigned one. The tag is
+made by translating all invalid tag characters in the name to underscores,
+capitalizing (to avoid clashes with IFM commands) and, if the tag clashes
+with a previously-defined tag, adding a numerical suffix to make it
+unique. For example, &#8220;black rod&#8221; might get a tag <tt class="docutils literal"><span class="pre">Black_rod_2</span></tt>.</p>
+<p>Finally, the IFM commands from the file indicated by the <tt class="docutils literal"><span class="pre">-c</span></tt> option are
+echoed (if any).</p>
+</div>
+<div class="section" id="example-session">
+<span id="index-91"></span><h2>Example session<a class="headerlink" href="#example-session" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s a simple example of <strong>scr2ifm</strong> in action on <em>Colossal
+Cave</em>. First, the transcript in file <tt class="docutils literal"><span class="pre">advent.scr</span></tt> (with annotation):</p>
+<div class="highlight-transcript"><div class="highlight"><pre>Start of a transcript of
+ADVENTURE
+The Interactive Original
+By Willie Crowther and Don Woods (1977)
+David M. Baggett&#39;s 1993 reconstruction, ported by Graham Nelson
+Release 3 / Serial number 951220 / Inform v1502 Library 5/12
+Interpreter 1 Version B / Library serial number 951024
+
+&gt;<span class="gs">verbose</span>
+ADVENTURE is now in its &quot;verbose&quot; mode, which always gives
+long descriptions of locations (even if you&#39;ve been there
+before).
+
+&gt;<span class="gs">l</span>
+
+At End Of Road
+You are standing at the end of a road before a small brick
+building. Around you is a forest. A small stream flows out
+of the building and down a gully.
+</pre></div>
+</div>
+<p>The previous two commands are recommended after starting the transcript.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">e</span>
+
+Inside Building
+You are inside a building, a well house for a large spring.
+
+There are some keys on the ground here.
+
+There is tasty food here.
+
+There is a shiny brass lamp nearby.
+
+There is an empty bottle here.
+
+&gt;<span class="gs">item &quot;keys&quot;</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">item &quot;food&quot;</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">item &quot;lamp&quot;</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">item &quot;bottle&quot;</span>
+That&#39;s not a verb I recognise.
+</pre></div>
+</div>
+<p>The previous four commands declare the given items to the program. You
+don&#8217;t have to bother with this if you don&#8217;t want item locations on your
+map.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">get all</span>
+stream: You have nothing in which to carry the water.
+well house: That&#39;s hardly portable.
+spring: That&#39;s hardly portable.
+pair of 1 foot diameter sewer pipes: That&#39;s hardly portable.
+set of keys: Taken.
+tasty food: Taken.
+brass lantern: Taken.
+small bottle: Taken.
+
+&gt;<span class="gs">w</span>
+
+At End Of Road
+You are standing at the end of a road before a small brick
+building. Around you is a forest. A small stream flows out
+of the building and down a gully.
+
+&gt;<span class="gs">s</span>
+
+In A Valley
+You are in a valley in the forest beside a stream tumbling
+along a rocky bed.
+
+&gt;<span class="gs">s</span>
+
+At Slit In Streambed
+At your feet all the water of the stream splashes into a
+2-inch slit in the rock. Downstream the streambed is bare
+rock.
+
+&gt;<span class="gs">s</span>
+
+Outside Grate
+You are in a 20-foot depression floored with bare dirt. Set
+into the dirt is a strong steel grate mounted in concrete. A
+dry streambed leads into the depression.
+</pre></div>
+</div>
+<p>Note that in this game we don&#8217;t go in all possible directions&#8212;there&#8217;s no
+logic to the connections, and it&#8217;d just make a complete mess on the map.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">unlock grate</span>
+What do you want to unlock the steel grate with?
+
+&gt;<span class="gs">keys</span>
+You unlock the steel grate.
+
+&gt;<span class="gs">task &quot;Unlock grate&quot; need Keys</span>
+That&#39;s not a verb I recognise.
+</pre></div>
+</div>
+<p>That last command declared a task&#8212;again, you don&#8217;t have to bother with
+this if you don&#8217;t want to.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">open grate</span>
+You open the steel grate.
+
+&gt;<span class="gs">task &quot;Open grate&quot; after last</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">d</span>
+
+Below the Grate
+You are in a small chamber beneath a 3x3 steel grate to the
+surface. A low crawl over cobbles leads inward to the west.
+
+The grate stands open.
+
+&gt;<span class="gs">w</span>
+
+In Cobble Crawl
+You are crawling over cobbles in a low passage. There is a
+dim light at the east end of the passage.
+
+There is a small wicker cage discarded nearby.
+
+&gt;<span class="gs">item &quot;cage&quot;</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">get cage</span>
+Taken.
+
+&gt;<span class="gs">w</span>
+
+Darkness
+It is pitch dark, and you can&#39;t see a thing.
+
+&gt;<span class="gs">undo</span>
+In Cobble Crawl
+[Previous turn undone.]
+</pre></div>
+</div>
+<p>Oops! Stumbled into the dark by mistake. Without the <tt class="docutils literal"><span class="pre">UNDO</span></tt>, that would
+have meant <tt class="docutils literal"><span class="pre">Darkness</span></tt> appeared on the map as a room.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">turn lamp on</span>
+You switch the brass lantern on.
+
+&gt;<span class="gs">w</span>
+In Debris Room
+You are in a debris room filled with stuff washed in from
+the surface. A low wide passage with cobbles becomes plugged
+with mud and debris here, but an awkward canyon leads upward
+and west.
+
+A note on the wall says, &quot;Magic word XYZZY.&quot;
+
+A three foot black rod with a rusty star on one end lies
+nearby.
+
+&gt;<span class="gs">item &quot;black rod&quot; tag Rod</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">xyzzy</span>
+
+Inside Building
+You are inside a building, a well house for a large spring.
+</pre></div>
+</div>
+<p>Goodness me! That was unexpected&#8212;we&#8217;ve been teleported. The link almost
+certainly won&#8217;t look good on the map. We have the option of UNDOing, right
+now, or fixing the map later. Let&#8217;s do the latter.</p>
+<div class="highlight-transcript"><div class="highlight"><pre>&gt;<span class="gs">xyzzy</span>
+
+In Debris Room
+You are in a debris room filled with stuff washed in from
+the surface. A low wide passage with cobbles becomes plugged
+with mud and debris here, but an awkward canyon leads upward
+and west.
+
+A note on the wall says, &quot;Magic word XYZZY.&quot;
+
+A three foot black rod with a rusty star on one end lies
+nearby.
+
+&gt;<span class="gs">get rod</span>
+Taken.
+
+&gt;<span class="gs">w</span>
+
+Sloping E/W Canyon
+You are in an awkward sloping east/west canyon.
+
+&gt;<span class="gs">w</span>
+
+Orange River Chamber
+You are in a splendid chamber thirty feet high. The walls
+are frozen rivers of orange stone. An awkward canyon and a
+good passage exit from east and west sides of the chamber.
+
+A cheerful little bird is sitting here singing.
+
+&gt;<span class="gs">item &quot;bird&quot;</span>
+That&#39;s not a verb I recognise.
+
+&gt;<span class="gs">unscript</span>
+
+End of transcript.
+</pre></div>
+</div>
+<p>Ok, now to create a map. To do that, use this command:</p>
+<div class="highlight-python"><pre>scr2ifm -o advent.ifm advent.scr</pre>
+</div>
+<p>To check for problems, just type:</p>
+<div class="highlight-python"><pre>ifm advent.ifm</pre>
+</div>
+<p>On the first run through, there are complaints about an overlapping room,
+due to a bad choice of direction for the &#8220;down&#8221; link from <tt class="docutils literal"><span class="pre">Outside</span>
+<span class="pre">Grate</span></tt>, and the expected problems with the link between the <tt class="docutils literal"><span class="pre">Debris</span>
+<span class="pre">Room</span></tt> and the <tt class="docutils literal"><span class="pre">Building</span></tt>. A command file, <tt class="docutils literal"><span class="pre">advent.cmd</span></tt>, will fix
+these problems:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="c"># Fix bad choice of direction.</span>
+<span class="kr">link</span> <span class="n">BG</span> <span class="kr">dir</span> <span class="nv">s</span><span class="p">;</span>
+
+<span class="c"># Hide &quot;xyzzy&quot; link.</span>
+<span class="kr">link</span> <span class="n">IDR_IB</span> <span class="kr">hidden</span><span class="p">;</span>
+
+<span class="c"># Replace it with join.</span>
+<span class="kr">join</span> <span class="n">IDR</span> <span class="kr">to</span> <span class="n">IB</span> <span class="kr">cmd</span> <span class="s">&quot;xyzzy&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now, if we invoke:</p>
+<div class="highlight-python"><pre>scr2ifm -o advent.ifm -i -c advent.cmd advent.scr</pre>
+</div>
+<p>we get the following map:</p>
+<div class="highlight-ifm"><div class="highlight"><pre><span class="c">## IFM map created by scr2ifm.pl</span>
+
+<span class="c">## Commands generated by transcript.</span>
+<span class="nc">room</span> <span class="s">&quot;At End Of Road&quot;</span> <span class="kr">tag</span> <span class="n">AEOR</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Inside Building&quot;</span> <span class="kr">dir</span> <span class="nv">e</span> <span class="kr">from</span> <span class="n">AEOR</span> <span class="kr">tag</span> <span class="n">IB</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;keys&quot;</span> <span class="kr">tag</span> <span class="n">Keys</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;food&quot;</span> <span class="kr">tag</span> <span class="n">Food</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;lamp&quot;</span> <span class="kr">tag</span> <span class="n">Lamp</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;bottle&quot;</span> <span class="kr">tag</span> <span class="n">Bottle</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;In A Valley&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">from</span> <span class="n">AEOR</span> <span class="kr">tag</span> <span class="n">IAV</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;At Slit In Streambed&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">from</span> <span class="n">IAV</span> <span class="kr">tag</span> <span class="n">ASIS</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Outside Grate&quot;</span> <span class="kr">dir</span> <span class="nv">s</span> <span class="kr">from</span> <span class="n">ASIS</span> <span class="kr">tag</span> <span class="n">OG</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Unlock grate&quot;</span> <span class="kr">need</span> <span class="n">Keys</span> <span class="kr">tag</span> <span class="n">Unlock_grate</span><span class="p">;</span>
+  <span class="kr">task</span> <span class="s">&quot;Open grate&quot;</span> <span class="kr">after</span> <span class="nb">last</span> <span class="kr">tag</span> <span class="n">Open_grate</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Below the Grate&quot;</span> <span class="kr">dir</span> <span class="nv">n</span> <span class="kr">from</span> <span class="n">OG</span> <span class="kr">go</span> <span class="kr">down</span> <span class="kr">tag</span> <span class="n">BG</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;In Cobble Crawl&quot;</span> <span class="kr">dir</span> <span class="nv">w</span> <span class="kr">from</span> <span class="n">BG</span> <span class="kr">tag</span> <span class="n">ICC</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;cage&quot;</span> <span class="kr">tag</span> <span class="n">Cage</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;In Debris Room&quot;</span> <span class="kr">dir</span> <span class="nv">w</span> <span class="kr">from</span> <span class="n">ICC</span> <span class="kr">tag</span> <span class="n">IDR</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;black rod&quot;</span> <span class="kr">tag</span> <span class="n">Rod</span><span class="p">;</span>
+
+<span class="kr">link</span> <span class="n">IDR</span> <span class="kr">to</span> <span class="n">IB</span> <span class="kr">dir</span> <span class="nv">n</span> <span class="nv">s</span> <span class="kr">cmd</span> <span class="s">&quot;xyzzy&quot;</span> <span class="kr">tag</span> <span class="n">IDR_IB</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Sloping E/W Canyon&quot;</span> <span class="kr">dir</span> <span class="nv">w</span> <span class="kr">from</span> <span class="n">IDR</span> <span class="kr">tag</span> <span class="n">SEC</span><span class="p">;</span>
+
+<span class="nc">room</span> <span class="s">&quot;Orange River Chamber&quot;</span> <span class="kr">dir</span> <span class="nv">w</span> <span class="kr">from</span> <span class="n">SEC</span> <span class="kr">tag</span> <span class="n">ORC</span><span class="p">;</span>
+  <span class="kr">item</span> <span class="s">&quot;bird&quot;</span> <span class="kr">tag</span> <span class="n">Bird</span><span class="p">;</span>
+
+<span class="c">## Customization commands.</span>
+<span class="kr">link</span> <span class="n">BG</span> <span class="kr">dir</span> <span class="nv">s</span><span class="p">;</span>
+<span class="kr">link</span> <span class="n">IDR_IB</span> <span class="kr">hidden</span><span class="p">;</span>
+<span class="kr">join</span> <span class="n">IDR</span> <span class="kr">to</span> <span class="n">IB</span> <span class="kr">cmd</span> <span class="s">&quot;xyzzy&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Printed, it looks like this:</p>
+<div align="center" class="align-center"><img alt="_images/advent.png" class="align-center" src="_images/advent.png" /></div>
+</div>
+<div class="section" id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<p>Here&#8217;s a list of things that <strong>scr2ifm</strong> doesn&#8217;t currently deal
+with:</p>
+<ul class="simple">
+<li>Mazes. Different maze rooms that look identical (i.e., have identical
+names and descriptions) will simply appear as a single room.</li>
+<li>One-way links. These aren&#8217;t detected, so you&#8217;ll have to add the
+appropriate IFM attribute yourself (in a command file, or by fixing the
+map directly).</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href=""><strong>scr2ifm</strong>: convert transcripts to IFM map</a><ul>
+<li><a class="reference external" href="#options">Options</a></li>
+<li><a class="reference external" href="#operation">Operation</a></li>
+<li><a class="reference external" href="#making-transcripts">Making transcripts</a></li>
+<li><a class="reference external" href="#ifm-commands">IFM commands</a></li>
+<li><a class="reference external" href="#fixing-problems">Fixing problems</a></li>
+<li><a class="reference external" href="#writing-the-map">Writing the map</a></li>
+<li><a class="reference external" href="#example-session">Example session</a></li>
+<li><a class="reference external" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="tools.html"
+                                  title="previous chapter">Tools and utilities</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tkifm.html"
+                                  title="next chapter"><strong>tkifm</strong>: create maps interactively</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/scr2ifm.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tkifm.html" title="tkifm: create maps interactively"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tools.html" title="Tools and utilities"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>scr2ifm</strong>: convert transcripts to IFM map</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

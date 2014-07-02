@@ -1,0 +1,21 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-unsafe.out <<END
+# Test of unsafe one-way trips.
+
+room "Start" tag begin;
+
+room "Bottom of Chute" dir s oneway;
+task "Win the game" score 10;
+
+room "Corridor" dir w from begin;
+
+room "Corridor" dir w;
+
+room "Corridor" dir w s;
+
+room "Treasure Room" dir w;
+item "diamond" score 1;
+END
+
+cmp -s $SRCDIR/tests/test-unsafe.exp $BUILDDIR/tests/test-unsafe.out

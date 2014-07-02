@@ -1,0 +1,368 @@
+===========================
+ Version 5.4 (13 Feb 2009)
+===========================
+
+* Fixed build problems on various systems.
+
+===========================
+ Version 5.3 (14 Nov 2008)
+===========================
+
+* IFM is now hosted at Bitbucket_.
+
+* New ``them`` keyword, which refers to the list of items mentioned in the
+  current statement.
+
+* New game-solver variables: ``finish_room``, ``finish_item`` and
+  ``finish_task``, which can be a comma-separated list of extra rooms,
+  items and tasks which get assigned the ``finish`` attribute (i.e., cause
+  the solver to exit).
+
+* New task graph variables: ``task_graph_wrap``, which controls
+  word-wrapping when printing graph nodes, and ``task_graph_font``, which
+  sets the text font.
+
+* The new keywords ``true`` and ``false`` can be used in place of 1 and 0,
+  respectively, when setting variables.
+
+* Both versions of the personal initialization file (``.ifmrc`` and
+  ``ifm.ini``) are now read, if they exist.
+
+* There's a new Perl script ``ifm2web``, which converts IFM maps to image
+  files suitable for the Interweb.
+
+* The GNU Emacs ``ifm-mode.el`` in the ``contrib`` directory has been
+  improved: it can display task recording and debugging output, now has
+  ``imenu`` and ``flymake`` support, and a minor bug fix.
+
+* The documentation is now much prettier, thanks to Sphinx_ and Pygments_.
+  The ``contrib`` directory contains the Python_ module used to
+  syntax-highlight IFM code and IF transcripts.
+
+* Since ``asciimapper`` is now in the IF archive, it is no longer part of
+  the ``contrib`` directory.
+
+* PostScript maps now conform properly to Adobe DSC_.  This stops
+  Ghostscript 8.x barfing on them.
+
+.. _Sphinx: http://sphinx.pocoo.org
+.. _Pygments: http://pygments.org
+.. _Python: http://www.python.org
+.. _DSC: http://www-cdf.fnal.gov/offline/PostScript/AdobePS.html
+.. _Bitbucket: http://www.bitbucket.org/zondo/ifm
+
+==========================
+ Version 5.2 (7 Sep 2006)
+==========================
+
+* There's a new ``-errors`` option, which controls the maximum number of
+  errors printed before giving up.
+
+* New program in the ``contrib`` directory: ``asciimapper``.  This is a
+  tool to create IFM maps from ASCII art maps, contributed by Elijah
+  Griffin.
+
+* The GNU Emacs ``ifm-mode.el`` in the ``contrib`` directory has new
+  commands to display maps, items and tasks and various other things.
+  Based on an initial version contributed by `Lee Bigelow`_.
+
+* Several unused features which added needless complexity have been
+  removed.  These are: preprocessing by ``gpp``, expressions for
+  real/integer values, and variable interpolation in strings.
+
+* An obscure bug has been fixed which involved the ``follow`` and ``need``
+  attributes combined.  This caused some valid task orderings to be flagged
+  as cycles.
+
+* A bug with modification of room attributes has been fixed.
+
+* Don't crash when trying to solve game and there are no rooms.
+
+* A crash when trying to print an error message about cyclic task
+  dependencies has been fixed.
+
+.. _Lee Bigelow: ligelowbee@yahoo.com
+
+===========================
+ Version 5.1 (30 Nov 2004)
+===========================
+
+* The ``tkifm`` program now supports line numbering and syntax
+  highlighting, thanks to a contributor who wishes to remain anonymous.
+
+* There is now a man page summarizing the command-line options.
+
+* In PostScript output, up/down and in/out labels are now drawn separately,
+  next to their respective rooms.  Also, if a link leaves a room and
+  returns to the same room, it's drawn as a small circle.  Thanks to `Dan
+  Eble`_.
+
+* Hopefully, the Windows port should work properly now.
+
+* Fixed weird bug with scaled arcs in PostScript output.  More thanks to
+  `Dan Eble`_.
+
+* Fixed bug in ``ifm2tex`` with converting strings to TeX format
+  (specifically, ones with embedded zeros).
+
+* Fixed crash when using ``it`` in some circumstances.
+
+.. _Dan Eble: mailto:eble@ticalc.org
+
+===========================
+ Version 5.0 (23 Jan 2003)
+===========================
+
+* New map output: Fig format, suitable for viewing or editing with Xfig, or
+  exporting to other formats.
+
+* New utility program: ``ifm2dev``, which pipes IFM output in Fig format
+  through ``fig2dev`` repeatedly to write each map section to its own file.
+
+* New utility program: ``ifm2tex``, which converts Fig files to EPS and
+  includes them in a LaTeX document together with tables of items and
+  tasks.
+
+* New task output: graphviz (``dot``) format, which dumps a task dependency
+  graph.
+
+* New ``keep with`` and ``keep until`` syntax for items, allowing items to
+  be kept until certain tasks are done or certain other items are dropped.
+
+* New room ``nodrop`` attribute, indicating that no items should be dropped
+  there.
+
+* New task and item ``ignore`` attribute, indicating that these things
+  should be ignored when finding a solution.
+
+* New task ``do`` attribute, indicating that when a task is done, it also
+  does one or more other tasks automatically.
+
+* New option: ``-style``, which sets global styles for all IFM objects.
+
+* New option: ``-set``, which lets you set variables from the command line.
+  To support this, the variable-setting syntax has been changed: instead
+  of a space separating the driver name from the variable, there's now a
+  period.
+
+* New ``-show`` option: ``maps``, which lists all the map sections and
+  their sizes.
+
+* The ``-map`` option now accepts an optional list of map sections to
+  print.
+
+* There's a bunch of new variables to control things, including the overall
+  behaviour of the game solver.
+
+* IFM input is now *preprocessed*, in a similar way to C programs.  As a
+  result, the old ``include`` and ``alias`` features have been replaced
+  with the preprocessor equivalents.
+
+* There's a new ``require`` keyword, which lets you say that a certain
+  version of IFM (or later) is required for a map.
+
+* Changed implicit-link style behaviour: the ``style`` clause on a room
+  now applies to both the room and the implicit link, so it's now
+  independent of its position relative to the ``dir`` clause.
+
+* The command-line option ``-debug`` has been removed; its functionality
+  has been replaced by a control variable.
+
+* The old ``puzzle`` and ``special`` attributes have finally been removed;
+  if you have any old maps which use these, you must replace them with the
+  corresponding styles instead.
+
+* Documentation is now distributed in HTML and PDF formats, instead of GNU
+  Info.
+
+* The GNU Emacs IFM mode in the ``contrib`` directory now has font lock
+  support.  The ``ifm.vim`` file has also been updated with the latest
+  keywords.
+
+* Fixed bug with room ``link`` and ``join`` attributes: it didn't work to
+  use ``last`` as an argument.
+
+* Fixed glitch in room text on PostScript output: now tries reducing font
+  size before squishing, so that text is filled better.
+
+===========================
+ Version 4.1 (10 May 1999)
+===========================
+
+* Fixed minor task bug: in special cases, giving items caused solver to
+  fail to find newly-opened paths.
+
+* Fixed stupid blunder with DOS ``\r`` characters in one of the source
+  files.
+
+* Fixed core dump problem when reading colour definitions (on FreeBSD, at
+  least).
+
+===========================
+ Version 4.0 (21 Apr 1999)
+===========================
+
+* PostScript driver can now print in colour.
+
+* New 3D room shadowing effect on maps.
+
+* Many new output variables to control new map features.
+
+* Variables can now be set via expressions, not just values.  Variables can
+  now be used to customize many aspects of the input (e.g., notes, repeat
+  counts).
+
+* Individual parts of the map can now be customized using *display styles*.
+
+* New ``include`` syntax, which allows files to include other files, either
+  explicitly or via a path search.
+
+* New ``-include`` (``-I``) option to prepend directories to the search
+  path from the command line.
+
+* New ``-show`` option to show various things (defined variables, search
+  path), also included in ``tkifm`` menus.
+
+* More information is now printed in item lists: which tasks require an
+  item, which tasks an item requires, etc.
+
+* Some example maps are now bundled with IFM, in the ``demos``
+  subdirectory.
+
+* Names and defaults of many output variables have been changed in order to
+  make them more consistent.
+
+* Extra complexity in variable syntax has been removed, as it wasn't being
+  used.  Specifically, variables can't be set according to type of output
+  or per-map-section any more, only by output driver.
+
+* Removed formatted man page documentation: now only Info, HTML and text
+  documentation is distributed.  If there are enough complaints, I'll put
+  it back.
+
+* The ``puzzle`` and ``special`` attributes are now obsolete; they're
+  replaced by display styles.
+
+* ``tkifm`` now redisplays old map windows when refreshing the map.
+
+* Win32 version is now compiled with Cygwin b20, and so requires
+  ``cygwin1.dll`` (not ``cygwin.dll``), included in the distribution.
+  See ``README.win32`` for details.
+
+==========================
+ Version 3.0 (1 Oct 1998)
+==========================
+
+* There's a new program ``scr2ifm`` in the distribution, which attempts to
+  convert a game transcript into IFM format.  It's a perl script, and gets
+  installed on Unix-type systems if perl is detected.
+
+* New ``nolink`` attribute for rooms, which suppresses generation of an
+  implicit link between this and the previous room.
+
+* New ``nopath`` attribute for rooms, links and joins, which stops those
+  map connections from being used by the game solver.
+
+* New task ``cmd none`` syntax, for tasks that don't need any special user
+  commands (e.g., visiting a room for the first time).
+
+* New PostScript variable ``link_arrowsize``, which allows you to change
+  the size of arrowheads on one-way links.
+
+* ``tkifm`` is now installed automatically on Unix-type systems if ``wish``
+  (or one of its namesakes) is detected.
+
+* ``tkifm`` now shows busy-cursor when doing something CPU-intensive.
+
+* Improved solver failure messages, which give more information about
+  what's wrong.
+
+* Removed PostScript documentation from distribution.
+
+* The ``times`` keyword is now obsolete (but still works, for
+  compatibility); just the repeat count is used instead.
+
+* Fixed bug with ``drop all except`` clause; it was treating it as just a
+  simple ``drop`` clause.
+
+* Fixed bug in task path calculation; it didn't always choose the best
+  route between rooms.
+
+* Linking a room to itself with no ``dir`` clause now results in an error,
+  instead of failing mysteriously at the map-drawing stage.
+
+* Minor fixes to make installation smoother on FreeBSD.
+
+===========================
+ Version 2.1 (26 Aug 1998)
+===========================
+
+* Fixed bug which caused some types of variable not to be set properly.
+
+* Minor fixes to library functions to link properly under Solaris.
+
+===========================
+ Version 2.0 (19 Aug 1998)
+===========================
+
+* Lots of new keywords for use by the game solver, which has been
+  considerably enhanced.
+
+* New commands to modify previous definitions, which allow you to keep all
+  game hacks in one place.
+
+* New ``show_tags`` variable, which toggles addition of room tag names to
+  room descriptions.
+
+* New ``-debug`` command-line option, which gives the gory details of what
+  the game solver is up to.
+
+* New recording output, which can generate commands to play back in
+  interpreters.
+
+* Package now has a test suite.
+
+* Links and joins can now be ``hidden``, which means they're used only for
+  task purposes.
+
+* Removed ``groff`` output; it's not worth supporting any more, now that
+  PostScript output works so well.
+
+* Text task output now prints details of the rooms you move through to get
+  places, including directions moved in (or commands typed to move that
+  way).
+
+* PostScript driver now has some standard page sizes.  Also there's a
+  variable ``page_rotate`` which can override the default decisions on
+  whether to print landscape or not.
+
+* Having no rooms defined is not an error any more, in order to placate
+  ``tkifm``.
+
+* Changed list attributes to be cumulative, instead of overriding previous
+  value.
+
+* Variables can now be set to ``undef``, which allows their default setting
+  to reappear.
+
+* Various ``tkifm`` enhancements to make it convenient to use your
+  preferred editor.
+
+* Unix version now uses GNU autoconf/automake for installation.
+
+* Got ``tkifm`` save-as option to set current filename properly.
+
+* Stopped *outside grid* warnings from causing ``tkifm`` to fail when
+  drawing map.
+
+* Library function now doesn't clobber read-only strings.
+
+===========================
+ Version 1.0 (11 Jun 1998)
+===========================
+
+* First release.
+
+.. Local Variables:
+.. mode: rst
+.. End:

@@ -1,0 +1,42 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 1
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+item: 1
+name: gold bar
+room: 0
+score: 1
+after: 4
+
+item: 0
+name: rope
+room: 0
+after: 4
+
+item: 2
+name: steel cage
+room: 0
+hidden: 1
+note: Falls on gold bar when rope is pulled
+
+task: 2
+name: Get gold bar
+room: 0
+score: 1
+note: Not used for anything yet
+
+task: 4
+name: Pull rope
+tag: pull
+room: 0
+
+task: 1
+name: Get rope
+room: 0
+note: Not used for anything yet

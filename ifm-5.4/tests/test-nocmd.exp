@@ -1,0 +1,34 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 2
+
+room: 1
+name: Finish
+rpos: 0 0
+
+room: 0
+name: Start
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 0 0
+
+task: 2
+name: Do first thing
+room: 0
+
+task: 5
+name: Move to Finish
+room: 1
+cmd: S
+
+task: 3
+name: Visit finish room
+room: 1
+
+task: 4
+name: Do second thing
+room: 1

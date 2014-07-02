@@ -1,0 +1,14 @@
+# Test of 'before' rooms.
+
+room "Start" tag begin;
+task "Pull the stick" tag pull_stick;
+item "stick" note "Props cell door open" after last score 1 tag stick;
+
+room "Cell" need light before pull_stick dir e;
+item "treasure" tag treasure score 1;
+
+room "Closet" dir s from begin;
+item "torch" tag light;
+
+room "Freedom" dir w from begin;
+task "Win the game" need stick treasure;

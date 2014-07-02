@@ -1,0 +1,10 @@
+# Test of note lists.
+
+room "Start";
+task "Win" after first;
+
+room "Kitchen" dir s note "Funny smell here";
+item "spoon" note "it's a spoon" note "or is it?";
+
+room "Garage" dir s;
+task "Do first" tag first note "First task" note "Another note";

@@ -1,0 +1,12 @@
+# Test of task 'give' attribute.
+
+room "Room 1" tag R1;
+task "Win" need thing;
+
+room "Room 2" tag R2 dir s;
+item "thing" tag thing score 10;
+task "Ask man for thing" give thing score 5;
+
+room "Room 3" tag R3 dir s;
+task "Find that thing exists" get thing;
+item "thing 2" tag thing2;

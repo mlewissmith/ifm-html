@@ -1,0 +1,68 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 3
+
+room: 2
+name: Room 3
+rpos: 0 2
+
+room: 1
+name: Room 2
+rpos: 0 1
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 0 1
+
+link: 1 2
+lpos: 0 1
+lpos: 0 2
+
+item: 0
+name: hammer
+tag: hammer
+room: 0
+needed: 4
+
+task: 3
+name: Get hammer
+room: 0
+
+task: 4
+name: Room1
+tag: room1
+room: 0
+
+task: 7
+name: Move to Room 2
+room: 1
+cmd: N
+
+task: 8
+name: Move to Room 3
+room: 2
+cmd: N
+
+task: 6
+name: Room3
+tag: room3
+room: 2
+
+task: 9
+name: Drop hammer
+
+task: 10
+name: Move to Room 2
+room: 1
+cmd: S
+
+task: 5
+name: Room2
+tag: room2
+room: 1

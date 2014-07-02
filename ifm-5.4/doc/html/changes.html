@@ -1,0 +1,400 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Change history &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Credits" href="thanks.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thanks.html" title="Credits"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Change history</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="change-history">
+<h1>Change history<a class="headerlink" href="#change-history" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="version-5-4-13-feb-2009">
+<h1>Version 5.4 (13 Feb 2009)<a class="headerlink" href="#version-5-4-13-feb-2009" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Fixed build problems on various systems.</li>
+</ul>
+</div>
+<div class="section" id="version-5-3-14-nov-2008">
+<h1>Version 5.3 (14 Nov 2008)<a class="headerlink" href="#version-5-3-14-nov-2008" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>IFM is now hosted at <a class="reference external" href="http://www.bitbucket.org/zondo/ifm">Bitbucket</a>.</li>
+<li>New <tt class="docutils literal"><span class="pre">them</span></tt> keyword, which refers to the list of items mentioned in the
+current statement.</li>
+<li>New game-solver variables: <tt class="docutils literal"><span class="pre">finish_room</span></tt>, <tt class="docutils literal"><span class="pre">finish_item</span></tt> and
+<tt class="docutils literal"><span class="pre">finish_task</span></tt>, which can be a comma-separated list of extra rooms,
+items and tasks which get assigned the <tt class="docutils literal"><span class="pre">finish</span></tt> attribute (i.e., cause
+the solver to exit).</li>
+<li>New task graph variables: <tt class="docutils literal"><span class="pre">task_graph_wrap</span></tt>, which controls
+word-wrapping when printing graph nodes, and <tt class="docutils literal"><span class="pre">task_graph_font</span></tt>, which
+sets the text font.</li>
+<li>The new keywords <tt class="docutils literal"><span class="pre">true</span></tt> and <tt class="docutils literal"><span class="pre">false</span></tt> can be used in place of 1 and 0,
+respectively, when setting variables.</li>
+<li>Both versions of the personal initialization file (<tt class="docutils literal"><span class="pre">.ifmrc</span></tt> and
+<tt class="docutils literal"><span class="pre">ifm.ini</span></tt>) are now read, if they exist.</li>
+<li>There&#8217;s a new Perl script <tt class="docutils literal"><span class="pre">ifm2web</span></tt>, which converts IFM maps to image
+files suitable for the Interweb.</li>
+<li>The GNU Emacs <tt class="docutils literal"><span class="pre">ifm-mode.el</span></tt> in the <tt class="docutils literal"><span class="pre">contrib</span></tt> directory has been
+improved: it can display task recording and debugging output, now has
+<tt class="docutils literal"><span class="pre">imenu</span></tt> and <tt class="docutils literal"><span class="pre">flymake</span></tt> support, and a minor bug fix.</li>
+<li>The documentation is now much prettier, thanks to <a class="reference external" href="http://sphinx.pocoo.org">Sphinx</a> and <a class="reference external" href="http://pygments.org">Pygments</a>.
+The <tt class="docutils literal"><span class="pre">contrib</span></tt> directory contains the <a class="reference external" href="http://www.python.org">Python</a> module used to
+syntax-highlight IFM code and IF transcripts.</li>
+<li>Since <tt class="docutils literal"><span class="pre">asciimapper</span></tt> is now in the IF archive, it is no longer part of
+the <tt class="docutils literal"><span class="pre">contrib</span></tt> directory.</li>
+<li>PostScript maps now conform properly to Adobe <a class="reference external" href="http://www-cdf.fnal.gov/offline/PostScript/AdobePS.html">DSC</a>.  This stops
+Ghostscript 8.x barfing on them.</li>
+</ul>
+</div>
+<div class="section" id="version-5-2-7-sep-2006">
+<h1>Version 5.2 (7 Sep 2006)<a class="headerlink" href="#version-5-2-7-sep-2006" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>There&#8217;s a new <tt class="docutils literal"><span class="pre">-errors</span></tt> option, which controls the maximum number of
+errors printed before giving up.</li>
+<li>New program in the <tt class="docutils literal"><span class="pre">contrib</span></tt> directory: <tt class="docutils literal"><span class="pre">asciimapper</span></tt>.  This is a
+tool to create IFM maps from ASCII art maps, contributed by Elijah
+Griffin.</li>
+<li>The GNU Emacs <tt class="docutils literal"><span class="pre">ifm-mode.el</span></tt> in the <tt class="docutils literal"><span class="pre">contrib</span></tt> directory has new
+commands to display maps, items and tasks and various other things.
+Based on an initial version contributed by <a class="reference external" href="mailto:ligelowbee&#37;&#52;&#48;yahoo&#46;com">Lee Bigelow</a>.</li>
+<li>Several unused features which added needless complexity have been
+removed.  These are: preprocessing by <tt class="docutils literal"><span class="pre">gpp</span></tt>, expressions for
+real/integer values, and variable interpolation in strings.</li>
+<li>An obscure bug has been fixed which involved the <tt class="docutils literal"><span class="pre">follow</span></tt> and <tt class="docutils literal"><span class="pre">need</span></tt>
+attributes combined.  This caused some valid task orderings to be flagged
+as cycles.</li>
+<li>A bug with modification of room attributes has been fixed.</li>
+<li>Don&#8217;t crash when trying to solve game and there are no rooms.</li>
+<li>A crash when trying to print an error message about cyclic task
+dependencies has been fixed.</li>
+</ul>
+</div>
+<div class="section" id="version-5-1-30-nov-2004">
+<h1>Version 5.1 (30 Nov 2004)<a class="headerlink" href="#version-5-1-30-nov-2004" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>The <tt class="docutils literal"><span class="pre">tkifm</span></tt> program now supports line numbering and syntax
+highlighting, thanks to a contributor who wishes to remain anonymous.</li>
+<li>There is now a man page summarizing the command-line options.</li>
+<li>In PostScript output, up/down and in/out labels are now drawn separately,
+next to their respective rooms.  Also, if a link leaves a room and
+returns to the same room, it&#8217;s drawn as a small circle.  Thanks to <a class="reference external" href="mailto:eble&#37;&#52;&#48;ticalc&#46;org">Dan
+Eble</a>.</li>
+<li>Hopefully, the Windows port should work properly now.</li>
+<li>Fixed weird bug with scaled arcs in PostScript output.  More thanks to
+<a class="reference external" href="mailto:eble&#37;&#52;&#48;ticalc&#46;org">Dan Eble</a>.</li>
+<li>Fixed bug in <tt class="docutils literal"><span class="pre">ifm2tex</span></tt> with converting strings to TeX format
+(specifically, ones with embedded zeros).</li>
+<li>Fixed crash when using <tt class="docutils literal"><span class="pre">it</span></tt> in some circumstances.</li>
+</ul>
+</div>
+<div class="section" id="version-5-0-23-jan-2003">
+<h1>Version 5.0 (23 Jan 2003)<a class="headerlink" href="#version-5-0-23-jan-2003" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>New map output: Fig format, suitable for viewing or editing with Xfig, or
+exporting to other formats.</li>
+<li>New utility program: <tt class="docutils literal"><span class="pre">ifm2dev</span></tt>, which pipes IFM output in Fig format
+through <tt class="docutils literal"><span class="pre">fig2dev</span></tt> repeatedly to write each map section to its own file.</li>
+<li>New utility program: <tt class="docutils literal"><span class="pre">ifm2tex</span></tt>, which converts Fig files to EPS and
+includes them in a LaTeX document together with tables of items and
+tasks.</li>
+<li>New task output: graphviz (<tt class="docutils literal"><span class="pre">dot</span></tt>) format, which dumps a task dependency
+graph.</li>
+<li>New <tt class="docutils literal"><span class="pre">keep</span> <span class="pre">with</span></tt> and <tt class="docutils literal"><span class="pre">keep</span> <span class="pre">until</span></tt> syntax for items, allowing items to
+be kept until certain tasks are done or certain other items are dropped.</li>
+<li>New room <tt class="docutils literal"><span class="pre">nodrop</span></tt> attribute, indicating that no items should be dropped
+there.</li>
+<li>New task and item <tt class="docutils literal"><span class="pre">ignore</span></tt> attribute, indicating that these things
+should be ignored when finding a solution.</li>
+<li>New task <tt class="docutils literal"><span class="pre">do</span></tt> attribute, indicating that when a task is done, it also
+does one or more other tasks automatically.</li>
+<li>New option: <tt class="docutils literal"><span class="pre">-style</span></tt>, which sets global styles for all IFM objects.</li>
+<li>New option: <tt class="docutils literal"><span class="pre">-set</span></tt>, which lets you set variables from the command line.
+To support this, the variable-setting syntax has been changed: instead
+of a space separating the driver name from the variable, there&#8217;s now a
+period.</li>
+<li>New <tt class="docutils literal"><span class="pre">-show</span></tt> option: <tt class="docutils literal"><span class="pre">maps</span></tt>, which lists all the map sections and
+their sizes.</li>
+<li>The <tt class="docutils literal"><span class="pre">-map</span></tt> option now accepts an optional list of map sections to
+print.</li>
+<li>There&#8217;s a bunch of new variables to control things, including the overall
+behaviour of the game solver.</li>
+<li>IFM input is now <em>preprocessed</em>, in a similar way to C programs.  As a
+result, the old <tt class="docutils literal"><span class="pre">include</span></tt> and <tt class="docutils literal"><span class="pre">alias</span></tt> features have been replaced
+with the preprocessor equivalents.</li>
+<li>There&#8217;s a new <tt class="docutils literal"><span class="pre">require</span></tt> keyword, which lets you say that a certain
+version of IFM (or later) is required for a map.</li>
+<li>Changed implicit-link style behaviour: the <tt class="docutils literal"><span class="pre">style</span></tt> clause on a room
+now applies to both the room and the implicit link, so it&#8217;s now
+independent of its position relative to the <tt class="docutils literal"><span class="pre">dir</span></tt> clause.</li>
+<li>The command-line option <tt class="docutils literal"><span class="pre">-debug</span></tt> has been removed; its functionality
+has been replaced by a control variable.</li>
+<li>The old <tt class="docutils literal"><span class="pre">puzzle</span></tt> and <tt class="docutils literal"><span class="pre">special</span></tt> attributes have finally been removed;
+if you have any old maps which use these, you must replace them with the
+corresponding styles instead.</li>
+<li>Documentation is now distributed in HTML and PDF formats, instead of GNU
+Info.</li>
+<li>The GNU Emacs IFM mode in the <tt class="docutils literal"><span class="pre">contrib</span></tt> directory now has font lock
+support.  The <tt class="docutils literal"><span class="pre">ifm.vim</span></tt> file has also been updated with the latest
+keywords.</li>
+<li>Fixed bug with room <tt class="docutils literal"><span class="pre">link</span></tt> and <tt class="docutils literal"><span class="pre">join</span></tt> attributes: it didn&#8217;t work to
+use <tt class="docutils literal"><span class="pre">last</span></tt> as an argument.</li>
+<li>Fixed glitch in room text on PostScript output: now tries reducing font
+size before squishing, so that text is filled better.</li>
+</ul>
+</div>
+<div class="section" id="version-4-1-10-may-1999">
+<h1>Version 4.1 (10 May 1999)<a class="headerlink" href="#version-4-1-10-may-1999" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Fixed minor task bug: in special cases, giving items caused solver to
+fail to find newly-opened paths.</li>
+<li>Fixed stupid blunder with DOS <tt class="docutils literal"><span class="pre">\r</span></tt> characters in one of the source
+files.</li>
+<li>Fixed core dump problem when reading colour definitions (on FreeBSD, at
+least).</li>
+</ul>
+</div>
+<div class="section" id="version-4-0-21-apr-1999">
+<h1>Version 4.0 (21 Apr 1999)<a class="headerlink" href="#version-4-0-21-apr-1999" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>PostScript driver can now print in colour.</li>
+<li>New 3D room shadowing effect on maps.</li>
+<li>Many new output variables to control new map features.</li>
+<li>Variables can now be set via expressions, not just values.  Variables can
+now be used to customize many aspects of the input (e.g., notes, repeat
+counts).</li>
+<li>Individual parts of the map can now be customized using <em>display styles</em>.</li>
+<li>New <tt class="docutils literal"><span class="pre">include</span></tt> syntax, which allows files to include other files, either
+explicitly or via a path search.</li>
+<li>New <tt class="docutils literal"><span class="pre">-include</span></tt> (<tt class="docutils literal"><span class="pre">-I</span></tt>) option to prepend directories to the search
+path from the command line.</li>
+<li>New <tt class="docutils literal"><span class="pre">-show</span></tt> option to show various things (defined variables, search
+path), also included in <tt class="docutils literal"><span class="pre">tkifm</span></tt> menus.</li>
+<li>More information is now printed in item lists: which tasks require an
+item, which tasks an item requires, etc.</li>
+<li>Some example maps are now bundled with IFM, in the <tt class="docutils literal"><span class="pre">demos</span></tt>
+subdirectory.</li>
+<li>Names and defaults of many output variables have been changed in order to
+make them more consistent.</li>
+<li>Extra complexity in variable syntax has been removed, as it wasn&#8217;t being
+used.  Specifically, variables can&#8217;t be set according to type of output
+or per-map-section any more, only by output driver.</li>
+<li>Removed formatted man page documentation: now only Info, HTML and text
+documentation is distributed.  If there are enough complaints, I&#8217;ll put
+it back.</li>
+<li>The <tt class="docutils literal"><span class="pre">puzzle</span></tt> and <tt class="docutils literal"><span class="pre">special</span></tt> attributes are now obsolete; they&#8217;re
+replaced by display styles.</li>
+<li><tt class="docutils literal"><span class="pre">tkifm</span></tt> now redisplays old map windows when refreshing the map.</li>
+<li>Win32 version is now compiled with Cygwin b20, and so requires
+<tt class="docutils literal"><span class="pre">cygwin1.dll</span></tt> (not <tt class="docutils literal"><span class="pre">cygwin.dll</span></tt>), included in the distribution.
+See <tt class="docutils literal"><span class="pre">README.win32</span></tt> for details.</li>
+</ul>
+</div>
+<div class="section" id="version-3-0-1-oct-1998">
+<h1>Version 3.0 (1 Oct 1998)<a class="headerlink" href="#version-3-0-1-oct-1998" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>There&#8217;s a new program <tt class="docutils literal"><span class="pre">scr2ifm</span></tt> in the distribution, which attempts to
+convert a game transcript into IFM format.  It&#8217;s a perl script, and gets
+installed on Unix-type systems if perl is detected.</li>
+<li>New <tt class="docutils literal"><span class="pre">nolink</span></tt> attribute for rooms, which suppresses generation of an
+implicit link between this and the previous room.</li>
+<li>New <tt class="docutils literal"><span class="pre">nopath</span></tt> attribute for rooms, links and joins, which stops those
+map connections from being used by the game solver.</li>
+<li>New task <tt class="docutils literal"><span class="pre">cmd</span> <span class="pre">none</span></tt> syntax, for tasks that don&#8217;t need any special user
+commands (e.g., visiting a room for the first time).</li>
+<li>New PostScript variable <tt class="docutils literal"><span class="pre">link_arrowsize</span></tt>, which allows you to change
+the size of arrowheads on one-way links.</li>
+<li><tt class="docutils literal"><span class="pre">tkifm</span></tt> is now installed automatically on Unix-type systems if <tt class="docutils literal"><span class="pre">wish</span></tt>
+(or one of its namesakes) is detected.</li>
+<li><tt class="docutils literal"><span class="pre">tkifm</span></tt> now shows busy-cursor when doing something CPU-intensive.</li>
+<li>Improved solver failure messages, which give more information about
+what&#8217;s wrong.</li>
+<li>Removed PostScript documentation from distribution.</li>
+<li>The <tt class="docutils literal"><span class="pre">times</span></tt> keyword is now obsolete (but still works, for
+compatibility); just the repeat count is used instead.</li>
+<li>Fixed bug with <tt class="docutils literal"><span class="pre">drop</span> <span class="pre">all</span> <span class="pre">except</span></tt> clause; it was treating it as just a
+simple <tt class="docutils literal"><span class="pre">drop</span></tt> clause.</li>
+<li>Fixed bug in task path calculation; it didn&#8217;t always choose the best
+route between rooms.</li>
+<li>Linking a room to itself with no <tt class="docutils literal"><span class="pre">dir</span></tt> clause now results in an error,
+instead of failing mysteriously at the map-drawing stage.</li>
+<li>Minor fixes to make installation smoother on FreeBSD.</li>
+</ul>
+</div>
+<div class="section" id="version-2-1-26-aug-1998">
+<h1>Version 2.1 (26 Aug 1998)<a class="headerlink" href="#version-2-1-26-aug-1998" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Fixed bug which caused some types of variable not to be set properly.</li>
+<li>Minor fixes to library functions to link properly under Solaris.</li>
+</ul>
+</div>
+<div class="section" id="version-2-0-19-aug-1998">
+<h1>Version 2.0 (19 Aug 1998)<a class="headerlink" href="#version-2-0-19-aug-1998" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Lots of new keywords for use by the game solver, which has been
+considerably enhanced.</li>
+<li>New commands to modify previous definitions, which allow you to keep all
+game hacks in one place.</li>
+<li>New <tt class="docutils literal"><span class="pre">show_tags</span></tt> variable, which toggles addition of room tag names to
+room descriptions.</li>
+<li>New <tt class="docutils literal"><span class="pre">-debug</span></tt> command-line option, which gives the gory details of what
+the game solver is up to.</li>
+<li>New recording output, which can generate commands to play back in
+interpreters.</li>
+<li>Package now has a test suite.</li>
+<li>Links and joins can now be <tt class="docutils literal"><span class="pre">hidden</span></tt>, which means they&#8217;re used only for
+task purposes.</li>
+<li>Removed <tt class="docutils literal"><span class="pre">groff</span></tt> output; it&#8217;s not worth supporting any more, now that
+PostScript output works so well.</li>
+<li>Text task output now prints details of the rooms you move through to get
+places, including directions moved in (or commands typed to move that
+way).</li>
+<li>PostScript driver now has some standard page sizes.  Also there&#8217;s a
+variable <tt class="docutils literal"><span class="pre">page_rotate</span></tt> which can override the default decisions on
+whether to print landscape or not.</li>
+<li>Having no rooms defined is not an error any more, in order to placate
+<tt class="docutils literal"><span class="pre">tkifm</span></tt>.</li>
+<li>Changed list attributes to be cumulative, instead of overriding previous
+value.</li>
+<li>Variables can now be set to <tt class="docutils literal"><span class="pre">undef</span></tt>, which allows their default setting
+to reappear.</li>
+<li>Various <tt class="docutils literal"><span class="pre">tkifm</span></tt> enhancements to make it convenient to use your
+preferred editor.</li>
+<li>Unix version now uses GNU autoconf/automake for installation.</li>
+<li>Got <tt class="docutils literal"><span class="pre">tkifm</span></tt> save-as option to set current filename properly.</li>
+<li>Stopped <em>outside grid</em> warnings from causing <tt class="docutils literal"><span class="pre">tkifm</span></tt> to fail when
+drawing map.</li>
+<li>Library function now doesn&#8217;t clobber read-only strings.</li>
+</ul>
+</div>
+<div class="section" id="version-1-0-11-jun-1998">
+<h1>Version 1.0 (11 Jun 1998)<a class="headerlink" href="#version-1-0-11-jun-1998" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>First release.</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Change history</a></li>
+<li><a class="reference external" href="#version-5-4-13-feb-2009">Version 5.4 (13 Feb 2009)</a></li>
+<li><a class="reference external" href="#version-5-3-14-nov-2008">Version 5.3 (14 Nov 2008)</a></li>
+<li><a class="reference external" href="#version-5-2-7-sep-2006">Version 5.2 (7 Sep 2006)</a></li>
+<li><a class="reference external" href="#version-5-1-30-nov-2004">Version 5.1 (30 Nov 2004)</a></li>
+<li><a class="reference external" href="#version-5-0-23-jan-2003">Version 5.0 (23 Jan 2003)</a></li>
+<li><a class="reference external" href="#version-4-1-10-may-1999">Version 4.1 (10 May 1999)</a></li>
+<li><a class="reference external" href="#version-4-0-21-apr-1999">Version 4.0 (21 Apr 1999)</a></li>
+<li><a class="reference external" href="#version-3-0-1-oct-1998">Version 3.0 (1 Oct 1998)</a></li>
+<li><a class="reference external" href="#version-2-1-26-aug-1998">Version 2.1 (26 Aug 1998)</a></li>
+<li><a class="reference external" href="#version-2-0-19-aug-1998">Version 2.0 (19 Aug 1998)</a></li>
+<li><a class="reference external" href="#version-1-0-11-jun-1998">Version 1.0 (11 Jun 1998)</a></li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="thanks.html"
+                                  title="previous chapter">Credits</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="license.html"
+                                  title="next chapter">License</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/changes.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="license.html" title="License"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="thanks.html" title="Credits"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Change history</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

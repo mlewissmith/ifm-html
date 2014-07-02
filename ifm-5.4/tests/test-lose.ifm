@@ -1,0 +1,8 @@
+# Test of 'lose' keyword. 
+
+room "Room 1";
+item "dynamite" tag TNT;
+task "Explode" need TNT lose TNT in any;
+
+room "Room 2" dir se;
+task "Scare granny with dynamite" need TNT;

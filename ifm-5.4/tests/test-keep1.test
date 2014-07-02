@@ -1,0 +1,15 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-keep1.out <<END
+# Test of 'keep with'.
+
+room "Room 1";
+item "hot coal" tag coal need tongs;
+item "tongs"    tag tongs keep with coal;
+
+room "Room 2" dir e;
+task "Put coal in diamond machine" need coal lose it tag lose_coal;
+task "Make diamond" after last;
+END
+
+cmp -s $SRCDIR/tests/test-keep1.exp $BUILDDIR/tests/test-keep1.out

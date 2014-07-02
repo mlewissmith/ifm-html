@@ -1,0 +1,67 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 3
+height: 1
+
+room: 2
+name: Room 3
+rpos: 2 0
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 1 0
+
+link: 1 2
+lpos: 1 0
+lpos: 2 0
+
+task: 7
+name: Move to Room 2
+room: 1
+cmd: E
+
+task: 8
+name: Move to Room 3
+room: 2
+cmd: E
+
+task: 6
+name: Safe task
+room: 2
+
+task: 9
+name: Move to Room 2
+room: 1
+cmd: W
+
+task: 10
+name: Move to Room 1
+room: 0
+cmd: W
+
+task: 3
+name: Do unsafe thing
+room: 0
+
+task: 4
+name: Seal off room
+tag: unsafe
+room: 0
+
+task: 11
+name: Move to Room 2
+room: 1
+cmd: E
+
+task: 5
+name: Win
+room: 1

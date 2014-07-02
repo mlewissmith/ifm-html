@@ -1,0 +1,11 @@
+# Test of unsafe 'do'.
+
+room "Room 1" tag R1;
+task "Do unsafe thing" do unsafe;
+task "Seal off room" tag unsafe;
+
+room "Room 2" dir e;
+task "Win" after unsafe;
+
+room "Room 3" dir e before unsafe;
+task "Safe task";

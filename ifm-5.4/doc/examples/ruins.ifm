@@ -1,0 +1,51 @@
+# IFM map of 'Ruins'
+
+title "Ruins";
+
+room "Dark Forest"                      tag Dark_Forest;
+  item "speckled mushroom"              tag mushroom;
+  item "statuette"                      tag statue hidden need mushroom;
+
+  task "Put statuette in case"          tag pack_statue need statue lose it score 10;
+  task "Put bangle in case"             tag pack_bangle need bangle lose it score 20;
+  task "Put ruby in case"               tag pack_ruby need ruby lose it score 30;
+  task "Put wax in case"                tag pack_wax need wax lose it score 40;
+
+  task "Wait for helicopter"            after pack_statue pack_bangle pack_ruby pack_wax 
+                                        cmd "WAIT" 2 finish;
+
+room "Square Chamber"                   tag Chamber dir s go down exit s e;
+  item "carvings";
+
+  task "Put mushroom in sunlight"       need mushroom lose it;
+  task "Press carvings"                 after last;
+
+  item "iron key"                       tag key hidden after last;
+
+room "Stooped Corridor"                 dir s;
+  item "moss";
+
+  task "Search moss";
+  item "blood-red ruby"                 tag ruby hidden after last;
+
+  task "Unlock door with key"           need key;
+  task "Open door"                      after last tag open_door;
+
+room "Lofty Shrine"                     dir s after open_door;
+  item "stone slab";
+  item "mummified priest";
+
+  task "Put key on slab"                need key lose it give wax;
+  item "wax"                            tag wax hidden;
+
+room "Web of Darkness"                  style Dark dir e from Chamber oneway;
+  item "scuttling claws";
+
+room "Web of Darkness"                  style Dark dir se oneway;
+  item "scuttling claws";
+  item "silver bangle"                  hidden tag bangle;
+
+  task "Stumble over bangle"            give bangle cmd "NE" goto Chamber;
+  link last to Chamber                  dir ne n w 2 oneway;
+
+room_colour = "gray70" in style Dark;

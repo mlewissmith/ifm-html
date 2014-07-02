@@ -1,0 +1,69 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 2
+
+room: 1
+name: Room 2
+rpos: 0 0
+
+room: 0
+name: Room 1
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 0 0
+
+item: 0
+name: ball
+tag: ball
+room: 0
+needed: 4
+needed: 6
+
+item: 1
+name: ceiling plaster
+tag: plaster
+room: 0
+after: 4
+
+task: 5
+name: Twiddle thumbs
+room: 0
+
+task: 2
+name: Get ball
+room: 0
+
+task: 4
+name: Throw ball at ceiling
+room: 0
+note: Moves you to Room 2
+
+task: 9
+name: Move to Room 1
+room: 0
+cmd: N
+
+task: 3
+name: Get ceiling plaster
+room: 0
+note: Not used for anything yet
+
+task: 8
+name: Get ball
+room: 0
+
+task: 10
+name: Move to Room 2
+room: 1
+cmd: S
+
+task: 6
+name: Win
+room: 1
+
+task: 11
+name: Drop ball

@@ -1,0 +1,17 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-keep2.out <<END
+# Test of 'keep until'.
+
+#solver_messages = 1;
+
+room "Room 1";
+item "hot coal" tag coal need tongs;
+item "tongs"    tag tongs keep until lose_coal;
+
+room "Room 2" dir e;
+task "Put coal in diamond machine" need coal lose it tag lose_coal;
+task "Make diamond" after last;
+END
+
+cmp -s $SRCDIR/tests/test-keep2.exp $BUILDDIR/tests/test-keep2.out

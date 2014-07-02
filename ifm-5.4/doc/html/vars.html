@@ -1,0 +1,829 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Output variables &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Tools and utilities" href="tools.html" />
+    <link rel="prev" title="Language" href="language.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tools and utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="language.html" title="Language"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Output variables</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="output-variables">
+<h1>Output variables<a class="headerlink" href="#output-variables" title="Permalink to this headline">¶</a></h1>
+<p>There are many variables available for customizing output, described below.
+Their initial values are set in the IFM initialization file
+<tt class="docutils literal"><span class="pre">ifm-init.ifm</span></tt>.  You can change this file to set global defaults for
+everybody, or alternatively set your own preferences in your personal init
+file.</p>
+<p>The default values are designed to give nice results in all formats.  The
+default for PostScript is to produce maps for monochrome printing on one or
+more pages of A4 paper.  The default for Fig is to produce one big page
+(which can be split into multiple pages later).</p>
+<p>The map output formats differ in their treatment of fonts.  In PostScript
+and Fig, the font and font size are specified separately, via the
+<tt class="docutils literal"><span class="pre">*_font</span></tt> and <tt class="docutils literal"><span class="pre">*_fontsize</span></tt> variables.  In Tk, they are both specified
+together, via the <tt class="docutils literal"><span class="pre">*_fontdef</span></tt> variables.</p>
+<p>In PostScript and Fig output, a font size represents the maximum desired
+size&#8212;the actual size may be scaled down in order to fit the text into an
+enclosing space (e.g., a room box).</p>
+<p>In Tk output, all line width values are interpreted as integers.</p>
+<div class="section" id="general-variables">
+<h2>General variables<a class="headerlink" href="#general-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">colour_file</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">ifm-rgb.txt</span></tt></td>
+<td>File of colour definitions, which contains the RGB values of each
+colour referred to below (and a good many more).  It&#8217;s just the
+<tt class="docutils literal"><span class="pre">rgb.txt</span></tt> file found on Unix/X11 systems.  See that file for a
+list of available colours.  You can use the same colour names for
+the Tk output, since it uses the standard X colours.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">prolog_file</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">ifm-pro.ps</span></tt></td>
+<td>Prolog file that gets prepended to all the PostScript output.  This
+defines all the procedures for drawing everything.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">font_scale</span></tt></td>
+<td>float</td>
+<td>1</td>
+<td>Scale factor which is applied to all fonts.  This is a convenience
+variable to make font adjustments easier.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="page-variables">
+<h2>Page variables<a class="headerlink" href="#page-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">page_size</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">A4</span></tt></td>
+<td>Default page size.  Available page sizes are: <tt class="docutils literal"><span class="pre">A3</span></tt>, <tt class="docutils literal"><span class="pre">A4</span></tt>, <tt class="docutils literal"><span class="pre">A</span></tt>,
+<tt class="docutils literal"><span class="pre">B</span></tt>, <tt class="docutils literal"><span class="pre">C</span></tt>, <tt class="docutils literal"><span class="pre">Legal</span></tt>, <tt class="docutils literal"><span class="pre">Letter</span></tt>.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_width</span></tt></td>
+<td>float</td>
+<td>undef</td>
+<td>If both <tt class="docutils literal"><span class="pre">page_width</span></tt> and <tt class="docutils literal"><span class="pre">page_height</span></tt> are defined, these set a
+custom page size which overrides the <tt class="docutils literal"><span class="pre">page_size</span></tt> variable.  Units
+are in cm.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_height</span></tt></td>
+<td>float</td>
+<td>undef</td>
+<td>If both <tt class="docutils literal"><span class="pre">page_width</span></tt> and <tt class="docutils literal"><span class="pre">page_height</span></tt> are defined, these set a
+custom page size which overrides the <tt class="docutils literal"><span class="pre">page_size</span></tt> variable.  Units
+are in cm.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_margin</span></tt></td>
+<td>float</td>
+<td>2</td>
+<td>Margin space to be left on each page, in cm.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_rotate</span></tt></td>
+<td>bool</td>
+<td>undef</td>
+<td>Whether to rotate each page to landscape.  If not defined, then
+rotation is decided on a per-page basis in order to get the best
+fit.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">show_page_title</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to show the main title on each page.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_title_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Page title colour.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_title_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Bold</span></tt></td>
+<td>Page title font.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_title_fontsize</span></tt></td>
+<td>int</td>
+<td>18</td>
+<td>Page title fontsize.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">show_page_border</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to show a border around each page.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_border_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of the page border (if drawn).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">page_background_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">white</span></tt></td>
+<td>Colour of the page background (if border is drawn).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">fit_page</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to scale Fig layout to fit on a single page.  Most of the
+time, this doesn&#8217;t make things look good.</td>
+<td><a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="map-section-variables">
+<h2>Map section variables<a class="headerlink" href="#map-section-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">show_map_title</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to show the map title.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_title_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of the title printed above each map section.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_title_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Bold</span></tt></td>
+<td>Font of the title printed above each map section.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_title_fontsize</span></tt></td>
+<td>int</td>
+<td>14</td>
+<td>Font size of the title printed above each map section.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">show_map_border</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to show a border around each map section.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_border_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of the map border (if drawn).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_background_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">white</span></tt> (ps, fig), <tt class="docutils literal"><span class="pre">wheat</span></tt> (tk)</td>
+<td>Colour of the map background (if border is drawn).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_section_spacing</span></tt></td>
+<td>int</td>
+<td>1</td>
+<td>Minimum space, in rooms, between map sections when packed together.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_canvas_width</span></tt></td>
+<td>int</td>
+<td>8</td>
+<td>Maximum width of the Tk map canvas window, in rooms.  Sizes bigger
+than this will cause scrollbars to appear.</td>
+<td><a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">map_canvas_height</span></tt></td>
+<td>int</td>
+<td>6</td>
+<td>Maximum height of the Tk map canvas window, in rooms.  Sizes bigger
+than this will cause scrollbars to appear.</td>
+<td><a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="room-variables">
+<h2>Room variables<a class="headerlink" href="#room-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">room_size</span></tt></td>
+<td>float</td>
+<td>3</td>
+<td>Space allocated for each room, in cm.  In PostScript and Fig, this
+is the maximum size &#8211; the actual size may be reduced in order to
+fit things on the page.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_width</span></tt></td>
+<td>float</td>
+<td>0.8</td>
+<td>Proportion of the room space that&#8217;s taken up by the room width.
+Should be less than 1 or you&#8217;ll have no space left for link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_height</span></tt></td>
+<td>float</td>
+<td>0.65</td>
+<td>Proportion of the room space that&#8217;s taken up by the room height.
+Should be less than 1 or you&#8217;ll have no space left for link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">white</span></tt></td>
+<td>Default background colour of rooms.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_shadow_xoff</span></tt></td>
+<td>float</td>
+<td>0.05</td>
+<td>X offset of room &#8216;shadows&#8217;, as a proportion of allocated room space.
+This is a pseudo-3D effect which makes rooms look raised off the
+page.  Note that you can change the direction of the room shadow by
+negating one or both of the offsets.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_shadow_yoff</span></tt></td>
+<td>float</td>
+<td>0.05</td>
+<td>Y offset of room &#8216;shadows&#8217;, as a proportion of allocated room space.
+This is a pseudo-3D effect which makes rooms look raised off the
+page.  Note that you can change the direction of the room shadow by
+negating one or both of the offsets.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_shadow_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">grey50</span></tt></td>
+<td>Colour of room &#8216;shadows&#8217;.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_border_width</span></tt></td>
+<td>float</td>
+<td>1</td>
+<td>Width of the room box lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_border_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of the room box lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_border_dashed</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to draw dashed room borders.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_exit_width</span></tt></td>
+<td>float</td>
+<td>1</td>
+<td>Width of the room exit lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_exit_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of the room exit lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_text_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of room description text.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_text_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Bold</span></tt></td>
+<td>Font of room description text.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_text_fontsize</span></tt></td>
+<td>int</td>
+<td>10</td>
+<td>Font size of room description text.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">room_text_fontdef</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times</span> <span class="pre">10</span> <span class="pre">bold</span></tt></td>
+<td>Font and fontsize of room description text.</td>
+<td><a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">show_items</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to show non-hidden item descriptions in rooms.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">item_text_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of item description text (if shown).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">item_text_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Italic</span></tt></td>
+<td>Font of item description text (if shown).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">item_text_fontsize</span></tt></td>
+<td>int</td>
+<td>6</td>
+<td>Font size of item description text (if shown).</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">item_text_fontdef</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times</span> <span class="pre">8</span> <span class="pre">italic</span></tt></td>
+<td>Font and fontsize of item description text (if shown).</td>
+<td><a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">show_tags</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to append room tag names to room descriptions.  If so, they
+are appended in square brackets, like [this].</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="link-style-variables">
+<h2>Link style variables<a class="headerlink" href="#link-style-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">link_line_width</span></tt></td>
+<td>float</td>
+<td>1</td>
+<td>Width of link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt></td>
+<td>Colour of link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_arrow_size</span></tt></td>
+<td>float</td>
+<td>0.1</td>
+<td>Size of oneway link arrows, as a proportion of the allocated room
+space.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_spline</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to draw link lines as splines.</td>
+<td><a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_dashed</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to draw dashed link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_text_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Roman</span></tt></td>
+<td>Font of text that&#8217;s associated with link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_text_fontsize</span></tt></td>
+<td>int</td>
+<td>6</td>
+<td>Font size of text that&#8217;s associated with link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_text_colour</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">black</span></tt> (ps, fig), <tt class="docutils literal"><span class="pre">red</span></tt> (tk)</td>
+<td>Colour of text that&#8217;s associated with link lines.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_text_fontdef</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times</span> <span class="pre">8</span> <span class="pre">bold</span></tt></td>
+<td>Font and font size size of text that&#8217;s associated with link lines.</td>
+<td><a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_updown_string</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">U/D</span></tt></td>
+<td>Text strings indicating up/down on links.  PostScript is currently a
+special case: the strings either side of the <tt class="docutils literal"><span class="pre">/</span></tt> are extracted and
+printed at either ends of the link, near the room they come from.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">link_inout_string</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">I/O</span></tt></td>
+<td>Text strings indicating in/out on links.  PostScript is currently a
+special case: the strings either side of the <tt class="docutils literal"><span class="pre">/</span></tt> are extracted and
+printed at either ends of the link, near the room they come from.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="join-style-variables">
+<h2>Join style variables<a class="headerlink" href="#join-style-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">show_joins</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to indicate joins in the room text.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">join_format</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">number</span></tt></td>
+<td>Join string format (gets put in parentheses in those rooms that join
+to other rooms).  The value should be <tt class="docutils literal"><span class="pre">number</span></tt> or <tt class="docutils literal"><span class="pre">letter</span></tt>.</td>
+<td><a class="reference external" href="usage.html#ps"><em>ps</em></a> <a class="reference external" href="usage.html#fig"><em>fig</em></a> <a class="reference external" href="usage.html#tk"><em>tk</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="game-solver-variables">
+<h2>Game solver variables<a class="headerlink" href="#game-solver-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">keep_unused_items</span></tt></td>
+<td>bool</td>
+<td>true</td>
+<td>Whether to keep unused items (i.e., those which were obtained via
+some task or other, but currently have no use).</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">all_tasks_safe</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to treat all tasks as safe (reckless mode!).</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">solver_messages</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to print game solver info messages (helps with figuring out
+what it&#8217;s up to).</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">finish_room</span></tt></td>
+<td>string</td>
+<td>&nbsp;</td>
+<td><p class="first">Comma-separated list of extra room tags which are assigned the
+<tt class="xref docutils literal"><span class="pre">finish</span></tt> attribute.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">finish_item</span></tt></td>
+<td>string</td>
+<td>&nbsp;</td>
+<td><p class="first">Comma-separated list of extra item tags which are assigned the
+<tt class="xref docutils literal"><span class="pre">finish</span></tt> attribute.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">finish_task</span></tt></td>
+<td>string</td>
+<td>&nbsp;</td>
+<td><p class="first">Comma-separated list of extra task tags which are assigned the
+<tt class="xref docutils literal"><span class="pre">finish</span></tt> attribute.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</td>
+<td><a class="reference external" href="usage.html#text"><em>text</em></a> <a class="reference external" href="usage.html#rec"><em>rec</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="task-dependency-variables">
+<h2>Task dependency variables<a class="headerlink" href="#task-dependency-variables" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="19%" />
+<col width="63%" />
+<col width="6%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Name</th>
+<th class="head">Type</th>
+<th class="head">Default</th>
+<th class="head">Description</th>
+<th class="head">Outputs</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_rooms</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to group tasks by the room they&#8217;re done in.  This can either
+enhance the task structure or make it look a complete mess.</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_orphans</span></tt></td>
+<td>bool</td>
+<td>false</td>
+<td>Whether to show orphan tasks (those with no previous/next
+dependencies).  Useful for completeness, but it clutters things up a
+lot.</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_attr</span></tt></td>
+<td>string</td>
+<td>&nbsp;</td>
+<td>Graph attributes, in Graphviz format.</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_node</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">shape=box</span></tt></td>
+<td>Node attributes, in Graphviz format.</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_link</span></tt></td>
+<td>string</td>
+<td>&nbsp;</td>
+<td>Link attributes, in Graphviz format.</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_wrap</span></tt></td>
+<td>int</td>
+<td>12</td>
+<td><p class="first">Word wrap length of nodes, in characters.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">task_graph_font</span></tt></td>
+<td>string</td>
+<td><tt class="docutils literal"><span class="pre">Times-Roman</span></tt></td>
+<td><p class="first">Font name.</p>
+<p class="last">
+<span class="versionmodified">New in version 5.3.</span></p>
+</td>
+<td><a class="reference external" href="usage.html#dot"><em>dot</em></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Output variables</a><ul>
+<li><a class="reference external" href="#general-variables">General variables</a></li>
+<li><a class="reference external" href="#page-variables">Page variables</a></li>
+<li><a class="reference external" href="#map-section-variables">Map section variables</a></li>
+<li><a class="reference external" href="#room-variables">Room variables</a></li>
+<li><a class="reference external" href="#link-style-variables">Link style variables</a></li>
+<li><a class="reference external" href="#join-style-variables">Join style variables</a></li>
+<li><a class="reference external" href="#game-solver-variables">Game solver variables</a></li>
+<li><a class="reference external" href="#task-dependency-variables">Task dependency variables</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="language.html"
+                                  title="previous chapter">Language</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tools.html"
+                                  title="next chapter">Tools and utilities</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/vars.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tools.html" title="Tools and utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="language.html" title="Language"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Output variables</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

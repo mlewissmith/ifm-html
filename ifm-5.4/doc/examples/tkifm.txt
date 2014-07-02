@@ -1,0 +1,51 @@
+# Example tkifm init file.
+
+# Whether to allow editing.
+set ifm(edit) 1
+
+# Edit window dimensions.
+set ifm(editwidth)  80
+set ifm(editheight) 24
+
+# Editing font.
+set ifm(editfont) {Courier 12 bold}
+
+# Edit window colours.
+set ifm(editforeground) black
+set ifm(editbackground) wheat
+
+# Item list window dimensions.
+set ifm(itemwidth)  50
+set ifm(itemheight) 30
+
+# Task list (brief) window dimensions.
+set ifm(taskwidth)  50
+set ifm(taskheight) 30
+
+# Task list (verbose) window dimensions.
+set ifm(verbosewidth)  80
+set ifm(verboseheight) 30
+
+# Variable window dimensions.
+set ifm(varswidth)  50
+set ifm(varsheight) 30
+
+# Text window font.
+set ifm(textfont) {Times 12 bold}
+
+# Text window colours.
+set ifm(textforeground) black
+set ifm(textbackground) wheat
+
+# Whether to allow tearoff menus.
+set ifm(tearoff) 1
+
+# Syntax highlighting variables.
+set ifm(syntaxcomments)     firebrick
+set ifm(syntaxstrings)      grey40
+set ifm(syntaxstructure)    blue
+set ifm(syntaxdirections)   darkgoldenrod
+set ifm(syntaxspecial)      cadetblue
+set ifm(syntaxbuiltin)      forestgreen
+set ifm(syntaxkeyword)      royalblue
+set ifm(syntaxpreprocessor) purple

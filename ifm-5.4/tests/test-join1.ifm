@@ -1,0 +1,6 @@
+# Test of join directions.
+
+room "Room 1" tag R1;
+room "Room 2" tag R2;
+task "Do something";
+join R1 to R2 go n;

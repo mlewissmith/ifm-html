@@ -1,0 +1,12 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-join1.out <<END
+# Test of join directions.
+
+room "Room 1" tag R1;
+room "Room 2" tag R2;
+task "Do something";
+join R1 to R2 go n;
+END
+
+cmp -s $SRCDIR/tests/test-join1.exp $BUILDDIR/tests/test-join1.out

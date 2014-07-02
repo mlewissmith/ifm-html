@@ -1,0 +1,40 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 2
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 1 0
+
+item: 0
+name: dynamite
+tag: TNT
+room: 0
+needed: 3
+needed: 4
+
+task: 2
+name: Get dynamite
+room: 0
+
+task: 5
+name: Move to Room 2
+room: 1
+cmd: SE
+
+task: 4
+name: Scare granny with dynamite
+room: 1
+
+task: 3
+name: Explode

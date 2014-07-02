@@ -1,0 +1,15 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-nolink1.out <<END
+# Test of map nolink attr.
+
+room "Room 1" tag R1;
+
+room "Room 2" tag R2 dir e nolink;
+
+room "Room 3" dir e oneway;
+
+link R2 to R1 oneway;
+END
+
+cmp -s $SRCDIR/tests/test-nolink1.exp $BUILDDIR/tests/test-nolink1.out

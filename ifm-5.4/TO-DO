@@ -1,0 +1,219 @@
+============
+ TO-DO list
+============
+
+Bugs
+====
+
+Nasty problem with ``leave``: see ``leave-bug.ifm``.  How to fix it?  One
+possibility is to warn about it when doing movement---if you ever move
+where you shouldn't be allowed to.  But then again... how about, in
+``find_path()``, keeping track of items that have to be left.  Then, in
+need-item check, can see if it had to be dropped.  If first ``find_path()``
+fails and at least one LEAVE item was NEEDed, do ``find_path()`` again,
+pretending that the task in question needs those items.
+
+Joining multiple rooms in a single command: isn't there a problem with join
+tags?
+
+Order matters with ``-S`` option.  Try ``-S reckless -S verbose`` in
+different order---only 1 takes effect.
+
+``tkifm`` accelerators don't work on Unix.
+
+Program
+=======
+
+Have more specific compile error messages.  Or record character number, for
+more accurate error location.
+
+Simplify driver interface.  Maybe remove dependence on Vars knowledge.
+
+Language
+========
+
+Maybe get consecutive strings to merge together.
+
+Maps
+----
+
+How about a ``label`` keyword, like rooms, that puts arbitrary text on the
+page (like ``admap`` does)?  Specify its offset from a given room, its
+dimensions and its anchor.  Calculate the room boxes it occupies, and give
+warning if anything overlaps it.  Take text size into account when
+calculating map size.  What's the best way to input N lines of text though?
+Just consecutive strings?  Attributes: width, height, anchor, dir, from,
+style.  Generalize ``put_room_at()`` to accept things apart from rooms
+(labels).  With labels, the ``dir`` clause is mandatory.
+
+Add ``show_exit_arrows`` variable.  Arrow size controlled same as other
+arrows.
+
+Need some sort of debugging feature that eases sorting out of overlapping
+stuff.
+
+Items
+-----
+
+How about item flag: ``actor``, which indicates that when got, they're
+following you---you don't pick them up.  So they shouldn't count in
+inventory management.
+
+Tasks
+-----
+
+How about inventory max-carried stuff?  Need to give each item a
+``drop-priority`` number (if two equal, use order of declaration) and a
+weight.  Need to give player a max-carried number somehow.  Have ``sack``
+attribute on items too---if you've got one of those, max-carried doesn't
+apply.  When just about to pick something up that would put you over the
+limit, drop items in priority order until carry limit is ok.  But when to
+pick them up again?  Need to do a 'drop-until'---but until what task?
+Until the next task to be done with the item you're about to pick up?
+Maybe make 'get' tasks that would put you over the limit *very* low
+priority---only done if nothing else can be.
+
+Is there a way to indicate that 'leave' items aren't explicitly dropped
+without resorting to item 'lost' attr?  If so, can probably phase it out.
+Maybe rename it to 'dropped'?  Or better, maybe have 'drop' synonym for
+'leave', which flags those items as dropped at those places.
+
+How about task ``before`` attribute, for symmetry?
+
+How about ``after all`` on tasks, which means 'do it last'?
+
+Test room note output in task list.  Problem with that: if start room has
+note, you may never see it.  Ditto for other start room attrs.  Need
+special start room 'task'.
+
+Maybe have general events.  Have 'start of game' event that tells you where
+you start from.  Change 'task step' to 'goal'.  Have global current-room.
+Change T_<attr> to G_<attr>, and T_USER to G_DO.
+
+Outputs
+=======
+
+PostScript
+----------
+
+Implement 'link_spline' using curveto, if poss.
+
+How about support for generic EPS file backgrounds?
+
+Make overlapping stuff look less cryptic.
+
+Fix roomitemratio like Tk version.  Maybe have this as a control var.
+
+Fig
+---
+
+BUG: output don't start at the origin---why?
+
+Updown/inout overlaps line.  Need border box in page background colour.
+
+Text
+----
+
+Merge multiple identical tasks into one, with (%d times) appended.
+
+Implement note filling.  Have variable ``text_wrap_column`` (default 75).
+Problem: tk uses text to get items/tasks.  But you can't specify a separate
+tk value for this var, cos text output won't use it.  So you can't make
+window width correspond to this var value.  Possible solution: allow
+setting of vars globally on the command line, which overrides all settings
+in files.
+
+Someone suggested having text map driver.  Yuck!  But it might be possible
+to do nicely:
+
+1. Build title (and optional item list) strings per room.
+2. Count max word size, x it by constant to give room width.
+3. Split text lines on that width.
+4. Calc room height = max no. of lines (+1 blank if item list)
+5. Build text array and draw everything with special chars (definable).
+6. Print it.  All this is per map section.
+
+Alternatively: get it to use existing vars as much as possible, for
+consistency.  But ``room_size`` is in cm, so can't be used.  Need
+``room_char_size`` or something.  Also need some width/height ratio
+variable so that if ``room_width`` and ``room_height`` are the same, the
+box looks square on output.
+
+Tools
+=====
+
+``scr2ifm``
+-----------
+
+How about a general Perl module for building IFM input?  Methods::
+
+    room(desc, args)	  define a new room (returns id)
+    findroom(tag)	  return room with given tag
+    link(from, to, args)  define a new link (returns id)
+    findlink(tag)	  ditto
+    cmd(str)		  arbitrary command
+    write(handle)	  output it
+
+Recognize oneway links?
+
+More options controlling output (e.g., tags, items, tasks, etc.).
+
+Maybe phase out vars altogether and replace with commands.
+
+Add command stripping regexp (eg to dispose of ``go``).
+
+``rec2scr``
+-----------
+
+Add more interpreters (e.g., ``tadsr``).
+
+How about using the innate script facility of ``dumb-frotz`` instead of
+capturing ``stdout``?  Or maybe an option to that effect.
+
+The ``cmd`` command don't seem to want to print RETURN.
+
+``tkifm``
+---------
+
+Do line clipping in IFM instead of here.  Make clipping standard across
+drivers, using the util function.  In fact, have clipped version of lines
+before drivers even see them (but keep originals for raw output).
+
+Gather all warnings/errors and display them at once in a text window.
+Enable single-click which goes to that line number (if any) in edit window.
+Don't exit IFM after first error.
+
+Add horizontal scrollbars to text windows.  Don't wrap words.
+
+Get it to read a standard init like IFM does, by using standard search path
+or ``IFMPATH``.  Can keep doc up to date properly then.
+
+``.ifm`` suffix is assumed.  Change doc to reflect this.
+
+Maybe all the non-line-specific errors and warnings should be bunched
+together in a single message.  Or get error/warning funcs to ask if user
+wants to skip rest of messages.
+
+How about dump-window-to-ps option, using canvas ps command?
+
+Documentation
+=============
+
+Come up with variant style sheet.
+
+Move ``ifm-init.ifm`` comments to documentation.
+
+Installation
+============
+
+Maybe prepend ``$(pkgdatadir)/site-ifm`` directory to search path, to allow
+for customization.  Create that dir when installing.
+
+Other stuff
+===========
+
+Finish TO-DO stuff in ``ifm.vim``.
+
+.. Local Variables:
+.. mode: rst
+.. End:

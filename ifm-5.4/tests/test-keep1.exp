@@ -1,0 +1,55 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 1
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 1 0
+
+item: 0
+name: hot coal
+tag: coal
+room: 0
+after: 3
+needed: 4
+
+item: 1
+name: tongs
+tag: tongs
+room: 0
+needed: 2
+
+task: 3
+name: Get tongs
+room: 0
+
+task: 2
+name: Get hot coal
+room: 0
+
+task: 6
+name: Move to Room 2
+room: 1
+cmd: E
+
+task: 4
+name: Put coal in diamond machine
+tag: lose_coal
+room: 1
+
+task: 7
+name: Drop tongs
+
+task: 5
+name: Make diamond
+room: 1

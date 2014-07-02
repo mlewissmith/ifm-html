@@ -1,0 +1,14 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-attr1.out <<END
+# Test of concatenating attribute lists.
+
+room "Room 1";
+item "thing 1" tag thing1;
+item "thing 2" tag thing2;
+
+room "Room 2" dir s need thing1 need thing2;
+task "Win";
+END
+
+cmp -s $SRCDIR/tests/test-attr1.exp $BUILDDIR/tests/test-attr1.out

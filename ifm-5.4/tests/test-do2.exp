@@ -1,0 +1,42 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 1
+
+room: 1
+name: Room 2
+rpos: 1 0
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 1 0
+
+task: 2
+name: Cut hole in door
+room: 0
+
+task: 4
+name: Open door
+tag: open_door
+room: 0
+
+task: 5
+name: Trigger alarm
+tag: trigger_alarm
+room: 0
+score: 1
+
+task: 7
+name: Move to Room 2
+room: 1
+cmd: E
+
+task: 6
+name: Win
+room: 1
+note: Finishes the game

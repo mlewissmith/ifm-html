@@ -1,0 +1,11 @@
+# Test of 'follow' keyword. 
+
+room "Room 1";
+item "hammer" tag hammer;
+task "Room1" tag room1 need hammer;
+
+room "Room 2" dir n;
+task "Room2" tag room2;
+
+room "Room 3" dir n;
+task "Room3" tag room3 follow room1;

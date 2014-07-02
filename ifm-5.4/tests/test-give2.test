@@ -1,0 +1,14 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-give2.out <<END
+# Test of task 'give' attribute.
+
+room "Room 1" tag R1;
+task "Say shazam" give wand;
+item "magic wand" tag wand;
+
+room "Room 2" tag R2 dir s;
+task "Win";
+END
+
+cmp -s $SRCDIR/tests/test-give2.exp $BUILDDIR/tests/test-give2.out

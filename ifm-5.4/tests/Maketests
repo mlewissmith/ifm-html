@@ -1,0 +1,53 @@
+#! /usr/bin/env perl
+
+# Create IFM test programs.
+
+$ifmprog = shift;
+$srcdir = '$SRCDIR';
+$builddir = '$BUILDDIR';
+
+foreach $ifmfile (@ARGV) {
+    die "Can't find $ifmfile\n" unless -f $ifmfile;
+
+    # Build test and expected results files.
+    $prefix = $ifmfile;
+    $prefix =~ s/\.ifm$//;
+    $testfile = $prefix . ".test";
+    $expfile = $prefix . ".exp";
+    $listfile = $prefix . ".list";
+    $outfile = $prefix . ".out";
+
+    # Skip it if up to date.
+    next if -f $testfile
+	&& -M $testfile < -M $ifmfile
+	    && -M $testfile < -M $0;
+
+    # Read test input.
+    open(IN, $ifmfile) or die "Can't open $ifmfile: $!\n";
+    @prog = <IN>;
+    close IN;
+
+    # Write test program.
+    $ifmargs = "-w -m -i -t -f raw";
+
+    open(OUT, "> $testfile") or die "Can't open $testfile: $!\n";
+
+    print OUT "#! /bin/sh\n\n";
+    print OUT "$builddir/src/ifm -I$srcdir/lib $ifmargs 2>&1 ";
+    print OUT "> $builddir/tests/$outfile <<END\n";
+    print OUT @prog;
+    print OUT "END\n\n";
+    print OUT "cmp -s $srcdir/tests/$expfile $builddir/tests/$outfile\n";
+    close OUT;
+
+    chmod 0775, $testfile;
+
+    # Create expected results.
+    system "$ifmprog $ifmargs -o $expfile $ifmfile";
+
+    # Create verbose task list.
+    system "$ifmprog -w -t -format text -o $listfile $ifmfile";
+
+    # Er... that's it.
+    print "Created $testfile\n";
+}

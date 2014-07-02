@@ -1,0 +1,11 @@
+# Test of simple tasks.
+
+room "Lounge" tag Lounge;
+
+room "Kitchen" dir e;
+task "Make the tea" after tidy;
+
+room "Landing" dir n from Lounge go up;
+
+room "Bedroom" dir e;
+task "Tidy the room" tag tidy;

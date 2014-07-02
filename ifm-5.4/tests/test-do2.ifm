@@ -1,0 +1,10 @@
+# Test of recursive 'do'.
+
+room "Room 1";
+task "Cut hole in door" do open_door;
+task "Kick door down" do open_door;
+
+room "Room 2" dir e after open_door;
+task "Open door" tag open_door ignore do trigger_alarm;
+task "Trigger alarm" tag trigger_alarm score 1;
+task "Win" finish;

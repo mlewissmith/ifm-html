@@ -1,0 +1,248 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tkifm: create maps interactively &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="up" title="Tools and utilities" href="tools.html" />
+    <link rel="next" title="ifm2dev: convert IFM maps to various other formats" href="ifm2dev.html" />
+    <link rel="prev" title="scr2ifm: convert transcripts to IFM map" href="scr2ifm.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ifm2dev.html" title="ifm2dev: convert IFM maps to various other formats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scr2ifm.html" title="scr2ifm: convert transcripts to IFM map"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>tkifm</strong>: create maps interactively</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tkifm-create-maps-interactively">
+<h1><strong>tkifm</strong>: create maps interactively<a class="headerlink" href="#tkifm-create-maps-interactively" title="Permalink to this headline">¶</a></h1>
+<p><strong>tkifm</strong> is a graphical front end to IFM. It provides a text
+editing window in which you can map out your game using IFM commands, and a
+set of menus to view things.  The various features are as follows:</p>
+<dl class="docutils">
+<dt>Text editing window</dt>
+<dd>This is the main window, where you type IFM commands. It provides
+all the usual text editing command bindings that come with the
+Tcl/Tk text widget, as well as syntax highlighting.</dd>
+<dt>File menu</dt>
+<dd>The standard set of file commands: <em>New</em>, <em>Open</em>, <em>Save</em>, <em>Save-As</em>,
+<em>Export</em> (to PostScript or Fig), <em>Quit</em>.  There&#8217;s also a command
+called <em>Redraw</em>, which invokes IFM on the current file
+again. Normally you don&#8217;t have to use this (it&#8217;s done whenever you
+open a new file or save the current one), but if you change your
+initialization file (see below) the changes won&#8217;t be noticed unless
+you do a <em>Redraw</em>.</dd>
+<dt>Map menu</dt>
+<dd>For each map section in your map, a menu entry appears
+here. Selecting it will draw the appropriate map in another window.</dd>
+<dt>Item menu</dt>
+<dd>This contains a single menu item, which displays a list of items in
+another window.</dd>
+<dt>Task menu</dt>
+<dd>This contains two menu items: <em>Task list (brief)</em>, which displays a
+high-level walkthrough of the game in another window, and <em>Task list
+(verbose)</em> which does the same but gives detailed information about
+what the game solver is up to.</dd>
+<dt>Show menu</dt>
+<dd>This contains two menu items: <em>Variables</em>, which shows all the
+currently defined variables and their values, and <em>Paths</em>, which
+shows the file search path.</dd>
+<dt>Help menu</dt>
+<dd>This displays a small info panel about the current IFM version,
+including copying restrictions.</dd>
+</dl>
+<div class="section" id="using-your-own-editor">
+<h2>Using your own editor<a class="headerlink" href="#using-your-own-editor" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;d like to use your own editor to edit IFM files, but still view
+results with <strong>tkifm</strong>, you can.  <strong>tkifm</strong> recognizes when
+the file it is visiting gets modified, and rereads it if so. If you like,
+you can also disable all tkifm file modification commands by setting the
+<tt class="xref docutils literal"><span class="pre">ifm(edit)</span></tt> variable to zero (see below). This is probably a good
+idea if using another editor, or else you might accidentally save from
+<strong>tkifm</strong> and lose all your changes.</p>
+</div>
+<div class="section" id="customization">
+<h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
+<p>On startup, <strong>tkifm</strong> reads an initialization file in your home
+directory (the one pointed at by the <span class="target" id="index-115"></span><a class="reference external" href="usage.html#envvar-HOME"><strong class="xref">HOME</strong></a> environment
+variable). On Unix systems it is called <tt class="docutils literal"><span class="pre">.tkifmrc</span></tt>, and on Win32
+systems it is called <tt class="docutils literal"><span class="pre">tkifm.ini</span></tt>.  From there, using Tcl commands,
+you can set various things that affect the appearance of the program.
+Here&#8217;s an example file showing the valid variables, their format and
+defaults:</p>
+<div class="highlight-tcl"><div class="highlight"><pre><span class="c"># Example tkifm init file.</span>
+
+<span class="c"># Whether to allow editing.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">edit</span><span class="k">)</span> <span class="mi">1</span>
+
+<span class="c"># Edit window dimensions.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">editwidth</span><span class="k">)</span>  <span class="mi">80</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">editheight</span><span class="k">)</span> <span class="mi">24</span>
+
+<span class="c"># Editing font.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">editfont</span><span class="k">)</span> <span class="k">{</span><span class="nv">Courier</span> <span class="mi">12</span> bold<span class="k">}</span>
+
+<span class="c"># Edit window colours.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">editforeground</span><span class="k">)</span> black
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">editbackground</span><span class="k">)</span> wheat
+
+<span class="c"># Item list window dimensions.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">itemwidth</span><span class="k">)</span>  <span class="mi">50</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">itemheight</span><span class="k">)</span> <span class="mi">30</span>
+
+<span class="c"># Task list (brief) window dimensions.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">taskwidth</span><span class="k">)</span>  <span class="mi">50</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">taskheight</span><span class="k">)</span> <span class="mi">30</span>
+
+<span class="c"># Task list (verbose) window dimensions.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">verbosewidth</span><span class="k">)</span>  <span class="mi">80</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">verboseheight</span><span class="k">)</span> <span class="mi">30</span>
+
+<span class="c"># Variable window dimensions.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">varswidth</span><span class="k">)</span>  <span class="mi">50</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">varsheight</span><span class="k">)</span> <span class="mi">30</span>
+
+<span class="c"># Text window font.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">textfont</span><span class="k">)</span> <span class="k">{</span><span class="nv">Times</span> <span class="mi">12</span> bold<span class="k">}</span>
+
+<span class="c"># Text window colours.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">textforeground</span><span class="k">)</span> black
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">textbackground</span><span class="k">)</span> wheat
+
+<span class="c"># Whether to allow tearoff menus.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">tearoff</span><span class="k">)</span> <span class="mi">1</span>
+
+<span class="c"># Syntax highlighting variables.</span>
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxcomments</span><span class="k">)</span>     firebrick
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxstrings</span><span class="k">)</span>      grey40
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxstructure</span><span class="k">)</span>    blue
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxdirections</span><span class="k">)</span>   darkgoldenrod
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxspecial</span><span class="k">)</span>      cadetblue
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxbuiltin</span><span class="k">)</span>      forestgreen
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxkeyword</span><span class="k">)</span>      royalblue
+<span class="k">set</span> ifm<span class="k">(</span><span class="nv">syntaxpreprocessor</span><span class="k">)</span> purple
+</pre></div>
+</div>
+</div>
+<div class="section" id="errors-and-warnings">
+<h2>Errors and warnings<a class="headerlink" href="#errors-and-warnings" title="Permalink to this headline">¶</a></h2>
+<p>Any errors or warnings that occur when invoking IFM will be displayed in a
+dialog. The current line of the text window will be changed to point at the
+error or warning line (if appropriate).</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href=""><strong>tkifm</strong>: create maps interactively</a><ul>
+<li><a class="reference external" href="#using-your-own-editor">Using your own editor</a></li>
+<li><a class="reference external" href="#customization">Customization</a></li>
+<li><a class="reference external" href="#errors-and-warnings">Errors and warnings</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="scr2ifm.html"
+                                  title="previous chapter"><strong>scr2ifm</strong>: convert transcripts to IFM map</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="ifm2dev.html"
+                                  title="next chapter"><strong>ifm2dev</strong>: convert IFM maps to various other formats</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/tkifm.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="ifm2dev.html" title="ifm2dev: convert IFM maps to various other formats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="scr2ifm.html" title="scr2ifm: convert transcripts to IFM map"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>tkifm</strong>: create maps interactively</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

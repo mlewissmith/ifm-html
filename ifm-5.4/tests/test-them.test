@@ -1,0 +1,18 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-them.out <<END
+# Test of 'them'.
+
+room "Room";
+
+item "thing1" tag thing1;
+item "thing2" tag thing2;
+item "thing3" tag thing3;
+
+task "Do something" need thing1 lose it;
+task "Do another thing" need thing2 need thing3 drop them;
+
+task "Do yet another thing" after last need thing2 thing3 lose them;
+END
+
+cmp -s $SRCDIR/tests/test-them.exp $BUILDDIR/tests/test-them.out

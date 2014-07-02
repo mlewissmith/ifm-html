@@ -1,0 +1,123 @@
+##############################################################################
+# This file is part of IFM (Interactive Fiction Mapper), copyright (C)
+# Glenn Hutchings 1997-2008.
+# 
+# IFM comes with ABSOLUTELY NO WARRANTY.  This is free software, and you
+# are welcome to redistribute it under certain conditions; see the file
+# COPYING for details.
+##############################################################################
+# System IFM init file, in -*- Perl -*- mode.
+
+# General variables
+colour_file = "ifm-rgb.txt";
+prolog_file = "ifm-pro.ps";
+font_scale = 1;
+
+# Page variables
+page_size = "A4";
+page_width = undef;
+page_height = undef;
+page_margin = 2;
+page_rotate = undef;
+
+show_page_title = true;
+
+page_title_font = "Times-Bold";
+page_title_fontsize = 18;
+page_title_colour = "black";
+
+show_page_border = false;
+page_border_colour = "black";
+page_background_colour = "white";
+
+fit_page = false;
+
+# Map section variables
+show_map_title = true;
+
+map_title_font = "Times-Bold";
+map_title_fontsize = 14;
+map_title_colour = "black";
+
+show_map_border = false;
+map_border_colour = "black";
+
+map_background_colour = "white";
+tk.map_background_colour = "wheat";
+
+map_section_spacing = 1;
+
+map_canvas_width = 8;
+map_canvas_height = 6;
+
+# Room variables
+room_size = 3;
+room_width = 0.8;
+room_height = 0.65;
+
+room_colour = "white";
+
+room_shadow_xoff = 0.05;
+room_shadow_yoff = 0.05;
+room_shadow_colour = "grey50";
+
+room_border_width = 1;
+room_border_colour = "black";
+
+room_border_dashed = false;
+
+room_exit_width = 1;
+room_exit_colour = "black";
+
+room_text_colour = "black";
+room_text_font = "Times-Bold";
+room_text_fontsize = 10;
+room_text_fontdef = "Times 10 bold";
+
+show_items = true;
+
+item_text_colour = "black";
+item_text_font = "Times-Italic";
+item_text_fontsize = 6;
+item_text_fontdef = "Times 8 italic";
+
+show_tags = false;
+
+# Link style variables
+link_line_width = 1;
+link_colour = "black";
+
+link_arrow_size = 0.1;
+
+link_spline = true;
+link_dashed = false;
+
+link_text_font = "Times-Roman";
+link_text_fontsize = 6;
+link_text_fontdef = "Times 8 bold";
+link_text_colour = "black";
+tk.link_text_colour = "red";
+
+link_updown_string = "U/D";
+link_inout_string = "I/O";
+
+# Join style variables
+show_joins = true;
+join_format = "number";
+
+# Game solver variables
+keep_unused_items = true;
+all_tasks_safe = false;
+solver_messages = false;
+finish_room = "";
+finish_item = "";
+finish_task = "";
+
+# Task dependency variables
+task_graph_rooms = false;
+task_graph_orphans = false;
+task_graph_attr = "";
+task_graph_node = "shape=box";
+task_graph_link = "";
+task_graph_wrap = 12;
+task_graph_font = "Times-Roman";

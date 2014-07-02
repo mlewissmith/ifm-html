@@ -1,0 +1,14 @@
+* A big thanks to Dave Chapeskie (dchapes@ddm.wox.org) for lots of great
+  suggestions for improving IFM, setting up the original IFM :ref:`web
+  page <ifm-maps>`, and contributing the :doc:`VIM mode <editors>` for
+  editing IFM maps.
+
+* Thanks to Dan Eble (eble@ticalc.org) for patches to improve PostScript
+  output, and a bug fix.
+
+* Thanks to Lee Bigelow (ligelowbee@yahoo.com) for enhancements to the
+  :doc:`GNU Emacs IFM mode <editors>`.
+
+.. Local Variables:
+.. mode: rst
+.. End:

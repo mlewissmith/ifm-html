@@ -1,0 +1,40 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 2
+
+room: 1
+name: Room 2
+rpos: 0 1
+
+room: 0
+name: Room 1
+rpos: 0 0
+
+link: 0 1
+lpos: 0 0
+lpos: 0 1
+
+task: 5
+name: Move to Room 2
+room: 1
+cmd: N
+
+task: 4
+name: Safe task
+room: 1
+
+task: 6
+name: Move to Room 1
+room: 0
+cmd: S
+
+task: 2
+name: Task 1
+room: 0
+
+task: 3
+name: Task 2
+tag: task2
+room: 0

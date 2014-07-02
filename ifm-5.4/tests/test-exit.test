@@ -1,0 +1,12 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-exit.out <<END
+# Test of exit command.
+
+room "Dark Place" exit se e n tag dark;
+room "Darker Place" dir se ne;
+room "Nowhere" dir w link dark;
+room "Light" dir n from dark;
+END
+
+cmp -s $SRCDIR/tests/test-exit.exp $BUILDDIR/tests/test-exit.out

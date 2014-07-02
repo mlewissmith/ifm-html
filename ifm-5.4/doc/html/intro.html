@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="next" title="Making maps" href="maps.html" />
+    <link rel="prev" title="Interactive Fiction Mapper" href="contents.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="maps.html" title="Making maps"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="contents.html" title="Interactive Fiction Mapper"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Introduction</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-ifm">
+<h2>About IFM<a class="headerlink" href="#about-ifm" title="Permalink to this headline">¶</a></h2>
+<p>IFM is a language for keeping track of your progress through an Interactive
+Fiction game, and a program for producing various different sorts of output
+using it.  You can record each room you visit and its relation to other
+rooms, the initial locations of useful items you find, and the tasks you
+need to perform in order to solve the game.</p>
+<p>The IFM mapping commands are designed so that you can easily add to the map
+as you explore the game. You type in the rooms you visit and the directions
+you move in to reach other rooms, and IFM calculates the position of each
+room in relation to the others.  A map can consist of several independent
+sections, allowing you to divide up the map however you like.  See
+<a class="reference external" href="maps.html"><em>Making maps</em></a> for details of how to make a map.</p>
+<p>The IFM task commands, if used, allow you to specify the order in which
+game-solving tasks must be done.  The IFM program can then calculate and
+print a high-level <em>walkthrough</em> of the game.  See <a class="reference external" href="solving.html"><em>Solving the game</em></a> for
+details of how to do this.</p>
+<p>A more involved example of IFM in use throughout a complete game as it&#8217;s
+being played is given in <a class="reference external" href="example.html"><em>Mapping and solving example</em></a>.</p>
+<p>Several output formats are available, including PostScript, Fig and ASCII
+text&#8212;these are described in <a class="reference external" href="usage.html#usage"><em>Using IFM</em></a>. Some of the output formats have
+a set of variables which control the appearance of the output&#8212;see
+<a class="reference external" href="vars.html"><em>Output variables</em></a>.</p>
+<p>IFM comes with <strong>ABSOLUTELY NO WARRANTY</strong>.  This is free software, and you
+are welcome to redistribute it under certain conditions; see <a class="reference external" href="license.html"><em>License</em></a>
+for details.</p>
+</div>
+<div class="section" id="a-bit-of-history">
+<h2>A bit of history<a class="headerlink" href="#a-bit-of-history" title="Permalink to this headline">¶</a></h2>
+<p>When I started playing IF games, years ago, I did what many other people
+did&#8212;made a rough map on paper of where I&#8217;d explored, so I could see which
+directions I hadn&#8217;t tried yet. Inevitably, the maps always fell off the
+page and turned into a complete mess.</p>
+<p>My first attempt at solving this problem was to make use of the tools I had
+available to draw the map for me. So I started typing the map network into
+a file, and wrote a small Perl script to convert the data into something
+that <a class="reference external" href="http://groff.ffii.org">groff</a> could read and draw a map from. I also added a way of recording
+which items I&#8217;d found, and whether I&#8217;d found a use for them yet.</p>
+<p>As it stood, this worked quite well&#8212;it produced nice maps and lists of
+items so I could see where I&#8217;d got to. The only problem was that it was
+just as tedious making maps this way as on paper, since I had to work out
+the offset of each room relative to a fixed origin.</p>
+<p>Eventually I decided that enough was enough. I wanted to be able to add
+stuff to the map as I played the game, without having to worry about
+offsets or anything irrelevant like that. Hence the main design criteria
+for IFM. The other criteria were easy&#8212;an input language, for flexibility
+and extendability, and a program for converting files in this language into
+different types of output.</p>
+<p>Partway through writing the initial version of IFM, I had the idea that it
+would be nice to be able to somehow record not only the map and items found
+so far, but what&#8217;s been done to solve the game. The concept of tasks
+appeared, which immediately tripled the size of the program and caused all
+sorts of headaches.</p>
+<p>But eventually it got to the stage where it might be worth releasing, so in
+June 1998 the first version appeared in the <a class="reference external" href="http://www.ifarchive.org">IF archive</a>.  And now,
+finally, it&#8217;s finished and I can go back to that IF game I was
+playing. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+</div>
+<div class="section" id="getting-ifm">
+<h2>Getting IFM<a class="headerlink" href="#getting-ifm" title="Permalink to this headline">¶</a></h2>
+<p>You can find IFM in the <a class="reference external" href="http://www.ifarchive.org/if-archive/mapping-tools">mapping tools</a> directory of the <a class="reference external" href="http://www.ifarchive.org">IF archive</a>.
+See the file <tt class="docutils literal"><span class="pre">INSTALL</span></tt> that comes with the IFM source distribution
+for installation details.  But it basically boils down to:</p>
+<div class="highlight-python"><pre>./configure
+make
+su -c 'make install'</pre>
+</div>
+<p>If you want to build IFM on Windows, you&#8217;ll need to install <a class="reference external" href="http://www.cygwin.com">Cygwin</a> first.
+Then, use the same commands as above.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Oh all right. Maybe <em>one</em> more feature...</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h3><a href="contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Introduction</a><ul>
+<li><a class="reference external" href="#about-ifm">About IFM</a></li>
+<li><a class="reference external" href="#a-bit-of-history">A bit of history</a></li>
+<li><a class="reference external" href="#getting-ifm">Getting IFM</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="contents.html"
+                                  title="previous chapter">Interactive Fiction Mapper</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="maps.html"
+                                  title="next chapter">Making maps</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/intro.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="maps.html" title="Making maps"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="contents.html" title="Interactive Fiction Mapper"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+  
+    <li><a href="">Introduction</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

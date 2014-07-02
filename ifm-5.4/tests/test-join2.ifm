@@ -1,0 +1,8 @@
+# Test of hidden joins.
+
+room "North Room" tag NR exit se sw;
+room "South Room" tag SR dir s exit e w;
+
+link SR to NR dir e nw;
+link SR to NR dir w ne;
+join SR to NR hidden;

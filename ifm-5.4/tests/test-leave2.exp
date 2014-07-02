@@ -1,0 +1,59 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 2
+height: 2
+
+room: 3
+name: Room 4
+rpos: 0 0
+
+room: 2
+name: Room 3
+rpos: 1 0
+
+room: 1
+name: Room 2
+rpos: 1 1
+
+room: 0
+name: Room 1
+rpos: 0 1
+
+link: 0 1
+lpos: 0 1
+lpos: 1 1
+
+link: 1 2
+lpos: 1 1
+lpos: 1 0
+
+link: 2 3
+lpos: 1 0
+lpos: 0 0
+
+link: 0 3
+lpos: 0 1
+lpos: 0 0
+
+item: 0
+name: large object
+tag: large
+room: 0
+needed: 5
+
+task: 4
+name: Get large object
+room: 0
+
+task: 6
+name: Move to Room 4
+room: 3
+cmd: S
+
+task: 5
+name: Win the game
+room: 3
+
+task: 7
+name: Drop large object

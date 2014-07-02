@@ -1,0 +1,62 @@
+Task list for Ruins
+
+Dark Forest:
+   Get speckled mushroom
+   Get statuette
+   Put statuette in case
+      score: 10
+
+Move to Square Chamber (D)
+
+Square Chamber:
+   Put mushroom in sunlight
+   Press carvings
+   Get iron key
+
+Move to Stooped Corridor (S)
+
+Stooped Corridor:
+   Search moss
+   Unlock door with key
+   Open door
+   Get blood-red ruby
+
+Move to Lofty Shrine (S)
+
+Lofty Shrine:
+   Put key on slab
+      note: Gives wax
+
+Move to Stooped Corridor (N)
+Move to Square Chamber (N)
+Move to Dark Forest (U)
+
+Dark Forest:
+   Put ruby in case
+      score: 30
+   Put wax in case
+      score: 40
+
+Move to Square Chamber (D)
+Move to Web of Darkness (E)
+Move to Web of Darkness (SE)
+
+Web of Darkness:
+   Stumble over bangle
+      cmd: NE
+      note: Gives silver bangle
+      note: Moves you to Square Chamber
+
+Move to Dark Forest (U)
+
+Dark Forest:
+   Put bangle in case
+      score: 20
+   Wait for helicopter
+      cmd: WAIT
+      cmd: WAIT
+      note: Finishes the game
+
+Total distance travelled: 10
+
+Total score: 100

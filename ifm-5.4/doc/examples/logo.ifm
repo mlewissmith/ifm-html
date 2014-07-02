@@ -1,0 +1,13 @@
+# The IFM logo.
+
+room_size = 4.0;
+room_text_fontsize = 16;
+item_text_fontsize = 12;
+
+room "IFM";
+
+room "Interactive"		dir w 2 s e oneway;
+room "Fiction"			dir e oneway;
+room "Mapper"			dir e oneway;
+
+room "by Glenn Hutchings"	dir e s w 2 oneway;

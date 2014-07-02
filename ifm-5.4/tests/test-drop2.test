@@ -1,0 +1,17 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-drop2.out <<END
+# Test of drop-until combination.
+
+room "Room 1" tag R1;
+item "thing" tag thing;
+task "Do first thing" tag first need thing drop it until second;
+
+room "Room 2" tag R2 dir e;
+task "Do second thing" tag second;
+
+room "Room 3" tag R3 dir e;
+task "Win" need thing;
+END
+
+cmp -s $SRCDIR/tests/test-drop2.exp $BUILDDIR/tests/test-drop2.out

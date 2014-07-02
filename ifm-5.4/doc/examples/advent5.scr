@@ -1,0 +1,36 @@
+>open grate
+You open the steel grate.
+
+>task "Open grate" after last
+That's not a verb I recognise.
+
+>d
+
+Below the Grate
+You are in a small chamber beneath a 3x3 steel grate to the
+surface. A low crawl over cobbles leads inward to the west.
+
+The grate stands open.
+
+>w
+
+In Cobble Crawl
+You are crawling over cobbles in a low passage. There is a
+dim light at the east end of the passage.
+
+There is a small wicker cage discarded nearby.
+
+>item "cage"
+That's not a verb I recognise.
+
+>get cage
+Taken.
+
+>w
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+>undo
+In Cobble Crawl
+[Previous turn undone.]

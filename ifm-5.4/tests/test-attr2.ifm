@@ -1,0 +1,9 @@
+# Test of attribute modification.
+
+room "Room 1" tag R1;
+item "thing" tag thing;
+
+room "Room 2" tag R2 dir s;
+task "Win";
+
+room R2 need thing;

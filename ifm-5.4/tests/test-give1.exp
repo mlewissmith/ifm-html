@@ -1,0 +1,62 @@
+title: Interactive Fiction map
+
+section: Map section 1
+width: 1
+height: 3
+
+room: 2
+name: Room 3
+rpos: 0 0
+
+room: 1
+name: Room 2
+rpos: 0 1
+
+room: 0
+name: Room 1
+rpos: 0 2
+
+link: 0 1
+lpos: 0 2
+lpos: 0 1
+
+link: 1 2
+lpos: 0 1
+lpos: 0 0
+
+item: 0
+name: thing
+tag: thing
+room: 1
+score: 10
+after: 6
+after: 7
+needed: 5
+
+item: 1
+name: thing 2
+tag: thing2
+room: 2
+
+task: 8
+name: Move to Room 2
+room: 1
+cmd: S
+
+task: 6
+name: Ask man for thing
+room: 1
+score: 15
+note: Gives thing
+
+task: 9
+name: Move to Room 1
+room: 0
+cmd: N
+
+task: 5
+name: Win
+room: 0
+
+task: 10
+name: Drop thing

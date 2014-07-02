@@ -1,0 +1,14 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-lose.out <<END
+# Test of 'lose' keyword. 
+
+room "Room 1";
+item "dynamite" tag TNT;
+task "Explode" need TNT lose TNT in any;
+
+room "Room 2" dir se;
+task "Scare granny with dynamite" need TNT;
+END
+
+cmp -s $SRCDIR/tests/test-lose.exp $BUILDDIR/tests/test-lose.out

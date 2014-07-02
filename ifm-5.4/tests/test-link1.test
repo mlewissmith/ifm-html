@@ -1,0 +1,13 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-link1.out <<END
+# Test of implicit link tags.
+
+room "Room 1" tag R1;
+room "Room 2" tag R2 dir e;
+
+room R2 exit n;
+link R2 go in;
+END
+
+cmp -s $SRCDIR/tests/test-link1.exp $BUILDDIR/tests/test-link1.out

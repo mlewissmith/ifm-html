@@ -1,0 +1,634 @@
+% This file is part of IFM (Interactive Fiction Mapper), copyright (C)
+% Glenn Hutchings 1997-2008.
+% 
+% IFM comes with ABSOLUTELY NO WARRANTY.  This is free software, and you
+% are welcome to redistribute it under certain conditions; see the file
+% COPYING for details.
+
+% Default IFM PostScript prolog.
+
+% Start a new page.
+/beginpage {			% WIDTH HEIGHT ROTFLAG beginpage
+    /curmatrix matrix currentmatrix def
+
+    % Page orientation.
+    {
+	/pagewidth page_height def
+	/pageheight page_width def
+	/mapwidth map_height def
+	/mapheight map_width def
+	90 rotate
+	0 pageheight neg translate
+    } {
+	/pagewidth page_width def
+	/pageheight page_height def
+	/mapwidth map_width def
+	/mapheight map_height def
+    } ifelse
+
+    % Leave space for title if required.
+    show_page_title {
+	/pageheight pageheight page_title_fontsize 1.2 mul sub def
+    } if
+
+    % Get width and height of page contents.
+    /bp-height exch def
+    /bp-width exch def
+
+    % Calculate box size.
+    /bp-boxx pagewidth page_margin 2 mul sub mapwidth bp-width max div def
+    /bp-boxy pageheight page_margin 2 mul sub mapheight bp-height max div def
+    /boxsize bp-boxx bp-boxy min def
+
+    % Calculate page offsets.
+    /widthoffset pagewidth bp-width boxsize mul sub 2 div def
+    /heightoffset pageheight bp-height boxsize mul sub 2 div def
+
+    % Draw background.
+    newpath
+    page_margin page_margin moveto
+    pagewidth page_margin 2 mul sub 0 rlineto
+    0 pageheight page_margin 2 mul sub rlineto
+    pagewidth page_margin 2 mul sub neg 0 rlineto
+    closepath page_background_colour selectcolour fill
+
+    show_page_border {
+	newpath
+	page_margin page_margin moveto
+	pagewidth page_margin 2 mul sub 0 rlineto
+	0 pageheight page_margin 2 mul sub rlineto
+	pagewidth page_margin 2 mul sub neg 0 rlineto
+	closepath page_border_colour selectcolour stroke
+    } if
+
+    % Draw title if required.
+    show_page_title {
+	page_title_font page_title_fontsize selectfont
+	page_title_colour selectcolour
+
+	titlestring
+	pagewidth 2 div
+	pageheight page_margin sub page_title_fontsize add false text
+    } if
+
+    % Calculate font scaling factor.
+    /scalewidth mapwidth dup bp-width max div def
+    /scaleheight mapheight dup bp-height max div def
+    /fontscale scalewidth scaleheight min def
+
+    % Split the combined directional strings into individual versions.
+    link_updown_string (/) search {
+	exch pop % remove (/)
+    }{
+	pop (D) (U)
+    } ifelse
+
+    /link_up_string exch def
+    /link_down_string exch def
+
+    link_inout_string (/) search {
+	exch pop % remove (/)
+    }{
+	pop (O) (I)
+    } ifelse
+
+    /link_in_string exch def
+    /link_out_string exch def
+
+    /ah-size boxsize link_arrow_size mul def
+    /link_dashed false def
+} def
+
+% Display a map title
+/maptitle {			% STRING X Y maptitle
+    map_title_colour selectcolour
+    map_title_font map_title_fontsize selectfont
+    pagepos false text
+} def
+
+% Draw a map border
+/mapborder {			% XMIN YMIN XMAX YMAX mapborder
+    pagepos
+    /mb-ymax exch def
+    /mb-xmax exch def
+
+    pagepos
+    /mb-ymin exch def
+    /mb-xmin exch def
+
+    newpath
+    mb-xmin mb-ymin moveto
+    mb-xmax mb-ymin lineto
+    mb-xmax mb-ymax lineto
+    mb-xmin mb-ymax lineto
+    closepath map_background_colour selectcolour fill
+
+    newpath
+    mb-xmin mb-ymin moveto
+    mb-xmax mb-ymin lineto
+    mb-xmax mb-ymax lineto
+    mb-xmin mb-ymax lineto
+    closepath map_border_colour selectcolour stroke
+} def
+
+% Draw a room. 
+/room {				% STRING X Y [ITEMLIST] ITEMS room
+    % Convert and save arguments.
+    /rm-items exch def
+    rm-items {
+	/rm-itemlist exch def
+    } if
+
+    pagepos
+    /rm-ypos exch def
+    /rm-xpos exch def
+    /rm-string exch def
+
+    gsave
+	% Draw room shadow box if required.
+	room_shadow_xoff 0 ne room_shadow_yoff 0 ne or {
+	    room_shadow_colour selectcolour
+
+	    newpath
+	    rm-xpos rm-ypos moveto
+	    boxsize 1 room_shadow_xoff 2 mul sub mul room_width 2 div mul
+	    boxsize 1 room_shadow_yoff 2 mul sub mul room_height 2 div mul
+	    rmoveto
+
+	    room_width boxsize mul neg 0 rlineto
+	    0 room_height boxsize mul neg rlineto
+	    room_width boxsize mul 0 rlineto
+	    closepath fill
+	} if
+
+	% Draw room box.
+	gsave
+	    room_border_dashed {
+		[ 2 2 ] 2 setdash
+	    } if
+
+	    room_border_colour selectcolour
+
+	    room_border_width setlinewidth
+	    newpath
+	    rm-xpos rm-ypos moveto
+	    boxsize room_width 2 div mul
+	    boxsize room_height 2 div mul
+	    rmoveto
+
+	    room_width boxsize mul neg 0 rlineto
+	    0 room_height boxsize mul neg rlineto
+	    room_width boxsize mul 0 rlineto
+	    closepath
+
+	    gsave 
+		room_colour selectcolour fill
+	    grestore 
+	    stroke
+	grestore
+
+	% Draw room text (and item text if required).
+	room_text_colour selectcolour
+	room_text_font room_text_fontsize fontscale mul selectfont
+
+	rm-items show_items and {
+	    rm-string rm-xpos rm-ypos
+	    boxsize room_height mul 1 roomitemratio sub 2 div mul add
+	    boxsize room_width mul
+	    boxsize room_height mul roomitemratio mul
+	    boxtext
+
+	    item_text_colour selectcolour
+	    item_text_font item_text_fontsize fontscale mul selectfont
+
+	    rm-itemlist rm-xpos rm-ypos
+	    boxsize room_height mul roomitemratio 2 div mul sub
+	    boxsize room_width mul
+	    boxsize room_height mul 1 roomitemratio sub mul
+	    boxtext
+	}{
+	    rm-string rm-xpos rm-ypos
+	    boxsize room_width mul
+	    boxsize room_height mul
+	    boxtext
+	} ifelse
+    grestore
+} def
+
+% Draw a room exit.
+/roomexit {			% X1 Y1 X2 Y2 roomexit
+    % Save arguments.
+    /re-y2 exch def
+    /re-x2 exch def
+    /re-y1 exch def
+    /re-x1 exch def
+
+    gsave
+	% Draw line.
+	room_exit_colour selectcolour
+	room_exit_width setlinewidth
+	re-x1 re-y1 pagepos moveto
+	re-x2 re-y2 pagepos lineto
+	stroke
+    grestore
+} def
+
+/taillabel {			% string Xtail Ytail Xhead Yhead
+	link_text_colour selectcolour
+	link_text_font link_text_fontsize fontscale mul selectfont
+
+	gsave
+		3 index 3 index pagepos translate	% to tail
+		angle rotate
+		link_text_fontsize fontscale mul 0.75 mul dup transform
+	grestore
+	itransform
+
+	map_background_colour true text
+} def
+
+% Draw a link.
+/link {				% [ X Y ... ] UP IN ONEWAY link
+    % Save arguments.
+    /ln-oneway exch def
+    /ln-in exch def
+    /ln-up exch def
+    /ln-points exch def
+    /ln-np ln-points length def
+
+    gsave
+	link_colour selectcolour
+	link_line_width setlinewidth
+	link_dashed {
+	    [ 2 2 ] 2 setdash
+	} if
+
+	% load the points onto the stack (and draw the line backwards)
+	ln-points aload pop
+
+	% If oneway, draw an arrowhead and skip forward so the line does
+	% not obscure the head.
+	ln-oneway {
+		gsave
+			2 copy pagepos translate
+			3 index 3 index 4 2 roll angle rotate
+			arrowhead
+			ah-size neg 0 transform
+		grestore
+		itransform
+	}{
+		pagepos
+	} ifelse
+
+	moveto
+
+	% draw segments connected by arcs
+ 	2 2 ln-np 4 sub {
+	    pop
+	    pagepos
+	    3 index 3 index pagepos
+	    boxsize 10 div
+	    arct
+ 	} for
+
+	% draw the final (initial) segment
+	pagepos lineto
+ 
+ 	stroke
+
+	% Mark up/down/in/out if required.
+ 	ln-up 0 ne ln-in 0 ne or {
+
+ 	    % Push the head label and the tail label.
+	    ln-up 1 eq {
+ 		link_down_string
+ 		link_up_string
+ 	    }{
+ 		ln-up -1 eq {
+ 		    link_up_string
+ 		    link_down_string
+ 		}{
+ 		    ln-in 1 eq {
+ 			link_out_string
+ 			link_in_string
+ 		    }{
+ 			link_in_string
+ 			link_out_string
+ 		    } ifelse
+ 		} ifelse
+ 	    } ifelse 
+
+ 	    % Mark the tail.
+ 	    ln-points 0 4 getinterval aload pop
+ 	    taillabel
+
+ 	    % Also mark the head if not oneway.
+ 	    ln-oneway {
+		pop % the head label
+ 	    }{
+ 		ln-points ln-np 4 sub 4 getinterval aload pop
+		4 2 roll
+ 		taillabel
+ 	    } ifelse
+ 	} if
+
+    grestore
+} def
+
+% Draw a circular link.
+/circle {				% Xr Yr angle circle
+    gsave
+	link_colour selectcolour
+	link_line_width 2 div setlinewidth
+	link_dashed {
+		[ 2 2 ] 2 setdash
+	} if
+
+	3 1 roll pagepos translate rotate
+	0 0 moveto
+	boxsize 8 div dup 0 exch 180 -160 arcn
+ 	stroke
+
+	110 rotate
+	arrowhead
+
+    grestore
+} def
+
+% End a page.
+/endpage {			% endpage
+    curmatrix setmatrix
+    showpage
+} def
+
+% Draw some text in a box.
+/boxtext {			% STRING X Y WIDTH HEIGHT text
+    % Save arguments.
+    /bt-height exch def
+    /bt-width exch def
+    /bt-ypos exch def
+    /bt-xpos exch def
+
+    % Get text lines.
+    bt-width bt-height splittext
+    /bt-factor exch 1 textmargin sub mul def
+    /bt-lines exch def
+    /bt-numlines bt-lines length def
+
+    gsave
+	% Move to centre of box.
+	bt-xpos bt-ypos translate
+
+	% Draw box around text if required.
+	debug {
+	    newpath
+	    bt-width 2 div bt-height 2 div moveto
+	    bt-width neg 0 rlineto
+	    0 bt-height neg rlineto
+	    bt-width 0 rlineto
+	    closepath stroke
+	} if
+
+	% Scale box.
+	bt-factor dup scale
+
+	% Draw each line.
+	/bt-linegap current-fontsize textspacing mul def
+	/bt-lineheight current-fontsize bt-linegap add def
+	/bt-textheight bt-numlines bt-lineheight mul bt-linegap sub def
+
+	0 1 bt-numlines 1 sub {
+	    % Get string.
+	    dup bt-lines exch get
+
+	    % Get its Y offset.
+	    exch bt-numlines 1 sub exch sub 0.5 add bt-lineheight mul 
+	    bt-textheight 2 div sub
+
+	    % Draw it.
+	    0 exch false text
+	} for
+    grestore
+} def
+
+% Split a string into pieces for filling.
+/splittext {			% STRING WIDTH HEIGHT split LINES FACTOR
+    % Save arguments.
+    /st-height exch def
+    /st-width exch def
+    /st-str exch def
+
+    {
+	% Build pieces.
+	/st-lines [
+	    st-str st-width {} breakline
+	] def
+
+	% Calculate text squishing factor.
+	/st-factor 1 def
+
+	st-lines {
+	    stringwidth pop st-width exch div
+	    st-factor min /st-factor exch def
+	} forall
+
+	st-lines length
+	textspacing 1 add mul
+	current-fontsize mul
+	st-height exch div
+	st-factor min /st-factor exch def
+
+	% If no squishing required, end it.
+	st-factor 1 ge { exit } if
+
+	% Otherwise, try a smaller font size.
+	current-font current-fontsize 1 sub selectfont
+
+	% But not too small.
+	current-fontsize 1 lt { exit } if
+    } loop
+
+    st-lines st-factor
+} def
+
+% Line breaking algorithm (program 12 from Adobe Cookbook).
+/breakline {			% STRING WIDTH PROC breakline
+    /bl-proc exch def
+    /bl-linewidth exch def
+
+    % Text string needs trailing space for filling to work properly.
+    addspace /bl-textstring exch def
+
+    % Get width of a space in current font.
+    /bl-breakwidth ( ) stringwidth pop def
+
+    % Typeset width of the current line.
+    /bl-curwidth 0 def
+
+    % Index of the most recent space encountered in the text.
+    /bl-lastwordbreak 0 def
+
+    % Index of the first character on the current line.
+    /bl-startchar 0 def
+
+    % Remaining text.
+    /bl-restoftext bl-textstring def
+
+    % Break into lines.
+    {
+	% Find next word.
+	bl-restoftext ( ) search {
+	    /bl-nextword exch def pop
+	    /bl-restoftext exch def
+	    /bl-wordwidth bl-nextword stringwidth pop def
+
+	    % If next word won't fit, process current line (if any)
+	    % and start a new one.  If it will, tag it on.
+	    bl-curwidth bl-wordwidth add bl-linewidth gt {
+		bl-lastwordbreak 0 gt {
+		    bl-textstring bl-startchar
+		    bl-lastwordbreak bl-startchar sub
+		    getinterval bl-proc
+		} if
+
+		/bl-startchar bl-lastwordbreak def
+		/bl-curwidth bl-wordwidth bl-breakwidth add def
+	    }{
+		/bl-curwidth bl-curwidth bl-wordwidth add bl-breakwidth add def
+	    } ifelse
+
+	    % Mark last word break.
+	    /bl-lastwordbreak bl-lastwordbreak bl-nextword length add 1 add def
+	}{
+	    pop exit
+	} ifelse
+    } loop
+
+    % Process the last line.
+    /bl-lastchar bl-textstring length def
+    bl-textstring bl-startchar bl-lastchar bl-startchar sub getinterval bl-proc
+} bind def
+
+% Draw arrowhead with point at 0,0 facing east (caller must rotate/translate).
+/arrowhead {
+	newpath
+	0 0 moveto
+	ah-size neg ah-size 2 div G div rlineto
+	0 ah-size G div neg rlineto
+	closepath fill
+} bind def	
+
+% Draw centred text.
+/text {				% STRING X Y [BGCOLOUR] BGFLAG text
+    /tx-bgbox exch def
+    tx-bgbox {
+	/tx-bgcolour exch def
+    } if
+
+    gsave
+	% Move to text centre.
+	translate
+	/tx-string exch def
+
+	% Get string length.
+	tx-string stringwidth pop
+
+	% Subtract space width if required.
+	tx-string length 1 sub tx-string exch get 32 eq {
+	    ( ) stringwidth pop sub
+	} if
+
+	% Move to string centre.
+	neg 2 div current-fontsize neg 3 div
+	moveto
+
+	% Draw text outline in background if required.
+	tx-bgbox {
+	    gsave
+		tx-bgcolour selectcolour
+		tx-string false charpath pathbbox rectangle
+	    grestore
+	} if
+
+	% Draw text.
+	tx-string show
+    grestore
+} bind def
+
+% Add trailing space to a string.
+/addspace {			% STRING addspace STRING
+    dup length 1 add string /as-str exch def
+    dup as-str exch 0 exch putinterval
+    length as-str exch 32 put as-str
+} def
+
+% Draw a filled rectangle.
+/rectangle {			% LLX LLY URX URY rectangle
+    /rc-ury exch def
+    /rc-urx exch def
+    /rc-lly exch def
+    /rc-llx exch def
+
+    gsave
+	newpath rc-llx rc-lly moveto
+	rc-urx rc-lly lineto
+	rc-urx rc-ury lineto
+	rc-urx neg rc-ury lineto
+	closepath fill
+    grestore
+} bind def
+
+% Find the angle of the vector (x1, y1) to (x2, y2).
+/angle {			% X1 Y1 X2 Y2 ANGLE angle
+    3 -1 roll sub
+    3 1 roll sub neg
+    atan
+} bind def
+
+% Select a font.
+/selectfont {			% FONT SIZE selectfont
+    /current-fontsize exch def
+    /current-font exch def
+    current-font findfont current-fontsize scalefont setfont
+} bind def
+
+% Select a colour.
+/selectcolour {			% COLOUR-ARRAY selectcolour
+    aload pop setrgbcolor
+} bind def
+
+% Convert to page coordinates.
+/pagepos {			% X Y pagepos PX PY
+    0.5 add boxsize mul heightoffset add exch
+    0.5 add boxsize mul widthoffset add exch
+} def
+
+% Print stack if debugging.
+/stack {			% MESSAGE stack
+    debug { (*** ) print print ( ***\n) print pstack } { pop } ifelse
+} bind def
+
+% Print a debugging message.
+/msg {				% MESSAGE msg
+    debug { print (\n) print } { pop } ifelse
+} bind def
+
+% Print a value if debugging.
+/val {				% MESSAGE VALUE val
+    debug { exch print == } { pop pop } ifelse
+} bind def
+
+% The Golden Ratio [1/G == G/(1+G)].
+/G 5 0.5 exp 1 add 2 div def
+
+% Standard definitions.
+/debug false def
+/cm {72 mul 2.54 div} def
+/inch {72 mul} def
+/max {2 copy gt {} {exch} ifelse pop} def
+/min {2 copy lt {} {exch} ifelse pop} def
+
+% Control variables.
+/textspacing 0.1 def
+/textmargin 0.1 def
+/roomitemratio 0.6 def

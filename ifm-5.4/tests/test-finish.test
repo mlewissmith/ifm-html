@@ -1,0 +1,18 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-finish.out <<END
+# Test of 'finish' keyword.
+
+room "Lounge" tag Lounge;
+
+room "Kitchen" dir e;
+task "Make the tea" after tidy;
+item "broom" tag broom finish;
+
+room "Landing" dir n from Lounge go up;
+
+room "Bedroom" dir e;
+task "Tidy the room" tag tidy need broom;
+END
+
+cmp -s $SRCDIR/tests/test-finish.exp $BUILDDIR/tests/test-finish.out

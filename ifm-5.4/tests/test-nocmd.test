@@ -1,0 +1,14 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-nocmd.out <<END
+# Test of tasks with no commands.
+
+room "Start";
+task "Do first thing";
+
+room "Finish" dir s;
+task "Visit finish room" after last cmd none;
+task "Do second thing" after last;
+END
+
+cmp -s $SRCDIR/tests/test-nocmd.exp $BUILDDIR/tests/test-nocmd.out

@@ -1,0 +1,40 @@
+[DESCRIPTION]
+IFM is a program for keeping track of your progress through an Interactive
+Fiction game.  You can record each room you visit and its relation to other
+rooms, the initial locations of useful items you find, and the tasks you
+need to perform in order to solve the game.
+
+The IFM mapping commands are designed so that you can easily add to the map
+as you explore the game.  You type in the rooms you visit and the
+directions you move in to reach other rooms, and IFM calculates the
+position of each room relative to the others.  A map can consist of several
+independent sections, allowing you to divide up the map however you like.
+
+The IFM task commands, if used, allow you to specify the order in which
+game-solving tasks must be done.  The IFM program can then calculate and
+print different styles of walkthrough for the game.
+
+IFM can write hardcopy maps directly to PostScript, suitable for printing
+or viewing.  It can also write maps in Fig format, which can be viewed and
+edited using Xfig, or converted into many other formats.
+
+This man page just presents a summary of the command-line options.  Online
+documentation on how to use IFM can be found in the
+.B SEE ALSO
+section.
+
+[ENVIRONMENT]
+.IP IFMPATH
+Colon-separated list of extra directories to search for include files.
+
+[FILES]
+.IP \fC$HOME/.ifmrc\fP
+User resource file.
+
+.IP \fC$HOME/ifm.ini\fP
+Alternate resource filename (Windows-style).
+
+[SEE ALSO]
+.BR xfig (1) ,
+.BR fig2dev (1) ,
+.BR dot (1)

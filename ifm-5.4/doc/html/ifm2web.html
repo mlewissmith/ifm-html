@@ -1,0 +1,195 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ifm2web – convert IFM map to Web image &mdash; IFM v5.4 documentation</title>
+    <link rel="stylesheet" href="_static/ifm.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '5.4',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="IFM v5.4 documentation" href="index.html" />
+    <link rel="up" title="Tools and utilities" href="tools.html" />
+    <link rel="next" title="IFM text editor support" href="editors.html" />
+    <link rel="prev" title="ifm2tex: convert IFM maps to LaTeX" href="ifm2tex.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="editors.html" title="IFM text editor support"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ifm2tex.html" title="ifm2tex: convert IFM maps to LaTeX"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>ifm2web</strong> &#8211; convert IFM map to Web image</a></li>
+  
+
+      </ul>
+    </div>  
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ifm2web-convert-ifm-map-to-web-image">
+<h1><strong>ifm2web</strong> &#8211; convert IFM map to Web image<a class="headerlink" href="#ifm2web-convert-ifm-map-to-web-image" title="Permalink to this headline">¶</a></h1>
+<p>
+<span class="versionmodified">New in version 5.3.</span></p>
+<p><strong>ifm2web</strong> converts an IFM map to an image file suitable for
+display on the Interweb (i.e., with transparency).  It can produce two
+types of image:</p>
+<ul class="simple">
+<li>A map showing one or more map sections, by sending IFM output through
+<strong>fig2dev</strong> and <strong>convert</strong>.</li>
+<li>A task graph, sending IFM output through <strong>dot</strong> (or
+<strong>neato</strong>) and <strong>convert</strong>.</li>
+</ul>
+<p>These are the options for printing maps:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-m">
+<tt class="descname">-m</tt><tt class="descclassname"> sections</tt><a class="headerlink" href="#cmdoption-ifm2web-m" title="Permalink to this definition">¶</a></dt>
+<dd>Only process the map sections specified.  Format is the same as the IFM
+<tt class="docutils literal"><span class="pre">-m</span></tt> option (see <a class="reference external" href="usage.html#usage"><em>Using IFM</em></a>).</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-z">
+<tt class="descname">-z</tt><tt class="descclassname"> zoom</tt><a class="headerlink" href="#cmdoption-ifm2web-z" title="Permalink to this definition">¶</a></dt>
+<dd>Set the <strong>fig2dev</strong> magnification (zoom) factor.  Default: 1.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-t">
+<tt class="descname">-t</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-t" title="Permalink to this definition">¶</a></dt>
+<dd>Include map section titles.</dd></dl>
+
+<p>These are the options for printing task graphs:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-g">
+<tt class="descname">-g</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-g" title="Permalink to this definition">¶</a></dt>
+<dd>Write task graph instead of a map.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-r">
+<tt class="descname">-r</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-r" title="Permalink to this definition">¶</a></dt>
+<dd>Group the tasks by rooms.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-n">
+<tt class="descname">-n</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-n" title="Permalink to this definition">¶</a></dt>
+<dd>Use <strong>neato</strong> instead of <strong>dot</strong>.</dd></dl>
+
+<p>Other options:</p>
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-S">
+<tt class="descname">-S</tt><tt class="descclassname"> style</tt><a class="headerlink" href="#cmdoption-ifm2web-S" title="Permalink to this definition">¶</a></dt>
+<dd>Use the specified IFM style.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-s">
+<tt class="descname">-s</tt><tt class="descclassname"> scale</tt><a class="headerlink" href="#cmdoption-ifm2web-s" title="Permalink to this definition">¶</a></dt>
+<dd>Set the <strong>convert</strong> scale factor, as a percentage.  Default: 100.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-o">
+<tt class="descname">-o</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-ifm2web-o" title="Permalink to this definition">¶</a></dt>
+<dd>Write to the specified file.  If not given, the filename is built from
+the input file prefix and the image format.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-w">
+<tt class="descname">-w</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-w" title="Permalink to this definition">¶</a></dt>
+<dd>Don&#8217;t actually run anything; just print what would be done.</dd></dl>
+
+<dl class="cmdoption">
+<dt id="cmdoption-ifm2web-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-ifm2web-h" title="Permalink to this definition">¶</a></dt>
+<dd>Print a short usage message and exit.</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="contents.html">
+              <img class="logo" src="_static/logo.png" alt="Logo"/>
+            </a></p>
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ifm2tex.html"
+                                  title="previous chapter"><strong>ifm2tex</strong>: convert IFM maps to LaTeX</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="editors.html"
+                                  title="next chapter">IFM text editor support</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/ifm2web.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+	  <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+	      <p style="font-size: 90%">Enter search terms or a module, class or function name.</p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="editors.html" title="IFM text editor support"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ifm2tex.html" title="ifm2tex: convert IFM maps to LaTeX"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">IFM v5.4 documentation</a> &raquo;</li>
+
+          <li><a href="tools.html" accesskey="U">Tools and utilities</a> &raquo;</li>
+  
+    <li><a href=""><strong>ifm2web</strong> &#8211; convert IFM map to Web image</a></li>
+  
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 1998-2009, Glenn Hutchings.
+      Last updated on Feb 13, 2009.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.
+    </div>
+  </body>
+</html>

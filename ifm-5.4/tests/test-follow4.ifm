@@ -1,0 +1,7 @@
+# Test of follow/need combo.
+
+room "Room 1";
+item "thing" tag thing;
+task "T1" tag T1;
+task "T2" tag T2 follow T1 need thing;
+task "T3" tag T3 follow T2 lose thing;

@@ -1,0 +1,14 @@
+#! /bin/sh
+
+$BUILDDIR/src/ifm -I$SRCDIR/lib -w -m -i -t -f raw 2>&1 > $BUILDDIR/tests/test-follow3.out <<END
+# Test 'follow' unsafe inheritance.
+
+room "Room 1";
+task "Task 1";
+task "Task 2" tag task2 follow last;
+
+room "Room 2" dir n before task2;
+task "Safe task";
+END
+
+cmp -s $SRCDIR/tests/test-follow3.exp $BUILDDIR/tests/test-follow3.out

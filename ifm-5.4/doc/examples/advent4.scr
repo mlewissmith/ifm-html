@@ -1,0 +1,8 @@
+>unlock grate
+What do you want to unlock the steel grate with?
+
+>keys
+You unlock the steel grate.
+
+>task "Unlock grate" need Keys
+That's not a verb I recognise.
