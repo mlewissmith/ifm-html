@@ -118,7 +118,8 @@ build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
 datarootdir = @datarootdir@
-docdir = $(prefix)/doc
+#docdir = $(prefix)/doc
+docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
@@ -127,6 +128,7 @@ host_cpu = @host_cpu@
 host_os = @host_os@
 host_vendor = @host_vendor@
 htmldir = $(builddir)/html
+#htmldir = @htmldir@
 ifm2dev = @ifm2dev@
 ifm2tex = @ifm2tex@
 ifm2web = @ifm2web@
@@ -180,7 +182,7 @@ TASKS = $(IFM2WEB) -g -s 70
 
 # Distribution stuff.
 EXTRA_DIST = $(DOCFILES) examples templates static
-ifmdocdir = $(docdir)/ifm
+ifmdocdir = $(DESTDIR)$(docdir)/html
 
 # Show recent source changes.
 DAYS = 7
@@ -394,17 +396,19 @@ $(imagedir)/logo.png: $(exampledir)/logo.ifm
 install-doc: install-html
 
 install-html: $(ifmdocdir)
-	@ if test -d $(htmldir); then					\
+	if test -d $(htmldir); then					\
 	   set -x;							\
-	   rm -rf $(ifmdocdir);						\
+	   rm -rvf $(ifmdocdir);						\
 	   mkdir -p $(ifmdocdir);					\
-	   cp -rf $(htmldir)/* $(ifmdocdir);				\
+	   cp -rvf $(htmldir)/* $(ifmdocdir);				\
+	   find $(ifmdocdir) -type f -exec chmod -v 644 {} + ;		\
+	   find $(ifmdocdir) -type d -exec chmod -v 755 {} + ;		\
 	fi
 
 $(ifmdocdir):
-	- chmod u+w $(prefix)
-	$(mkinstalldirs) $(docdir)
-	- chmod u+w $(docdir)
+# 	- chmod u+w $(prefix)
+# 	$(mkinstalldirs) $(docdir)
+# 	- chmod u+w $(docdir)
 	$(mkinstalldirs) $(ifmdocdir)
 
 dist-doc:

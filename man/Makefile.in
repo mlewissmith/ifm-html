@@ -122,7 +122,8 @@ build_os = @build_os@
 build_vendor = @build_vendor@
 datadir = @datadir@
 datarootdir = @datarootdir@
-docdir = $(prefix)/doc
+#docdir = $(prefix)/doc
+docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
@@ -375,9 +376,9 @@ manpage: $(MANPAGE)
 $(MANPAGE): ifm.man
 	cp $(srcdir)/ifm.man $(TMP)
 	chmod u+w $(TMP)
-	echo "[SEE ALSO]" >> $(TMP)
-	echo ".IP $(ifmdocdir)/index.html" >> $(TMP)
-	echo "IFM manual" >> $(TMP)
+# 	echo "[SEE ALSO]" >> $(TMP)
+# 	echo ".IP $(ifmdocdir)/index.html" >> $(TMP)
+# 	echo "IFM manual" >> $(TMP)
 	$(HELP2MAN) -o $@ -i $(TMP) $(IFM)
 	rm -f $(TMP)
 
