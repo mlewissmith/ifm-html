@@ -1,0 +1,46 @@
+# Test of all the map features.
+
+show_map_border = 1;
+
+room_width = 0.8;
+room_height = 0.65;
+room_colour = "cyan" in style blue;
+fit_page = 1;
+
+title "IFM Map Test";
+
+map "A Bunch of Rooms";
+
+room "An Empty Room";
+
+room "Room with an Item" dir e;
+  item "an item";
+
+room "Room with Exits" dir s exit e se sw w;
+
+room "The Blue Room" dir e style blue;
+
+room "Room with a Oneway Link" dir s oneway;
+
+room "Room with a Bendy In/Out Oneway Link" dir sw w oneway go in;
+
+map "Another Bunch of Rooms";
+
+room "A Room with a Very Very Very Very Long Name";
+
+room "Room with Many Items" dir s;
+  item "bunny wunny";
+  item "kitty cat";
+  item "doggy";
+  item "teddy bear";
+  item "ravenous bugblatter beast of traal";
+
+room "Room with a Bendy Link" dir se e n e ne;
+
+room "Room with an Up/Down Link" dir s 2 go down tag updown;
+
+room "Room with an In/Out Link" dir w go in;
+
+room "Room with a Dead End" dir s from updown tag deadend;
+
+link deadend to deadend dir sw go down;

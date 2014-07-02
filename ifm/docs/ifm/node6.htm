@@ -1,0 +1,1166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3 Solving the Game</TITLE>
+<META NAME="description" CONTENT="3 Solving the Game">
+<META NAME="keywords" CONTENT="ifm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ifm.css">
+
+<LINK REL="next" HREF="node7.htm">
+<LINK REL="previous" HREF="node5.htm">
+<LINK REL="up" HREF="ifm.htm">
+<LINK REL="next" HREF="node7.htm">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html242"
+  HREF="node7.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html238"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html232"
+  HREF="node5.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html240"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html243"
+  HREF="node7.htm">4 Using IFM</A>
+<B> Up:</B> <A NAME="tex2html239"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html233"
+  HREF="node5.htm">2 Making Maps</A>
+ &nbsp; <B>  <A NAME="tex2html241"
+  HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html244"
+  HREF="node6.htm#SECTION00061000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Introduction to Tasks</A>
+<LI><A NAME="tex2html245"
+  HREF="node6.htm#SECTION00062000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Task Dependencies</A>
+<UL>
+<LI><A NAME="tex2html246"
+  HREF="node6.htm#SECTION00062100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Requiring Tasks</A>
+<LI><A NAME="tex2html247"
+  HREF="node6.htm#SECTION00062200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Requiring Items</A>
+<LI><A NAME="tex2html248"
+  HREF="node6.htm#SECTION00062300000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Obtaining Items</A>
+<LI><A NAME="tex2html249"
+  HREF="node6.htm#SECTION00062400000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> Ignoring Tasks</A>
+<LI><A NAME="tex2html250"
+  HREF="node6.htm#SECTION00062500000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> Doing Other Tasks</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html251"
+  HREF="node6.htm#SECTION00063000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Handling Items</A>
+<UL>
+<LI><A NAME="tex2html252"
+  HREF="node6.htm#SECTION00063100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Inventory Items</A>
+<LI><A NAME="tex2html253"
+  HREF="node6.htm#SECTION00063200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Losing Items</A>
+<LI><A NAME="tex2html254"
+  HREF="node6.htm#SECTION00063300000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Dropping Items</A>
+<LI><A NAME="tex2html255"
+  HREF="node6.htm#SECTION00063400000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN> Leaving Items</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html256"
+  HREF="node6.htm#SECTION00064000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN> Moving Around</A>
+<UL>
+<LI><A NAME="tex2html257"
+  HREF="node6.htm#SECTION00064100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Limiting Movement</A>
+<LI><A NAME="tex2html258"
+  HREF="node6.htm#SECTION00064200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Movement Tasks</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html259"
+  HREF="node6.htm#SECTION00065000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN> Other Game Features</A>
+<UL>
+<LI><A NAME="tex2html260"
+  HREF="node6.htm#SECTION00065100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> Scoring Points</A>
+<LI><A NAME="tex2html261"
+  HREF="node6.htm#SECTION00065200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">2</SPAN> Finishing the Game</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html262"
+  HREF="node6.htm#SECTION00066000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">6</SPAN> Finding a Solution</A>
+<LI><A NAME="tex2html263"
+  HREF="node6.htm#SECTION00067000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN> Tweaking the Solution</A>
+<UL>
+<LI><A NAME="tex2html264"
+  HREF="node6.htm#SECTION00067100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> Making things safe</A>
+<LI><A NAME="tex2html265"
+  HREF="node6.htm#SECTION00067200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN> Changing path lengths</A>
+<LI><A NAME="tex2html266"
+  HREF="node6.htm#SECTION00067300000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN> Closing off paths</A>
+<LI><A NAME="tex2html267"
+  HREF="node6.htm#SECTION00067400000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN> Ignoring parts of the solution</A>
+<LI><A NAME="tex2html268"
+  HREF="node6.htm#SECTION00067500000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">5</SPAN> Keeping fixes together</A>
+<LI><A NAME="tex2html269"
+  HREF="node6.htm#SECTION00067600000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">6</SPAN> Displaying solver messages</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html270"
+  HREF="node6.htm#SECTION00068000000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">8</SPAN> Limitations</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00060000000000000000"></A><A NAME="sec:solving-game"></A>
+<BR>
+<SPAN CLASS="arabic">3</SPAN> Solving the Game
+</H1>
+
+<P>
+As well as making a map of your game, you can record the steps you
+took to solve it. IFM can then calculate a (fairly) optimal solution.
+This section is a guide to how to do it. Again, it's not a complete
+specification--see Section <A HREF="node8.htm#sec:language">5</A> for that.
+
+<P>
+
+<H2><A NAME="SECTION00061000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Introduction to Tasks</A>
+</H2>
+
+<P>
+The basic game-solving action is called a ``task'' in IFM-speak.
+To introduce a task, you use the <TT>task</TT> command, like this:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Put&nbsp;the&nbsp;fluffy&nbsp;bunny&nbsp;in&nbsp;the&nbsp;incinerator&#34;;
+</DD>
+</DL>Most tasks need to be done in a certain room. The default is that
+a task must be done in the last room mentioned. You can change that
+by using the <TT>in</TT> clause, just as for items. Some tasks can
+be done anywhere--you can say <TT>in&nbsp;any</TT> to indicate that.
+As usual, you can add tags to tasks in order to refer to them later.
+
+<P>
+The game solver in IFM divides tasks into two fundamental types: ``safe''
+and ``unsafe''. An unsafe task is one that, if done, might get
+you into a position where solving the game is impossible. The game
+solver avoids doing unsafe tasks until it really has to.
+
+<P>
+
+<H2><A NAME="SECTION00062000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Task Dependencies</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00062100000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Requiring Tasks</A>
+</H3>
+
+<P>
+A lot of tasks require a previous task to be done first. To say this,
+you use the <TT>after</TT> clause:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Press&nbsp;incinerator&nbsp;start&nbsp;switch&#34;&nbsp;tag&nbsp;press_switch;
+
+<P>
+...
+
+<P>
+task&nbsp;&#34;Put&nbsp;the&nbsp;fluffy&nbsp;bunny&nbsp;in&nbsp;the&nbsp;incinerator&#34;&nbsp;after&nbsp;press_switch;
+</DD>
+</DL>As a shortcut, to avoid having to tag many tasks, you can say <TT>after&nbsp;last</TT>
+to indicate the last task mentioned. For example, if the two tasks
+above could be done in the same room, you could say
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Press&nbsp;incinerator&nbsp;start&nbsp;switch&#34;&nbsp;tag&nbsp;press_switch;
+
+<P>
+task&nbsp;&#34;Put&nbsp;the&nbsp;fluffy&nbsp;bunny&nbsp;in&nbsp;the&nbsp;incinerator&#34;&nbsp;after&nbsp;last;
+</DD>
+</DL>Alternatively, you could merge the two into a single task--the simplicity
+or complexity of tasks is up to you.
+
+<P>
+The <TT>after</TT> clause only says that a task will come after another--it
+doesn't specify how soon after. But in some situations it is essential
+that a task immediately follows a specific previous task, without
+deviation. You can use the task <TT>follow</TT> clause to specify
+this. For example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Mission&nbsp;Control&#34;&nbsp;...;
+
+<P>
+task&nbsp;&#34;Activate&nbsp;launch&nbsp;sequence&#34;&nbsp;tag&nbsp;activate;
+
+<P>
+...
+
+<P>
+room&nbsp;&#34;Rocket&nbsp;Cabin&#34;&nbsp;...;
+
+<P>
+task&nbsp;&#34;Fasten&nbsp;seat&nbsp;belt&#34;&nbsp;follow&nbsp;activate;
+</DD>
+</DL>The <TT>follow</TT> clause creates a chain of tasks that must be done
+one after the other. The game solver will not attempt the first task
+in the chain until it knows that all the tasks are possible (i.e.,
+all the prerequisites for each task in the chain are satisfied). Also,
+if one of the tasks in the chain is unsafe, then all previous tasks
+in the chain are also marked unsafe.
+
+<P>
+Of course, you can only have a single task in a <TT>follow</TT> clause--the
+immediately preceding task. It is an error for two or more tasks to
+try to immediately follow the same task.
+
+<P>
+
+<H3><A NAME="SECTION00062200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">2</SPAN> Requiring Items</A>
+</H3>
+
+<P>
+For a lot of tasks, you need to have one or more items in your possession.
+You can indicate this by using the <TT>need</TT> clause, like this:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Put&nbsp;the&nbsp;fluffy&nbsp;bunny&nbsp;in&nbsp;the&nbsp;incinerator&#34;&nbsp;need&nbsp;bunny;
+</DD>
+</DL>Here, <TT>bunny</TT> is the tag name of the corresponding item. You
+can list more than one item tag--e.g., <TT>need bunny asbestos_gloves</TT>.
+
+<P>
+Note that you don't need to add tasks to get required items yourself--the
+game solver does that automatically. It knows it has to get all the
+items which appear in <TT>need</TT> clauses.
+
+<P>
+
+<H3><A NAME="SECTION00062300000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">3</SPAN> Obtaining Items</A>
+</H3>
+
+<P>
+Sometimes a task need to be done before you can get an item. One way
+to indicate this is with the task <TT>get</TT> clause:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Put&nbsp;money&nbsp;in&nbsp;drinks&nbsp;machine&#34;&nbsp;need&nbsp;coin&nbsp;get&nbsp;lemonade;
+</DD>
+</DL>This naturally implies that all tasks which supply an item (via the
+<TT>get</TT> clause) must be done before any task which needs that
+item.
+
+<P>
+An alternate way to phrase this is with the item <TT>after</TT> clause,
+which says that the item can't be picked up until a specified task
+is done. This is a common combination in IFM:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Put&nbsp;money&nbsp;in&nbsp;drinks&nbsp;machine&#34;&nbsp;need&nbsp;coin;
+
+<P>
+item&nbsp;&#34;lemonade&#34;&nbsp;hidden&nbsp;after&nbsp;last;
+</DD>
+</DL>Some items are only available <SPAN  CLASS="textit">before</SPAN> doing a certain task.
+You can use the <TT>before</TT> clause to say that:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>item&nbsp;&#34;precious&nbsp;diamond&#34;&nbsp;before&nbsp;trigger_alarm;
+</DD>
+</DL>Some items can only be picked up if you're already carrying another--use
+the <TT>need</TT> clause for that:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>item&nbsp;&#34;hot&nbsp;coal&#34;&nbsp;need&nbsp;tongs;
+</DD>
+</DL>Sometimes doing a task not only allows you to get an item, but also
+puts it in your inventory. You can say that using the <TT>give</TT>
+clause:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Buy&nbsp;beer&#34;&nbsp;need&nbsp;money&nbsp;give&nbsp;beer_mug;
+</DD>
+</DL>The <TT>give</TT> clause overrides all other restrictions placed on
+getting items; the item is just teleported into your possession.
+
+<P>
+
+<H3><A NAME="SECTION00062400000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> Ignoring Tasks</A>
+</H3>
+
+<P>
+In some circumstances, all the effects of doing a task occur before
+the task is done. If this happens, the task will be ignored. For example,
+if a task A gives an item, but that item is first given by task B,
+then task A will be ignored (provided it doesn't do anything else
+of importance).
+
+<P>
+If a task has no effect, it is <SPAN  CLASS="textit">not</SPAN> ignored--it's assumed that
+you've recorded that you did something but don't know why yet. Also,
+tasks which finish the game or score points are never ignored.
+
+<P>
+You can explicitly ignore a task using the <TT>ignore</TT> attribute.
+This is useful while you're solving the game (see Section <A HREF="#sec:tweaking">3.7</A>)
+and when the task can be done by other tasks (see the next section).
+
+<P>
+
+<H3><A NAME="SECTION00062500000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">5</SPAN> Doing Other Tasks</A>
+</H3>
+
+<P>
+You can arrange for a task to automatically do other tasks after it
+is done, using the <TT>do</TT> clause. For example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Control&nbsp;Room&#34;;
+
+<P>
+task&nbsp;&#34;Press&nbsp;airlock&nbsp;button&#34;&nbsp;do&nbsp;open_airlock;
+
+<P>
+...
+
+<P>
+room&nbsp;&#34;Outer&nbsp;Airlock&#34;;
+
+<P>
+task&nbsp;&#34;Open&nbsp;airlock&#34;&nbsp;tag&nbsp;open_airlock;
+
+<P>
+room&nbsp;&#34;Inner&nbsp;Airlock&#34;&nbsp;dir&nbsp;s&nbsp;after&nbsp;last;
+</DD>
+</DL>In this example, the airlock can be opened in one of two ways: manually,
+when in the Outer Airlock, or via the button in the Control Room.
+Pressing the button will cause the ``open airlock'' task to be
+done immediately afterwards. Note that if the manual method is used
+first, the press-button task will be ignored.
+
+<P>
+The <TT>do</TT> clause causes <SPAN  CLASS="textit">any</SPAN> task to be done--even tasks
+that have prerequisites, and explicitly ignored ones. This is useful
+in that you can create special ignored tasks that can be done by any
+of a set of other tasks, whichever gets there first. The <TT>do</TT>
+clause is also recursive: a task can do another task which in turn
+does another, and so on.<A NAME="tex2html3"
+  HREF="footnode.htm#foot320"><SUP><SPAN CLASS="arabic">2</SPAN></SUP></A>
+<P>
+Note that any task which does an unsafe task in this way is itself
+marked unsafe.
+
+<P>
+
+<H2><A NAME="SECTION00063000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Handling Items</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00063100000000000000"></A><A NAME="sec:inventory"></A>
+<BR>
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Inventory Items
+</H3>
+
+<P>
+Items can be split into two types: useful and useless. A useful item
+one that is needed by at least one task, or is required in order to
+be able to move somewhere; all other items are useless. The game solver
+will try to go and get all useful items, and will ignore the useless
+ones. It keeps track of the items it's carrying, and knows when a
+useful item is no longer needed.<A NAME="tex2html4"
+  HREF="footnode.htm#foot323"><SUP><SPAN CLASS="arabic">3</SPAN></SUP></A> At that point, it will be dropped.
+
+<P>
+If the solver obtains a useless item (via a task <TT>get</TT> or <TT>give</TT>
+clause, or an item <TT>need</TT> clause) it will never drop it. This
+is just a default; you can change it by setting the variable <TT>keep_unused_items</TT>
+to zero. In that case, useless items will be dropped as soon as possible.<A NAME="tex2html5"
+  HREF="footnode.htm#foot1449"><SUP><SPAN CLASS="arabic">4</SPAN></SUP></A>
+<P>
+If you want to make sure that an item is never dropped in any circumstance,
+you can mark it with the <TT>keep</TT> attribute. This is handy for
+items that act as general containers for other items.
+
+<P>
+Sometimes a useful item needs to be kept for longer than usual. In
+the hot coal example above, the tongs would be dropped as soon as
+the coal was picked up, leaving you with a burnt hand. What's needed
+here is to carry the tongs for as long as you have the coal. You can
+use the <TT>keep&nbsp;with</TT> clause to say that:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>item&nbsp;&#34;hot&nbsp;coal&#34;&nbsp;tag&nbsp;coal&nbsp;need&nbsp;tongs;
+
+<P>
+item&nbsp;&#34;tongs&#34;&nbsp;tag&nbsp;tongs&nbsp;keep&nbsp;with&nbsp;coal;
+</DD>
+</DL>Now the tongs won't be dropped until after the coal is, even if they
+have no other use. Similarly, there's also a <TT>keep&nbsp;until</TT>
+clause, which keeps an item until a specific task is done. 
+
+<P>
+Finally, if a room has the attribute <TT>nodrop</TT> set, no items
+will be voluntarily dropped in that room. Any items which need to
+be dropped will then be dropped after the next task that happens in
+a room where dropping is allowed.
+
+<P>
+
+<H3><A NAME="SECTION00063200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Losing Items</A>
+</H3>
+
+<P>
+Sometimes, doing a task causes items to be destroyed. You can say
+that with the <TT>lose</TT> clause:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Light&nbsp;bonfire&#34;&nbsp;need&nbsp;match&nbsp;lose&nbsp;match;
+</DD>
+</DL>This naturally implies that all other tasks which need the item must
+be done before the task that destroys it. A ``drop'' task is never
+generated for items that are lost in this way.
+
+<P>
+Incidentally, you can use the special tag <TT>it</TT> to refer to
+the last room, item or task tag name within a command. So the previous
+example could also have been written
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Light&nbsp;bonfire&#34;&nbsp;need&nbsp;match&nbsp;lose&nbsp;it;
+</DD>
+</DL>
+<P>
+
+<H3><A NAME="SECTION00063300000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Dropping Items</A>
+</H3>
+
+<P>
+As mentioned in Section <A HREF="#sec:inventory">3.3.1</A>, IFM knows when a useful
+item is no longer needed, and drops it automatically. But sometimes
+items need to be dropped temporarily, even though they're needed later.
+You can do that using the <TT>drop</TT> clause:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Throw&nbsp;spear&nbsp;at&nbsp;tree&nbsp;stump&#34;&nbsp;need&nbsp;spear&nbsp;drop&nbsp;it;
+</DD>
+</DL>In this example, the spear is dropped in the same room that the task
+was done in. If you ever need the spear for anything else, it will
+be picked up again by the game solver. Note that an item will only
+be dropped if it is being carried--mentioning an item in a <TT>drop</TT>
+clause does not imply that it's needed to do the task.
+
+<P>
+Sometimes items must be dropped in a different room to the one you're
+in. You can use the <TT>in</TT> clause to modify things:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Top&nbsp;of&nbsp;Chute&#34;;&nbsp;
+
+<P>
+task&nbsp;&#34;Put&nbsp;laundry&nbsp;in&nbsp;chute&#34;&nbsp;need&nbsp;laundry&nbsp;drop&nbsp;it&nbsp;in&nbsp;Bottom_of_Chute;
+</DD>
+</DL>In other cases, you need to drop all the items you're carrying, or
+all except certain items. You can use <TT>drop&nbsp;all</TT> and <TT>drop&nbsp;all&nbsp;except</TT>
+to say that.
+
+<P>
+Normally, if an item is dropped but is needed again for some other
+task, there is nothing to stop the game solver picking it up again
+(provided there's a path to the room the item was dropped in). But
+sometimes you need to drop an item and not pick it up again until
+you've done something else. You can use the <TT>until</TT> clause
+to say that:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Put&nbsp;coin&nbsp;in&nbsp;slot&#34;&nbsp;give&nbsp;chocolate&nbsp;drop&nbsp;coin&nbsp;until&nbsp;open_machine;
+</DD>
+</DL>A task which drops items will be marked unsafe if there is no path
+back to the dropped items.
+
+<P>
+
+<H3><A NAME="SECTION00063400000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN> Leaving Items</A>
+</H3>
+
+<P>
+There are some situations where your movement is blocked if you are
+carrying particular items. You can use the <TT>leave</TT> attribute
+of rooms, links and joins to specify a list of items that must be
+left behind before using them. For example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Bottom&nbsp;of&nbsp;Canyon&#34;;&nbsp;
+
+<P>
+item&nbsp;&#34;heavy&nbsp;boulder&#34;&nbsp;tag&nbsp;boulder;
+
+<P>
+room&nbsp;&#34;Top&nbsp;of&nbsp;Canyon&#34;&nbsp;dir&nbsp;n&nbsp;go&nbsp;up&nbsp;leave&nbsp;boulder;
+</DD>
+</DL>If the <TT>leave</TT> clause appears before the <TT>dir</TT> clause,
+that means the items must be dropped before entering the room (from
+any direction). It is generally the case that, if an attribute could
+apply to a room or its implicit link with the previous one, its position
+relative to the <TT>dir</TT> clause is what decides it.
+
+<P>
+You can also say <TT>leave&nbsp;all</TT>, which means that you must leave
+all the items you're currently carrying, and <TT>leave&nbsp;all&nbsp;except</TT>,
+which omits certain items from being left behind.
+
+<P>
+When finding a solution, the game solver will carry items until it
+is forced to drop them. If the dropped items are needed later, the
+game solver will try to come back and get them. If it is trying to
+do a task which requires items, it will choose a route to get to the
+task room which doesn't involve dropping any of the needed items.
+
+<P>
+Note that the <TT>leave</TT> clause overrides the room <TT>nodrop</TT>
+attribute; items will be dropped even in those rooms.
+
+<P>
+
+<H2><A NAME="SECTION00064000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN> Moving Around</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00064100000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Limiting Movement</A>
+</H3>
+
+<P>
+Sometimes an item is required, or a task needs to be done, before
+movement in a certain direction is possible. To represent this, you
+can give <TT>need</TT> and <TT>after</TT> clauses to rooms, links
+and joins. For example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Cemetery&#34;&nbsp;dir&nbsp;s&nbsp;from&nbsp;winding_path;
+
+<P>
+task&nbsp;&#34;Unlock&nbsp;the&nbsp;iron&nbsp;door&#34;&nbsp;need&nbsp;rusty_key;
+
+<P>
+room&nbsp;&#34;Crypt&#34;&nbsp;dir&nbsp;s&nbsp;go&nbsp;down&nbsp;after&nbsp;last;
+</DD>
+</DL>Here's another example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Dimly-lit&nbsp;Passage&#34;&nbsp;dir&nbsp;e;
+
+<P>
+room&nbsp;&#34;Dark&nbsp;Passage&#34;&nbsp;dir&nbsp;e&nbsp;need&nbsp;candle;
+</DD>
+</DL>In this case it is the link between the two rooms that is blocked
+off until the candle is obtained. If the <TT>need</TT> clause had
+appeared before the <TT>dir</TT> clause, the restriction would apply
+to the room itself (i.e.&nbsp;no entering the room from <SPAN  CLASS="textit">any</SPAN> direction
+without the candle).
+
+<P>
+In some cases, doing a task closes off a room, link or join so that
+it can't be used any more. You can use the <TT>before</TT> clause
+to indicate this:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Bank&nbsp;Vault&#34;&nbsp;tag&nbsp;Vault;
+
+<P>
+room&nbsp;&#34;Bank&nbsp;Entrance&#34;&nbsp;tag&nbsp;Entrance&nbsp;dir&nbsp;e&nbsp;before&nbsp;trigger_alarm;
+</DD>
+</DL>All tasks which close things off like this are marked unsafe, since
+they could block off a crucial path through the game.
+
+<P>
+Sometimes in a game there is the situation where a path is closed
+off and, later on in the game, reopened again. A single link or join
+can't represent this. However, there's nothing to stop you from using
+two or more joins between the same rooms. If you mark them with the
+<TT>hidden</TT> attribute, they won't appear on the map either. For
+example, this line could be added to the previous example to provide
+an escape route:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>join&nbsp;Vault&nbsp;to&nbsp;Entrance&nbsp;go&nbsp;e&nbsp;after&nbsp;disable_alarm&nbsp;hidden;
+</DD>
+</DL>
+<P>
+
+<H3><A NAME="SECTION00064200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Movement Tasks</A>
+</H3>
+
+<P>
+There are several different ways of moving around in a game. The usual
+way is to say the direction you want to go in. Another way is to do
+something else which results in movement. A good example is the magic
+word <TT>XYZZY</TT> from Colossal Cave. It acts exactly like a movement
+command, in that you can use it again and again and it moves you somewhere
+predictable. The best way to represent this in IFM is to use a join
+to connect the two rooms, and specify the command used to do the movement
+via the <TT>cmd</TT> clause, like this:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>join&nbsp;Debris_Room&nbsp;to&nbsp;Building&nbsp;after&nbsp;examine_wall&nbsp;cmd&nbsp;&#34;XYZZY&#34;;
+</DD>
+</DL>Yet another way of moving around is a one-off event that ``teleports''
+you to a different room. You can indicate that this happens using
+the task <TT>goto</TT> clause,<A NAME="tex2html6"
+  HREF="footnode.htm#foot1450"><SUP><SPAN CLASS="arabic">5</SPAN></SUP></A> and supplying the tag name of the destination room. For example:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>task&nbsp;&#34;Get&nbsp;captured&nbsp;by&nbsp;goblins&#34;&nbsp;goto&nbsp;Dungeon;
+</DD>
+</DL>As soon as the task is done, you teleport to the new location--no
+intervening rooms are visited. Note that because each task is only
+done once, this method of travel can only be used once. Note also
+that the <TT>drop</TT> and <TT>leave</TT> actions are done <SPAN  CLASS="textit">before</SPAN>
+teleporting you to the new location (so if you drop items in the ``current
+room'', you will be teleported away from the dropped items).
+
+<P>
+
+<H2><A NAME="SECTION00065000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN> Other Game Features</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00065100000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> Scoring Points</A>
+</H3>
+
+<P>
+Many games have some sort of scoring system, whereby you get points
+for doing various things. In IFM you can record this using the <TT>score</TT>
+clause, which can apply to rooms, items or tasks. It takes one integer
+argument--a score value. For rooms, it's the score you get when visiting
+it for the first time. For items, it's the score for first picking
+it up. For tasks, it's the score for doing that task. If an item has
+a score, but is given to the player via a task <TT>give</TT> clause,
+then its score is added to the score for that task instead.
+
+<P>
+
+<H3><A NAME="SECTION00065200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">2</SPAN> Finishing the Game</A>
+</H3>
+
+<P>
+Usually a game finishes when you complete some final task. You can
+indicate which task this is using the <TT>finish</TT> attribute. This
+attribute can attach to rooms, items or tasks, giving three different
+types of finish condition: entering a room, picking up an object or
+doing a task. If the game solver ever manages to do something which
+is flagged with the <TT>finish</TT> attribute, it considers the game
+solved and stops. Any extra things left to do will not be done, even
+if they score points.
+
+<P>
+
+<H2><A NAME="SECTION00066000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">6</SPAN> Finding a Solution</A>
+</H2>
+
+<P>
+Here's what the game solver does in order to come up with a solution
+to the game. First, extra internal tasks are generated. These are
+tasks to:
+
+<P>
+
+<UL>
+<LI>get items which are required for explicitly-mentioned tasks to be
+done,
+</LI>
+<LI>get items which are required to get other items,
+</LI>
+<LI>get items which are needed to go in certain directions,
+</LI>
+<LI>get items which are scored,
+</LI>
+<LI>go to rooms which are scored.
+</LI>
+</UL>
+Next, all the rooms are connected using their links and joins. This
+means that for each room, a list is made of all other rooms reachable
+in one move. Note that it is possible for some rooms to be unreachable--for
+example, all rooms in a section where there is no ``join'' to
+rooms on other sections.
+
+<P>
+Then the task dependencies are calculated. A dependency is where one
+task must be done before another. The task dependencies are examined
+to see if there are any cycles--that is, chains of tasks where each
+one must be done before the next, and the last must be done before
+the first. If there are any, then the game is unsolvable, since none
+of the tasks in a cycle can be done.
+
+<P>
+If there are no cyclic dependencies, the task list is ``traversed''
+to find a sequence which solves the game while satisfying the task
+dependencies. The start room is the room which was first mentioned
+in the input (but this can be changed--see Section <A HREF="node8.htm#sec:language">5</A>).
+While there are tasks left in the task list, the following steps are
+performed:
+
+<P>
+
+<OL>
+<LI>The inventory is examined to see if there are any unwanted items;
+if so, and dropping items in the current room is allowed, they are
+dropped. An item is wanted if at least one of the following is true:
+
+<P>
+
+<OL>
+<LI>it's needed for movement,
+</LI>
+<LI>it's needed for a task that hasn't been done yet,
+</LI>
+<LI>it's being kept unconditionally,
+</LI>
+<LI>it's being kept with another item that's carried,
+</LI>
+<LI>it's being kept until a certain task is done.
+</LI>
+</OL>
+</LI>
+<LI>The map is traversed to find the distances of all rooms from the current
+room. Then the task list is sorted in order of ascending distance
+of the rooms they must be done in. Tasks which can be done in any
+room count as having distance zero.
+</LI>
+<LI>The sorted task list is scanned to find the nearest possible task.
+For a task to be possible, the player must:
+
+<P>
+
+<OL>
+<LI>have all required items,
+</LI>
+<LI>have done all required previous tasks,
+</LI>
+<LI>be able to get from the current room to the task room via a path which
+doesn't require items not yet collected, or tasks not yet done, or
+which involves dropping needed items on the way.
+</LI>
+</OL>
+Priority is given to safe tasks. For a task to be safe,
+
+<P>
+
+<OL>
+<LI>it must not have previously been marked unsafe (e.g., because it closes
+off map connections),
+</LI>
+<LI>there must be a return path from the task room back to the current
+one. This is to avoid taking a one-way trip before preparing properly.
+</LI>
+</OL>
+If there are any safe tasks, the nearest one will be done next regardless
+of how close an unsafe task is. If there are no safe task, the nearest
+unsafe task will be chosen.
+
+<P>
+</LI>
+<LI>If there was a possible task, do it and remove it from the list. Move
+to the room the task was done in (if any). If not, then the game is
+unsolvable. Give up.
+</LI>
+<LI>Finally, examine the list of remaining tasks to see if any are now
+redundant and can be removed. A redundant task is one that only does
+something that's already been done (e.g.&nbsp;go and get an item that
+you've already been given).
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00067000000000000000"></A><A NAME="sec:tweaking"></A>
+<BR>
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN> Tweaking the Solution
+</H2>
+
+<P>
+There will be some situations (quite a few, actually) where the game
+solver doesn't do things the way you want it to. This section gives
+a few tips, and some new keywords, for modifying things.
+
+<P>
+
+<H3><A NAME="SECTION00067100000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> Making things safe</A>
+</H3>
+
+<P>
+Firstly, the game solver is completely paranoid. It has to be, because
+it doesn't do any lookahead past the current task. It won't do anything
+unsafe (e.g., go to a room to do a task when there's no immediate
+return journey) unless there's nothing safe left to do. It will quite
+happily plod halfway across the map to pick something up rather than
+do something a bit scary in the next room.
+
+<P>
+However, you can reassure it with the task <TT>safe</TT> attribute.
+Adding this to a task tells the solver that this task is safe, regardless
+of what it thinks. So if you <SPAN  CLASS="textit">know</SPAN> that a one-way trip can eventually
+be returned from, by doing other tasks, you can stop the solver from
+avoiding it. But bear in mind that by doing this you are taking full
+responsibility if the solver gets stuck.
+
+<P>
+If you want to be seriously reckless, you can set the variable <TT>all_tasks_safe</TT>
+to a nonzero value. Then, <SPAN  CLASS="textit">all</SPAN> tasks will be considered safe.
+
+<P>
+
+<H3><A NAME="SECTION00067200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN> Changing path lengths</A>
+</H3>
+
+<P>
+Another thing the solver doesn't know about is how easy or difficult
+it is to get from place to place on the map. Suppose you're in a game
+which is on two levels separated by a tiresome set of access doors
+with ID cards. The connection between the levels may only be two rooms
+on the map, but it's a lot more in terms of typing. You can avoid
+unnecessary trips through these doors by artificially changing the
+``length'' of the connection between levels, by using the <TT>length</TT>
+attribute of links and joins:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Level&nbsp;A&#34;&nbsp;tag&nbsp;LA&nbsp;...;
+
+<P>
+room&nbsp;&#34;Level&nbsp;B&#34;&nbsp;tag&nbsp;LB&nbsp;dir&nbsp;e&nbsp;length&nbsp;50;
+</DD>
+</DL>In this way, by choosing an appropriate number for the length, you
+make it appear to the solver that all the rooms in level A are closer
+to each other than any of the rooms in level B. This means that priority
+will be given to tasks in rooms in the same level as you are now,
+(hopefully) minimizing the number of level changes. Note that the
+<TT>length</TT> attribute doesn't affect map drawing at all.
+
+<P>
+
+<H3><A NAME="SECTION00067300000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN> Closing off paths</A>
+</H3>
+
+<P>
+There may be times when you want a map connection to appear on the
+map, but not be used in solving the game--for example, it may be
+certain death to go that way. You can use the <TT>nopath</TT> attribute
+of rooms, links and joins to indicate this. It doesn't affect map
+output in any way.
+
+<P>
+Another use for this attribute is to force the game solver to do things
+in a different order. This might be preferable to adding fake task
+dependencies.
+
+<P>
+
+<H3><A NAME="SECTION00067400000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN> Ignoring parts of the solution</A>
+</H3>
+
+<P>
+Sometimes it's useful to be able to ignore certain parts of the solution--for
+example, if you want to generate a sequence of game commands that
+get you to a particular position as quickly as possible. To that end,
+you can mark tasks and items with the <TT>ignore</TT> attribute. An
+ignored task will never be attempted, and an ignored item will never
+be picked up. This means that anything dependent on those tasks or
+items will not be done either. The game will very probably be unsolvable
+as a result, unless you've ignored an unused item, or ignored a task
+that's done elsewhere via a <TT>do</TT> clause.
+
+<P>
+
+<H3><A NAME="SECTION00067500000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">5</SPAN> Keeping fixes together</A>
+</H3>
+
+<P>
+It's probably best to keep all your ``game tweaks'' together,
+separate from the ``pure'' game, and commented appropriately.
+You can do this by using commands which just modify existing objects,
+instead of creating new ones, by referring to their tags. As an example,
+suppose you have the following situation:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Top&nbsp;of&nbsp;Chute&#34;&nbsp;...;
+
+<P>
+room&nbsp;&#34;Bottom&nbsp;of&nbsp;Chute&#34;&nbsp;dir&nbsp;s&nbsp;go&nbsp;down&nbsp;oneway;
+
+<P>
+task&nbsp;&#34;Do&nbsp;something&nbsp;weird&#34;&nbsp;tag&nbsp;weird_task;
+
+<P>
+...
+</DD>
+</DL>Suppose you're at the top of the chute, and that there's some stuff
+to be done at the bottom, but no immediate way back up. As usual,
+the game solver balks at taking a one-way trip and will do anything
+to avoid it. But suppose you know that, as long as you have your giant
+inflatable cheeseburger, you can get back out again. You can say:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>#&nbsp;Bottom&nbsp;of&nbsp;chute&nbsp;isn't&nbsp;that&nbsp;scary.
+
+<P>
+task&nbsp;weird_task&nbsp;need&nbsp;burger&nbsp;safe;
+</DD>
+</DL>which modifies the task at the bottom of the chute to (a) require
+the burger (so that you won't go down there without it), and (b) be
+considered safe by the game solver. So it will happily slide down
+the chute without getting stuck at the bottom.
+
+<P>
+This way of modifying previous objects applies all types of object,
+even links and joins--these can be tagged too, in the normal way.
+The single exception is the implicit link created by the room <TT>dir</TT>
+clause. These links automatically get tagged when the room does, and
+with the same name. So the two-level example above could be split
+into:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>room&nbsp;&#34;Level&nbsp;A&#34;&nbsp;tag&nbsp;LA&nbsp;...;
+
+<P>
+room&nbsp;&#34;Level&nbsp;B&#34;&nbsp;tag&nbsp;LB&nbsp;dir&nbsp;e;
+
+<P>
+...
+
+<P>
+#&nbsp;Stop&nbsp;gratuitous&nbsp;travel&nbsp;between&nbsp;levels.
+
+<P>
+link&nbsp;LB&nbsp;length&nbsp;50;
+</DD>
+</DL>
+<P>
+
+<H3><A NAME="SECTION00067600000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">6</SPAN> Displaying solver messages</A>
+</H3>
+
+<P>
+Finally, you can gain an insight into what the game solver's up to
+by setting the <TT>solver_messages</TT> variable (either in one of
+the input files, or via the <TT>-set</TT> command-line option). This
+produces reams of output giving details of the game solver's thoughts
+before it does anything. It's supposed to be self-explanatory, but
+my view is slightly biased. Detailed documentation may follow (a)
+if enough people ask for it, and (b) if I ever get around to it.
+
+<P>
+
+<H2><A NAME="SECTION00068000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">8</SPAN> Limitations</A>
+</H2>
+
+<P>
+Given the wild imaginations of today's IF authors, there are bound
+to be some game solving situations that can't easily be dealt with
+using IFM. Some of the things that IFM ignores are:
+
+<P>
+
+<UL>
+<LI>Random events. For example, the Carousel room in Zork, and all the
+NPCs in Colossal Cave. There's no way to address this problem, but
+then again, hand-written walkthroughs have the same difficulty. However,
+if you're trying to tailor recording output so that it will play back
+properly in an interpreter, there is a workaround--see Section <A HREF="node7.htm#sec:recording">4.2.5</A>.
+</LI>
+<LI>Carrying capacity. A solution may require you to carry more than you're
+allowed. This might be addressed in a future version, but inventory-juggling
+puzzles are out of fashion these days (if they were ever in) so this
+is not much of a problem. Some games provide you with an item that
+can carry stuff for you--if so, a workaround is to add some special
+tasks that periodically put everything you're carrying into it.
+</LI>
+</UL>
+There are some other limitations that are the result of certain keyword
+combinations in the current implementation of IFM. These are fixable,
+and hopefully will be in a later version. They are:
+
+<P>
+
+<UL>
+<LI>If you have more than one link or join which connects the same two
+rooms, then if any of them set the <TT>length</TT> attribute, they
+must <SPAN  CLASS="textit">all</SPAN> set it--and to the same value. Otherwise IFM will
+give an error.
+</LI>
+<LI>Unsafe tasks in a ``follow'' task chain normally cause all the
+previous tasks in the chain to be marked unsafe too (so the solver
+will avoid trying the first, knowing it'll be forced to do something
+distasteful later). However, some tasks are not known to be unsafe
+until just before they might be done--specifically, those for which
+there is no return path. This is because whether there's a return
+path depends on where you are now. So a ``follow'' chain could
+possibly lead to a game-solving dead end.
+</LI>
+<LI>There's a problem with the <TT>leave</TT>/<TT>need</TT> attribute
+combination. The game solver could select a path from one room to
+another in which an item must be left behind at one point, but is
+needed for movement later on in the path. This sort of path should
+be invalid, but isn't.
+</LI>
+</UL>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html242"
+  HREF="node7.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html238"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html232"
+  HREF="node5.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html240"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html243"
+  HREF="node7.htm">4 Using IFM</A>
+<B> Up:</B> <A NAME="tex2html239"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html233"
+  HREF="node5.htm">2 Making Maps</A>
+ &nbsp; <B>  <A NAME="tex2html241"
+  HREF="node1.htm">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

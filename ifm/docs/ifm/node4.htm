@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1 Introduction</TITLE>
+<META NAME="description" CONTENT="1 Introduction">
+<META NAME="keywords" CONTENT="ifm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ifm.css">
+
+<LINK REL="next" HREF="node5.htm">
+<LINK REL="previous" HREF="node3.htm">
+<LINK REL="up" HREF="ifm.htm">
+<LINK REL="next" HREF="node5.htm">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html208"
+  HREF="node5.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html204"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html198"
+  HREF="node3.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html206"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html209"
+  HREF="node5.htm">2 Making Maps</A>
+<B> Up:</B> <A NAME="tex2html205"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node3.htm">List of Tables</A>
+ &nbsp; <B>  <A NAME="tex2html207"
+  HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html210"
+  HREF="node4.htm#SECTION00041000000000000000"><SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> About IFM</A>
+<LI><A NAME="tex2html211"
+  HREF="node4.htm#SECTION00042000000000000000"><SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> History of IFM</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00040000000000000000"></A><A NAME="sec:introduction"></A>
+<BR>
+<SPAN CLASS="arabic">1</SPAN> Introduction
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> About IFM</A>
+</H2>
+
+<P>
+IFM is a language for keeping track of your progress through an Interactive
+Fiction game, and a program for producing various different sorts
+of output using it. You can record each room you visit and its relation
+to other rooms, the initial locations of useful items you find, and
+the tasks you need to perform in order to solve the game.
+
+<P>
+The IFM mapping commands are designed so that you can easily add to
+the map as you explore the game. You type in the rooms you visit and
+the directions you move in to reach other rooms, and IFM calculates
+the position of each room in relation to the others. A map can consist
+of several independent sections, allowing you to divide up the map
+however you like. See Section <A HREF="node5.htm#sec:making-maps">2</A> for an example
+of how to make a map.
+
+<P>
+The IFM task commands, if used, allow you to specify the order in
+which game-solving tasks must be done. The IFM program can then calculate
+and print a high-level ``walkthrough'' of the game. See Section
+<A HREF="node6.htm#sec:solving-game">3</A> for examples of how to do this.
+
+<P>
+Several output formats are available, including PostScript, Fig and
+ASCII text--these are described in Section<A HREF="node7.htm#sec:using-ifm">4</A>. Some
+of the output formats have a set of variables which control the appearance
+of the output--see Section <A HREF="node7.htm#sec:output-variables">4.4</A>.
+
+<P>
+
+<H2><A NAME="SECTION00042000000000000000">
+<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> History of IFM</A>
+</H2>
+
+<P>
+When I started playing IF games, years ago, I did what many other
+people did--made a rough map on paper of where I'd explored, so I
+could see which directions I hadn't tried yet. Inevitably, the maps
+always fell off the page and turned into a complete mess.
+
+<P>
+My first attempt at solving this problem was to make use of the tools
+I had available to draw the map for me. So I started typing the map
+network into a file, and wrote a small Perl script to convert the
+data into something that groff could read and draw a map from. I also
+added a way of recording which items I'd found, and whether I'd found
+a use for them yet.
+
+<P>
+As it stood, this worked quite well--it produced nice maps and lists
+of items so I could see where I'd got to. The only problem was that
+it was just as tedious making maps this way as on paper, since I had
+to work out the offset of each room relative to a fixed origin.
+
+<P>
+Eventually I decided that enough was enough. I wanted to be able to
+add stuff to the map as I played the game, without having to worry
+about offsets or anything irrelevant like that. Hence the main design
+criteria for IFM. The other criteria were easy--an input language,
+for flexibility and extendability, and a program for converting files
+in this language into different types of output.
+
+<P>
+Partway through writing the initial version of IFM, I had the idea
+that it would be nice to be able to somehow record not only the map
+and items found so far, but what's been done to solve the game. The
+concept of tasks appeared, which immediately tripled the size of the
+program and caused all sorts of headaches.
+
+<P>
+But eventually it got to the stage where it might be worth releasing,
+so in June 1998 the first version appeared in the IF archive. Very
+soon after that, I got a lot of feedback from one Dave Chapeskie (<TT>dchapes@ddm.wox.org</TT>),
+who made a lot of great suggestions for improvements and new features.
+He also very kindly started up a Web page for IFM maps; you can find
+it at http://www.sentex.net/&nbsp;dchapes/ifm.
+
+<P>
+And now, finally, it's finished and I can go back to that IF game
+I was playing.<A NAME="tex2html1"
+  HREF="footnode.htm#foot1444"><SUP><SPAN CLASS="arabic">1</SPAN></SUP></A>
+<P>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html208"
+  HREF="node5.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html204"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html198"
+  HREF="node3.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html206"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html209"
+  HREF="node5.htm">2 Making Maps</A>
+<B> Up:</B> <A NAME="tex2html205"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node3.htm">List of Tables</A>
+ &nbsp; <B>  <A NAME="tex2html207"
+  HREF="node1.htm">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

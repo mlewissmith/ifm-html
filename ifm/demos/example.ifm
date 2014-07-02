@@ -1,0 +1,18 @@
+title "Example Map";
+
+room "Kitchen" tag Kitchen;
+  item "spoon" note "Stirs tea";
+  item "sink";
+  item "monkey";
+
+room "Garage" dir s go down;
+  item "monkey wrench" note "For wrenching monkey out of sink";
+
+room "Lounge" dir e from Kitchen;
+  item "TV set";
+
+room "Dining Room" dir s link Kitchen;
+  item "table";
+  item "chair";
+
+room "Study" dir e n oneway;

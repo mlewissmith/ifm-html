@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6 Diagnostics</TITLE>
+<META NAME="description" CONTENT="6 Diagnostics">
+<META NAME="keywords" CONTENT="ifm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ifm.css">
+
+<LINK REL="next" HREF="node10.htm">
+<LINK REL="previous" HREF="node8.htm">
+<LINK REL="up" HREF="ifm.htm">
+<LINK REL="next" HREF="node10.htm">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html329"
+  HREF="node10.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html325"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html319"
+  HREF="node8.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html327"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html330"
+  HREF="node10.htm">7 Other IFM Programs</A>
+<B> Up:</B> <A NAME="tex2html326"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html320"
+  HREF="node8.htm">5 Language</A>
+ &nbsp; <B>  <A NAME="tex2html328"
+  HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html331"
+  HREF="node9.htm#SECTION00091000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN> Error Messages</A>
+<LI><A NAME="tex2html332"
+  HREF="node9.htm#SECTION00092000000000000000"><SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN> Warning Messages</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00090000000000000000">
+<SPAN CLASS="arabic">6</SPAN> Diagnostics</A>
+</H1>
+
+<P>
+This section describes the possible error and warning messages which
+might be produced by IFM, and what they mean. Note that individual
+output formats may print their own errors and/or warnings. These lists
+only cover the standard ones.
+
+<P>
+
+<H2><A NAME="SECTION00091000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">1</SPAN> Error Messages</A>
+</H2>
+
+<P>
+Here's the list of error messages. If any errors occur, no output
+is produced.
+
+<P>
+
+<UL>
+<LI>[<TT>error:&nbsp;invalid&nbsp;repeat&nbsp;count</TT>]&nbsp;
+<BR>
+You've given a repeat count of zero or less for a string or direction,
+which doesn't make much sense.
+</LI>
+<LI>[<TT>error:&nbsp;no&nbsp;last&nbsp;room</TT>]&nbsp;
+<BR>
+You've given the very first room a <TT>dir</TT> clause.
+</LI>
+<LI>[<TT>error:&nbsp;no&nbsp;[type]&nbsp;referred&nbsp;to&nbsp;by&nbsp;'last'</TT>]&nbsp;
+<BR>
+You've said <TT>last</TT> to refer to the last room, item or task
+that was defined, but none of that type of object have been defined
+yet.
+</LI>
+<LI>[<TT>error:&nbsp;no&nbsp;[type]&nbsp;referred&nbsp;to&nbsp;by&nbsp;'it'</TT>]&nbsp;
+<BR>
+You've said <TT>it</TT> to refer to the last room, item or task tag
+that was mentioned in the current command, but no tags of that type
+of object have been mentioned.
+</LI>
+<LI>[<TT>error:&nbsp;[type]&nbsp;tag&nbsp;[name]&nbsp;already&nbsp;defined</TT>]&nbsp;
+<BR>
+You've given two similar objects the same tag name.
+</LI>
+<LI>[<TT>error:&nbsp;[type]&nbsp;tag&nbsp;[name]&nbsp;not&nbsp;defined</TT>]&nbsp;
+<BR>
+You've referred to a tag name that hasn't been defined anywhere in
+the input.
+</LI>
+<LI>[<TT>error:&nbsp;[type]&nbsp;tag&nbsp;[name]&nbsp;not&nbsp;yet&nbsp;defined</TT>]&nbsp;
+<BR>
+You're referring to a tag at a point where it hasn't yet been defined,
+in a situation where it must be (e.g.&nbsp;the room <TT>from</TT> clause,
+or a command that modifies attributes of a previously-defined object).
+</LI>
+<LI>[<TT>error:&nbsp;can't&nbsp;modify&nbsp;[name]&nbsp;attribute</TT>]&nbsp;
+<BR>
+You're attempting to modify an attribute of an object which can't
+be changed once it's set (e.g.&nbsp;a tag name). This is because it would
+create inconsistencies between objects.
+</LI>
+<LI>[<TT>error:&nbsp;can't&nbsp;link&nbsp;[name1]&nbsp;and&nbsp;[name2]&nbsp;-&nbsp;different&nbsp;map&nbsp;sections</TT>]&nbsp;
+<BR>
+The rooms you're trying to link are on different sections of the map,
+and have no spatial relation to one another. You might have forgotten
+to link a previous room in the list. Or you meant to use a <TT>join</TT>.
+</LI>
+<LI>[<TT>error:&nbsp;can't&nbsp;link&nbsp;[name]&nbsp;to&nbsp;itself&nbsp;without&nbsp;at&nbsp;least&nbsp;one&nbsp;direction</TT>]&nbsp;
+<BR>
+To link a room to itself, you need to specify at least one direction.
+Otherwise, the link goes nowhere. 
+</LI>
+<LI>[<TT>error:&nbsp;links&nbsp;between&nbsp;[name1]&nbsp;and&nbsp;[name2]&nbsp;have&nbsp;differing&nbsp;lengths</TT>]&nbsp;
+<BR>
+You've defined more than one link or join between the given rooms,
+but given them different values for the <TT>length</TT> attribute.
+This isn't allowed.
+</LI>
+<LI>[<TT>error:&nbsp;more&nbsp;than&nbsp;one&nbsp;task&nbsp;needs&nbsp;to&nbsp;follow&nbsp;[task]&nbsp;immediately</TT>]&nbsp;
+<BR>
+You've given two or more tasks an identical <TT>follow</TT> tag. Only
+one task can ``follow'' a given task.
+</LI>
+<LI>[<TT>error:&nbsp;[num]&nbsp;cyclic&nbsp;task&nbsp;dependencies</TT>]&nbsp;
+<BR>
+The game isn't solvable because there's one or more chains of tasks
+where each must be done before the next, but the last must be done
+before the first.
+</LI>
+<LI>[<TT>error:&nbsp;variable&nbsp;[name]&nbsp;is&nbsp;not&nbsp;defined</TT>]&nbsp;
+<BR>
+A customization variable needed by an output format is not defined.
+You should only see these errors if you have modified or overridden
+the system initialization file. The remedy is to define the variable
+somewhere.
+</LI>
+</UL>
+<P>
+
+<H2><A NAME="SECTION00092000000000000000">
+<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">2</SPAN> Warning Messages</A>
+</H2>
+
+<P>
+Here's the list of warning messages. If only warnings occur, then
+output is still produced.
+
+<P>
+
+<UL>
+<LI>[<TT>warning:&nbsp;attribute&nbsp;[attr]&nbsp;ignored&nbsp;-&nbsp;no&nbsp;implicit&nbsp;link</TT>]&nbsp;
+<BR>
+You've given a room with no <TT>dir</TT> clause an attribute that
+is associated with that link (e.g.<TT>&nbsp;oneway</TT>). Most likely
+you're putting the attribute in the wrong place--if you want, say,
+a join to have one of these attributes, you must define it using the
+standalone <TT>join</TT> command instead.
+</LI>
+<LI>[<TT>warning:&nbsp;link&nbsp;from&nbsp;[name1]&nbsp;to&nbsp;[name2]&nbsp;outside&nbsp;grid</TT>]&nbsp;
+<BR>
+The destination room for a link is not in a compass direction from
+the last specified position.
+</LI>
+<LI>[<TT>warning:&nbsp;rooms&nbsp;[name1]&nbsp;and&nbsp;[name2]&nbsp;overlap</TT>]&nbsp;
+<BR>
+The coordinates of the specified rooms are the same.
+</LI>
+<LI>[<TT>warning:&nbsp;room&nbsp;[name]&nbsp;crossed&nbsp;by&nbsp;link&nbsp;line&nbsp;between&nbsp;[name]&nbsp;and&nbsp;[name]</TT>]&nbsp;
+<BR>
+A link line passes through the coordinates of a room.
+</LI>
+<LI>[<TT>warning:&nbsp;room&nbsp;[name]&nbsp;has&nbsp;multiple&nbsp;[dir]&nbsp;links</TT>]&nbsp;
+<BR>
+More than one link connects to the specified room in a particular
+direction.
+</LI>
+<LI>[<TT>warning:&nbsp;can't&nbsp;solve&nbsp;game&nbsp;([num]&nbsp;tasks&nbsp;not&nbsp;done)</TT>]&nbsp;
+<BR>
+The game is unsolvable according to the current set of tasks. This
+can be due to part of the map being inaccessible, or IFM stupidly
+choosing the wrong order of doing things. Hopefully the latter shouldn't
+happen very often.
+</LI>
+<LI>[<TT>warning:&nbsp;can't&nbsp;solve&nbsp;game&nbsp;([num]&nbsp;tasks&nbsp;ignored)</TT>]&nbsp;
+<BR>
+The game is unsolvable because you're explicitly ignoring tasks and/or
+items, using the <TT>ignore</TT> attribute.
+</LI>
+<LI>[<TT>warning:&nbsp;no&nbsp;matching&nbsp;style&nbsp;command</TT>]&nbsp;
+<BR>
+You've used <TT>endstyle</TT> without a matching <TT>style</TT>. You
+probably have too many <TT>endstyle</TT> commands.
+</LI>
+<LI>[<TT>warning:&nbsp;unexpected&nbsp;style:&nbsp;[name]&nbsp;(expected&nbsp;[name])</TT>]&nbsp;
+<BR>
+You've used <TT>endstyle</TT> with an argument that doesn't match
+the argument of the corresponding <TT>style</TT>. You might have missed
+out another <TT>endstyle</TT> somewhere, or have too many.
+</LI>
+<LI>[<TT>warning:&nbsp;style&nbsp;[name]&nbsp;referenced&nbsp;but&nbsp;not&nbsp;defined</TT>]&nbsp;
+<BR>
+An object in your input uses the specified style, but it isn't defined
+anywhere and the style definition file <TT>name.ifm</TT> doesn't exist
+in the search path (or if it does, it doesn't define the required
+style).
+</LI>
+<LI>[<TT>warning:&nbsp;[syntax]&nbsp;is&nbsp;obsolete&nbsp;-&nbsp;use&nbsp;[phrase]&nbsp;instead</TT>]&nbsp;
+<BR>
+You've used an obsolete syntax. Consult the documentation and then
+try the suggested alternative instead. Note that multiple uses of
+the same obsolete syntax only result in a single warning.
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html329"
+  HREF="node10.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html325"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html319"
+  HREF="node8.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html327"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html330"
+  HREF="node10.htm">7 Other IFM Programs</A>
+<B> Up:</B> <A NAME="tex2html326"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html320"
+  HREF="node8.htm">5 Language</A>
+ &nbsp; <B>  <A NAME="tex2html328"
+  HREF="node1.htm">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

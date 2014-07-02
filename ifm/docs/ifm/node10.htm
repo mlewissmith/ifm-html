@@ -1,0 +1,1108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7 Other IFM Programs</TITLE>
+<META NAME="description" CONTENT="7 Other IFM Programs">
+<META NAME="keywords" CONTENT="ifm">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ifm.css">
+
+<LINK REL="next" HREF="node11.htm">
+<LINK REL="previous" HREF="node9.htm">
+<LINK REL="up" HREF="ifm.htm">
+<LINK REL="next" HREF="node11.htm">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html343"
+  HREF="node11.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html339"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html333"
+  HREF="node9.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html341"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html344"
+  HREF="node11.htm">A. GNU Free Documentation</A>
+<B> Up:</B> <A NAME="tex2html340"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html334"
+  HREF="node9.htm">6 Diagnostics</A>
+ &nbsp; <B>  <A NAME="tex2html342"
+  HREF="node1.htm">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html345"
+  HREF="node10.htm#SECTION000101000000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> <TT>ifm2dev</TT>--convert IFM maps to various other formats</A>
+<LI><A NAME="tex2html346"
+  HREF="node10.htm#SECTION000102000000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN> <TT>ifm2tex</TT>--convert IFM maps to <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN></A>
+<LI><A NAME="tex2html347"
+  HREF="node10.htm#SECTION000103000000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN> <TT>tkifm</TT>--create maps interactively</A>
+<UL>
+<LI><A NAME="tex2html348"
+  HREF="node10.htm#SECTION000103100000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Using Your Own Editor</A>
+<LI><A NAME="tex2html349"
+  HREF="node10.htm#SECTION000103200000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Customization</A>
+<LI><A NAME="tex2html350"
+  HREF="node10.htm#SECTION000103300000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Errors and Warnings</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html351"
+  HREF="node10.htm#SECTION000104000000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN> <TT>scr2ifm</TT>--convert transcripts to IFM map</A>
+<UL>
+<LI><A NAME="tex2html352"
+  HREF="node10.htm#SECTION000104100000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Options</A>
+<LI><A NAME="tex2html353"
+  HREF="node10.htm#SECTION000104200000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Operation</A>
+<LI><A NAME="tex2html354"
+  HREF="node10.htm#SECTION000104300000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN> Making Transcripts</A>
+<LI><A NAME="tex2html355"
+  HREF="node10.htm#SECTION000104400000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">4</SPAN> IFM Commands</A>
+<LI><A NAME="tex2html356"
+  HREF="node10.htm#SECTION000104500000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">5</SPAN> Fixing Problems</A>
+<LI><A NAME="tex2html357"
+  HREF="node10.htm#SECTION000104600000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN> Writing the Map</A>
+<LI><A NAME="tex2html358"
+  HREF="node10.htm#SECTION000104700000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN> Example Session</A>
+<LI><A NAME="tex2html359"
+  HREF="node10.htm#SECTION000104800000000000000"><SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">8</SPAN> Limitations</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000100000000000000000">
+<SPAN CLASS="arabic">7</SPAN> Other IFM Programs</A>
+</H1>
+
+<P>
+There are several other programs bundled with IFM, which you might
+find useful.
+
+<P>
+
+<H2><A NAME="SECTION000101000000000000000"></A><A NAME="sec:ifm2dev"></A>
+<BR>
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">1</SPAN> <TT>ifm2dev</TT>--convert IFM maps to various other formats
+</H2>
+
+<P>
+<TT>ifm2dev</TT> is a front end to <TT>fig2dev</TT>, which converts
+diagrams in Fig format to various other formats. <TT>ifm2dev</TT>
+converts each map section and writes them to separate files. The command
+format is:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>ifm2dev&nbsp;[-o&nbsp;template]&nbsp;[fig2dev-options]&nbsp;[-&nbsp;ifm-options]&nbsp;file
+</DD>
+</DL>The <TT>-o</TT> option sets the file template for the output files.
+It must contain an integer format indicator (e.g.&nbsp;<TT>%d</TT>);
+this is replaced with the map section number in filenames. If not
+set, it defaults to <TT>prefix-%02d.suffix</TT>, where <TT>prefix</TT>
+is the file prefix of the input file (with <TT>.ifm</TT> removed),
+and <TT>suffix</TT> is the suffix appropriate for the type of output.
+
+<P>
+All <TT>fig2dev</TT> output options are passed through without change.
+You can use the <TT>-L</TT> option of <TT>fig2dev</TT> to set the
+output format. See the <TT>fig2dev</TT> manpage for details.
+
+<P>
+You can supply options to IFM by first giving the end-of-options indicator
+(<TT>-</TT>) and then the options.
+
+<P>
+
+<H2><A NAME="SECTION000102000000000000000"></A><A NAME="sec:ifm2tex"></A>
+<BR>
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">2</SPAN> <TT>ifm2tex</TT>--convert IFM maps to <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>
+</H2>
+
+<P>
+<TT>ifm2tex</TT> is a program for creating a summary file in <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>
+format, suitable for converting to PostScript and printing. It uses
+<TT>ifm2dev</TT> to create the maps. The command format is:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>ifm2tex&nbsp;[-m]&nbsp;[-i]&nbsp;[-t]&nbsp;[-&nbsp;ifm-options]&nbsp;file
+</DD>
+</DL>The options indicate which combinations of things you want output
+(maps, items or tasks). Several files are written, whose names depend
+on the prefix of the input file (i.e., minus its <TT>.ifm</TT> suffix):
+
+<P>
+
+<UL>
+<LI>[<TT>prefix.tex</TT>] The main <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> input file, which includes
+all the others.
+</LI>
+<LI>[<TT>prefix-maps.tex</TT>] The maps, which include the EPS figures.
+</LI>
+<LI>[<TT>prefix-items.tex</TT>] The table of items.
+</LI>
+<LI>[<TT>prefix-tasks.tex</TT>] The table of tasks.
+</LI>
+<LI>[<TT>prefix-map-N.eps</TT>] An EPS figure for each map section.
+</LI>
+</UL>At the moment, the program is very basic and doesn't have any options
+to control anything. But you can sort of customize things by using
+your own main <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> file and doing your own including of the other
+files.
+
+<P>
+
+<H2><A NAME="SECTION000103000000000000000"></A><A NAME="sec:tkifm"></A>
+<BR>
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN> <TT>tkifm</TT>--create maps interactively
+</H2>
+
+<P>
+<TT>tkifm</TT> is a graphical front end to IFM. It provides a text
+editing window in which you can map out your game using IFM commands,
+and a set of menus to view things. The various features are as follows:
+
+<P>
+
+<UL>
+<LI>[Text&nbsp;editing&nbsp;window] This is the main window, where you type
+IFM commands. It provides all the usual text editing command bindings
+that come with the Tcl/Tk text widget, as well as syntax highlighting.
+</LI>
+<LI>[File&nbsp;menu] The standard set of file commands: New, Open, Save,
+Save-As, Export (to PostScript or Fig), Quit. There's also a command
+called Redraw, which invokes IFM on the current file again. Normally
+you don't have to use this (it's done whenever you open a new file
+or save the current one), but if you change your initialization file
+(see below) the changes won't be noticed unless you do a Redraw.
+</LI>
+<LI>[Map&nbsp;menu] For each map section in your map, a menu entry appears
+here. Selecting it will draw the appropriate map in another window.
+</LI>
+<LI>[Item&nbsp;menu] This contains a single menu item, which displays a
+list of items in another window.
+</LI>
+<LI>[Task&nbsp;menu] This contains two menu items: ``Task list (brief)'',
+which displays a high-level walkthrough of the game in another window,
+and ``Task list (verbose)'' which does the same but gives detailed
+information about what the game solver is up to.
+</LI>
+<LI>[Show&nbsp;menu] This contains two menu items: ``Variables'', which
+shows all the currently defined variables and their values, and ``Paths'',
+which shows the file search path.
+</LI>
+<LI>[Help&nbsp;menu] This displays a small info panel about the current
+IFM version, including copying restrictions.
+</LI>
+</UL>
+<P>
+
+<H3><A NAME="SECTION000103100000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Using Your Own Editor</A>
+</H3>
+
+<P>
+If you'd like to use your own editor to edit IFM files, but still
+view results with <TT>tkifm</TT>, you can. <TT>tkifm</TT> recognizes
+when the file it is visiting gets modified, and rereads it if so.
+If you like, you can also disable all <TT>tkifm</TT> file modification
+commands by setting the <TT>ifm(edit)</TT> variable to zero (see below).
+This is probably a good idea if using another editor, or else you
+might accidentally save from <TT>tkifm</TT> and lose all your changes.
+
+<P>
+
+<H3><A NAME="SECTION000103200000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Customization</A>
+</H3>
+
+<P>
+On startup, <TT>tkifm</TT> reads an initialization file in your home
+directory (the one pointed at by the <TT>HOME</TT> environment variable).
+On Unix systems it is called <TT>.tkifmrc</TT>, and on Win32 systems
+it is called <TT>tkifm.ini</TT>. From there, using Tcl commands, you
+can set various things that affect the appearance of the program.
+Here's an example file showing the valid variables, their format and
+defaults.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim"># Example tkifm init file.
+
+# Whether to allow editing.
+set ifm(edit) 1
+
+# Edit window dimensions.
+set ifm(editwidth)  80
+set ifm(editheight) 24
+
+# Editing font.
+set ifm(editfont) {Courier 12 bold}
+
+# Edit window colours.
+set ifm(editforeground) black
+set ifm(editbackground) wheat
+
+# Item list window dimensions.
+set ifm(itemwidth)  50
+set ifm(itemheight) 30
+
+# Task list (brief) window dimensions.
+set ifm(taskwidth)  50
+set ifm(taskheight) 30
+
+# Task list (verbose) window dimensions.
+set ifm(verbosewidth)  80
+set ifm(verboseheight) 30
+
+# Variable window dimensions.
+set ifm(varswidth)  50
+set ifm(varsheight) 30
+
+# Text window font.
+set ifm(textfont) {Times 12 bold}
+
+# Text window colours.
+set ifm(textforeground) black
+set ifm(textbackground) wheat
+
+# Whether to allow tearoff menus.
+set ifm(tearoff) 1
+
+# Syntax highlighting variables.
+set ifm(syntaxcomments)     firebrick
+set ifm(syntaxstrings)      grey40
+set ifm(syntaxstructure)    blue
+set ifm(syntaxdirections)   darkgoldenrod
+set ifm(syntaxspecial)      cadetblue
+set ifm(syntaxbuiltin)      forestgreen
+set ifm(syntaxkeyword)      royalblue
+set ifm(syntaxpreprocessor) purple
+</PRE>
+<P>
+
+</DD>
+</DL>
+<P>
+
+<H3><A NAME="SECTION000103300000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Errors and Warnings</A>
+</H3>
+
+<P>
+Any errors or warnings that occur when invoking IFM will be displayed
+in a dialog. The current line of the text window will be changed to
+point at the error or warning line (if appropriate).
+
+<P>
+
+<H2><A NAME="SECTION000104000000000000000"></A><A NAME="sec:scr2ifm"></A>
+<BR>
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN> <TT>scr2ifm</TT>--convert transcripts to IFM map
+</H2>
+
+<P>
+<TT>scr2ifm</TT> reads one or more transcripts of an Interactive Fiction
+game and produces a map of it in IFM format. It works on Infocom-style
+transcripts--those produced by Inform- and TADS-generated games (and
+of course Infocom games themselves). The idea is that you play your
+game in a carefree manner, without worrying about mapping anything,
+and after the session use <TT>scr2ifm</TT> to get a map. Well, that's
+the theory anyway.
+
+<P>
+<TT>scr2ifm</TT> offers two basic ways of mapping: you can create
+an initial (incomplete) map from your first transcript and then add
+the rest ``by hand'', or you can create a set of transcripts,
+each exploring different parts of the game, and then merge them all
+into a final map. Which you choose is up to you.
+
+<P>
+
+<H3><A NAME="SECTION000104100000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Options</A>
+</H3>
+
+<P>
+These are the command-line options for <TT>scr2ifm</TT>:
+
+<P>
+
+<UL>
+<LI>[<TT>-c&nbsp;file</TT>] Append the given file of IFM and parameter
+commands to the end of the map. This allows you to fix various problems
+in the resulting map.
+</LI>
+<LI>[<TT>-o&nbsp;file</TT>] Write output to the given file instead of stdout.
+</LI>
+<LI>[<TT>-i</TT>] Indent the output nicely (according to <SPAN  CLASS="textit">my</SPAN>
+definition, anyway). This makes things look better if you've added
+<TT>item</TT> and <TT>task</TT> commands. Default is no indentation
+at all.
+</LI>
+<LI>[<TT>-l</TT>] Add a comment to each IFM command indicating the
+file and line number of the transcript command that generated it.
+</LI>
+<LI>[<TT>-w</TT>] Don't print warnings.
+</LI>
+<LI>[<TT>-h</TT>] Print a short usage message and exit.
+</LI>
+</UL>
+<P>
+
+<H3><A NAME="SECTION000104200000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">2</SPAN> Operation</A>
+</H3>
+
+<P>
+<TT>scr2ifm</TT> works by recognizing several key things in the transcript:
+
+<P>
+
+<UL>
+<LI>The commands you type. These are easy to spot, because they are preceded
+by a prompt (usually <TT>&gt;</TT>).
+</LI>
+<LI>When the current room changes. This is not quite so easy, but still
+fairly simple. When you enter a new room, a short room title is printed
+(for example, ``West of House''). The program looks for these
+short titles in the text that follows a command. First, a line is
+checked for an invalid format--things that never appear in a title
+(e.g., ``?'' or ``!''). Then the word count is checked--titles
+are hardly ever more than 7 or 8 words long. Finally the maximum length
+of an uncapitalized word is examined--this is almost always 3 or
+less in titles (the length of ``the'').
+</LI>
+<LI>When a previously-visited room is visited again. This is the most
+difficult thing to determine, since anything might have changed in
+the room since the last visit. If there is a description, an exact
+description match is tried. If that fails, a substring match is attempted.
+If <SPAN  CLASS="textit">that</SPAN> fails, the first few words are examined to see if they
+match. If there's no description, an exact room name match is tried.
+This isn't as reliable, which is why you should always create a transcript
+in ``verbose'' mode.
+</LI>
+<LI>Special IFM commands that are (hopefully) ignored completely by the
+game.
+</LI>
+</UL>
+Some of these checks can be tailored to a particular transcript.
+
+<P>
+
+<H3><A NAME="SECTION000104300000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN> Making Transcripts</A>
+</H3>
+
+<P>
+For best results with <TT>scr2ifm</TT>, you should follow these guidelines
+when making a transcript:
+
+<P>
+
+<UL>
+<LI>Always use ``verbose'' mode. If you don't, then when you revisit
+a room you've been in before, no description will be printed. In that
+case, <TT>scr2ifm</TT> will have to rely on the room name to tell
+where it is. If there's more than one room with that name, it'll get
+confused (and so will you when you look at the map!).
+</LI>
+<LI>After starting the script, look around. Otherwise your starting room
+may not be included on the map, since the room description may not
+get printed.
+</LI>
+<LI>If there's a bend in a link (e.g., if you leave a room by going east,
+and enter the next room from the south) make sure you do the return
+journey. Otherwise, <TT>scr2ifm</TT> won't know about the bend.
+</LI>
+<LI>Avoid places where different rooms have the same room description
+(i.e., mazes). <TT>scr2ifm</TT> can't resolve cases like this, and
+will assume there's just a single room. Note that this doesn't exclude
+<SPAN  CLASS="textit">all</SPAN> mazes--the ``twisty passages, all different'' maze
+from Colossal Cave would still work, since the descriptions are different.
+</LI>
+<LI>If you play the game over several sessions, and create several separate
+transcripts, pay attention to the starting rooms. If a transcript
+starts in a room already visited in the previous transcript, then
+its rooms will be added to the same map section. If not, a new map
+section will be created (and you should use the <TT>map</TT> command
+to give it a name).
+</LI>
+</UL>
+Some games will be more amenable to <TT>scr2ifm</TT> than others--in
+general the ones with reasonable map connections, where each connection
+makes sense in relation to the others. For these games, the order
+in which rooms are visited will probably make no difference to the
+resulting map. But for perverse games (e.g.&nbsp;Colossal Cave, above
+ground) the order of visiting makes a big difference. In these cases,
+it's probably best to avoid trying to get all the connections on the
+map--you'll spew forth lots of IFM warnings otherwise, and the map
+will look awful. Sometimes it's worth having a second attempt at a
+transcript, choosing different directions to go in, to see if it improves
+things.
+
+<P>
+Another problem with mapping is that some games have these inconvenient
+things called puzzles, which sometimes block you from exploring everywhere
+so you can map it properly. Come on, IF authors, let's get our priorities
+right!
+
+<P>
+
+<H3><A NAME="SECTION000104400000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">4</SPAN> IFM Commands</A>
+</H3>
+
+<P>
+While you're making your transcript, you can use a subset of IFM commands
+to add extra things that <TT>scr2ifm</TT> will recognize. (Of course,
+the game almost certainly won't understand these commands, and will
+print a suitable indignant reply. But that shouldn't affect the state
+of things.) The commands recognized are:
+
+<P>
+
+<UL>
+<LI>[<TT>title&nbsp;&lt;name&gt;</TT>] Give the map a title. The name must be
+in double-quotes. This command can appear anywhere, and has the same
+effect each time.
+</LI>
+<LI>[<TT>map&nbsp;&lt;name&gt;</TT>] Indicate that the current room starts a
+new map section with the given name. The name must be in double-quotes.
+This is useful if it seems like the map divides into different sections
+(e.g., the floors of a house).
+
+<P>
+If you use the <TT>map</TT> command, you'll end up with two or more
+map sections. The first map section is the one that contains the very
+first room, and will have a default name unless you give it one using
+another <TT>map</TT> command.
+
+<P>
+</LI>
+<LI>[<TT>item&nbsp;&lt;name&gt;&nbsp;[attrs]</TT>] Declare an item in the current
+room. The name must be in double-quotes. If you don't give it a tag
+attribute, one is generated automatically by changing all invalid
+tag characters in the name to underscores.
+</LI>
+<LI>[<TT>item&nbsp;[attrs]</TT>] Add the given attributes to the last
+declared item, if any.
+</LI>
+<LI>[<TT>item&nbsp;delete</TT>] Delete the last declared item, if any.
+</LI>
+<LI>[<TT>task&nbsp;&lt;name&gt;&nbsp;[attrs]</TT>] Declare a task in the current
+room in a similar manner to items. The name must be in double-quotes.
+</LI>
+<LI>[<TT>task&nbsp;[attrs]</TT>] Add the given attributes to the last
+declared task, if any.
+</LI>
+<LI>[<TT>task&nbsp;delete</TT>] Delete the last declared task, if any.
+</LI>
+</UL>Note that <TT>scr2ifm</TT> knows almost nothing about IFM command
+syntax. If there's a syntax error in a command, you'll have to manually
+edit the resulting transcript (or delete the item/task and do it again).
+
+<P>
+
+<H3><A NAME="SECTION000104500000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">5</SPAN> Fixing Problems</A>
+</H3>
+
+<P>
+The map produced by <TT>scr2ifm</TT> will not be perfect in a lot
+of cases. When running it through IFM you might get warnings about
+overlapping rooms, or crossed link lines. These problems are usually
+fixed by stretching the link lines of some of the rooms. Some overlapping-room
+problems are caused by the program making a bad choice of direction
+to put an up/down/in/out connection in. Another problem might be not
+recognizing when a room is the same as a previously-visited room,
+because the room description changed too much between visits.
+
+<P>
+You can fix most of these problems by creating a command file and
+specifying it with the <TT>-c</TT> option. There are two types of
+entry: <TT>scr2ifm</TT> commands and IFM commands. In a command file,
+blank lines and comment lines (those starting with a <TT>#</TT>)
+are ignored. If a command isn't recognized as a <TT>scr2ifm</TT> command,
+it's assumed to be an IFM command, and is passed straight into the
+output verbatim. You can use these to resolve conflicts in the generated
+map, by stretching certain links or hiding them altogether.
+
+<P>
+Here's a list of the commands available:
+
+<P>
+
+<UL>
+<LI>[<TT>is_room&nbsp;TEXT</TT>] Declare a line of text that is actually
+the name of a room. Normally room names get recognized properly, but
+there may be some special cases that aren't.
+</LI>
+<LI>[<TT>not_room&nbsp;TEXT</TT>] Declare a line of text that definitely
+isn't the name of a room. This is for opposite cases to the above.
+</LI>
+<LI>[<TT>use_name&nbsp;TEXT</TT>] Use only the room name to decide whether
+a room has been previously visited. This is for cases where a room
+description changes too much between visits to be called the same
+room. Note that this implies that there can only ever be one room
+with this name.
+</LI>
+<LI>[<TT>set_option&nbsp;LETTER</TT>] This is a convenience that lets
+you specify <TT>scr2ifm</TT> command-line options in the command file
+instead. E.g. <TT>set_option&nbsp;i</TT> will indent output nicely.
+</LI>
+<LI>[<TT>set_param&nbsp;VAR</TT>&nbsp;=&nbsp;<TT>VALUE</TT>] This evaluates the
+given perl expression. You can use this to set various parameters
+that control how the transcript is parsed (see below). Setting a value
+of <TT>undef</TT> will remove that parameter (so that it won't be
+used).
+</LI>
+</UL>Here's a list of the parameters that control how the transcript is
+parsed, and their defaults. You can use the <TT>scr2ifm</TT> <TT>set_param</TT>
+command to set them in the command file.
+
+<P>
+
+<UL>
+<LI>[<TT>$name_remove</TT>] Matched text to remove before seeing
+if a line of text is a room name. This is for getting rid of stuff
+like `` (in the dodgem car)''. Default: <TT>&#92;s+&#92;(.+&#92;)</TT>
+</LI>
+<LI>[<TT>$name_maxwords</TT>] Maximum no. of words in a room name.
+Default: 8
+</LI>
+<LI>[<TT>$name_maxuncap</TT>] Maximum length of an uncapitalized
+word in a room name. Default: 3
+</LI>
+<LI>[<TT>$name_invalid</TT>] Regexp which, if matched, signals an
+invalid room name. Default: <TT>[.!?&#34;]</TT>
+</LI>
+<LI>[<TT>$desc_minwords</TT>] Minimum no. of matching words required
+to match a room description. Default: 20
+</LI>
+<LI>[<TT>$cmd_prompt</TT>] Regexp matching a command prompt. Default: <TT>&#94;&gt;&#92;s*</TT>
+</LI>
+<LI>[<TT>$cmd_look</TT>] Regexp matching a 'look' command (case-insensitive).
+Default: <TT>&#94;l(ook)?$</TT>
+</LI>
+<LI>[<TT>$cmd_undo</TT>] Regexp matching an UNDO command (case-insensitive).
+It's assumed that only a single level of UNDO is available. Default:
+<TT>&#94;undo$</TT>
+</LI>
+<LI>[<TT>$cmd_teleport</TT>] Regexp matching commands that are known
+to cause a teleport to an arbitrary room (case-insensitive). Default:
+<TT>&#94;(restart|restore)$</TT>
+</LI>
+</UL>
+<P>
+
+<H3><A NAME="SECTION000104600000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN> Writing the Map</A>
+</H3>
+
+<P>
+Output from <TT>scr2ifm</TT> is as follows. First, if the title of
+the map was specified with the <TT>title</TT> command, it is printed.
+Then, if there's more than one map section, a list of map section
+titles is printed.
+
+<P>
+Next, there's a list of IFM commands derived from the transcript.
+Each time a new room is seen, a room command is output for it. Each
+room is given a tag name formed by the initials of each capitalized
+word in its name. To make tags unique, the second and subsequent occurrences
+of a tag name have that number appended. For example, room ``West
+of House'' would get tag <TT>WH</TT>.
+
+<P>
+If a movement command was up, down, in or out, then a compass direction
+is chosen for it that doesn't clash with other rooms (if possible)
+and the <TT>go</TT> attribute is used to mark its real direction.
+If a movement command isn't recognized, the same is done except this
+time the <TT>cmd</TT> attribute is used to record the command instead.
+
+<P>
+If movement is seen between two already-visited rooms, a link command
+is output (or a join, if the rooms appear to be on different map sections).
+Link tags are built by concatenating the room tags of the linked rooms
+with an underscore in between. Link movement is dealt with in the
+same manner as for rooms.
+
+<P>
+If the special <TT>item</TT> or <TT>task</TT> commands are seen, then
+an item or task command is output following the room that it appears
+in. If an item or task hasn't been given a tag, it is assigned one.
+The tag is made by translating all invalid tag characters in the name
+to underscores, capitalizing (to avoid clashes with IFM commands)
+and, if the tag clashes with a previously-defined tag, adding a numerical
+suffix to make it unique. For example, ``black rod'' might get
+a tag <TT>Black_rod_2</TT>.
+
+<P>
+Finally, the IFM commands from the file indicated by the <TT>-c</TT>
+option are echoed (if any).
+
+<P>
+
+<H3><A NAME="SECTION000104700000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN> Example Session</A>
+</H3>
+
+<P>
+Here's a simple example of <TT>scr2ifm</TT> in action on Colossal
+Cave. First, the transcript in file <TT>advent.scr</TT> (with annotation):
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">Start of a transcript of
+ADVENTURE
+The Interactive Original
+By Willie Crowther and Don Woods (1977)
+David M. Baggett's 1993 reconstruction, ported by Graham Nelson
+Release 3 / Serial number 951220 / Inform v1502 Library 5/12
+Interpreter 1 Version B / Library serial number 951024
+
+&gt;verbose
+ADVENTURE is now in its "verbose" mode, which always gives
+long descriptions of locations (even if you've been there
+before).
+
+&gt;l
+
+At End Of Road
+You are standing at the end of a road before a small brick
+building. Around you is a forest. A small stream flows out
+of the building and down a gully.
+</PRE>
+</DD>
+</DL>The previous two commands are recommended after starting the transcript.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;e
+
+Inside Building
+You are inside a building, a well house for a large spring.
+
+There are some keys on the ground here.
+
+There is tasty food here.
+
+There is a shiny brass lamp nearby.
+
+There is an empty bottle here.
+
+&gt;item "keys"
+That's not a verb I recognise.
+
+&gt;item "food"
+That's not a verb I recognise.
+
+&gt;item "lamp"
+That's not a verb I recognise.
+
+&gt;item "bottle"
+That's not a verb I recognise.
+</PRE>
+</DD>
+</DL>The previous four commands declare the given items to the program.
+You don't have to bother with this if you don't want item locations
+on your map.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;get all
+stream: You have nothing in which to carry the water.
+well house: That's hardly portable.
+spring: That's hardly portable.
+pair of 1 foot diameter sewer pipes: That's hardly portable.
+set of keys: Taken.
+tasty food: Taken.
+brass lantern: Taken.
+small bottle: Taken.
+
+&gt;w
+
+At End Of Road
+You are standing at the end of a road before a small brick
+building. Around you is a forest. A small stream flows out
+of the building and down a gully.
+
+&gt;s
+
+In A Valley
+You are in a valley in the forest beside a stream tumbling
+along a rocky bed.
+
+&gt;s
+
+At Slit In Streambed
+At your feet all the water of the stream splashes into a
+2-inch slit in the rock. Downstream the streambed is bare
+rock.
+
+&gt;s
+
+Outside Grate
+You are in a 20-foot depression floored with bare dirt. Set
+into the dirt is a strong steel grate mounted in concrete. A
+dry streambed leads into the depression.
+</PRE>
+</DD>
+</DL>Note that in this game we don't go in all possible directions--there's
+no logic to the connections, and it'd just make a complete mess on
+the map.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;unlock grate
+What do you want to unlock the steel grate with?
+
+&gt;keys
+You unlock the steel grate.
+
+&gt;task "Unlock grate" need Keys
+That's not a verb I recognise.
+</PRE>
+<P>
+</DD>
+</DL>That last command declared a task--again, you don't have to bother
+with this if you don't want to.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;open grate
+You open the steel grate.
+
+&gt;task "Open grate" after last
+That's not a verb I recognise.
+
+&gt;d
+
+Below the Grate
+You are in a small chamber beneath a 3x3 steel grate to the
+surface. A low crawl over cobbles leads inward to the west.
+
+The grate stands open.
+
+&gt;w
+
+In Cobble Crawl
+You are crawling over cobbles in a low passage. There is a
+dim light at the east end of the passage.
+
+There is a small wicker cage discarded nearby.
+
+&gt;item "cage"
+That's not a verb I recognise.
+
+&gt;get cage
+Taken.
+
+&gt;w
+
+Darkness
+It is pitch dark, and you can't see a thing.
+
+&gt;undo
+In Cobble Crawl
+[Previous turn undone.]
+</PRE>
+</DD>
+</DL>Oops! Stumbled into the dark by mistake. Without the UNDO, that would
+have meant 'Darkness' appeared on the map as a room.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;turn lamp on
+You switch the brass lantern on.
+
+&gt;w
+In Debris Room
+You are in a debris room filled with stuff washed in from
+the surface. A low wide passage with cobbles becomes plugged
+with mud and debris here, but an awkward canyon leads upward
+and west.
+
+A note on the wall says, "Magic word XYZZY."
+
+A three foot black rod with a rusty star on one end lies
+nearby.
+
+&gt;item "black rod" tag Rod
+That's not a verb I recognise.
+
+&gt;xyzzy
+
+Inside Building
+You are inside a building, a well house for a large spring.
+</PRE>
+</DD>
+</DL>Goodness me! That was unexpected--we've been teleported. The link
+almost certainly won't look good on the map. We have the option of
+UNDOing, right now, or fixing the map later. Let's do the latter.
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">&gt;xyzzy
+
+In Debris Room
+You are in a debris room filled with stuff washed in from
+the surface. A low wide passage with cobbles becomes plugged
+with mud and debris here, but an awkward canyon leads upward
+and west.
+
+A note on the wall says, "Magic word XYZZY."
+
+A three foot black rod with a rusty star on one end lies
+nearby.
+
+&gt;get rod
+Taken.
+
+&gt;w
+
+Sloping E/W Canyon
+You are in an awkward sloping east/west canyon.
+
+&gt;w
+
+Orange River Chamber
+You are in a splendid chamber thirty feet high. The walls
+are frozen rivers of orange stone. An awkward canyon and a
+good passage exit from east and west sides of the chamber.
+
+A cheerful little bird is sitting here singing.
+
+&gt;item "bird"
+That's not a verb I recognise.
+
+&gt;unscript
+
+End of transcript.
+</PRE>
+</DD>
+</DL>Ok, now to create a map. To do that, use this command:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>scr2ifm&nbsp;-o&nbsp;advent.ifm&nbsp;advent.scr
+</DD>
+</DL>To check for problems, just type:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>ifm&nbsp;advent.ifm
+</DD>
+</DL>On the first run through, there are complaints about an overlapping
+room, due to a bad choice of direction for the ``down'' link from
+Outside Grate, and the expected problems with the link between the
+Debris Room and the Building. A command file, <TT>advent.cmd</TT>,
+will fix these problems:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim"># Fix bad choice of direction.
+link BG dir s;
+
+# Hide "xyzzy" link.
+link IDR_IB hidden;
+
+# Replace it with join.
+join IDR to IB cmd "xyzzy";
+</PRE>
+</DD>
+</DL>Now, if we invoke
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>scr2ifm&nbsp;-o&nbsp;advent.ifm&nbsp;-i&nbsp;-c&nbsp;advent.cmd&nbsp;advent.scr
+</DD>
+</DL>we get the following map:
+
+<P>
+
+<DL COMPACT>
+<DT>
+<DD>
+<BR>
+<PRE  CLASS="verbatim">## IFM map created by scr2ifm.pl
+
+## Commands generated by transcript.
+room "At End Of Road" tag AEOR;
+
+room "Inside Building" dir e from AEOR tag IB;
+  item "keys" tag Keys;
+  item "food" tag Food;
+  item "lamp" tag Lamp;
+  item "bottle" tag Bottle;
+
+room "In A Valley" dir s from AEOR tag IAV;
+
+room "At Slit In Streambed" dir s from IAV tag ASIS;
+
+room "Outside Grate" dir s from ASIS tag OG;
+  task "Unlock grate" need Keys tag Unlock_grate;
+  task "Open grate" after last tag Open_grate;
+
+room "Below the Grate" dir n from OG go down tag BG;
+
+room "In Cobble Crawl" dir w from BG tag ICC;
+  item "cage" tag Cage;
+
+room "In Debris Room" dir w from ICC tag IDR;
+  item "black rod" tag Rod;
+
+link IDR to IB dir n s cmd "xyzzy" tag IDR_IB;
+
+room "Sloping E/W Canyon" dir w from IDR tag SEC;
+
+room "Orange River Chamber" dir w from SEC tag ORC;
+  item "bird" tag Bird;
+
+## Customization commands.
+link BG dir s;
+link IDR_IB hidden;
+join IDR to IB cmd "xyzzy";
+</PRE>
+</DD>
+</DL>Printed, it looks like Figure&nbsp;<A HREF="#fig:scr2ifm-map">2</A>.
+<DIV ALIGN="CENTER"><A NAME="fig:scr2ifm-map"></A><A NAME="1735"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Map produced by <TT>scr2ifm</TT></CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="557" HEIGHT="448" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.gif"
+ ALT="\includegraphics[scale=0.7]{advent}"></DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000104800000000000000">
+<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">8</SPAN> Limitations</A>
+</H3>
+
+<P>
+Here's a list of things that <TT>scr2ifm</TT> doesn't currently deal
+with:
+
+<P>
+
+<UL>
+<LI>Mazes. Different maze rooms that look identical (i.e., have identical
+names <SPAN  CLASS="textit">and</SPAN> descriptions) will simply appear as a single room.
+</LI>
+<LI>One-way links. These aren't detected, so you'll have to add the appropriate
+IFM attribute yourself (in a command file, or by fixing the map directly).
+</LI>
+</UL>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html343"
+  HREF="node11.htm">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.gif"></A> 
+<A NAME="tex2html339"
+  HREF="ifm.htm">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.gif"></A> 
+<A NAME="tex2html333"
+  HREF="node9.htm">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.gif"></A> 
+<A NAME="tex2html341"
+  HREF="node1.htm">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html344"
+  HREF="node11.htm">A. GNU Free Documentation</A>
+<B> Up:</B> <A NAME="tex2html340"
+  HREF="ifm.htm">IFM</A>
+<B> Previous:</B> <A NAME="tex2html334"
+  HREF="node9.htm">6 Diagnostics</A>
+ &nbsp; <B>  <A NAME="tex2html342"
+  HREF="node1.htm">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

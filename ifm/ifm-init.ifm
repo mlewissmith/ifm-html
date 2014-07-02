@@ -1,0 +1,263 @@
+##############################################################################
+# This file is part of IFM, the Interactive Fiction Mapper, copyright (C)
+# Glenn Hutchings 1997-2006.
+# 
+# IFM comes with ABSOLUTELY NO WARRANTY.  This is free software, and you
+# are welcome to redistribute it under certain conditions; see the file
+# COPYING for details.
+##############################################################################
+############################################################## -*- Perl -*-###
+# System IFM init file
+##############################################################################
+
+# This file contains the default definitions for all variables used by the
+# output formats.  Changing these values will affect all users.
+
+# Each variable listed below has a comment next to it indicating which
+# type(s) of output are controlled by it.
+
+# The default values are designed to give nice results in all formats.  The
+# default for PostScript is to produce maps for monochrome printing on one
+# or more pages of A4 paper.  The default for Fig is to produce one big
+# page (which can be split into multiple pages later).
+
+# The map output formats differ in their treatment of fonts.  In PostScript
+# and Fig, the font and font size are specified separately, via the *_font
+# and *_fontsize variables.  In Tk, they are both specified together, via
+# the *_fontdef variables.
+
+# In PostScript and Fig output, a font size represents the maximum desired
+# size -- the actual size may be scaled down in order to fit the text into
+# an enclosing space (e.g. a room box).
+
+# In Tk output, all line width values are interpreted as integers.
+
+##############################################################################
+# General variables
+##############################################################################
+
+# File of colour definitions, which contains the RGB values of each colour
+# referred to below (and a good many more).  It's just the rgb.txt file
+# found on Unix/X11 systems.  See that file for a list of available
+# colours.  You can use the same colour names for the Tk output, since it
+# uses the standard X colours.
+colour_file = "ifm-rgb.txt";	# ps fig tk
+
+# Prolog file that gets prepended to all the PostScript output.  This
+# defines all the procedures for drawing everything.
+prolog_file = "ifm-pro.ps";	# ps
+
+# Scale factor which is applied to all fonts.  This is a convenience
+# variable to make font adjustments easier.
+font_scale = 1;			# ps fig
+
+##############################################################################
+# Page variables
+##############################################################################
+
+# Default page size.  Available page sizes are: A3, A4, A, B, C, Legal,
+# Letter.
+page_size = "A4";		# ps fig
+
+# If defined, these set a custom page size which overrides the 'page_size'
+# variable.  Units are in cm.
+page_width = undef;		# ps fig
+page_height = undef;		# ps fig
+
+# Margin space to be left on each page, in cm.
+page_margin = 2;		# ps fig
+
+# Whether to rotate each page to landscape.  If not defined, then rotation
+# is decided on a per-page basis in order to get the best fit.
+page_rotate = undef;		# ps
+
+# Whether to show the main title on each page.
+show_page_title = 1;		# ps
+
+# Appearance of the main title (if shown).
+page_title_font = "Times-Bold";	# ps
+page_title_fontsize = 18;	# ps
+page_title_colour = "black";	# ps
+
+# Whether to show a border around each page.
+show_page_border = 0;		# ps fig
+
+# Colour of the page border (if drawn).
+page_border_colour = "black";	# ps fig
+
+# Colour of the page background (if border is drawn).
+page_background_colour = "white"; # ps fig
+
+# Whether to scale Fig layout to fit on a single page.  Most of the time,
+# this doesn't make things look good.
+fit_page = 0;			# fig
+
+##############################################################################
+# Map section variables
+##############################################################################
+
+# Whether to show the map title.
+show_map_title = 1;		# ps fig
+
+# Appearance of the title printed above each map section.
+map_title_font = "Times-Bold";	# ps fig
+map_title_fontsize = 14;	# ps fig
+map_title_colour = "black";	# ps fig
+
+# Whether to show a border around each map section.
+show_map_border = 0;		# ps fig
+
+# Colour of the map border (if drawn).
+map_border_colour = "black";	# ps fig
+
+# Colour of the map background (if border is drawn).
+map_background_colour = "white"; # ps fig
+tk.map_background_colour = "wheat"; # tk
+
+# Minimum space, in rooms, between map sections when packed together.
+map_section_spacing = 1;	# ps fig
+
+# Maximum width and height of the Tk map canvas window, in rooms.  Sizes
+# bigger than this will cause scrollbars to appear.
+map_canvas_width = 8;		# tk
+map_canvas_height = 6;		# tk
+
+##############################################################################
+# Room variables
+##############################################################################
+
+# Space allocated for each room, in cm.  In PostScript and Fig, this is the
+# maximum size -- the actual size may be reduced in order to fit things on
+# the page.
+room_size = 3;			# ps fig tk
+
+# Proportion of the room space that's taken up by the room dimensions.
+# These values should be less than 1 or you'll have no space left for link
+# lines.
+room_width = 0.8;		# ps fig tk
+room_height = 0.65;		# ps fig tk
+
+# Default background colour of rooms.
+room_colour = "white";		# ps fig tk
+
+# Offset and colour of room 'shadows'.  This is a pseudo-3D effect which
+# makes rooms look raised off the page.  The offsets are a proportion of
+# the allocated room space.  Note that you can change the direction of the
+# room shadow by negating one or both of the offsets.
+room_shadow_xoff = 0.05;	# ps fig tk
+room_shadow_yoff = 0.05;	# ps fig tk
+room_shadow_colour = "grey50";	# ps fig tk
+
+# Width and colour of the room box lines.
+room_border_width = 1;		# ps fig tk
+room_border_colour = "black";	# ps fig tk
+
+# Whether to draw dashed room borders.
+room_border_dashed = 0;		# ps fig
+
+# Width and colour of the room exit lines.
+room_exit_width = 1;		# ps fig tk
+room_exit_colour = "black";	# ps fig tk
+
+# Colour, font and fontsize of room description text.
+room_text_colour = "black";	# ps fig tk
+room_text_font = "Times-Bold";	# ps fig
+room_text_fontsize = 10;	# ps fig
+room_text_fontdef = "Times 10 bold"; # tk
+
+# Whether to show non-hidden item descriptions in rooms.
+show_items = 1;			# ps fig tk
+
+# Colour, font and fontsize of item description text (if shown).
+item_text_colour = "black";	# ps fig tk
+item_text_font = "Times-Italic";# ps fig
+item_text_fontsize = 6;		# ps fig
+item_text_fontdef = "Times 8 italic"; # tk
+
+# Whether to append room tag names to room descriptions.  If so, they are
+# appended in square brackets, like [this].
+show_tags = 0;			# ps fig tk
+
+##############################################################################
+# Link style variables
+##############################################################################
+
+# Width and colour of link lines.
+link_line_width = 1;		# ps fig tk
+link_colour = "black";		# ps fig tk
+
+# Size of oneway link arrows, as a proportion of the allocated room space.
+link_arrow_size = 0.1;		# ps tk
+
+# Whether to draw link lines as splines.
+link_spline = 1;		# fig tk
+
+# Whether to draw dashed link lines.
+link_dashed = 0;		# ps fig
+
+# Appearance of text that's associated with link lines.  The Tk default is
+# to colour them differently for readability.
+link_text_font = "Times-Roman";	# ps fig
+link_text_fontsize = 6;		# ps fig
+link_text_fontdef = "Times 8 bold"; # tk
+link_text_colour = "black";	# ps fig
+tk.link_text_colour = "red";	# tk
+
+# Text strings indicating up/down/in/out on links.  PostScript is currently
+# a special case: the strings either side of the '/' are extracted and
+# printed at either ends of the link, near the room they come from.
+link_updown_string = "U/D";	# ps fig tk
+link_inout_string = "I/O";	# ps fig tk
+
+##############################################################################
+# Join style variables
+##############################################################################
+
+# Whether to indicate joins in the room text.
+show_joins = 1;			# ps fig tk
+
+# Join string format (gets put in parentheses in those rooms that join to
+# other rooms).  The value should be "number" or "letter".
+join_format = "number";		# ps fig tk
+
+##############################################################################
+# Game solver variables
+##############################################################################
+
+# These variables modify the overall behaviour of the game solver.
+
+# Whether to keep unused items (i.e. those which were obtained via some
+# task or other, but currently have no use).
+keep_unused_items = 1;		# text rec
+
+# Whether to treat all tasks as safe (reckless mode!).
+all_tasks_safe = 0;		# text rec
+
+# Whether to print game solver info messages (helps with figuring out what
+# it's up to).
+solver_messages = 0;		# text rec
+
+##############################################################################
+# Task dependency variables
+##############################################################################
+
+# Whether to group tasks by the room they're done in.  This can either
+# enhance the task structure or make it look a complete mess.
+task_graph_rooms = 0;		# dot
+
+# Whether to show orphan tasks (those with no previous/next dependencies).
+# Useful for completeness, but it clutters things up a lot.
+task_graph_orphans = 0;		# dot
+
+# Graph attributes, in Graphviz format.
+task_graph_attr = "";		# dot
+
+# Node attributes, in Graphviz format.
+task_graph_node = "shape=box";  # dot
+
+# Link attributes, in Graphviz format.
+task_graph_link = "";		# dot
+
+##############################################################################
+# End of initialization file
+##############################################################################
