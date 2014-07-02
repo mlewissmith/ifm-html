@@ -26,6 +26,7 @@
 #include "ifm-util.h"
 #include "ifm-raw.h"
 #include "ifm-vars.h"
+#include "ifm-task.h"
 
 /* Map function list */
 mapfuncs raw_mapfuncs = {
@@ -234,8 +235,30 @@ raw_task_entry(vhash *task)
     vlist *cmds = vh_pget(task, "CMD");
     int score = vh_iget(task, "SCORE");
     viter iter;
+    int type;
+
+    type = vh_iget(task, "TYPE");
 
     printf("\ntask: %d\n", vh_iget(task, "ID"));
+
+    switch (type) {
+    case T_MOVE:
+      printf("type: MOVE\n");
+      break;
+    case T_GET:
+      printf("type: GET\n");
+      break;
+    case T_DROP:
+      printf("type: DROP\n");
+      break;
+    case T_GOTO:
+      printf("type: GOTO\n");
+      break;
+    case T_USER:
+      printf("type: USER\n");
+      break;
+    }
+
     put_string("name: %s\n", vh_sgetref(task, "DESC"));
 
     if (vh_exists(task, "TAG"))
