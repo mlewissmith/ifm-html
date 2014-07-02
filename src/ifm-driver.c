@@ -237,7 +237,7 @@ print_map(int dnum, vlist *sections)
             v_iterate(list, j) {
                 link = vl_iter_pval(j);
 
-                if (vh_iget(link, "HIDDEN"))
+                if (vh_iget(link, "HIDDEN") && dnum != 5)
                     continue;
 
                 if (vh_iget(link, "NOLINK"))
