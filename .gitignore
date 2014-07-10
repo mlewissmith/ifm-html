@@ -15,6 +15,7 @@ progs/tkifm
 src/.deps/
 src/Makefile
 src/ifm
+src/ifm.exe
 src/ifm-dot.o
 src/ifm-driver.o
 src/ifm-fig.o
