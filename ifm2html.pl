@@ -13,6 +13,7 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 use strict;
 use warnings;
 use feature qw(switch say);
+#no if $] >= 5.018, warnings => qw( experimental::smartmatch );
 
 use Cwd qw(getcwd realpath);
 use Data::Dumper; $Data::Dumper::Sortkeys = 1;
@@ -556,7 +557,7 @@ if ($opt{format} eq "html") {
                     my @htmlary;
                     for my $n (@{$rooms->{$r}{note}}) {
                         my $n_html = ucfirst(encode_entities($n));
-                        $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                        $n_html =~ s/#IMG\{(.+?)\}/<img src="$1">/g;
                         push @htmlary, $n_html;
                     }
                     print HTML heredoc(<<"##__HTML__##");
@@ -700,7 +701,7 @@ if ($opt{format} eq "html") {
                 my @htmlary;
                 for my $n (@{$tasks->{$t}{note}}) {
                     my $n_html = ucfirst(encode_entities($n));
-                    $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                    $n_html =~ s/#IMG\{(.+?)\}/<img src="$1">/g;
                     push @htmlary, $n_html;
                 }
                 print HTML heredoc(<<"##__HTML__##");
@@ -870,7 +871,7 @@ if ($opt{format} eq "html") {
                 my @htmlary;
                 for my $n (@{$items->{$i}{note}}) {
                     my $n_html = ucfirst(encode_entities($n));
-                    $n_html =~ s/#IMG{(.+?)}/<img src="$1">/g;
+                    $n_html =~ s/#IMG\{(.+?)\}/<img src="$1">/g;
                     push @htmlary, $n_html;
                 }
                 print HTML heredoc(<<"##__HTML__##");
