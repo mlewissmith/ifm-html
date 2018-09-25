@@ -755,3 +755,1540 @@
 205 205	  0		yellow3
 139 139	  0		yellow4
 154 205	 50		YellowGreen
+! [MILS] more colours
+  0   0   0		Blue00
+  0   0   0		Cyan00
+  0   0   0		Green00
+  0   0   0		Magenta00
+  0   0   0		Red00
+  0   0   0		Yellow00
+  0   0  17		Blue10
+  0   0  17		Yellow01
+  0   0  34		Blue20
+  0   0  34		Yellow02
+  0   0  51		Blue30
+  0   0  51		Yellow03
+  0   0  68		Blue40
+  0   0  68		Yellow04
+  0   0  85		Blue50
+  0   0  85		Yellow05
+  0   0 102		Blue60
+  0   0 102		Yellow06
+  0   0 119		Blue70
+  0   0 119		Yellow07
+  0   0 136		Blue80
+  0   0 136		Yellow08
+  0   0 153		Blue90
+  0   0 153		Yellow09
+  0   0 170		BlueA0
+  0   0 170		Yellow0A
+  0   0 187		BlueB0
+  0   0 187		Yellow0B
+  0   0 204		BlueC0
+  0   0 204		Yellow0C
+  0   0 221		BlueD0
+  0   0 221		Yellow0D
+  0   0 238		BlueE0
+  0   0 238		Yellow0E
+  0   0 255		BlueF0
+  0   0 255		Yellow0F
+  0  17   0		Green10
+  0  17   0		Magenta01
+  0  17  17		Cyan10
+  0  17  17		Red01
+  0  34   0		Green20
+  0  34   0		Magenta02
+  0  34  34		Cyan20
+  0  34  34		Red02
+  0  51   0		Green30
+  0  51   0		Magenta03
+  0  51  51		Cyan30
+  0  51  51		Red03
+  0  68   0		Green40
+  0  68   0		Magenta04
+  0  68  68		Cyan40
+  0  68  68		Red04
+  0  85   0		Green50
+  0  85   0		Magenta05
+  0  85  85		Cyan50
+  0  85  85		Red05
+  0 102   0		Green60
+  0 102   0		Magenta06
+  0 102 102		Cyan60
+  0 102 102		Red06
+  0 119   0		Green70
+  0 119   0		Magenta07
+  0 119 119		Cyan70
+  0 119 119		Red07
+  0 136   0		Green80
+  0 136   0		Magenta08
+  0 136 136		Cyan80
+  0 136 136		Red08
+  0 153   0		Green90
+  0 153   0		Magenta09
+  0 153 153		Cyan90
+  0 153 153		Red09
+  0 170   0		GreenA0
+  0 170   0		Magenta0A
+  0 170 170		CyanA0
+  0 170 170		Red0A
+  0 187   0		GreenB0
+  0 187   0		Magenta0B
+  0 187 187		CyanB0
+  0 187 187		Red0B
+  0 204   0		GreenC0
+  0 204   0		Magenta0C
+  0 204 204		CyanC0
+  0 204 204		Red0C
+  0 221   0		GreenD0
+  0 221   0		Magenta0D
+  0 221 221		CyanD0
+  0 221 221		Red0D
+  0 238   0		GreenE0
+  0 238   0		Magenta0E
+  0 238 238		CyanE0
+  0 238 238		Red0E
+  0 255   0		GreenF0
+  0 255   0		Magenta0F
+  0 255 255		CyanF0
+  0 255 255		Red0F
+ 17   0   0		Cyan01
+ 17   0   0		Red10
+ 17   0  17		Green01
+ 17   0  17		Magenta10
+ 17  17   0		Blue01
+ 17  17   0		Yellow10
+ 17  17  17		Blue11
+ 17  17  17		Cyan11
+ 17  17  17		Green11
+ 17  17  17		Magenta11
+ 17  17  17		Red11
+ 17  17  17		Yellow11
+ 17  17  34		Blue21
+ 17  17  34		Yellow12
+ 17  17  51		Blue31
+ 17  17  51		Yellow13
+ 17  17  68		Blue41
+ 17  17  68		Yellow14
+ 17  17  85		Blue51
+ 17  17  85		Yellow15
+ 17  17 102		Blue61
+ 17  17 102		Yellow16
+ 17  17 119		Blue71
+ 17  17 119		Yellow17
+ 17  17 136		Blue81
+ 17  17 136		Yellow18
+ 17  17 153		Blue91
+ 17  17 153		Yellow19
+ 17  17 170		BlueA1
+ 17  17 170		Yellow1A
+ 17  17 187		BlueB1
+ 17  17 187		Yellow1B
+ 17  17 204		BlueC1
+ 17  17 204		Yellow1C
+ 17  17 221		BlueD1
+ 17  17 221		Yellow1D
+ 17  17 238		BlueE1
+ 17  17 238		Yellow1E
+ 17  17 255		BlueF1
+ 17  17 255		Yellow1F
+ 17  34  17		Green21
+ 17  34  17		Magenta12
+ 17  34  34		Cyan21
+ 17  34  34		Red12
+ 17  51  17		Green31
+ 17  51  17		Magenta13
+ 17  51  51		Cyan31
+ 17  51  51		Red13
+ 17  68  17		Green41
+ 17  68  17		Magenta14
+ 17  68  68		Cyan41
+ 17  68  68		Red14
+ 17  85  17		Green51
+ 17  85  17		Magenta15
+ 17  85  85		Cyan51
+ 17  85  85		Red15
+ 17 102  17		Green61
+ 17 102  17		Magenta16
+ 17 102 102		Cyan61
+ 17 102 102		Red16
+ 17 119  17		Green71
+ 17 119  17		Magenta17
+ 17 119 119		Cyan71
+ 17 119 119		Red17
+ 17 136  17		Green81
+ 17 136  17		Magenta18
+ 17 136 136		Cyan81
+ 17 136 136		Red18
+ 17 153  17		Green91
+ 17 153  17		Magenta19
+ 17 153 153		Cyan91
+ 17 153 153		Red19
+ 17 170  17		GreenA1
+ 17 170  17		Magenta1A
+ 17 170 170		CyanA1
+ 17 170 170		Red1A
+ 17 187  17		GreenB1
+ 17 187  17		Magenta1B
+ 17 187 187		CyanB1
+ 17 187 187		Red1B
+ 17 204  17		GreenC1
+ 17 204  17		Magenta1C
+ 17 204 204		CyanC1
+ 17 204 204		Red1C
+ 17 221  17		GreenD1
+ 17 221  17		Magenta1D
+ 17 221 221		CyanD1
+ 17 221 221		Red1D
+ 17 238  17		GreenE1
+ 17 238  17		Magenta1E
+ 17 238 238		CyanE1
+ 17 238 238		Red1E
+ 17 255  17		GreenF1
+ 17 255  17		Magenta1F
+ 17 255 255		CyanF1
+ 17 255 255		Red1F
+ 34   0   0		Cyan02
+ 34   0   0		Red20
+ 34   0  34		Green02
+ 34   0  34		Magenta20
+ 34  17  17		Cyan12
+ 34  17  17		Red21
+ 34  17  34		Green12
+ 34  17  34		Magenta21
+ 34  34   0		Blue02
+ 34  34   0		Yellow20
+ 34  34  17		Blue12
+ 34  34  17		Yellow21
+ 34  34  34		Blue22
+ 34  34  34		Cyan22
+ 34  34  34		Green22
+ 34  34  34		Magenta22
+ 34  34  34		Red22
+ 34  34  34		Yellow22
+ 34  34  51		Blue32
+ 34  34  51		Yellow23
+ 34  34  68		Blue42
+ 34  34  68		Yellow24
+ 34  34  85		Blue52
+ 34  34  85		Yellow25
+ 34  34 102		Blue62
+ 34  34 102		Yellow26
+ 34  34 119		Blue72
+ 34  34 119		Yellow27
+ 34  34 136		Blue82
+ 34  34 136		Yellow28
+ 34  34 153		Blue92
+ 34  34 153		Yellow29
+ 34  34 170		BlueA2
+ 34  34 170		Yellow2A
+ 34  34 187		BlueB2
+ 34  34 187		Yellow2B
+ 34  34 204		BlueC2
+ 34  34 204		Yellow2C
+ 34  34 221		BlueD2
+ 34  34 221		Yellow2D
+ 34  34 238		BlueE2
+ 34  34 238		Yellow2E
+ 34  34 255		BlueF2
+ 34  34 255		Yellow2F
+ 34  51  34		Green32
+ 34  51  34		Magenta23
+ 34  51  51		Cyan32
+ 34  51  51		Red23
+ 34  68  34		Green42
+ 34  68  34		Magenta24
+ 34  68  68		Cyan42
+ 34  68  68		Red24
+ 34  85  34		Green52
+ 34  85  34		Magenta25
+ 34  85  85		Cyan52
+ 34  85  85		Red25
+ 34 102  34		Green62
+ 34 102  34		Magenta26
+ 34 102 102		Cyan62
+ 34 102 102		Red26
+ 34 119  34		Green72
+ 34 119  34		Magenta27
+ 34 119 119		Cyan72
+ 34 119 119		Red27
+ 34 136  34		Green82
+ 34 136  34		Magenta28
+ 34 136 136		Cyan82
+ 34 136 136		Red28
+ 34 153  34		Green92
+ 34 153  34		Magenta29
+ 34 153 153		Cyan92
+ 34 153 153		Red29
+ 34 170  34		GreenA2
+ 34 170  34		Magenta2A
+ 34 170 170		CyanA2
+ 34 170 170		Red2A
+ 34 187  34		GreenB2
+ 34 187  34		Magenta2B
+ 34 187 187		CyanB2
+ 34 187 187		Red2B
+ 34 204  34		GreenC2
+ 34 204  34		Magenta2C
+ 34 204 204		CyanC2
+ 34 204 204		Red2C
+ 34 221  34		GreenD2
+ 34 221  34		Magenta2D
+ 34 221 221		CyanD2
+ 34 221 221		Red2D
+ 34 238  34		GreenE2
+ 34 238  34		Magenta2E
+ 34 238 238		CyanE2
+ 34 238 238		Red2E
+ 34 255  34		GreenF2
+ 34 255  34		Magenta2F
+ 34 255 255		CyanF2
+ 34 255 255		Red2F
+ 51   0   0		Cyan03
+ 51   0   0		Red30
+ 51   0  51		Green03
+ 51   0  51		Magenta30
+ 51  17  17		Cyan13
+ 51  17  17		Red31
+ 51  17  51		Green13
+ 51  17  51		Magenta31
+ 51  34  34		Cyan23
+ 51  34  34		Red32
+ 51  34  51		Green23
+ 51  34  51		Magenta32
+ 51  51   0		Blue03
+ 51  51   0		Yellow30
+ 51  51  17		Blue13
+ 51  51  17		Yellow31
+ 51  51  34		Blue23
+ 51  51  34		Yellow32
+ 51  51  51		Blue33
+ 51  51  51		Cyan33
+ 51  51  51		Green33
+ 51  51  51		Magenta33
+ 51  51  51		Red33
+ 51  51  51		Yellow33
+ 51  51  68		Blue43
+ 51  51  68		Yellow34
+ 51  51  85		Blue53
+ 51  51  85		Yellow35
+ 51  51 102		Blue63
+ 51  51 102		Yellow36
+ 51  51 119		Blue73
+ 51  51 119		Yellow37
+ 51  51 136		Blue83
+ 51  51 136		Yellow38
+ 51  51 153		Blue93
+ 51  51 153		Yellow39
+ 51  51 170		BlueA3
+ 51  51 170		Yellow3A
+ 51  51 187		BlueB3
+ 51  51 187		Yellow3B
+ 51  51 204		BlueC3
+ 51  51 204		Yellow3C
+ 51  51 221		BlueD3
+ 51  51 221		Yellow3D
+ 51  51 238		BlueE3
+ 51  51 238		Yellow3E
+ 51  51 255		BlueF3
+ 51  51 255		Yellow3F
+ 51  68  51		Green43
+ 51  68  51		Magenta34
+ 51  68  68		Cyan43
+ 51  68  68		Red34
+ 51  85  51		Green53
+ 51  85  51		Magenta35
+ 51  85  85		Cyan53
+ 51  85  85		Red35
+ 51 102  51		Green63
+ 51 102  51		Magenta36
+ 51 102 102		Cyan63
+ 51 102 102		Red36
+ 51 119  51		Green73
+ 51 119  51		Magenta37
+ 51 119 119		Cyan73
+ 51 119 119		Red37
+ 51 136  51		Green83
+ 51 136  51		Magenta38
+ 51 136 136		Cyan83
+ 51 136 136		Red38
+ 51 153  51		Green93
+ 51 153  51		Magenta39
+ 51 153 153		Cyan93
+ 51 153 153		Red39
+ 51 170  51		GreenA3
+ 51 170  51		Magenta3A
+ 51 170 170		CyanA3
+ 51 170 170		Red3A
+ 51 187  51		GreenB3
+ 51 187  51		Magenta3B
+ 51 187 187		CyanB3
+ 51 187 187		Red3B
+ 51 204  51		GreenC3
+ 51 204  51		Magenta3C
+ 51 204 204		CyanC3
+ 51 204 204		Red3C
+ 51 221  51		GreenD3
+ 51 221  51		Magenta3D
+ 51 221 221		CyanD3
+ 51 221 221		Red3D
+ 51 238  51		GreenE3
+ 51 238  51		Magenta3E
+ 51 238 238		CyanE3
+ 51 238 238		Red3E
+ 51 255  51		GreenF3
+ 51 255  51		Magenta3F
+ 51 255 255		CyanF3
+ 51 255 255		Red3F
+ 68   0   0		Cyan04
+ 68   0   0		Red40
+ 68   0  68		Green04
+ 68   0  68		Magenta40
+ 68  17  17		Cyan14
+ 68  17  17		Red41
+ 68  17  68		Green14
+ 68  17  68		Magenta41
+ 68  34  34		Cyan24
+ 68  34  34		Red42
+ 68  34  68		Green24
+ 68  34  68		Magenta42
+ 68  51  51		Cyan34
+ 68  51  51		Red43
+ 68  51  68		Green34
+ 68  51  68		Magenta43
+ 68  68   0		Blue04
+ 68  68   0		Yellow40
+ 68  68  17		Blue14
+ 68  68  17		Yellow41
+ 68  68  34		Blue24
+ 68  68  34		Yellow42
+ 68  68  51		Blue34
+ 68  68  51		Yellow43
+ 68  68  68		Blue44
+ 68  68  68		Cyan44
+ 68  68  68		Green44
+ 68  68  68		Magenta44
+ 68  68  68		Red44
+ 68  68  68		Yellow44
+ 68  68  85		Blue54
+ 68  68  85		Yellow45
+ 68  68 102		Blue64
+ 68  68 102		Yellow46
+ 68  68 119		Blue74
+ 68  68 119		Yellow47
+ 68  68 136		Blue84
+ 68  68 136		Yellow48
+ 68  68 153		Blue94
+ 68  68 153		Yellow49
+ 68  68 170		BlueA4
+ 68  68 170		Yellow4A
+ 68  68 187		BlueB4
+ 68  68 187		Yellow4B
+ 68  68 204		BlueC4
+ 68  68 204		Yellow4C
+ 68  68 221		BlueD4
+ 68  68 221		Yellow4D
+ 68  68 238		BlueE4
+ 68  68 238		Yellow4E
+ 68  68 255		BlueF4
+ 68  68 255		Yellow4F
+ 68  85  68		Green54
+ 68  85  68		Magenta45
+ 68  85  85		Cyan54
+ 68  85  85		Red45
+ 68 102  68		Green64
+ 68 102  68		Magenta46
+ 68 102 102		Cyan64
+ 68 102 102		Red46
+ 68 119  68		Green74
+ 68 119  68		Magenta47
+ 68 119 119		Cyan74
+ 68 119 119		Red47
+ 68 136  68		Green84
+ 68 136  68		Magenta48
+ 68 136 136		Cyan84
+ 68 136 136		Red48
+ 68 153  68		Green94
+ 68 153  68		Magenta49
+ 68 153 153		Cyan94
+ 68 153 153		Red49
+ 68 170  68		GreenA4
+ 68 170  68		Magenta4A
+ 68 170 170		CyanA4
+ 68 170 170		Red4A
+ 68 187  68		GreenB4
+ 68 187  68		Magenta4B
+ 68 187 187		CyanB4
+ 68 187 187		Red4B
+ 68 204  68		GreenC4
+ 68 204  68		Magenta4C
+ 68 204 204		CyanC4
+ 68 204 204		Red4C
+ 68 221  68		GreenD4
+ 68 221  68		Magenta4D
+ 68 221 221		CyanD4
+ 68 221 221		Red4D
+ 68 238  68		GreenE4
+ 68 238  68		Magenta4E
+ 68 238 238		CyanE4
+ 68 238 238		Red4E
+ 68 255  68		GreenF4
+ 68 255  68		Magenta4F
+ 68 255 255		CyanF4
+ 68 255 255		Red4F
+ 85   0   0		Cyan05
+ 85   0   0		Red50
+ 85   0  85		Green05
+ 85   0  85		Magenta50
+ 85  17  17		Cyan15
+ 85  17  17		Red51
+ 85  17  85		Green15
+ 85  17  85		Magenta51
+ 85  34  34		Cyan25
+ 85  34  34		Red52
+ 85  34  85		Green25
+ 85  34  85		Magenta52
+ 85  51  51		Cyan35
+ 85  51  51		Red53
+ 85  51  85		Green35
+ 85  51  85		Magenta53
+ 85  68  68		Cyan45
+ 85  68  68		Red54
+ 85  68  85		Green45
+ 85  68  85		Magenta54
+ 85  85   0		Blue05
+ 85  85   0		Yellow50
+ 85  85  17		Blue15
+ 85  85  17		Yellow51
+ 85  85  34		Blue25
+ 85  85  34		Yellow52
+ 85  85  51		Blue35
+ 85  85  51		Yellow53
+ 85  85  68		Blue45
+ 85  85  68		Yellow54
+ 85  85  85		Blue55
+ 85  85  85		Cyan55
+ 85  85  85		Green55
+ 85  85  85		Magenta55
+ 85  85  85		Red55
+ 85  85  85		Yellow55
+ 85  85 102		Blue65
+ 85  85 102		Yellow56
+ 85  85 119		Blue75
+ 85  85 119		Yellow57
+ 85  85 136		Blue85
+ 85  85 136		Yellow58
+ 85  85 153		Blue95
+ 85  85 153		Yellow59
+ 85  85 170		BlueA5
+ 85  85 170		Yellow5A
+ 85  85 187		BlueB5
+ 85  85 187		Yellow5B
+ 85  85 204		BlueC5
+ 85  85 204		Yellow5C
+ 85  85 221		BlueD5
+ 85  85 221		Yellow5D
+ 85  85 238		BlueE5
+ 85  85 238		Yellow5E
+ 85  85 255		BlueF5
+ 85  85 255		Yellow5F
+ 85 102  85		Green65
+ 85 102  85		Magenta56
+ 85 102 102		Cyan65
+ 85 102 102		Red56
+ 85 119  85		Green75
+ 85 119  85		Magenta57
+ 85 119 119		Cyan75
+ 85 119 119		Red57
+ 85 136  85		Green85
+ 85 136  85		Magenta58
+ 85 136 136		Cyan85
+ 85 136 136		Red58
+ 85 153  85		Green95
+ 85 153  85		Magenta59
+ 85 153 153		Cyan95
+ 85 153 153		Red59
+ 85 170  85		GreenA5
+ 85 170  85		Magenta5A
+ 85 170 170		CyanA5
+ 85 170 170		Red5A
+ 85 187  85		GreenB5
+ 85 187  85		Magenta5B
+ 85 187 187		CyanB5
+ 85 187 187		Red5B
+ 85 204  85		GreenC5
+ 85 204  85		Magenta5C
+ 85 204 204		CyanC5
+ 85 204 204		Red5C
+ 85 221  85		GreenD5
+ 85 221  85		Magenta5D
+ 85 221 221		CyanD5
+ 85 221 221		Red5D
+ 85 238  85		GreenE5
+ 85 238  85		Magenta5E
+ 85 238 238		CyanE5
+ 85 238 238		Red5E
+ 85 255  85		GreenF5
+ 85 255  85		Magenta5F
+ 85 255 255		CyanF5
+ 85 255 255		Red5F
+102   0   0		Cyan06
+102   0   0		Red60
+102   0 102		Green06
+102   0 102		Magenta60
+102  17  17		Cyan16
+102  17  17		Red61
+102  17 102		Green16
+102  17 102		Magenta61
+102  34  34		Cyan26
+102  34  34		Red62
+102  34 102		Green26
+102  34 102		Magenta62
+102  51  51		Cyan36
+102  51  51		Red63
+102  51 102		Green36
+102  51 102		Magenta63
+102  68  68		Cyan46
+102  68  68		Red64
+102  68 102		Green46
+102  68 102		Magenta64
+102  85  85		Cyan56
+102  85  85		Red65
+102  85 102		Green56
+102  85 102		Magenta65
+102 102   0		Blue06
+102 102   0		Yellow60
+102 102  17		Blue16
+102 102  17		Yellow61
+102 102  34		Blue26
+102 102  34		Yellow62
+102 102  51		Blue36
+102 102  51		Yellow63
+102 102  68		Blue46
+102 102  68		Yellow64
+102 102  85		Blue56
+102 102  85		Yellow65
+102 102 102		Blue66
+102 102 102		Cyan66
+102 102 102		Green66
+102 102 102		Magenta66
+102 102 102		Red66
+102 102 102		Yellow66
+102 102 119		Blue76
+102 102 119		Yellow67
+102 102 136		Blue86
+102 102 136		Yellow68
+102 102 153		Blue96
+102 102 153		Yellow69
+102 102 170		BlueA6
+102 102 170		Yellow6A
+102 102 187		BlueB6
+102 102 187		Yellow6B
+102 102 204		BlueC6
+102 102 204		Yellow6C
+102 102 221		BlueD6
+102 102 221		Yellow6D
+102 102 238		BlueE6
+102 102 238		Yellow6E
+102 102 255		BlueF6
+102 102 255		Yellow6F
+102 119 102		Green76
+102 119 102		Magenta67
+102 119 119		Cyan76
+102 119 119		Red67
+102 136 102		Green86
+102 136 102		Magenta68
+102 136 136		Cyan86
+102 136 136		Red68
+102 153 102		Green96
+102 153 102		Magenta69
+102 153 153		Cyan96
+102 153 153		Red69
+102 170 102		GreenA6
+102 170 102		Magenta6A
+102 170 170		CyanA6
+102 170 170		Red6A
+102 187 102		GreenB6
+102 187 102		Magenta6B
+102 187 187		CyanB6
+102 187 187		Red6B
+102 204 102		GreenC6
+102 204 102		Magenta6C
+102 204 204		CyanC6
+102 204 204		Red6C
+102 221 102		GreenD6
+102 221 102		Magenta6D
+102 221 221		CyanD6
+102 221 221		Red6D
+102 238 102		GreenE6
+102 238 102		Magenta6E
+102 238 238		CyanE6
+102 238 238		Red6E
+102 255 102		GreenF6
+102 255 102		Magenta6F
+102 255 255		CyanF6
+102 255 255		Red6F
+119   0   0		Cyan07
+119   0   0		Red70
+119   0 119		Green07
+119   0 119		Magenta70
+119  17  17		Cyan17
+119  17  17		Red71
+119  17 119		Green17
+119  17 119		Magenta71
+119  34  34		Cyan27
+119  34  34		Red72
+119  34 119		Green27
+119  34 119		Magenta72
+119  51  51		Cyan37
+119  51  51		Red73
+119  51 119		Green37
+119  51 119		Magenta73
+119  68  68		Cyan47
+119  68  68		Red74
+119  68 119		Green47
+119  68 119		Magenta74
+119  85  85		Cyan57
+119  85  85		Red75
+119  85 119		Green57
+119  85 119		Magenta75
+119 102 102		Cyan67
+119 102 102		Red76
+119 102 119		Green67
+119 102 119		Magenta76
+119 119   0		Blue07
+119 119   0		Yellow70
+119 119  17		Blue17
+119 119  17		Yellow71
+119 119  34		Blue27
+119 119  34		Yellow72
+119 119  51		Blue37
+119 119  51		Yellow73
+119 119  68		Blue47
+119 119  68		Yellow74
+119 119  85		Blue57
+119 119  85		Yellow75
+119 119 102		Blue67
+119 119 102		Yellow76
+119 119 119		Blue77
+119 119 119		Cyan77
+119 119 119		Green77
+119 119 119		Magenta77
+119 119 119		Red77
+119 119 119		Yellow77
+119 119 136		Blue87
+119 119 136		Yellow78
+119 119 153		Blue97
+119 119 153		Yellow79
+119 119 170		BlueA7
+119 119 170		Yellow7A
+119 119 187		BlueB7
+119 119 187		Yellow7B
+119 119 204		BlueC7
+119 119 204		Yellow7C
+119 119 221		BlueD7
+119 119 221		Yellow7D
+119 119 238		BlueE7
+119 119 238		Yellow7E
+119 119 255		BlueF7
+119 119 255		Yellow7F
+119 136 119		Green87
+119 136 119		Magenta78
+119 136 136		Cyan87
+119 136 136		Red78
+119 153 119		Green97
+119 153 119		Magenta79
+119 153 153		Cyan97
+119 153 153		Red79
+119 170 119		GreenA7
+119 170 119		Magenta7A
+119 170 170		CyanA7
+119 170 170		Red7A
+119 187 119		GreenB7
+119 187 119		Magenta7B
+119 187 187		CyanB7
+119 187 187		Red7B
+119 204 119		GreenC7
+119 204 119		Magenta7C
+119 204 204		CyanC7
+119 204 204		Red7C
+119 221 119		GreenD7
+119 221 119		Magenta7D
+119 221 221		CyanD7
+119 221 221		Red7D
+119 238 119		GreenE7
+119 238 119		Magenta7E
+119 238 238		CyanE7
+119 238 238		Red7E
+119 255 119		GreenF7
+119 255 119		Magenta7F
+119 255 255		CyanF7
+119 255 255		Red7F
+136   0   0		Cyan08
+136   0   0		Red80
+136   0 136		Green08
+136   0 136		Magenta80
+136  17  17		Cyan18
+136  17  17		Red81
+136  17 136		Green18
+136  17 136		Magenta81
+136  34  34		Cyan28
+136  34  34		Red82
+136  34 136		Green28
+136  34 136		Magenta82
+136  51  51		Cyan38
+136  51  51		Red83
+136  51 136		Green38
+136  51 136		Magenta83
+136  68  68		Cyan48
+136  68  68		Red84
+136  68 136		Green48
+136  68 136		Magenta84
+136  85  85		Cyan58
+136  85  85		Red85
+136  85 136		Green58
+136  85 136		Magenta85
+136 102 102		Cyan68
+136 102 102		Red86
+136 102 136		Green68
+136 102 136		Magenta86
+136 119 119		Cyan78
+136 119 119		Red87
+136 119 136		Green78
+136 119 136		Magenta87
+136 136   0		Blue08
+136 136   0		Yellow80
+136 136  17		Blue18
+136 136  17		Yellow81
+136 136  34		Blue28
+136 136  34		Yellow82
+136 136  51		Blue38
+136 136  51		Yellow83
+136 136  68		Blue48
+136 136  68		Yellow84
+136 136  85		Blue58
+136 136  85		Yellow85
+136 136 102		Blue68
+136 136 102		Yellow86
+136 136 119		Blue78
+136 136 119		Yellow87
+136 136 136		Blue88
+136 136 136		Cyan88
+136 136 136		Green88
+136 136 136		Magenta88
+136 136 136		Red88
+136 136 136		Yellow88
+136 136 153		Blue98
+136 136 153		Yellow89
+136 136 170		BlueA8
+136 136 170		Yellow8A
+136 136 187		BlueB8
+136 136 187		Yellow8B
+136 136 204		BlueC8
+136 136 204		Yellow8C
+136 136 221		BlueD8
+136 136 221		Yellow8D
+136 136 238		BlueE8
+136 136 238		Yellow8E
+136 136 255		BlueF8
+136 136 255		Yellow8F
+136 153 136		Green98
+136 153 136		Magenta89
+136 153 153		Cyan98
+136 153 153		Red89
+136 170 136		GreenA8
+136 170 136		Magenta8A
+136 170 170		CyanA8
+136 170 170		Red8A
+136 187 136		GreenB8
+136 187 136		Magenta8B
+136 187 187		CyanB8
+136 187 187		Red8B
+136 204 136		GreenC8
+136 204 136		Magenta8C
+136 204 204		CyanC8
+136 204 204		Red8C
+136 221 136		GreenD8
+136 221 136		Magenta8D
+136 221 221		CyanD8
+136 221 221		Red8D
+136 238 136		GreenE8
+136 238 136		Magenta8E
+136 238 238		CyanE8
+136 238 238		Red8E
+136 255 136		GreenF8
+136 255 136		Magenta8F
+136 255 255		CyanF8
+136 255 255		Red8F
+153   0   0		Cyan09
+153   0   0		Red90
+153   0 153		Green09
+153   0 153		Magenta90
+153  17  17		Cyan19
+153  17  17		Red91
+153  17 153		Green19
+153  17 153		Magenta91
+153  34  34		Cyan29
+153  34  34		Red92
+153  34 153		Green29
+153  34 153		Magenta92
+153  51  51		Cyan39
+153  51  51		Red93
+153  51 153		Green39
+153  51 153		Magenta93
+153  68  68		Cyan49
+153  68  68		Red94
+153  68 153		Green49
+153  68 153		Magenta94
+153  85  85		Cyan59
+153  85  85		Red95
+153  85 153		Green59
+153  85 153		Magenta95
+153 102 102		Cyan69
+153 102 102		Red96
+153 102 153		Green69
+153 102 153		Magenta96
+153 119 119		Cyan79
+153 119 119		Red97
+153 119 153		Green79
+153 119 153		Magenta97
+153 136 136		Cyan89
+153 136 136		Red98
+153 136 153		Green89
+153 136 153		Magenta98
+153 153   0		Blue09
+153 153   0		Yellow90
+153 153  17		Blue19
+153 153  17		Yellow91
+153 153  34		Blue29
+153 153  34		Yellow92
+153 153  51		Blue39
+153 153  51		Yellow93
+153 153  68		Blue49
+153 153  68		Yellow94
+153 153  85		Blue59
+153 153  85		Yellow95
+153 153 102		Blue69
+153 153 102		Yellow96
+153 153 119		Blue79
+153 153 119		Yellow97
+153 153 136		Blue89
+153 153 136		Yellow98
+153 153 153		Blue99
+153 153 153		Cyan99
+153 153 153		Green99
+153 153 153		Magenta99
+153 153 153		Red99
+153 153 153		Yellow99
+153 153 170		BlueA9
+153 153 170		Yellow9A
+153 153 187		BlueB9
+153 153 187		Yellow9B
+153 153 204		BlueC9
+153 153 204		Yellow9C
+153 153 221		BlueD9
+153 153 221		Yellow9D
+153 153 238		BlueE9
+153 153 238		Yellow9E
+153 153 255		BlueF9
+153 153 255		Yellow9F
+153 170 153		GreenA9
+153 170 153		Magenta9A
+153 170 170		CyanA9
+153 170 170		Red9A
+153 187 153		GreenB9
+153 187 153		Magenta9B
+153 187 187		CyanB9
+153 187 187		Red9B
+153 204 153		GreenC9
+153 204 153		Magenta9C
+153 204 204		CyanC9
+153 204 204		Red9C
+153 221 153		GreenD9
+153 221 153		Magenta9D
+153 221 221		CyanD9
+153 221 221		Red9D
+153 238 153		GreenE9
+153 238 153		Magenta9E
+153 238 238		CyanE9
+153 238 238		Red9E
+153 255 153		GreenF9
+153 255 153		Magenta9F
+153 255 255		CyanF9
+153 255 255		Red9F
+170   0   0		Cyan0A
+170   0   0		RedA0
+170   0 170		Green0A
+170   0 170		MagentaA0
+170  17  17		Cyan1A
+170  17  17		RedA1
+170  17 170		Green1A
+170  17 170		MagentaA1
+170  34  34		Cyan2A
+170  34  34		RedA2
+170  34 170		Green2A
+170  34 170		MagentaA2
+170  51  51		Cyan3A
+170  51  51		RedA3
+170  51 170		Green3A
+170  51 170		MagentaA3
+170  68  68		Cyan4A
+170  68  68		RedA4
+170  68 170		Green4A
+170  68 170		MagentaA4
+170  85  85		Cyan5A
+170  85  85		RedA5
+170  85 170		Green5A
+170  85 170		MagentaA5
+170 102 102		Cyan6A
+170 102 102		RedA6
+170 102 170		Green6A
+170 102 170		MagentaA6
+170 119 119		Cyan7A
+170 119 119		RedA7
+170 119 170		Green7A
+170 119 170		MagentaA7
+170 136 136		Cyan8A
+170 136 136		RedA8
+170 136 170		Green8A
+170 136 170		MagentaA8
+170 153 153		Cyan9A
+170 153 153		RedA9
+170 153 170		Green9A
+170 153 170		MagentaA9
+170 170   0		Blue0A
+170 170   0		YellowA0
+170 170  17		Blue1A
+170 170  17		YellowA1
+170 170  34		Blue2A
+170 170  34		YellowA2
+170 170  51		Blue3A
+170 170  51		YellowA3
+170 170  68		Blue4A
+170 170  68		YellowA4
+170 170  85		Blue5A
+170 170  85		YellowA5
+170 170 102		Blue6A
+170 170 102		YellowA6
+170 170 119		Blue7A
+170 170 119		YellowA7
+170 170 136		Blue8A
+170 170 136		YellowA8
+170 170 153		Blue9A
+170 170 153		YellowA9
+170 170 170		BlueAA
+170 170 170		CyanAA
+170 170 170		GreenAA
+170 170 170		MagentaAA
+170 170 170		RedAA
+170 170 170		YellowAA
+170 170 187		BlueBA
+170 170 187		YellowAB
+170 170 204		BlueCA
+170 170 204		YellowAC
+170 170 221		BlueDA
+170 170 221		YellowAD
+170 170 238		BlueEA
+170 170 238		YellowAE
+170 170 255		BlueFA
+170 170 255		YellowAF
+170 187 170		GreenBA
+170 187 170		MagentaAB
+170 187 187		CyanBA
+170 187 187		RedAB
+170 204 170		GreenCA
+170 204 170		MagentaAC
+170 204 204		CyanCA
+170 204 204		RedAC
+170 221 170		GreenDA
+170 221 170		MagentaAD
+170 221 221		CyanDA
+170 221 221		RedAD
+170 238 170		GreenEA
+170 238 170		MagentaAE
+170 238 238		CyanEA
+170 238 238		RedAE
+170 255 170		GreenFA
+170 255 170		MagentaAF
+170 255 255		CyanFA
+170 255 255		RedAF
+187   0   0		Cyan0B
+187   0   0		RedB0
+187   0 187		Green0B
+187   0 187		MagentaB0
+187  17  17		Cyan1B
+187  17  17		RedB1
+187  17 187		Green1B
+187  17 187		MagentaB1
+187  34  34		Cyan2B
+187  34  34		RedB2
+187  34 187		Green2B
+187  34 187		MagentaB2
+187  51  51		Cyan3B
+187  51  51		RedB3
+187  51 187		Green3B
+187  51 187		MagentaB3
+187  68  68		Cyan4B
+187  68  68		RedB4
+187  68 187		Green4B
+187  68 187		MagentaB4
+187  85  85		Cyan5B
+187  85  85		RedB5
+187  85 187		Green5B
+187  85 187		MagentaB5
+187 102 102		Cyan6B
+187 102 102		RedB6
+187 102 187		Green6B
+187 102 187		MagentaB6
+187 119 119		Cyan7B
+187 119 119		RedB7
+187 119 187		Green7B
+187 119 187		MagentaB7
+187 136 136		Cyan8B
+187 136 136		RedB8
+187 136 187		Green8B
+187 136 187		MagentaB8
+187 153 153		Cyan9B
+187 153 153		RedB9
+187 153 187		Green9B
+187 153 187		MagentaB9
+187 170 170		CyanAB
+187 170 170		RedBA
+187 170 187		GreenAB
+187 170 187		MagentaBA
+187 187   0		Blue0B
+187 187   0		YellowB0
+187 187  17		Blue1B
+187 187  17		YellowB1
+187 187  34		Blue2B
+187 187  34		YellowB2
+187 187  51		Blue3B
+187 187  51		YellowB3
+187 187  68		Blue4B
+187 187  68		YellowB4
+187 187  85		Blue5B
+187 187  85		YellowB5
+187 187 102		Blue6B
+187 187 102		YellowB6
+187 187 119		Blue7B
+187 187 119		YellowB7
+187 187 136		Blue8B
+187 187 136		YellowB8
+187 187 153		Blue9B
+187 187 153		YellowB9
+187 187 170		BlueAB
+187 187 170		YellowBA
+187 187 187		BlueBB
+187 187 187		CyanBB
+187 187 187		GreenBB
+187 187 187		MagentaBB
+187 187 187		RedBB
+187 187 187		YellowBB
+187 187 204		BlueCB
+187 187 204		YellowBC
+187 187 221		BlueDB
+187 187 221		YellowBD
+187 187 238		BlueEB
+187 187 238		YellowBE
+187 187 255		BlueFB
+187 187 255		YellowBF
+187 204 187		GreenCB
+187 204 187		MagentaBC
+187 204 204		CyanCB
+187 204 204		RedBC
+187 221 187		GreenDB
+187 221 187		MagentaBD
+187 221 221		CyanDB
+187 221 221		RedBD
+187 238 187		GreenEB
+187 238 187		MagentaBE
+187 238 238		CyanEB
+187 238 238		RedBE
+187 255 187		GreenFB
+187 255 187		MagentaBF
+187 255 255		CyanFB
+187 255 255		RedBF
+204   0   0		Cyan0C
+204   0   0		RedC0
+204   0 204		Green0C
+204   0 204		MagentaC0
+204  17  17		Cyan1C
+204  17  17		RedC1
+204  17 204		Green1C
+204  17 204		MagentaC1
+204  34  34		Cyan2C
+204  34  34		RedC2
+204  34 204		Green2C
+204  34 204		MagentaC2
+204  51  51		Cyan3C
+204  51  51		RedC3
+204  51 204		Green3C
+204  51 204		MagentaC3
+204  68  68		Cyan4C
+204  68  68		RedC4
+204  68 204		Green4C
+204  68 204		MagentaC4
+204  85  85		Cyan5C
+204  85  85		RedC5
+204  85 204		Green5C
+204  85 204		MagentaC5
+204 102 102		Cyan6C
+204 102 102		RedC6
+204 102 204		Green6C
+204 102 204		MagentaC6
+204 119 119		Cyan7C
+204 119 119		RedC7
+204 119 204		Green7C
+204 119 204		MagentaC7
+204 136 136		Cyan8C
+204 136 136		RedC8
+204 136 204		Green8C
+204 136 204		MagentaC8
+204 153 153		Cyan9C
+204 153 153		RedC9
+204 153 204		Green9C
+204 153 204		MagentaC9
+204 170 170		CyanAC
+204 170 170		RedCA
+204 170 204		GreenAC
+204 170 204		MagentaCA
+204 187 187		CyanBC
+204 187 187		RedCB
+204 187 204		GreenBC
+204 187 204		MagentaCB
+204 204   0		Blue0C
+204 204   0		YellowC0
+204 204  17		Blue1C
+204 204  17		YellowC1
+204 204  34		Blue2C
+204 204  34		YellowC2
+204 204  51		Blue3C
+204 204  51		YellowC3
+204 204  68		Blue4C
+204 204  68		YellowC4
+204 204  85		Blue5C
+204 204  85		YellowC5
+204 204 102		Blue6C
+204 204 102		YellowC6
+204 204 119		Blue7C
+204 204 119		YellowC7
+204 204 136		Blue8C
+204 204 136		YellowC8
+204 204 153		Blue9C
+204 204 153		YellowC9
+204 204 170		BlueAC
+204 204 170		YellowCA
+204 204 187		BlueBC
+204 204 187		YellowCB
+204 204 204		BlueCC
+204 204 204		CyanCC
+204 204 204		GreenCC
+204 204 204		MagentaCC
+204 204 204		RedCC
+204 204 204		YellowCC
+204 204 221		BlueDC
+204 204 221		YellowCD
+204 204 238		BlueEC
+204 204 238		YellowCE
+204 204 255		BlueFC
+204 204 255		YellowCF
+204 221 204		GreenDC
+204 221 204		MagentaCD
+204 221 221		CyanDC
+204 221 221		RedCD
+204 238 204		GreenEC
+204 238 204		MagentaCE
+204 238 238		CyanEC
+204 238 238		RedCE
+204 255 204		GreenFC
+204 255 204		MagentaCF
+204 255 255		CyanFC
+204 255 255		RedCF
+221   0   0		Cyan0D
+221   0   0		RedD0
+221   0 221		Green0D
+221   0 221		MagentaD0
+221  17  17		Cyan1D
+221  17  17		RedD1
+221  17 221		Green1D
+221  17 221		MagentaD1
+221  34  34		Cyan2D
+221  34  34		RedD2
+221  34 221		Green2D
+221  34 221		MagentaD2
+221  51  51		Cyan3D
+221  51  51		RedD3
+221  51 221		Green3D
+221  51 221		MagentaD3
+221  68  68		Cyan4D
+221  68  68		RedD4
+221  68 221		Green4D
+221  68 221		MagentaD4
+221  85  85		Cyan5D
+221  85  85		RedD5
+221  85 221		Green5D
+221  85 221		MagentaD5
+221 102 102		Cyan6D
+221 102 102		RedD6
+221 102 221		Green6D
+221 102 221		MagentaD6
+221 119 119		Cyan7D
+221 119 119		RedD7
+221 119 221		Green7D
+221 119 221		MagentaD7
+221 136 136		Cyan8D
+221 136 136		RedD8
+221 136 221		Green8D
+221 136 221		MagentaD8
+221 153 153		Cyan9D
+221 153 153		RedD9
+221 153 221		Green9D
+221 153 221		MagentaD9
+221 170 170		CyanAD
+221 170 170		RedDA
+221 170 221		GreenAD
+221 170 221		MagentaDA
+221 187 187		CyanBD
+221 187 187		RedDB
+221 187 221		GreenBD
+221 187 221		MagentaDB
+221 204 204		CyanCD
+221 204 204		RedDC
+221 204 221		GreenCD
+221 204 221		MagentaDC
+221 221   0		Blue0D
+221 221   0		YellowD0
+221 221  17		Blue1D
+221 221  17		YellowD1
+221 221  34		Blue2D
+221 221  34		YellowD2
+221 221  51		Blue3D
+221 221  51		YellowD3
+221 221  68		Blue4D
+221 221  68		YellowD4
+221 221  85		Blue5D
+221 221  85		YellowD5
+221 221 102		Blue6D
+221 221 102		YellowD6
+221 221 119		Blue7D
+221 221 119		YellowD7
+221 221 136		Blue8D
+221 221 136		YellowD8
+221 221 153		Blue9D
+221 221 153		YellowD9
+221 221 170		BlueAD
+221 221 170		YellowDA
+221 221 187		BlueBD
+221 221 187		YellowDB
+221 221 204		BlueCD
+221 221 204		YellowDC
+221 221 221		BlueDD
+221 221 221		CyanDD
+221 221 221		GreenDD
+221 221 221		MagentaDD
+221 221 221		RedDD
+221 221 221		YellowDD
+221 221 238		BlueED
+221 221 238		YellowDE
+221 221 255		BlueFD
+221 221 255		YellowDF
+221 238 221		GreenED
+221 238 221		MagentaDE
+221 238 238		CyanED
+221 238 238		RedDE
+221 255 221		GreenFD
+221 255 221		MagentaDF
+221 255 255		CyanFD
+221 255 255		RedDF
+238   0   0		Cyan0E
+238   0   0		RedE0
+238   0 238		Green0E
+238   0 238		MagentaE0
+238  17  17		Cyan1E
+238  17  17		RedE1
+238  17 238		Green1E
+238  17 238		MagentaE1
+238  34  34		Cyan2E
+238  34  34		RedE2
+238  34 238		Green2E
+238  34 238		MagentaE2
+238  51  51		Cyan3E
+238  51  51		RedE3
+238  51 238		Green3E
+238  51 238		MagentaE3
+238  68  68		Cyan4E
+238  68  68		RedE4
+238  68 238		Green4E
+238  68 238		MagentaE4
+238  85  85		Cyan5E
+238  85  85		RedE5
+238  85 238		Green5E
+238  85 238		MagentaE5
+238 102 102		Cyan6E
+238 102 102		RedE6
+238 102 238		Green6E
+238 102 238		MagentaE6
+238 119 119		Cyan7E
+238 119 119		RedE7
+238 119 238		Green7E
+238 119 238		MagentaE7
+238 136 136		Cyan8E
+238 136 136		RedE8
+238 136 238		Green8E
+238 136 238		MagentaE8
+238 153 153		Cyan9E
+238 153 153		RedE9
+238 153 238		Green9E
+238 153 238		MagentaE9
+238 170 170		CyanAE
+238 170 170		RedEA
+238 170 238		GreenAE
+238 170 238		MagentaEA
+238 187 187		CyanBE
+238 187 187		RedEB
+238 187 238		GreenBE
+238 187 238		MagentaEB
+238 204 204		CyanCE
+238 204 204		RedEC
+238 204 238		GreenCE
+238 204 238		MagentaEC
+238 221 221		CyanDE
+238 221 221		RedED
+238 221 238		GreenDE
+238 221 238		MagentaED
+238 238   0		Blue0E
+238 238   0		YellowE0
+238 238  17		Blue1E
+238 238  17		YellowE1
+238 238  34		Blue2E
+238 238  34		YellowE2
+238 238  51		Blue3E
+238 238  51		YellowE3
+238 238  68		Blue4E
+238 238  68		YellowE4
+238 238  85		Blue5E
+238 238  85		YellowE5
+238 238 102		Blue6E
+238 238 102		YellowE6
+238 238 119		Blue7E
+238 238 119		YellowE7
+238 238 136		Blue8E
+238 238 136		YellowE8
+238 238 153		Blue9E
+238 238 153		YellowE9
+238 238 170		BlueAE
+238 238 170		YellowEA
+238 238 187		BlueBE
+238 238 187		YellowEB
+238 238 204		BlueCE
+238 238 204		YellowEC
+238 238 221		BlueDE
+238 238 221		YellowED
+238 238 238		BlueEE
+238 238 238		CyanEE
+238 238 238		GreenEE
+238 238 238		MagentaEE
+238 238 238		RedEE
+238 238 238		YellowEE
+238 238 255		BlueFE
+238 238 255		YellowEF
+238 255 238		GreenFE
+238 255 238		MagentaEF
+238 255 255		CyanFE
+238 255 255		RedEF
+255   0   0		Cyan0F
+255   0   0		RedF0
+255   0 255		Green0F
+255   0 255		MagentaF0
+255  17  17		Cyan1F
+255  17  17		RedF1
+255  17 255		Green1F
+255  17 255		MagentaF1
+255  34  34		Cyan2F
+255  34  34		RedF2
+255  34 255		Green2F
+255  34 255		MagentaF2
+255  51  51		Cyan3F
+255  51  51		RedF3
+255  51 255		Green3F
+255  51 255		MagentaF3
+255  68  68		Cyan4F
+255  68  68		RedF4
+255  68 255		Green4F
+255  68 255		MagentaF4
+255  85  85		Cyan5F
+255  85  85		RedF5
+255  85 255		Green5F
+255  85 255		MagentaF5
+255 102 102		Cyan6F
+255 102 102		RedF6
+255 102 255		Green6F
+255 102 255		MagentaF6
+255 119 119		Cyan7F
+255 119 119		RedF7
+255 119 255		Green7F
+255 119 255		MagentaF7
+255 136 136		Cyan8F
+255 136 136		RedF8
+255 136 255		Green8F
+255 136 255		MagentaF8
+255 153 153		Cyan9F
+255 153 153		RedF9
+255 153 255		Green9F
+255 153 255		MagentaF9
+255 170 170		CyanAF
+255 170 170		RedFA
+255 170 255		GreenAF
+255 170 255		MagentaFA
+255 187 187		CyanBF
+255 187 187		RedFB
+255 187 255		GreenBF
+255 187 255		MagentaFB
+255 204 204		CyanCF
+255 204 204		RedFC
+255 204 255		GreenCF
+255 204 255		MagentaFC
+255 221 221		CyanDF
+255 221 221		RedFD
+255 221 255		GreenDF
+255 221 255		MagentaFD
+255 238 238		CyanEF
+255 238 238		RedFE
+255 238 255		GreenEF
+255 238 255		MagentaFE
+255 255   0		Blue0F
+255 255   0		YellowF0
+255 255  17		Blue1F
+255 255  17		YellowF1
+255 255  34		Blue2F
+255 255  34		YellowF2
+255 255  51		Blue3F
+255 255  51		YellowF3
+255 255  68		Blue4F
+255 255  68		YellowF4
+255 255  85		Blue5F
+255 255  85		YellowF5
+255 255 102		Blue6F
+255 255 102		YellowF6
+255 255 119		Blue7F
+255 255 119		YellowF7
+255 255 136		Blue8F
+255 255 136		YellowF8
+255 255 153		Blue9F
+255 255 153		YellowF9
+255 255 170		BlueAF
+255 255 170		YellowFA
+255 255 187		BlueBF
+255 255 187		YellowFB
+255 255 204		BlueCF
+255 255 204		YellowFC
+255 255 221		BlueDF
+255 255 221		YellowFD
+255 255 238		BlueEF
+255 255 238		YellowFE
+255 255 255		BlueFF
+255 255 255		CyanFF
+255 255 255		GreenFF
+255 255 255		MagentaFF
+255 255 255		RedFF
+255 255 255		YellowFF
