@@ -25,7 +25,7 @@ AC_CANONICAL_HOST
 case $host_os in
      *cygwin*) CYGWIN=yes;;
      *)        CYGWIN=no;;
-esac 
+esac
 
 if test "$IFM_CYGWIN" != ""; then
    AC_MSG_NOTICE(overriding Cygwin detection)
@@ -64,12 +64,16 @@ AC_SUBST(ifm2web)
 scr2ifm=scr2ifm
 AC_SUBST(scr2ifm)
 
+ifm2web=ifm2html
+AC_SUBST(ifm2html)
+
 if test $PERL = no; then
    AC_MSG_WARN(perl not found -- not building perl scripts)
    ifm2dev=
    ifm2tex=
    ifm2web=
    scr2ifm=
+   ifm2html=
 fi
 
 dnl Write Makefiles.

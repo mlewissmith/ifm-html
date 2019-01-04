@@ -1,10 +1,10 @@
 ## Automake template for IFM extra programs.
 
-bin_SCRIPTS = @tkifm@ @ifm2dev@ @ifm2tex@ @ifm2web@ @scr2ifm@
+bin_SCRIPTS = @tkifm@ @ifm2dev@ @ifm2tex@ @ifm2web@ @scr2ifm@ @ifm2html@
 
-EXTRA_SCRIPTS = tkifm ifm2dev ifm2tex ifm2web scr2ifm
+EXTRA_SCRIPTS = tkifm ifm2dev ifm2tex ifm2web scr2ifm ifm2html
 
-EXTRA_DIST = tkifm.tcl ifm2dev.pl ifm2tex.pl ifm2web.pl scr2ifm.pl
+EXTRA_DIST = tkifm.tcl ifm2dev.pl ifm2tex.pl ifm2web.pl scr2ifm.pl ifm2html.pl
 
 tkifm: ctext/ctext.tcl tkifm.tcl
 	echo '#! $(WISH) -f' > $@
