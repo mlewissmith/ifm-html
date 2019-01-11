@@ -8,6 +8,3 @@ Forked from source found at
 
 Note that IFM is still under active development at
   https://bitbucket.org/zondo/ifm
-
-
--- mlewissmith+github@gmail.com
