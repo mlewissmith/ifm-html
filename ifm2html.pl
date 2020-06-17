@@ -27,7 +27,8 @@ my %opt = ( "debug"       => 0,
             "quiet"       => 0,
             "format"      => "html",
             "ifmexe"      => "ifm",
-            "transfigexe" => "fig2dev" );
+            "transfigexe" => "fig2dev",
+            "dotexe"      => "dot");
 
 ################################################################################
 
@@ -342,11 +343,13 @@ if ($opt{format} eq "html") {
 # - rooms : rooms ; items + tasks
 # - items : list of items; link to room, required/dependent items + tasks
 # - tasks : list of tasks (no moves) ; link to room, required/dependent items + tasks
+#           graphviz/dot taskdeps
 
     my $index_html = "$opt{basename}-index.html";
     my $rooms_html = "$opt{basename}-rooms.html";
     my $tasks_html = "$opt{basename}-tasks.html";
     my $items_html = "$opt{basename}-items.html";
+    my $taskdeps_svg = "$opt{basename}-taskdeps.svg";
 
     my $html_css = heredoc(<<"##__HTML__##");
 # <style type="text/css">
@@ -369,6 +372,34 @@ if ($opt{format} eq "html") {
         my $ifmcmd = qq($ifmexe -map=$m -format fig -s show_map_title=false $inputfile | $transfigexe -L svg);
         #dprint "$ifmcmd";
         system("$ifmcmd > $map_svg") == 0 or die "$ifmcmd: $!";
+    }
+
+########################################
+## SVG TASKDEPS
+    dprint "$taskdeps_svg";
+    {
+        my $dot = $opt{dotexe};
+        my $ifmcmd = qq($ifmexe -f dot -t $inputfile);
+        my $dotcmd = qq($dot -Tsvg -o $taskdeps_svg);
+        if ( open(IFM, "$ifmcmd |") && open(DOT, "| $dotcmd") ) {
+            dprint "$ifmcmd";
+            dprint "$dotcmd";
+            while (<IFM>) {
+                my $line = $_;
+                if ( ($line =~ m/^\s*graph/) or
+                     ($line =~ m/^\s*rankdir/) or
+                     ($line =~ m/^\s*rotate/) or
+                     ($line =~ m/^\s*concentrate/) ) {
+                    $line = "//$line";
+                }
+                dprint $line;
+                print DOT $line;
+            }
+            close IFM or die "$!";
+            close DOT or die "$!";
+        } else {
+            die "$!";
+        }
     }
 
 ########################################
@@ -603,6 +634,7 @@ if ($opt{format} eq "html") {
 # </head>
 # <body>
 # <h1><a href="$index_html">Tasks</a></h1>
+# <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div>
 # <dl>
 ##__HTML__##
 
@@ -722,6 +754,7 @@ if ($opt{format} eq "html") {
 
         print HTML heredoc(<<"##__HTML__##");
 # </dl>
+# <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div>
 # </body>
 # </html>
 ##__HTML__##
