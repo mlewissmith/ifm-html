@@ -12,7 +12,8 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 
 use strict;
 use warnings;
-use feature qw(switch say);
+use feature qw(say);
+use experimental qw(switch);
 #no if $] >= 5.018, warnings => qw( experimental::smartmatch );
 
 use Cwd qw(getcwd realpath);
@@ -241,8 +242,17 @@ my %ifmdata;
                 when("note") {
                     push @{$ifmdata{tasks}{$current_task}{note}}, $value;
                 }
+
                 when("cmd") {
                     push @{$ifmdata{tasks}{$current_task}{cmd}}, $value;
+                }
+
+                when("get") {
+                    $ifmdata{tasks}{$current_task}{get} = $value;
+                }
+
+                when("give") {
+                    push @{$ifmdata{tasks}{$current_task}{give}}, $value;
                 }
 
                 when("tag") {
@@ -640,10 +650,17 @@ if ($opt{format} eq "html") {
 
         for my $t (sort { $tasks->{$a}{sortorder} <=> $tasks->{$b}{sortorder} } keys %{$tasks}) {
             next if ($tasks->{$t}{type} eq "MOVE");
+
+            my $itemhref = "";
+            if (defined $tasks->{$t}{get}) {
+                my $itemid = $tasks->{$t}{get};
+                $itemhref = qq(href="$items_html#item$itemid");
+            }
+
             print HTML heredoc(<<"##__HTML__##");
 # <!-- BEGIN task $t -->
 # <dt class="task">
-# <a name="task${t}" id="task${t}">@{[uc(encode_entities($tasks->{$t}{name}))]}</a>@{[$opt{debug}?qq(<span class="debug">[$t]</span>):qq()]}
+# <a $itemhref name="task${t}" id="task${t}">@{[uc(encode_entities($tasks->{$t}{name}))]}</a>@{[$opt{debug}?qq(<span class="debug">[$t]</span>):qq()]}
 # </dt>
 # <dd>
 ##__HTML__##
