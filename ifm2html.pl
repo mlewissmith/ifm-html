@@ -644,7 +644,7 @@ if ($opt{format} eq "html") {
 # </head>
 # <body>
 # <h1><a href="$index_html">Tasks</a></h1>
-# <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div>
+# <!-- <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div> -->
 # <dl>
 ##__HTML__##
 
@@ -771,7 +771,7 @@ if ($opt{format} eq "html") {
 
         print HTML heredoc(<<"##__HTML__##");
 # </dl>
-# <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div>
+# <!-- <div><object type="image/svg+xml" data="${taskdeps_svg}" width="100%">[${taskdeps_svg}]</object></div> -->
 # </body>
 # </html>
 ##__HTML__##
