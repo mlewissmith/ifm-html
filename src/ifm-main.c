@@ -512,7 +512,7 @@ static void
 print_version(void)
 {
     printf("IFM version %s\n", VERSION);
-    printf("Copyright (C) Glenn Hutchings <%s>\n\n", PACKAGE_BUGREPORT);
+    /* printf("Copyright (C) Glenn Hutchings <%s>\n\n", PACKAGE_BUGREPORT); */
 
     printf("This program is free software; you can redistribute it and/or modify\n");
     printf("it under the terms of the GNU General Public License as published by\n");
